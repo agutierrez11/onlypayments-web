@@ -8,6 +8,8 @@ import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { scheduledNewsCuratorHandler } from "../scheduled-news-curator";
+import { scheduledNewsletterHandler } from "../scheduled-newsletter-sender";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -36,6 +38,11 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   registerStorageProxy(app);
   registerOAuthRoutes(app);
+  
+  // Scheduled endpoints (must be before tRPC middleware)
+  app.post("/api/scheduled/curateNews", scheduledNewsCuratorHandler);
+  app.post("/api/scheduled/sendNewsletter", scheduledNewsletterHandler);
+  
   // tRPC API
   app.use(
     "/api/trpc",

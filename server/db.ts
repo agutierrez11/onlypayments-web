@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertGuide, InsertNews, InsertPaymentStack, InsertSubscriber, InsertUser, guides, news, paymentStacks, subscribers, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -77,15 +77,104 @@ export async function upsertUser(user: InsertUser): Promise<void> {
   }
 }
 
-export async function getUserByOpenId(openId: string) {
+export async function insertNews(item: InsertNews) {
   const db = await getDb();
   if (!db) {
-    console.warn("[Database] Cannot get user: database not available");
+    console.warn("[Database] Cannot insert news: database not available");
+    return;
+  }
+  await db.insert(news).values(item);
+}
+
+export async function getNews(limit: number = 10, offset: number = 0) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get news: database not available");
+    return [];
+  }
+  return db.select().from(news).limit(limit).offset(offset).orderBy(desc(news.publishedAt));
+}
+
+export async function getNewsById(id: number) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get news: database not available");
     return undefined;
   }
+  const result = await db.select().from(news).where(eq(news.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
 
-  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
+export async function insertPaymentStack(item: InsertPaymentStack) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot insert payment stack: database not available");
+    return;
+  }
+  await db.insert(paymentStacks).values(item);
+}
 
+export async function getPaymentStacks(limit: number = 10, offset: number = 0) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get payment stacks: database not available");
+    return [];
+  }
+  return db.select().from(paymentStacks).limit(limit).offset(offset).orderBy(desc(paymentStacks.createdAt));
+}
+
+export async function insertGuide(item: InsertGuide) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot insert guide: database not available");
+    return;
+  }
+  await db.insert(guides).values(item);
+}
+
+export async function getGuides(limit: number = 10, offset: number = 0) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get guides: database not available");
+    return [];
+  }
+  return db.select().from(guides).limit(limit).offset(offset).orderBy(desc(guides.createdAt));
+}
+
+export async function subscribeUser(email: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot subscribe user: database not available");
+    return;
+  }
+  await db.insert(subscribers).values({ email });
+}
+
+export async function getSubscribers() {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get subscribers: database not available");
+    return [];
+  }
+  return db.select().from(subscribers).where(eq(subscribers.isActive, 1));
+}
+
+export async function unsubscribeUser(email: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot unsubscribe user: database not available");
+    return;
+  }
+  await db.update(subscribers).set({ isActive: 0, unsubscribedAt: new Date() }).where(eq(subscribers.email, email));
+}
+
+export async function getSubscriberByEmail(email: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get subscriber: database not available");
+    return undefined;
+  }
+  const result = await db.select().from(subscribers).where(eq(subscribers.email, email)).limit(1);
   return result.length > 0 ? result[0] : undefined;
 }
 
