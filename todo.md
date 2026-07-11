@@ -2,7 +2,7 @@
 
 ## Planificación y Arquitectura
 - [x] Definir esquema de base de datos para noticias, stacks de pago, guías y suscriptores.
-- [ ] Planificar la integración del motor LLM y la automatización del newsletter.
+- [x] Planificar la integración del motor LLM y la automatización del newsletter.
 
 ## Base de Datos
 - [x] Implementar esquema de base de datos (`drizzle/schema.ts`).
@@ -48,7 +48,7 @@
 - [x] Configurar el envío automático semanal del newsletter.
 
 ## Pruebas y Refinamientos
-- [ ] Realizar pruebas funcionales de todas las características.
-- [ ] Refinar el diseño visual para asegurar una estética premium y elegante.
-- [ ] Realizar pruebas de rendimiento y optimización.
-- [ ] Crear checkpoint final del proyecto.
+- [x] Realizar pruebas funcionales de todas las características.
+- [x] Refinar el diseño visual para asegurar una estética premium y elegante.
+- [x] Realizar pruebas de rendimiento y optimización.
+- [x] Crear checkpoint final del proyecto.
