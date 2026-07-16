@@ -145,6 +145,14 @@
     <!-- Flujo de transacción -->
     <div class="flow-section">
       <h3 class="flow-title">⚡ ¿Qué pasa cuando haces clic en "Pagar"?</h3>
+      
+      <!-- Selector de flujo interactivo -->
+      <div class="flow-selector" style="display:flex; justify-content:center; gap:12px; margin-bottom:24px; flex-wrap:wrap;">
+        <button class="flow-btn active" onclick="switchFlowDiagram('4partes', this)">🌐 Modelo de 4 Partes (Estándar Global)</button>
+        <button class="flow-btn" onclick="switchFlowDiagram('mexico', this)">🇲🇽 Flujo México (Prosa / E-Global)</button>
+        <button class="flow-btn" onclick="switchFlowDiagram('3partes', this)">🏢 Modelo de 3 Partes (Monopolio / Amex)</button>
+      </div>
+
       <div class="flow-diagram" id="flow-diagram"></div>
     </div>
 

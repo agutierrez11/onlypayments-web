@@ -127,6 +127,8 @@ function selectCountry(countryCode, element) {
 }
 
 // ── ECOSISTEMA ──
+let currentFlowType = '4partes';
+
 function renderEcosystem() {
   const grid = document.getElementById("actors-grid");
   grid.innerHTML = ECOSYSTEM_ACTORS.map(actor => `
@@ -139,37 +141,112 @@ function renderEcosystem() {
     </div>
   `).join("");
 
-  // Dibujar el diagrama de flujo simplificado
+  // Inicializar diagrama en el modelo de 4 partes
+  switchFlowDiagram('4partes', document.querySelector('.flow-btn.active'));
+}
+
+function switchFlowDiagram(flowType, element) {
+  currentFlowType = flowType;
+  
+  // Activar botón del selector
+  const buttons = document.querySelectorAll(".flow-btn");
+  buttons.forEach(btn => btn.classList.remove("active"));
+  if (element) {
+    element.classList.add("active");
+  }
+
   const diagram = document.getElementById("flow-diagram");
-  diagram.innerHTML = `
-    <div class="flow-steps-container">
-      <div class="flow-step" id="flow-step-1">
-        <div class="flow-step-num">1</div>
-        <div class="flow-step-text">Usuario compra</div>
+  
+  if (flowType === '4partes') {
+    diagram.innerHTML = `
+      <div class="flow-steps-container">
+        <div class="flow-step" id="flow-step-1">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-text">Usuario compra</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" id="flow-step-3">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-text">Gateway encripta</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" id="flow-step-4">
+          <div class="flow-step-num">4</div>
+          <div class="flow-step-text">Adquirente procesa</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" id="flow-step-5">
+          <div class="flow-step-num">5</div>
+          <div class="flow-step-text">Red valida (Visa/MC)</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" id="flow-step-6">
+          <div class="flow-step-num">6</div>
+          <div class="flow-step-text">Emisor aprueba fondos</div>
+        </div>
       </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step" id="flow-step-3">
-        <div class="flow-step-num">3</div>
-        <div class="flow-step-text">Gateway encripta</div>
+      <div class="flow-explanation-box">
+        <strong>Modelo estándar internacional de 4 partes:</strong> Separa al tarjetahabiente (1), al comercio (2), al adquirente (4 - ej. Getnet, BBVA) y al emisor (6 - ej. Santander, Nu). Las marcas globales (5 - Visa, Mastercard) interconectan a todos y cobran comisiones en base a la Tasa de Intercambio.
       </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step" id="flow-step-4">
-        <div class="flow-step-num">4</div>
-        <div class="flow-step-text">Adquirente procesa</div>
+      <div class="flow-caption">Haz clic en cualquier actor de la grilla de arriba para ver su rol en la cadena.</div>
+    `;
+  } else if (flowType === 'mexico') {
+    diagram.innerHTML = `
+      <div class="flow-steps-container">
+        <div class="flow-step" id="flow-step-1">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-text">Usuario compra</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" id="flow-step-3">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-text">Gateway encripta</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" id="flow-step-4">
+          <div class="flow-step-num">4</div>
+          <div class="flow-step-text">Adquirente local</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" id="flow-step-custom-mex" style="border-color: var(--secondary); background: rgba(13, 148, 136, 0.05);">
+          <div class="flow-step-num" style="color:var(--secondary)">⚡</div>
+          <div class="flow-step-text" style="color:var(--secondary); font-weight:600;">Switch Local (Prosa / E-Global)</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" id="flow-step-6">
+          <div class="flow-step-num">6</div>
+          <div class="flow-step-text">Emisor mexicano</div>
+        </div>
       </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step" id="flow-step-5">
-        <div class="flow-step-num">5</div>
-        <div class="flow-step-text">Red valida (Visa/MC)</div>
+      <div class="flow-explanation-box">
+        <strong>Flujo doméstico en México con Cámaras de Compensación:</strong> Para tarjetas mexicanas cobradas en terminales o checkouts mexicanos, la transacción no sale a las redes globales de Visa/Mastercard. En su lugar, se rutea mediante **Prosa** o **E-Global** (cámaras de compensación locales reguladas) directo al emisor mexicano. Esto reduce los costos de marcas extranjeras y agiliza la compensación.
       </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step" id="flow-step-6">
-        <div class="flow-step-num">6</div>
-        <div class="flow-step-text">Emisor aprueba fondos</div>
+      <div class="flow-caption">Las cámaras de compensación locales son el switch transaccional doméstico de México.</div>
+    `;
+  } else if (flowType === '3partes') {
+    diagram.innerHTML = `
+      <div class="flow-steps-container">
+        <div class="flow-step" id="flow-step-1">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-text">Tarjetahabiente</div>
+        </div>
+        <div class="flow-arrow">⇄</div>
+        <div class="flow-step" id="flow-step-custom-3p" style="border-color: var(--primary); background: rgba(124, 58, 237, 0.05);">
+          <div class="flow-step-num">🏢</div>
+          <div class="flow-step-text" style="color:var(--primary-light); font-weight:600;">Entidad Única (Emisor + Adquirente)</div>
+        </div>
+        <div class="flow-arrow">⇄</div>
+        <div class="flow-step" id="flow-step-2">
+          <div class="flow-step-num">2</div>
+          <div class="flow-step-text">Comercio (Merchant)</div>
+        </div>
       </div>
-    </div>
-    <div class="flow-caption">Haz clic en cualquier actor de la grilla de arriba para ver su rol en la cadena.</div>
-  `;
+      <div class="flow-explanation-box">
+        <strong>Modelo cerrado de 3 partes:</strong> El emisor y el adquirente son el mismo actor (ej. American Express, que emite la tarjeta y a la vez afilia al comercio directamente). En **Chile, el modelo histórico de Transbank** operaba como un modelo de 3 partes de facto al concentrar la adquirencia y el mandato exclusivo de emisión bancaria bajo un único operador.
+      </div>
+      <div class="flow-caption">Un esquema cerrado de 3 partes que centraliza las comisiones en una única entidad reguladora.</div>
+    `;
+  }
 }
 
 function highlightEcosystemStep(id) {
@@ -505,6 +582,7 @@ function selectProviderRegion(regionCode, element) {
         <span class="provider-card-label">Cobertura:</span>
         <span class="provider-card-countries">${p.countries}</span>
       </div>
+    </div>
   `).join("");
 }
 
