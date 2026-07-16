@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render inicial de métodos de pago (México por defecto)
   selectCountry("MX", document.querySelector('[data-country="MX"]'));
   
+  // Render inicial de proveedores de pago (Regional por defecto)
+  selectProviderRegion("REGIONAL", document.querySelector('[data-region="REGIONAL"]'));
+
   // Render de Ecosistema
   renderEcosystem();
   
@@ -85,31 +88,41 @@ function selectCountry(countryCode, element) {
     return;
   }
 
-  grid.innerHTML = methods.map(method => `
-    <div class="method-card">
-      <div class="method-header">
-        <span class="method-logo" role="img">${method.logo}</span>
-        <div>
-          <h4 class="method-name">${method.name}</h4>
-          <span class="method-badge">${method.type}</span>
+  grid.innerHTML = methods.map(method => {
+    const providersList = method.providers && method.providers.length > 0
+      ? method.providers.map(p => `<span class="provider-tag">${p}</span>`).join("")
+      : `<span class="provider-tag">Varios</span>`;
+
+    return `
+      <div class="method-card">
+        <div class="method-header">
+          <span class="method-logo" role="img">${method.logo}</span>
+          <div>
+            <h4 class="method-name">${method.name}</h4>
+            <span class="method-badge">${method.type}</span>
+          </div>
+        </div>
+        <p class="method-desc">${method.description}</p>
+        <div class="method-details">
+          <div class="method-detail-item">
+            <span class="method-detail-label">Liquidación (Settlement)</span>
+            <span class="method-detail-val">${method.settlement}</span>
+          </div>
+          <div class="method-detail-item">
+            <span class="method-detail-label">Comisión estimada</span>
+            <span class="method-detail-val">${method.fee}</span>
+          </div>
+        </div>
+        <div class="method-providers">
+          <span class="providers-label">Procesadores / Gateways:</span>
+          <div class="providers-list">${providersList}</div>
+        </div>
+        <div class="method-compliance">
+          <strong>⚠️ Compliance / Riesgo:</strong> ${method.compliance}
         </div>
       </div>
-      <p class="method-desc">${method.description}</p>
-      <div class="method-details">
-        <div class="method-detail-item">
-          <span class="method-detail-label">Liquidación (Settlement)</span>
-          <span class="method-detail-val">${method.settlement}</span>
-        </div>
-        <div class="method-detail-item">
-          <span class="method-detail-label">Comisión estimada</span>
-          <span class="method-detail-val">${method.fee}</span>
-        </div>
-      </div>
-      <div class="method-compliance">
-        <strong>⚠️ Compliance / Riesgo:</strong> ${method.compliance}
-      </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 }
 
 // ── ECOSISTEMA ──
@@ -458,4 +471,39 @@ function updateStats() {
   
   // Discusiones
   document.getElementById("stat-posts").textContent = communityPosts.length;
+}
+
+// ── PROVEEDORES DE PAGO ──
+function selectProviderRegion(regionCode, element) {
+  // Activar botón del selector
+  const filterBtns = document.querySelectorAll(".provider-filter-btn");
+  filterBtns.forEach(btn => btn.classList.remove("active"));
+  if (element) {
+    element.classList.add("active");
+  } else {
+    const btn = document.querySelector(`[data-region="${regionCode}"]`);
+    if (btn) btn.classList.add("active");
+  }
+
+  const providers = PAYMENT_PROVIDERS[regionCode] || [];
+  const grid = document.getElementById("providers-grid");
+
+  if (providers.length === 0) {
+    grid.innerHTML = `<div class="empty-state">No hay proveedores registrados para esta región aún.</div>`;
+    return;
+  }
+
+  grid.innerHTML = providers.map(p => `
+    <div class="provider-card">
+      <div class="provider-card-header">
+        <h4 class="provider-card-title">${p.name}</h4>
+        <span class="provider-card-role">${p.role}</span>
+      </div>
+      <p class="provider-card-desc">${p.desc}</p>
+      <div class="provider-card-footer">
+        <span class="provider-card-label">Cobertura:</span>
+        <span class="provider-card-countries">${p.countries}</span>
+      </div>
+    </div>
+  `).join("");
 }

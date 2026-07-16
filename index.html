@@ -24,6 +24,7 @@
     <div class="nav-links">
       <a href="#metodos" class="nav-link">Métodos</a>
       <a href="#ecosistema" class="nav-link">Ecosistema</a>
+      <a href="#proveedores" class="nav-link">Proveedores</a>
       <a href="#noticias" class="nav-link">Noticias</a>
       <a href="#comunidad" class="nav-link">Comunidad</a>
       <a href="#colaboradores" class="nav-link">Colaboradores</a>
@@ -34,6 +35,7 @@
   <div class="nav-mobile" id="nav-mobile">
     <a href="#metodos" onclick="toggleMobileMenu()">Métodos de Pago</a>
     <a href="#ecosistema" onclick="toggleMobileMenu()">Ecosistema</a>
+    <a href="#proveedores" onclick="toggleMobileMenu()">Proveedores de Pago</a>
     <a href="#noticias" onclick="toggleMobileMenu()">Noticias</a>
     <a href="#comunidad" onclick="toggleMobileMenu()">Comunidad</a>
     <a href="#colaboradores" onclick="toggleMobileMenu()">Colaboradores</a>
@@ -157,6 +159,30 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── PROVEEDORES DE PAGO ── -->
+<section class="section-wrapper" id="proveedores">
+  <div class="container">
+    <div class="section-label">🔌 Directorio de Proveedores</div>
+    <h2 class="section-title">¿Quién procesa los pagos?</h2>
+    <p class="section-sub">El mapa de adquirentes, pasarelas, agregadores locales y procesadores regionales que operan en América Latina.</p>
+
+    <!-- Selector de Región/País de proveedores -->
+    <div class="providers-selector" id="providers-selector">
+      <button class="provider-filter-btn active" data-region="REGIONAL" onclick="selectProviderRegion('REGIONAL', this)">🌎 Regionales</button>
+      <button class="provider-filter-btn" data-region="MX" onclick="selectProviderRegion('MX', this)">🇲🇽 México</button>
+      <button class="provider-filter-btn" data-region="BR" onclick="selectProviderRegion('BR', this)">🇧🇷 Brasil</button>
+      <button class="provider-filter-btn" data-region="CO" onclick="selectProviderRegion('CO', this)">🇨🇴 Colombia</button>
+      <button class="provider-filter-btn" data-region="AR" onclick="selectProviderRegion('AR', this)">🇦🇷 Argentina</button>
+      <button class="provider-filter-btn" data-region="CL" onclick="selectProviderRegion('CL', this)">🇨🇱 Chile</button>
+      <button class="provider-filter-btn" data-region="PE" onclick="selectProviderRegion('PE', this)">🇵🇪 Perú</button>
+      <button class="provider-filter-btn" data-region="REST" onclick="selectProviderRegion('REST', this)">🌐 Resto de LATAM</button>
+    </div>
+
+    <!-- Grid de proveedores -->
+    <div class="providers-grid" id="providers-grid"></div>
   </div>
 </section>
 

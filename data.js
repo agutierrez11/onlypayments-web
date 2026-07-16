@@ -99,7 +99,8 @@ const PAYMENT_METHODS = {
       settlement: "D+1 a D+2",
       fee: "3.5% - 4.5% + $10 MXN",
       description: "El método de pago físico favorito. El cliente genera un código de barras de 14 dígitos en el checkout y paga en efectivo en cualquiera de las más de 20,000 tiendas OXXO del país. Conciliación en tiempo real tras el pago.",
-      compliance: "Bajo riesgo de contracargo. Límites máximos por transacción de $10,000 MXN."
+      compliance: "Bajo riesgo de contracargo. Límites máximos por transacción de $10,000 MXN.",
+      providers: ["Conekta", "Mercado Pago", "OXXO directo", "dLocal", "PayU"]
     },
     {
       name: "SPEI (Transferencia Bancaria)",
@@ -108,7 +109,8 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "0.5% - 1.5% o tarifa plana ($5-$10 MXN)",
       description: "Sistema de Pagos Electrónicos Interbancarios administrado por el Banco de México. Permite transferencias las 24 horas, los 7 días de la semana de forma inmediata usando una CLABE única asignada por transacción para conciliación automática.",
-      compliance: "Sin contracargos. Requiere validación de origen en transacciones de alto volumen para evitar fraude/lavado."
+      compliance: "Sin contracargos. Requiere validación de origen en transacciones de alto volumen para evitar fraude/lavado.",
+      providers: ["Kushki", "Conekta", "Stripe", "dLocal", "Mercado Pago"]
     },
     {
       name: "Tarjetas Locales (Carnet)",
@@ -117,7 +119,8 @@ const PAYMENT_METHODS = {
       settlement: "D+1 (Débito) / D+2 (Crédito)",
       fee: "2.3% - 3.4% + $3 MXN",
       description: "Esquema local de tarjetas de débito y vales en México. Es vital soportar el procesamiento local y la redirección a Carnet para mejorar las tasas de aceptación y reducir los declives por emisores locales.",
-      compliance: "Riesgo medio de contracargo. Recomendado usar 3D Secure 2.0 (3DS) para mitigar disputas."
+      compliance: "Riesgo medio de contracargo. Recomendado usar 3D Secure 2.0 (3DS) para mitigar disputas.",
+      providers: ["Kushki", "Conekta", "Stripe", "Adyen", "Nuvei"]
     },
     {
       name: "Kueski Pay / BNPL",
@@ -126,7 +129,8 @@ const PAYMENT_METHODS = {
       settlement: "D+2",
       fee: "5.0% - 7.5%",
       description: "Líder de 'Compre ahora, pague después' en México. Permite a los clientes pagar a plazos quincenales sin necesidad de una tarjeta de crédito. Muy popular entre la población joven y no bancarizada.",
-      compliance: "Kueski asume el riesgo de impago y fraude de identidad."
+      compliance: "Kueski asume el riesgo de impago y fraude de identidad.",
+      providers: ["Kueski Pay directo", "Conekta", "Yuno"]
     }
   ],
   BR: [
@@ -137,7 +141,8 @@ const PAYMENT_METHODS = {
       settlement: "Instantáneo (segundos)",
       fee: "0.2% - 0.95% (muy bajo)",
       description: "El sistema de pago instantáneo desarrollado por el Banco Central de Brasil. Utiliza llaves (teléfono, email, CPF) o códigos QR dinámicos. Ha reemplazado casi por completo al efectivo y reduce radicalmente los costos para comercios.",
-      compliance: "Sin contracargos. Límites de seguridad nocturnos impuestos por regulación del Banco Central para prevenir secuestros exprés."
+      compliance: "Sin contracargos. Límites de seguridad nocturnos impuestos por regulación del Banco Central para prevenir secuestros exprés.",
+      providers: ["EBANX", "dLocal", "PagSeguro", "Cielo", "Stone", "Fitbank"]
     },
     {
       name: "PIX Automático",
@@ -146,7 +151,8 @@ const PAYMENT_METHODS = {
       settlement: "Instantáneo",
       fee: "0.3% - 1.0%",
       description: "Nueva funcionalidad del Banco Central para debitar facturas recurrentes de forma automática desde la cuenta del cliente (servicios públicos, suscripciones, escuelas) previa autorización única en la app bancaria del usuario.",
-      compliance: "Permite cancelación del débito recurrente de forma sencilla por el usuario, evitando cargos forzados."
+      compliance: "Permite cancelación del débito recurrente de forma sencilla por el usuario, evitando cargos forzados.",
+      providers: ["EBANX", "Fitbank", "Banco Central do Brasil APIs"]
     },
     {
       name: "Boleto Bancário",
@@ -155,7 +161,8 @@ const PAYMENT_METHODS = {
       settlement: "D+1 a D+2",
       fee: "Tarifa fija por Boleto liquidado (R$ 2.00 - R$ 5.00)",
       description: "Documento oficial con código de barras regulado por FEBRABAN. Se puede pagar en bancos, cajeros automáticos, oficinas postales o mediante banca en línea. Sigue siendo muy relevante para pagos corporativos o compras de alto valor.",
-      compliance: "Cero riesgo de contracargo. Puede presentar demoras de conciliación de hasta 48 horas hábiles."
+      compliance: "Cero riesgo de contracargo. Puede presentar demoras de conciliación de hasta 48 horas hábiles.",
+      providers: ["EBANX", "dLocal", "PagSeguro", "Itaú", "Bradesco"]
     },
     {
       name: "Cartão de Crédito Local",
@@ -164,7 +171,8 @@ const PAYMENT_METHODS = {
       settlement: "D+30 (estándar brasileño si no se anticipa)",
       fee: "2.8% - 4.5% (tasas más altas para parcelas)",
       description: "Soporte esencial para esquemas locales como Elo e Hipercard. Los brasileños exigen pagar en cuotas ('Parcelas' de hasta 12x). Los comercios suelen anticipar los cobros cobrando tasas adicionales de descuento financiero.",
-      compliance: "Riesgo alto de contracargo. El uso de herramientas de prevención de fraude locales (ej. Konduto, ClearSale) es obligatorio."
+      compliance: "Riesgo alto de contracargo. El uso de herramientas de prevención de fraude locales (ej. Konduto, ClearSale) es obligatorio.",
+      providers: ["Cielo", "Rede", "Stone", "Adyen", "EBANX", "dLocal"]
     }
   ],
   CO: [
@@ -175,7 +183,8 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "Tarifa fija (COP $1,500 - $3,500) o 1.0% - 1.8%",
       description: "El sistema de débito directo que conecta más de 20 bancos colombianos en una sola interfaz. El cliente es redirigido a su banca virtual para autorizar el débito en tiempo real. Indispensable en cualquier ecommerce en Colombia.",
-      compliance: "Cero riesgo de contracargo. Alto nivel de seguridad provisto directamente por los bancos."
+      compliance: "Cero riesgo de contracargo. Alto nivel de seguridad provisto directamente por los bancos.",
+      providers: ["Wompi", "PayU", "Mercado Pago", "Bold", "Kushki", "Placetopay"]
     },
     {
       name: "Nequi / Daviplata",
@@ -184,7 +193,8 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "1.0% - 2.0%",
       description: "Las dos billeteras móviles más grandes del país (Nequi de Bancolombia y Daviplata de Davivienda). Soportan pagos vía número de celular, notificaciones push de cobro directo y lectura de códigos QR.",
-      compliance: "Bajo riesgo de fraude. Límites mensuales regulados por topes de cuentas de trámite simplificado (cerca de 8 millones de COP)."
+      compliance: "Bajo riesgo de fraude. Límites mensuales regulados por topes de cuentas de trámite simplificado (cerca de 8 millones de COP).",
+      providers: ["Wompi", "PayU", "Mercado Pago", "Bold", "Nequi directo"]
     },
     {
       name: "Efecty / Vía Baloto",
@@ -193,7 +203,18 @@ const PAYMENT_METHODS = {
       settlement: "D+1",
       fee: "3.0% - 4.0%",
       description: "Puntos de recaudación física distribuidos por todo el territorio colombiano. El cliente acude al punto físico con un número de convenio y referencia y realiza el pago en efectivo.",
-      compliance: "Cero contracargos. Muy útil para llegar a segmentos rurales y no bancarizados."
+      compliance: "Cero contracargos. Muy útil para llegar a segmentos rurales y no bancarizados.",
+      providers: ["Efecty directo", "PayU", "dLocal", "Mercado Pago"]
+    },
+    {
+      name: "Addi",
+      type: "BNPL / Financiamiento",
+      logo: "⏳",
+      settlement: "D+1",
+      fee: "4.5% - 6.0%",
+      description: "Buy Now Pay Later líder en Colombia. Otorga préstamos de consumo instantáneos a plazos en el checkout sin requerir tarjetas. Muy alto incremento del ticket promedio del comercio.",
+      compliance: "Addi gestiona el cobro y asume el riesgo de cartera vencida.",
+      providers: ["Addi API directo", "Mercado Pago", "PayU"]
     }
   ],
   PE: [
@@ -204,7 +225,8 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "2.5% - 3.0%",
       description: "Billetera móvil insignia del Banco de Crédito del Perú (BCP). Cuenta con más de 12 millones de usuarios. Permite transferencias rápidas escaneando códigos QR Yape o ingresando el número de celular del destinatario.",
-      compliance: "Interoperable con Plin. Límites diarios de envío y recepción de hasta S/ 950 por cuenta estándar."
+      compliance: "Interoperable con Plin. Límites diarios de envío y recepción de hasta S/ 950 por cuenta estándar.",
+      providers: ["Culqi", "Niubiz", "Kushki", "Izi Pay", "Yape para empresas"]
     },
     {
       name: "Plin",
@@ -213,7 +235,8 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "2.5% - 3.0%",
       description: "Billetera móvil de BBVA, Interbank y Scotiabank. Funciona integrándose directamente dentro de las aplicaciones móviles bancarias de los bancos asociados. Ahora 100% interoperable con Yape.",
-      compliance: "Sin contracargos. La verificación se realiza por token SMS en el app del banco."
+      compliance: "Sin contracargos. La verificación se realiza por token SMS en el app del banco.",
+      providers: ["Niubiz", "Culqi", "Izi Pay", "Mercado Pago"]
     },
     {
       name: "PagoEfectivo",
@@ -222,7 +245,8 @@ const PAYMENT_METHODS = {
       settlement: "D+1",
       fee: "3.5% - 4.5%",
       description: "Permite comprar por internet y pagar mediante banca por internet, banca móvil o de forma presencial en bodegas, agentes y agencias autorizadas a través de un código CIP único de pago.",
-      compliance: "Ideal para ecommerce sin riesgo de contracargos de tarjetas."
+      compliance: "Ideal para ecommerce sin riesgo de contracargos de tarjetas.",
+      providers: ["PagoEfectivo directo (Grupo El Comercio)", "dLocal", "Kushki"]
     }
   ],
   CL: [
@@ -233,7 +257,8 @@ const PAYMENT_METHODS = {
       settlement: "D+1 (Débito) / D+2 (Crédito)",
       fee: "1.2% - 1.8% (Débito) / 2.2% - 3.0% (Crédito)",
       description: "El portal de pagos dominante en Chile, operado históricamente por Transbank. Conecta todas las tarjetas de débito (Redcompra), crédito y prepago del país bajo un flujo de autenticación obligatoria (Webpay OneClick).",
-      compliance: "Implementación de 3DS obligatoria. Tasas muy bajas de contracargo gracias a la autenticación bancaria de dos factores."
+      compliance: "Implementación de 3DS obligatoria. Tasas muy bajas de contracargo gracias a la autenticación bancaria de dos factores.",
+      providers: ["Transbank", "Flow", "Pago Fácil", "Mercado Pago"]
     },
     {
       name: "Khipu",
@@ -242,7 +267,28 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "1.0% - 1.5%",
       description: "Servicio de automatización de transferencias bancarias simplificado. Utiliza una interfaz intuitiva para guiar al usuario a realizar una transferencia electrónica directa de forma segura y veloz.",
-      compliance: "Opera como un iniciador de pagos seguro sin almacenar credenciales de banca en línea."
+      compliance: "Opera como un iniciador de pagos seguro sin almacenar credenciales de banca en línea.",
+      providers: ["Khipu directo", "Flow", "Yuno"]
+    },
+    {
+      name: "MACH",
+      type: "Billetera Digital / Prepago",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "1.5% - 2.5%",
+      description: "Billetera virtual prepago respaldada por el Banco Bci. Muy popular en el público joven chileno para compras en línea e internacionales sin tener tarjeta de crédito tradicional.",
+      compliance: "Bajo riesgo. Opera bajo el esquema de prepago regulado por la CMF.",
+      providers: ["MACH directo", "Flow", "Mercado Pago"]
+    },
+    {
+      name: "Cuenta RUT / Débito BancoEstado",
+      type: "Tarjeta de Débito local",
+      logo: "🇨🇱",
+      settlement: "D+1",
+      fee: "1.2% - 1.8%",
+      description: "La cuenta vista más extendida de Chile (más de 13 millones de usuarios). Funciona como tarjeta de débito local. Es indispensable para habilitar el comercio masivo.",
+      compliance: "Opera bajo rieles estándar de tarjeta de débito pero con límites máximos de saldo más bajos.",
+      providers: ["Transbank (Webpay)", "Flow", "Mercado Pago"]
     }
   ],
   AR: [
@@ -253,7 +299,8 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "0.8% (máximo regulado)",
       description: "Iniciativa del Banco Central de la República Argentina (BCRA) para crear un ecosistema interoperable de transferencias instantáneas (Pagos con Transferencia). Permite abonar mediante códigos QR desde cualquier billetera bancaria o fintech.",
-      compliance: "Sin contracargos. Muy ventajoso debido al bajísimo arancel y liquidación inmediata para el comercio en época inflacionaria."
+      compliance: "Sin contracargos. Muy ventajoso debido al bajísimo arancel y liquidación inmediata para el comercio en época inflacionaria.",
+      providers: ["Mercado Pago", "Ualá Bis", "Prisma (Payway)", "dLocal"]
     },
     {
       name: "Mercado Pago Wallet",
@@ -262,7 +309,18 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "0.99% - 3.99% (varía según plazo de cobro)",
       description: "La billetera digital dominante en Argentina. Permite pagar con saldo en cuenta, tarjetas asociadas, Mercado Crédito o escaneando QR. Su penetración es masiva tanto en comercio online como físico.",
-      compliance: "Mecanismos internos robustos de prevención de fraude basados en el perfil del usuario de Mercado Libre."
+      compliance: "Mecanismos internos robustos de prevención de fraude basados en el perfil del usuario de Mercado Libre.",
+      providers: ["Mercado Pago directo"]
+    },
+    {
+      name: "Pago Fácil / Rapipago",
+      type: "Efectivo / Voucher",
+      logo: "🏪",
+      settlement: "D+1",
+      fee: "3.0% - 4.5%",
+      description: "Redes extrabancarias de cobro en efectivo. El usuario acude a las sucursales con una boleta física o digital para liquidar su compra online.",
+      compliance: "Cero contracargo. Muy sensible a la inflación y devaluación si hay demoras de pago por el cliente.",
+      providers: ["dLocal", "PayU", "Mercado Pago"]
     }
   ],
   UY: [
@@ -273,7 +331,8 @@ const PAYMENT_METHODS = {
       settlement: "D+1",
       fee: "3.5% - 4.5%",
       description: "Redes físicas de pagos en Uruguay con cobertura nacional. El cliente emite un voucher digital y paga en efectivo en las ventanillas de estas tiendas. Muy utilizado para pagos de servicios públicos y ecommerce.",
-      compliance: "Sin riesgo de contracargo. Excelente opción de inclusión financiera en el país."
+      compliance: "Sin riesgo de contracargo. Excelente opción de inclusión financiera en el país.",
+      providers: ["dLocal", "Sistarbanc", "Uruguay directo"]
     }
   ],
   EC: [
@@ -284,7 +343,18 @@ const PAYMENT_METHODS = {
       settlement: "Inmediato",
       fee: "1.5% - 2.5%",
       description: "La billetera móvil impulsada por el Banco Pichincha, el banco más grande de Ecuador. Permite transferir dinero a cualquier persona con su número celular o escaneando QRs de comercios locales en dólares.",
-      compliance: "Sin contracargos. Límites diarios de transferencia y alta adopción en el sector informal y micropagos."
+      compliance: "Sin contracargos. Límites diarios de transferencia y alta adopción en el sector informal y micropagos.",
+      providers: ["Banco Pichincha directo", "Kushki"]
+    },
+    {
+      name: "Banco del Barrio",
+      type: "Corresponsal No Bancario",
+      logo: "🏪",
+      settlement: "D+1",
+      fee: "2.0% - 3.0%",
+      description: "Red de corresponsales no bancarios del Banco Guayaquil. Permite a los usuarios realizar depósitos y pagos de compras online en efectivo en tiendas de barrio autorizadas.",
+      compliance: "Cero riesgo de contracargo. Excelente capilaridad en zonas rurales.",
+      providers: ["Banco Guayaquil directo", "Kushki"]
     }
   ]
 };
@@ -473,3 +543,65 @@ const INITIAL_POSTS = [
     time: "Hace 2 días"
   }
 ];
+
+const PAYMENT_PROVIDERS = {
+  REGIONAL: [
+    { name: "dLocal", role: "Agregador Regional / PayFac", countries: "Uruguay, Brasil, México, Colombia, Chile, Argentina, Perú", desc: "Infraestructura unificada de cobros y dispersiones (payouts) para mercados emergentes. Permite recibir pagos locales y liquidar cross-border con una única integración." },
+    { name: "EBANX", role: "Agregador Regional / Procesador", countries: "Brasil, México, Colombia, Chile, Argentina, Perú, Ecuador", desc: "Especialista en conectar comercios globales con métodos de pago locales en LATAM. Fuerte foco en adquirencia local y procesamiento cross-border." },
+    { name: "Mercado Pago", role: "Agregador / Billetera Digital", countries: "Argentina, Brasil, México, Colombia, Chile, Perú", desc: "El ecosistema fintech más grande de la región. Ofrece pasarela de pagos web, links de cobro, procesamiento físico y cobro mediante su propia wallet." },
+    { name: "PayU", role: "Gateway / Agregador", countries: "Colombia, México, Brasil, Argentina, Chile, Perú", desc: "Pionera en el procesamiento de pagos en LATAM. Ofrece robustez en procesamiento de tarjetas locales, efectivo y transferencias bajo un modelo agregador." },
+    { name: "Stripe", role: "Gateway / Adquirente", countries: "México, Brasil (Soporte local); Resto de LATAM (Cross-border)", desc: "El estándar tecnológico para cobros online. En MX y BR opera como adquirente y gateway directo ofreciendo una de las mejores APIs del mundo." },
+    { name: "Adyen", role: "Adquirente Global / Pasarela", countries: "Brasil, México (Local); Regional (Global)", desc: "Infraestructura de pagos de extremo a extremo que conecta directamente con Visa, Mastercard y métodos clave globales. Ideal para grandes multinacionales." }
+  ],
+  MX: [
+    { name: "Openpay", role: "Pasarela / Agregador (BBVA)", countries: "México", desc: "Propiedad de BBVA. Destaca por su altísima tasa de aprobación local en tarjetas de débito/crédito y su red de cobranza en efectivo Paynet." },
+    { name: "Conekta", role: "Agregador de Pagos", countries: "México", desc: "Especialista en habilitar pagos con tarjeta y efectivo offline mediante OXXO Pay. Muy enfocada en simplificar el compliance y contracargos." },
+    { name: "Clip", role: "Agregador físico mPOS & Online", countries: "México", desc: "Líder indiscutible de cobros presenciales para pymes. Ha expandido su suite a enlaces de pago online y pasarelas de ecommerce simplificadas." },
+    { name: "NetPay", role: "Gateway & Procesador", countries: "México", desc: "Ofrece terminales inteligentes (SmartPOS) y pasarela de cobro web orientada tanto a minoristas como a grandes corporativos." },
+    { name: "Fiserv México", role: "Adquirente tradicional", countries: "México", desc: "Procesamiento de pagos masivo y adquirencia directa para grandes empresas y corporativos multinacionales." },
+    { name: "Kueski Pay", role: "Proveedor BNPL", countries: "México", desc: "El mayor emisor de préstamos BNPL (Buy Now Pay Later) en México. Asume todo el riesgo crediticio del usuario, incrementando las ventas del comercio." }
+  ],
+  BR: [
+    { name: "PagBank", role: "Adquirente / Wallet (antiguo PagSeguro)", countries: "Brasil", desc: "Uno de los pioneros de la agregación de pagos. Ofrece adquirencia, procesamiento de tarjetas locales brasileñas y una de las cuentas digitales más usadas." },
+    { name: "Stone", role: "Adquirente e Infraestructura", countries: "Brasil", desc: "Líder en cobros físicos y pasarelas en e-commerce. Posee un fuerte servicio de atención al cliente y herramientas robustas de conciliación." },
+    { name: "Cielo", role: "Adquirente tradicional", countries: "Brasil", desc: "La red de procesamiento de tarjetas y pasarela más grande del país. Conecta directamente con la banca tradicional brasileña." },
+    { name: "Rede", role: "Adquirente (Itaú)", countries: "Brasil", desc: "Procesador oficial del Banco Itaú. Ofrece tarifas competitivas y alta tasa de aceptación para tarjetas de crédito nacionales." },
+    { name: "Asaas", role: "Automatización de cobros", countries: "Brasil", desc: "Plataforma especializada en la gestión de cobros recurrentes y facturación automática mediante Pix y Boleto Bancário." },
+    { name: "PicPay", role: "Billetera Digital y Pagos", countries: "Brasil", desc: "Billetera digital con más de 30 millones de usuarios. Permite transferencias inmediatas y pagos con código QR integrados en e-commerce." }
+  ],
+  CO: [
+    { name: "Wompi", role: "Pasarela / Agregador (Bancolombia)", countries: "Colombia", desc: "La pasarela oficial de Bancolombia. Ofrece la mejor conversión para cuentas de Bancolombia, botón PSE directo, Nequi y tarjetas de crédito." },
+    { name: "Bold", role: "Agregador Pyme", countries: "Colombia", desc: "Revolucionó el cobro móvil (datáfonos) en Colombia y ahora ofrece pasarela de cobro web simplificada y botones de PSE." },
+    { name: "ePayco (Payco)", role: "Agregador y Pasarela", countries: "Colombia", desc: "Suite muy completa de herramientas de cobro para desarrolladores y pymes: cobro por redes sociales, emails, links y API." },
+    { name: "Tucompra", role: "Pasarela Corporativa", countries: "Colombia", desc: "Una de las pasarelas pioneras. Especializada en grandes volúmenes transaccionales y pasarelas a la medida para corporaciones." },
+    { name: "Placetopay", role: "Procesador (Evertec)", countries: "Colombia, Ecuador", desc: "Propiedad del gigante tecnológico Evertec. Muy utilizada por aerolíneas, universidades y grandes retailers por su seguridad certificada." }
+  ],
+  AR: [
+    { name: "Payway", role: "Adquirente e Infraestructura (Prisma)", countries: "Argentina", desc: "La red principal que procesa la mayoría de las marcas de tarjetas del país y gestiona la interoperabilidad del código QR MODO." },
+    { name: "Naranja X", role: "Emisor y Agregador local", countries: "Argentina", desc: "Gran arraigo en el interior del país. Ofrece herramientas de cobro físico (Toque) y pasarelas integradas para tarjetas locales." },
+    { name: "Ualá Bis", role: "Agregador de Pagos (Ualá)", countries: "Argentina", desc: "La división de cobros de la fintech Ualá. Permite cobrar online y físico liquidando los fondos al instante en la cuenta de Ualá." },
+    { name: "Mobbex", role: "Agregador flexible", countries: "Argentina", desc: "Permite una configuración muy ágil de promociones y planes de cuotas bancarias o fintechs (ej. Ahora 12) bajo una sola API." },
+    { name: "Getnet Argentina", role: "Adquirente (Santander)", countries: "Argentina", desc: "La solución global de adquirencia del Banco Santander. Permite cobrar con QR, links de pago y datáfonos integrados." }
+  ],
+  CL: [
+    { name: "Transbank", role: "Adquirente histórico", countries: "Chile", desc: "El operador que históricamente monopolizó el procesamiento de tarjetas en Chile. Maneja Webpay, Webpay OneClick y Redcompra." },
+    { name: "Getnet Chile", role: "Adquirente competidor (Santander)", countries: "Chile", desc: "La alternativa de Santander que introdujo el modelo de 4 partes en Chile rompiendo el monopolio de Transbank." },
+    { name: "Mercado Pago Chile", role: "Agregador / Billetera", countries: "Chile", desc: "Emisor de tarjetas de prepago digitales e integrador de pasarela de checkout rápido para miles de comercios chilenos." },
+    { name: "Pago Fácil", role: "Gateway e Integrador", countries: "Chile", desc: "Muy popular por sus plugins prediseñados para Shopify, WooCommerce y PrestaShop, simplificando la burocracia de Transbank." },
+    { name: "Flow", role: "Agregador de pagos", countries: "Chile", desc: "Permite recibir transferencias bancarias simplificadas, Webpay y tarjetas comerciales en una sola cuenta sin contratos complejos." }
+  ],
+  PE: [
+    { name: "Niubiz", role: "Adquirente y Gateway Principal", countries: "Perú", desc: "Anteriormente VisaNet Perú. Es el procesador más grande del país, gestionando tarjetas de crédito/débito y la infraestructura de pagos QR." },
+    { name: "IziPay", role: "Adquirente multimarca", countries: "Perú", desc: "Nació para unificar el procesamiento de Visa y Mastercard en una sola terminal física. Ofrece pasarela web y links de cobro." },
+    { name: "Culqi", role: "Gateway y Agregador", countries: "Perú", desc: "Plataforma de pagos nativa digital del Grupo Credicorp. Muy valorada por los desarrolladores por la simplicidad de sus APIs y librerías." },
+    { name: "PagoEfectivo", role: "Líder de efectivo offline", countries: "Perú", desc: "Permite a los usuarios realizar pagos de compras en línea mediante un código de pago CIP en miles de agentes físicos del país." }
+  ],
+  REST: [
+    { name: "Kushki", role: "Orquestador / Adquirente regional", countries: "Ecuador, Colombia, México, Chile, Perú", desc: "Nacida en Ecuador y expandida a toda la región. Opera como adquirente no bancario regional y orquestador tecnológico masivo." },
+    { name: "Payphone", role: "Billetera Digital y Pasarela", countries: "Ecuador", desc: "Billetera digital ecuatoriana que permite procesar cobros con tarjeta y saldo móvil reduciendo radicalmente el contracargo." },
+    { name: "Bamboo Payment Systems", role: "Procesador cross-border", countries: "Uruguay, Colombia, Perú, Chile", desc: "Especialista en procesamiento de pagos recurrentes y cobros locales en el cono sur para empresas globales." },
+    { name: "BAC Credomatic", role: "Adquirente líder", countries: "Centroamérica (CR, PA, GT, SV, HN)", desc: "El banco adquirente y procesador de pagos físicos y digitales más grande de Centroamérica, con soporte multimoneda." },
+    { name: "PixelPay", role: "Gateway y Pasarela de pagos", countries: "Honduras, Guatemala, El Salvador", desc: "La plataforma de pagos moderna de Centroamérica para comercio electrónico, conectada con adquirencia local." },
+    { name: "Pagadito", role: "Agregador y pasarela de cobros", countries: "Centroamérica, Panamá", desc: "Permite a comercios centroamericanos vender en línea sin poseer cuentas merchant directas mediante una cuenta agregadora." }
+  ]
+};
