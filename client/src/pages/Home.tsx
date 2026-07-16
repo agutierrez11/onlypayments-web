@@ -29,6 +29,7 @@ import {
   ECOSYSTEM_ACTORS, 
   PAYMENT_PROVIDERS, 
   GLOSSARY_TERMS, 
+  EXPERTS,
   Country, 
   PaymentMethod 
 } from "../data";
@@ -42,7 +43,7 @@ export default function Home() {
   const [selectedCountryKey, setSelectedCountryKey] = useState<string>("MX");
 
   // Biblioteca de Expertos Tabs
-  const [activeLibraryTab, setActiveLibraryTab] = useState<'ecosistema' | 'diccionario'>('ecosistema');
+  const [activeLibraryTab, setActiveLibraryTab] = useState<'ecosistema' | 'diccionario' | 'expertos'>('ecosistema');
   
   // Diccionario
   const [searchGlossaryTerm, setSearchGlossaryTerm] = useState<string>("");
@@ -73,6 +74,28 @@ export default function Home() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
   const [newsletterError, setNewsletterError] = useState("");
+
+  // Formulario de intake de soluciones
+  const [intakeService, setIntakeService] = useState<string[]>([]);
+  const [intakeMarkets, setIntakeMarkets] = useState<string[]>([]);
+  const [intakeCompanyType, setIntakeCompanyType] = useState("");
+  const [intakeVolume, setIntakeVolume] = useState("");
+  const [intakeDescription, setIntakeDescription] = useState("");
+  const [intakeContact, setIntakeContact] = useState("");
+  const [intakeSubmitted, setIntakeSubmitted] = useState(false);
+
+  const toggleIntakeMulti = (arr: string[], val: string, setter: (v: string[]) => void) => {
+    setter(arr.includes(val) ? arr.filter(x => x !== val) : [...arr, val]);
+  };
+
+  const handleIntakeSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const body = encodeURIComponent(
+      `Tipo de solución: ${intakeService.join(', ')}\nMercados: ${intakeMarkets.join(', ')}\nTipo de empresa: ${intakeCompanyType}\nVolumen mensual: ${intakeVolume}\nDescripción: ${intakeDescription}\nContacto: ${intakeContact}`
+    );
+    window.open(`mailto:antoniogtzjimenez@gmail.com?subject=Solicitud de solución de pagos - OnlyPayments&body=${body}`);
+    setIntakeSubmitted(true);
+  };
 
   // Referencias a elementos para scroll
   const communitySectionRef = useRef<HTMLDivElement>(null);
@@ -469,6 +492,16 @@ export default function Home() {
                 }`}
               >
                 Quién es Quién (Flujos)
+              </button>
+              <button
+                onClick={() => setActiveLibraryTab('expertos')}
+                className={`px-5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+                  activeLibraryTab === 'expertos'
+                    ? 'bg-background text-foreground shadow-sm border border-border'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Expertos
               </button>
               <button
                 onClick={() => setActiveLibraryTab('diccionario')}
@@ -996,6 +1029,129 @@ export default function Home() {
 
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FORMULARIO DE INTAKE — ENCUENTRA TU SOLUCIÓN */}
+      <section className="py-20 border-t border-border bg-card/20">
+        <div className="container max-w-3xl">
+          <div className="text-center space-y-3 mb-12">
+            <span className="text-[10px] font-mono text-accent tracking-widest uppercase">Matching de Soluciones · Gratuito</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">¿Buscas una solución de pagos?</h2>
+            <p className="text-muted-foreground font-light max-w-xl mx-auto leading-relaxed">
+              Cuéntanos tu necesidad y nuestro equipo — con acceso directo a <strong className="text-foreground">Toku, Netpay, Broxel y más PSPs</strong> — te conecta con la mejor opción en menos de 48h. Sin intermediarios, sin costo.
+            </p>
+          </div>
+
+          {intakeSubmitted ? (
+            <div className="p-10 rounded-2xl border border-accent/20 bg-accent/5 text-center space-y-4">
+              <span className="text-4xl">✅</span>
+              <h3 className="font-bold text-xl">¡Solicitud recibida!</h3>
+              <p className="text-sm text-muted-foreground max-w-sm mx-auto">Nuestro equipo revisará tu caso y te contactará en menos de 48 horas con opciones concretas.</p>
+              <button onClick={() => setIntakeSubmitted(false)} className="text-xs text-accent hover:underline mt-2">Enviar otra solicitud</button>
+            </div>
+          ) : (
+            <form onSubmit={handleIntakeSubmit} className="space-y-8">
+
+              {/* Tipo de solución */}
+              <div className="space-y-3">
+                <label className="text-sm font-semibold block">¿Qué tipo de solución buscas? <span className="text-muted-foreground font-normal">(selecciona todas las que apliquen)</span></label>
+                <div className="flex flex-wrap gap-2">
+                  {["Gateway de Pagos","Adquirencia / Terminal","Factoraje","Compliance / Regulatorio","Wallet / Dispersión","BNPL","Open Finance","Otro"].map(s => (
+                    <button type="button" key={s}
+                      onClick={() => toggleIntakeMulti(intakeService, s, setIntakeService)}
+                      className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
+                        intakeService.includes(s)
+                          ? 'bg-accent text-accent-foreground border-accent'
+                          : 'bg-background border-border text-muted-foreground hover:border-accent/50'
+                      }`}>{s}</button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mercados */}
+              <div className="space-y-3">
+                <label className="text-sm font-semibold block">¿En qué mercados operas?</label>
+                <div className="flex flex-wrap gap-2">
+                  {["🇲🇽 México","🇧🇷 Brasil","🇨🇴 Colombia","🇦🇷 Argentina","🇨🇱 Chile","🇵🇪 Perú","🌎 Toda LATAM","🌐 Internacional"].map(m => (
+                    <button type="button" key={m}
+                      onClick={() => toggleIntakeMulti(intakeMarkets, m, setIntakeMarkets)}
+                      className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
+                        intakeMarkets.includes(m)
+                          ? 'bg-primary/10 text-foreground border-primary'
+                          : 'bg-background border-border text-muted-foreground hover:border-primary/40'
+                      }`}>{m}</button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tipo de empresa + Volumen */}
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <label className="text-sm font-semibold block">Tipo de empresa</label>
+                  <select
+                    value={intakeCompanyType}
+                    onChange={e => setIntakeCompanyType(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                  >
+                    <option value="">Selecciona...</option>
+                    {["SaaS","eCommerce","Marketplace","Fintech / Startup","Empresa tradicional","Institución financiera","Otro"].map(t => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="space-y-3">
+                  <label className="text-sm font-semibold block">Volumen mensual estimado</label>
+                  <select
+                    value={intakeVolume}
+                    onChange={e => setIntakeVolume(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                  >
+                    <option value="">Selecciona...</option>
+                    {["Menos de $10K USD","$10K – $100K USD","$100K – $1M USD","Más de $1M USD","Aún no lo sé"].map(v => (
+                      <option key={v} value={v}>{v}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Descripción libre */}
+              <div className="space-y-3">
+                <label className="text-sm font-semibold block">Cuéntanos tu necesidad <span className="text-muted-foreground font-normal">(en tus palabras, como lo harías por WhatsApp)</span></label>
+                <textarea
+                  required
+                  rows={4}
+                  placeholder="Ej: Somos un marketplace en México y Colombia. Procesamos ~$50K al mes con tarjeta pero nuestra tasa de rechazo es muy alta. Necesitamos un adquirente con mejor aprobación local y soporte para pagos en efectivo..."
+                  value={intakeDescription}
+                  onChange={e => setIntakeDescription(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none leading-relaxed"
+                />
+              </div>
+
+              {/* Contacto */}
+              <div className="space-y-3">
+                <label className="text-sm font-semibold block">¿Cómo te contactamos? <span className="text-muted-foreground font-normal">(email o WhatsApp)</span></label>
+                <input
+                  required
+                  type="text"
+                  placeholder="tu@email.com o +52 55 1234 5678"
+                  value={intakeContact}
+                  onChange={e => setIntakeContact(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                />
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                <p className="text-[11px] text-muted-foreground">
+                  🔒 Tu información es confidencial. No compartimos datos sin tu autorización.
+                </p>
+                <Button type="submit" size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-8 w-full sm:w-auto">
+                  Enviar solicitud →
+                </Button>
+              </div>
+
+            </form>
+          )}
         </div>
       </section>
 

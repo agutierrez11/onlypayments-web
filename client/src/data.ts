@@ -589,3 +589,85 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition: "Procesos regulatorios obligatorios ('Know Your Customer' y 'Anti-Money Laundering') que exigen a las fintechs y bancos verificar rigurosamente la identidad de sus clientes y comercios para mitigar actividades ilegales."
   }
 ];
+
+// ─── EXPERTOS ────────────────────────────────────────────────────────────────
+
+export interface ExpertProfile {
+  id: string;
+  name: string;
+  title: string;
+  country: string;
+  photo: string;
+  linkedin: string;
+  bio: string;
+  specialties: string[];
+  highlights: string[];
+}
+
+export const EXPERTS: ExpertProfile[] = [
+  {
+    id: "antonio",
+    name: "Antonio Gutiérrez",
+    title: "Fundador · OnlyPayments LATAM",
+    country: "México",
+    photo: "/expert-antonio.png",
+    linkedin: "https://www.linkedin.com/in/antoniogtzj/",
+    bio: "Ejecutivo de ventas B2B especialista en el ecosistema de Medios de Pago y Fintech en LATAM. Con trayectoria en Clip y Fiserv, combina prospección inteligente, automatización y análisis de datos. Fundador de Nerv (MVP) y co-fundador de la comunidad LATAM Payments & eCommerce (+500 profesionales).",
+    specialties: ["Ventas B2B Fintech", "Go-to-Market en LATAM", "Adquirencia y ecosistema pagos", "Automatización comercial"],
+    highlights: [
+      "Trayectoria en Clip y Fiserv LATAM",
+      "Fundador de Nerv y co-fundador de LATAM Payments & eCommerce (+500 miembros)",
+      "Especialista en estrategias GTM con herramientas de Sales Intelligence"
+    ],
+    need: "¿Buscas crecer comercialmente en pagos LATAM?"
+  },
+  {
+    id: "fernando",
+    name: "Fernando Estévez Vázquez",
+    title: "Fintech Executive · PayPal · PagSeguro · Shift4",
+    country: "Lisboa, Portugal · LATAM & Europa",
+    photo: "/expert-fernando.png",
+    linkedin: "https://www.linkedin.com/in/fernando-estevez-vazquez/",
+    bio: "Ejecutivo fintech con más de 20 años en pagos y e-commerce, especializado en escalado operativo, expansión internacional e infraestructura de pagos en LATAM y Europa. Ex directivo de PayPal, PagSeguro International y Shift4. Actualmente lidera el GTM de Scan to Pay en 8B (Lisboa) con enfoque en exchanges cripto, PSPs, gateways y neobancos.",
+    specialties: ["Infraestructura de pagos", "Expansión internacional", "Compliance y riesgo operativo", "Partnerships estratégicos B2B"],
+    highlights: [
+      "Ex ejecutivo de PayPal, PagSeguro International y Shift4",
+      "20+ años liderando equipos de operaciones, producto y compliance",
+      "GTM Lead de Scan to Pay · exchanges, PSPs, gateways y neobancos"
+    ],
+    need: "¿Necesitas escalar operaciones o expandirte a nuevos mercados?"
+  },
+  {
+    id: "samantha",
+    name: "Samantha Beltrán",
+    title: "Consultora · Compliance & Regulación Fintech",
+    country: "LATAM",
+    photo: "/expert-samantha.png",
+    linkedin: "https://www.linkedin.com/in/samanthabeltran15081985/",
+    bio: "Consultora con 20+ años en compliance, regulación financiera e innovación fintech. Ha acompañado a instituciones tradicionales y startups en el diseño de estrategias de cumplimiento normativo, open finance e inclusión financiera. Panelista en más de 50 foros internacionales y líder de comunidades de mujeres en payments y e-commerce.",
+    specialties: ["Compliance y regulación fintech", "Open Finance e Insurtech", "Inclusión financiera", "Educación financiera"],
+    highlights: [
+      "20+ años en compliance y regulación del sector financiero",
+      "Panelista en más de 50 foros internacionales de la industria",
+      "Líder de comunidades de mujeres en payments y e-commerce"
+    ],
+    need: "¿Tienes dudas regulatorias o necesitas una estrategia de compliance?"
+  },
+  {
+    id: "alfredo",
+    name: "Alfredo Bernacchi",
+    title: "Fintech Executive · CEO & Founder",
+    country: "México · Brasil · Argentina",
+    photo: "/expert-alfredo.png",
+    linkedin: "https://www.linkedin.com/in/abernacchi/",
+    bio: "Ejecutivo fintech multilingüe con 20+ años construyendo plataformas de pagos en LATAM. Ex CEO de Edenred Fintech Brasil, donde escaló una plataforma open-loop de cero a millones de usuarios b2b2c y cientos de millones de dólares de volumen anual en 5 años. Asesora startups fintech en licenciamiento, tech stacks y posicionamiento ante inversores.",
+    specialties: ["Plataformas open-loop b2b2c", "Licenciamiento (SAT-MX, Banco Central BR)", "Go-to-market en LATAM", "P&L y optimización de rentabilidad"],
+    highlights: [
+      "Ex CEO de Edenred Fintech Brasil (millones de usuarios b2b2c)",
+      "Licenciamiento ante SAT México y Banco Central de Brasil",
+      "Co-founder de Fusion4X y B2B Experts"
+    ],
+    need: "¿Quieres lanzar o licenciar una fintech en LATAM?"
+  }
+];
+
