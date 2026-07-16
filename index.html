@@ -28,11 +28,16 @@
       <a href="#noticias" class="nav-link">Noticias</a>
       <a href="#comunidad" class="nav-link">Comunidad</a>
       <a href="#colaboradores" class="nav-link">Colaboradores</a>
+      <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Cambiar tema" style="background:none; border:none; color:var(--text-main); font-size:18px; cursor:pointer; padding:0 8px; margin-right:8px; display:inline-flex; align-items:center;">🌙</button>
       <a href="#comunidad" class="nav-cta">Opinar →</a>
     </div>
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menú">☰</button>
   </div>
   <div class="nav-mobile" id="nav-mobile">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid var(--border); padding-bottom:8px;">
+      <span>Tema</span>
+      <button id="theme-toggle-mobile" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Cambiar tema" style="background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:6px; color:var(--text-main); font-size:16px; cursor:pointer; padding:6px 12px;">🌙 Modo Oscuro</button>
+    </div>
     <a href="#metodos" onclick="toggleMobileMenu()">Métodos de Pago</a>
     <a href="#ecosistema" onclick="toggleMobileMenu()">Ecosistema</a>
     <a href="#proveedores" onclick="toggleMobileMenu()">Proveedores de Pago</a>

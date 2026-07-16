@@ -19,6 +19,7 @@ function initCommunityData() {
 
 // ── DOM LOAD ──
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   initCommunityData();
   
   // Render inicial de métodos de pago (México por defecto)
@@ -504,6 +505,33 @@ function selectProviderRegion(regionCode, element) {
         <span class="provider-card-label">Cobertura:</span>
         <span class="provider-card-countries">${p.countries}</span>
       </div>
-    </div>
   `).join("");
+}
+
+// ── GESTIÓN DE TEMA CLARO / OSCURO ──
+function initTheme() {
+  const savedTheme = localStorage.getItem("onlypayments_theme") || "dark";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  updateThemeUI(savedTheme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+  document.documentElement.setAttribute("data-theme", newTheme);
+  localStorage.setItem("onlypayments_theme", newTheme);
+  updateThemeUI(newTheme);
+}
+
+function updateThemeUI(theme) {
+  const toggleBtn = document.getElementById("theme-toggle");
+  const toggleBtnMobile = document.getElementById("theme-toggle-mobile");
+  
+  if (theme === "light") {
+    if (toggleBtn) toggleBtn.textContent = "☀️";
+    if (toggleBtnMobile) toggleBtnMobile.textContent = "☀️ Modo Claro";
+  } else {
+    if (toggleBtn) toggleBtn.textContent = "🌙";
+    if (toggleBtnMobile) toggleBtnMobile.textContent = "🌙 Modo Oscuro";
+  }
 }
