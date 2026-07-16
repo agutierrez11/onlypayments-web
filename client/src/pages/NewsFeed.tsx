@@ -36,7 +36,7 @@ export default function NewsFeed() {
       {/* Header */}
       <div className="border-b border-border py-8">
         <div className="container">
-          <h1 className="text-4xl font-bold mb-2">Noticias de Pagos LATAM</h1>
+          <h1 className="text-4xl font-bold mb-2">Noticias Globales de Pagos</h1>
           <p className="text-lg text-muted-foreground">
             Noticias curadas por IA, actualizadas diariamente
           </p>

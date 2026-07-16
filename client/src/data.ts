@@ -608,7 +608,7 @@ export const EXPERTS: ExpertProfile[] = [
   {
     id: "antonio",
     name: "Antonio Gutiérrez",
-    title: "Fundador · OnlyPayments LATAM",
+    title: "Fundador · OnlyPayments",
     country: "México",
     photo: "/expert-antonio.png",
     linkedin: "https://www.linkedin.com/in/antoniogtzj/",

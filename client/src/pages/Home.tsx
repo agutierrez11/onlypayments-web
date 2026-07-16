@@ -259,7 +259,7 @@ export default function Home() {
               <span className="text-primary-foreground font-bold text-sm font-mono">OP</span>
             </div>
             <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">OnlyPayments</span>
-            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-accent/20 text-accent font-semibold font-mono border border-accent/20">LATAM</span>
+            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-accent/20 text-accent font-semibold font-mono border border-accent/20">GLOBAL</span>
           </div>
 
           <div className="flex items-center gap-6">
@@ -307,7 +307,7 @@ export default function Home() {
           </div>
           
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-            El Mapa de Pagos de <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">América Latina</span>
+            El Mapa de Pagos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Global</span>
           </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
@@ -524,7 +524,7 @@ export default function Home() {
               {/* Selector de Modelos */}
               <div className="flex flex-col sm:flex-row items-center justify-between p-4 rounded-xl border border-border bg-card/30 gap-4">
                 <div>
-                  <h4 className="text-sm font-bold">Esquemas de Procesamiento en LATAM</h4>
+                  <h4 className="text-sm font-bold">Esquemas de Procesamiento B2B</h4>
                   <p className="text-xs text-muted-foreground font-light">Compara cómo viaja el dinero según el modelo regulatorio local.</p>
                 </div>
                 <div className="flex gap-2 p-1 rounded-lg bg-secondary/20 border border-border">
@@ -764,7 +764,7 @@ export default function Home() {
               {/* Header */}
               <div className="text-center space-y-2 pb-2">
                 <p className="text-xs text-muted-foreground font-light max-w-lg mx-auto leading-relaxed">
-                  Profesionales con trayectoria real en pagos LATAM. Elige según tu necesidad y conecta directamente.
+                  Profesionales con trayectoria real en la industria de pagos. Elige según tu necesidad y conecta directamente.
                 </p>
               </div>
 
@@ -860,7 +860,7 @@ export default function Home() {
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Comunidad de Debates B2B</h2>
             <p className="text-muted-foreground font-light">
-              Pregunta conceptos, debate sobre regulaciones, comparte pasarelas de pago y ayuda a construir el mapa abierto de pagos de LATAM.
+              Pregunta conceptos, debate sobre regulaciones, comparte pasarelas de pago y ayuda a construir el mapa abierto de pagos global.
             </p>
           </div>
 
@@ -1183,7 +1183,7 @@ export default function Home() {
               <div className="space-y-3">
                 <label className="text-sm font-semibold block">¿En qué mercados operas?</label>
                 <div className="flex flex-wrap gap-2">
-                  {["🇲🇽 México","🇧🇷 Brasil","🇨🇴 Colombia","🇦🇷 Argentina","🇨🇱 Chile","🇵🇪 Perú","🌎 Toda LATAM","🌐 Internacional"].map(m => (
+                  {["🇲🇽 México","🇧🇷 Brasil","🇨🇴 Colombia","🇦🇷 Argentina","🇨🇱 Chile","🇵🇪 Perú","🇪🇺 Europa","🇺🇸 EE.UU.","🌎 Global"].map(m => (
                     <button type="button" key={m}
                       onClick={() => toggleIntakeMulti(intakeMarkets, m, setIntakeMarkets)}
                       className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
@@ -1268,7 +1268,7 @@ export default function Home() {
       {/* REGISTRO AL NEWSLETTER REAL */}
       <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10 border-t border-border">
         <div className="container max-w-2xl text-center space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Recibe la señal de los pagos en LATAM</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Recibe la señal de los pagos B2B</h2>
           <p className="text-muted-foreground font-light leading-relaxed">
             Únete a más de 5,000 profesionales de producto, RevOps y fintech que leen nuestro boletín semanal curado sobre regulaciones, API y nuevos rieles de cobro locales.
           </p>
@@ -1315,7 +1315,7 @@ export default function Home() {
             <span className="text-[10px] px-1.5 py-0.5 rounded bg-secondary/80 border border-border text-muted-foreground font-mono">2026</span>
           </div>
           <p className="text-xs text-muted-foreground font-light max-w-md mx-auto">
-            Datos basados en el Diccionario de Medios de Pago v6.0 y regulaciones de los Bancos Centrales de América Latina.
+            Datos basados en el Diccionario de Medios de Pago v6.0 y normativas de Bancos Centrales globales.
           </p>
           <div className="text-[10px] text-muted-foreground/60">
             &copy; 2026 OnlyPayments. Todos los derechos reservados.
