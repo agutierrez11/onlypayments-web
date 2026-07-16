@@ -635,15 +635,32 @@ export default function Home() {
                           <span className="text-[10px] font-mono text-accent font-semibold block">{actor.role}</span>
                           <h5 className="font-bold text-sm">{actor.title}</h5>
                         </div>
-                        {isSelected && (
-                          <p className="text-xs text-muted-foreground font-light mt-3 leading-relaxed border-t border-border pt-3">
-                            {actor.description}
-                          </p>
-                        )}
+                        <p className={`text-xs font-light mt-3 leading-relaxed border-t pt-3 ${isSelected ? 'text-foreground border-primary/30' : 'text-muted-foreground border-border'}`}>
+                          {actor.description}
+                        </p>
                       </button>
                     );
                   })}
                 </div>
+
+                {/* Crédito Fernando Estévez */}
+                <div className="mt-4 flex items-center gap-3 p-4 rounded-xl border border-border bg-secondary/10">
+                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 text-accent font-bold text-sm">FE</div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Diagrama de actores y contenidos del glosario basados en el{" "}
+                    <strong className="text-foreground">Diccionario de Medios de Pago v6.0 (2026)</strong>{" "}
+                    · Colaboración de{" "}
+                    <a
+                      href="https://www.linkedin.com/in/fernando-estevez-vazquez/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent font-semibold hover:underline"
+                    >
+                      Fernando Estévez Vázquez ↗
+                    </a>
+                  </p>
+                </div>
+
               </div>
 
             </div>
