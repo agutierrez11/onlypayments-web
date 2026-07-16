@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onlypayments — El OnlyFans de tus Cobros Recurrentes</title>
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Chart.js para simulaciones financieras -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER GLOBAL -->
+  <header id="app-header">
+    <div class="logo-area">
+      <span class="logo-icon">💸</span>
+      <span class="logo-text">Only<span class="text-gradient">payments</span></span>
+      <span class="badge-beta">PROTOTIPO</span>
+    </div>
+    <div class="header-actions">
+      <div class="live-indicator">
+        <span class="live-dot animate-pulse"></span>
+        <span>Simulador Activo</span>
+      </div>
+      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">☀️ Modo Claro</button>
+    </div>
+  </header>
+
+  <!-- APP SHELL -->
+  <div id="app-shell">
+    
+    <!-- SIDEBAR -->
+    <aside id="sidebar">
+      <div class="nav-section">FINANZAS</div>
+      <div class="nav-item active" data-section="dashboard" onclick="navigate('dashboard')">
+        <span class="nav-icon">📈</span><span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-section="links" onclick="navigate('links')">
+        <span class="nav-icon">🔗</span><span>PayLinks</span>
+        <span class="nav-badge" id="badge-links-count">0</span>
+      </div>
+      <div class="nav-item" data-section="subscribers" onclick="navigate('subscribers')">
+        <span class="nav-icon">👑</span><span>Suscriptores</span>
+        <span class="nav-badge" id="badge-sub-count">0</span>
+      </div>
+      
+      <div class="nav-section">SIMULADOR</div>
+      <div class="nav-item" data-section="generator" onclick="navigate('generator')">
+        <span class="nav-icon">⚡</span><span>Generar Tráfico</span>
+      </div>
+      
+      <div class="nav-section">INTEGRACIÓN</div>
+      <div class="nav-item" data-section="webhooks" onclick="navigate('webhooks')">
+        <span class="nav-icon">🔌</span><span>Webhooks & API</span>
+      </div>
+      
+      <!-- USER PROFILE MINI -->
+      <div class="sidebar-user">
+        <div class="user-avatar">🍑</div>
+        <div class="user-info">
+          <div class="user-name">Antonio Creador</div>
+          <div class="user-tier">Nivel Premium</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTAINER -->
+    <main id="main-content">
+
+      <!-- ── DASHBOARD ── -->
+      <div class="section active" id="sec-dashboard">
+        <div class="section-header">
+          <div>
+            <div class="section-title">📊 Resumen de Ingresos Recurrentes</div>
+            <div class="section-sub">Métricas financieras de tus suscripciones activas en tiempo real</div>
+          </div>
+          <div class="flex-actions">
+            <button class="btn btn-primary" onclick="simulatePayment()">⚡ Simular Venta Inmediata</button>
+          </div>
+        </div>
+
+        <!-- KPI CARDS -->
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-label">Ingresos Mensuales (MRR)</div>
+            <div class="kpi-value" id="kpi-mrr">$0.00</div>
+            <div class="kpi-sub">Suscripciones activas proyectadas</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Suscriptores Activos</div>
+            <div class="kpi-value" id="kpi-subs" style="color:var(--accent)">0</div>
+            <div class="kpi-sub">Fidelidad promedio: 94%</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Comisión Onlypayments (2%)</div>
+            <div class="kpi-value" id="kpi-fees" style="color:var(--muted)">$0.00</div>
+            <div class="kpi-sub">Ahorro del 8% contra OnlyFans</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Próximo Pago (Payout)</div>
+            <div class="kpi-value" id="kpi-payout" style="color:var(--green)">$0.00</div>
+            <div class="kpi-sub">Transferencia automática programada</div>
+          </div>
+        </div>
+
+        <!-- CHARTS SECTION -->
+        <div class="grid-layout-2">
+          <div class="chart-container card">
+            <div class="card-title">📈 Curva de Ingresos (Últimas 24h)</div>
+            <canvas id="chart-income" height="220"></canvas>
+          </div>
+          <div class="card feed-container">
+            <div class="card-title">🔔 Transacciones en Vivo</div>
+            <div class="transaction-feed" id="transaction-feed">
+              <div class="feed-placeholder">Esperando nuevas suscripciones...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PAYLINKS ── -->
+      <div class="section" id="sec-links">
+        <div class="section-header">
+          <div>
+            <div class="section-title">🔗 Tus Enlaces de Pago (PayLinks)</div>
+            <div class="section-sub">Genera y administra links personalizados de cobro rápido</div>
+          </div>
+          <button class="btn btn-primary" onclick="openCreateLinkModal()">+ Crear PayLink</button>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-scroll">
+            <table class="compact-table">
+              <thead>
+                <tr>
+                  <th>Nombre del Producto / Servicio</th>
+                  <th>Precio</th>
+                  <th>Frecuencia</th>
+                  <th>Visitas</th>
+                  <th>Conversión</th>
+                  <th>Enlace</th>
+                  <th style="text-align:right;">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="links-tbody">
+                <!-- Cargado dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SUBSCRIBERS ── -->
+      <div class="section" id="sec-subscribers">
+        <div class="section-header">
+          <div>
+            <div class="section-title">👑 Listado de Suscriptores Premium</div>
+            <div class="section-sub">Tus patrocinadores activos y su volumen de aportación acumulada</div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-scroll">
+            <table class="compact-table">
+              <thead>
+                <tr>
+                  <th>Suscriptor</th>
+                  <th>Plan Activo</th>
+                  <th>Mensualidad</th>
+                  <th>Total Aportado</th>
+                  <th>Último Pago</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="subs-tbody">
+                <!-- Cargado dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TRAFFIC GENERATOR ── -->
+      <div class="section" id="sec-generator">
+        <div class="section-header">
+          <div>
+            <div class="section-title">⚡ Simulador de Tráfico y Ventas Orgánicas</div>
+            <div class="section-sub">Simula visitas masivas a tus PayLinks y observa el embudo de conversión</div>
+          </div>
+        </div>
+
+        <div class="grid-layout-2">
+          <div class="card">
+            <div class="card-title">Configuración del Simulador</div>
+            <p style="font-size:12px; color:var(--muted); margin-bottom:15px;">Ajusta los parámetros para generar visitas automáticas en segundo plano y probar la resistencia de tus analíticas.</p>
+            
+            <div class="form-group">
+              <label class="form-label" for="sim-speed">Frecuencia de Tráfico</label>
+              <select class="form-input" id="sim-speed">
+                <option value="off">Apagado</option>
+                <option value="slow">Bajo (1 visita c/ 5 segundos)</option>
+                <option value="medium" selected>Medio (1 visita c/ 2 segundos)</option>
+                <option value="fast">Alto (3 visitas c/ segundo)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="sim-conversion">Tasa de Conversión Promedio</label>
+              <select class="form-input" id="sim-conversion">
+                <option value="5">5% (Normal)</option>
+                <option value="15" selected>15% (Creador Famoso)</option>
+                <option value="35">35% (Contenido Exclusivo Viral)</option>
+              </select>
+            </div>
+            
+            <div style="margin-top:20px;">
+              <button class="btn btn-primary" id="btn-toggle-sim" onclick="toggleAutoSimulation()">Pausar Simulación</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Estadísticas del Embudo</div>
+            <div class="funnel-stats">
+              <div class="funnel-item">
+                <div class="funnel-label">Visitas Totales Generadas</div>
+                <div class="funnel-val" id="funnel-visits">0</div>
+              </div>
+              <div class="funnel-item">
+                <div class="funnel-label">Intento de Pago (Click en Checkout)</div>
+                <div class="funnel-val" id="funnel-clicks" style="color:var(--amber)">0</div>
+              </div>
+              <div class="funnel-item">
+                <div class="funnel-label">Suscripciones Exitosas (Ventas)</div>
+                <div class="funnel-val" id="funnel-sales" style="color:var(--green)">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEBHOOKS ── -->
+      <div class="section" id="sec-webhooks">
+        <div class="section-header">
+          <div>
+            <div class="section-title">🔌 Configuración de Webhooks y API</div>
+            <div class="section-sub">Automatiza acciones cuando entra un cobro conectándote con tu servidor</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Prueba de Endpoint (URL de Webhook)</div>
+          <p style="font-size:12px; color:var(--muted); margin-bottom:15px;">Enviaremos un JSON payload a esta URL cada vez que ocurra una transacción en el simulador.</p>
+          
+          <div class="form-group">
+            <label class="form-label" for="webhook-url">Webhook Destination URL</label>
+            <input class="form-input" type="url" id="webhook-url" placeholder="https://api.tudominio.com/webhook-receiver" value="https://httpbin.org/post">
+          </div>
+          
+          <div style="margin-top:15px; display:flex; gap:10px;">
+            <button class="btn btn-primary" onclick="testWebhook()">Enviar Webhook de Prueba</button>
+          </div>
+          
+          <div id="webhook-log-box" style="margin-top:20px; display:none;">
+            <div style="font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--muted); margin-bottom:6px;">LOG DE RESPUESTA DEL SERVIDOR:</div>
+            <pre class="code-box" id="webhook-log"></pre>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- MODAL: CREAR PAYLINK -->
+  <div class="modal-overlay" id="modal-create-link">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-family:'Outfit',sans-serif; font-weight:700;">Crear Nuevo PayLink</h3>
+        <button class="close-btn" onclick="closeCreateLinkModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="new-link-name">Nombre del Producto / Servicio</label>
+          <input class="form-input" type="text" id="new-link-name" placeholder="Ej. Acceso VIP Premium Mensual">
+        </div>
+        <div class="grid-layout-2" style="gap:10px;">
+          <div class="form-group">
+            <label class="form-label" for="new-link-price">Precio (USD)</label>
+            <input class="form-input" type="number" id="new-link-price" value="19.99" step="0.01">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="new-link-frequency">Frecuencia</label>
+            <select class="form-input" id="new-link-frequency">
+              <option value="Mensual">Mensual</option>
+              <option value="Pago Único">Pago Único</option>
+              <option value="Anual">Anual</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeCreateLinkModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="saveNewPayLink()">Generar Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PASARELA DE PAGO SIMULADA (CHECKOUT PRESTADO) -->
+  <div class="modal-overlay" id="modal-checkout">
+    <div class="checkout-modal-card">
+      <div class="checkout-header">
+        <div style="font-size:12px; font-weight:700; color:var(--purple)">🔒 ONLYPAYMENTS SECURE CHECKOUT</div>
+        <button class="close-btn" onclick="closeCheckoutModal()" style="color:#fff;">✕</button>
+      </div>
+      <div class="checkout-body">
+        <div class="checkout-product-info">
+          <div style="font-size:11px; color:#a1a1aa; text-transform:uppercase; letter-spacing:1px;">Estás comprando</div>
+          <h2 id="checkout-product-title" style="font-family:'Outfit',sans-serif; margin-top:2px; font-weight:700;">Acceso VIP Exclusivo</h2>
+          <div class="checkout-price" id="checkout-product-price">$19.99/mes</div>
+        </div>
+        
+        <div class="checkout-form">
+          <div class="form-group">
+            <label class="form-label" style="color:#a1a1aa; font-size:10px;">TITULAR DE LA TARJETA</label>
+            <input class="form-input checkout-input" type="text" id="chk-card-name" placeholder="John Doe" value="Antonio Tester">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="color:#a1a1aa; font-size:10px;">NÚMERO DE TARJETA</label>
+            <input class="form-input checkout-input" type="text" id="chk-card-num" placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242">
+          </div>
+          <div class="grid-layout-2" style="gap:10px;">
+            <div class="form-group">
+              <label class="form-label" style="color:#a1a1aa; font-size:10px;">EXPIRACIÓN</label>
+              <input class="form-input checkout-input" type="text" placeholder="12/28" value="12/29">
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="color:#a1a1aa; font-size:10px;">CVC</label>
+              <input class="form-input checkout-input" type="password" placeholder="123" value="999">
+            </div>
+          </div>
+          
+          <button class="btn btn-checkout" id="btn-pay-submit" onclick="submitSimulatedPayment()">Pagar Seguro</button>
+          
+          <div style="font-size:9px; text-align:center; color:#71717a; margin-top:10px;">
+            Este pago es una simulación. Ningún cargo real será aplicado a tu tarjeta.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT PRINCIPAL -->
+  <script src="app.js"></script>
+</body>
+</html>
