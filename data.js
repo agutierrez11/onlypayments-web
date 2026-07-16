@@ -30,7 +30,11 @@ const COUNTRIES = {
     currency: "MXN",
     description: "Mercado dominado por transferencias SPEI rápidas, pagos en efectivo (OXXO Pay) y un crecimiento acelerado de wallets digitales y BNPL.",
     mrr: "$4.2M USD est.",
-    growth: "+24% YoY"
+    growth: "+24% YoY",
+    fintechChamber: {
+      name: "Fintech México",
+      url: "https://fintechmexico.org/"
+    }
   },
   BR: {
     name: "Brasil",
@@ -38,7 +42,11 @@ const COUNTRIES = {
     currency: "BRL",
     description: "El gigante de pagos de LATAM. Impulsado por el éxito arrollador de PIX (y el nuevo PIX Automático) junto a esquemas locales de tarjetas y cuotas (Parcelas).",
     mrr: "$8.7M USD est.",
-    growth: "+32% YoY"
+    growth: "+32% YoY",
+    fintechChamber: {
+      name: "ABFintechs",
+      url: "https://abfintechs.com.br/"
+    }
   },
   CO: {
     name: "Colombia",
@@ -46,7 +54,11 @@ const COUNTRIES = {
     currency: "COP",
     description: "Dominado por PSE para pagos interbancarios en tiempo real, junto a redes de recaudo físico (Efecty) y billeteras móviles como Nequi y Daviplata.",
     mrr: "$2.9M USD est.",
-    growth: "+19% YoY"
+    growth: "+19% YoY",
+    fintechChamber: {
+      name: "Colombia Fintech",
+      url: "https://colombiafintech.co/"
+    }
   },
   PE: {
     name: "Perú",
@@ -54,7 +66,11 @@ const COUNTRIES = {
     currency: "PEN",
     description: "Transformado por la interoperabilidad total entre billeteras móviles como Yape y Plin, que lideran la digitalización financiera del país.",
     mrr: "$1.4M USD est.",
-    growth: "+28% YoY"
+    growth: "+28% YoY",
+    fintechChamber: {
+      name: "Fintech Perú",
+      url: "https://fintechperu.com/"
+    }
   },
   CL: {
     name: "Chile",
@@ -62,7 +78,11 @@ const COUNTRIES = {
     currency: "CLP",
     description: "Mercado con altísima bancarización. Liderado por Webpay (Transbank) y transferencias bancarias simplificadas (Khipu).",
     mrr: "$2.1M USD est.",
-    growth: "+15% YoY"
+    growth: "+15% YoY",
+    fintechChamber: {
+      name: "FinteChile",
+      url: "https://www.fintechile.cl/"
+    }
   },
   AR: {
     name: "Argentina",
@@ -70,7 +90,11 @@ const COUNTRIES = {
     currency: "ARS",
     description: "Contexto de alta inflación que ha forzado la adopción masiva de transferencias inmediatas (Transferencias 3.0), QR interoperables y billeteras cripto.",
     mrr: "$1.8M USD est.",
-    growth: "+40% YoY (nominal)"
+    growth: "+40% YoY (nominal)",
+    fintechChamber: {
+      name: "Cámara Argentina de Fintech",
+      url: "https://www.camarafintech.org.ar/"
+    }
   },
   UY: {
     name: "Uruguay",
@@ -78,7 +102,11 @@ const COUNTRIES = {
     currency: "UYU",
     description: "Mercado pequeño pero con alto PIB per cápita. Redes locales de cobranza física (Redpagos, Abitab) y pagos con tarjetas de débito/crédito locales.",
     mrr: "$0.5M USD est.",
-    growth: "+12% YoY"
+    growth: "+12% YoY",
+    fintechChamber: {
+      name: "Cámara Uruguaya de Fintech",
+      url: "https://www.fintech.org.uy/"
+    }
   },
   EC: {
     name: "Ecuador",
@@ -86,7 +114,11 @@ const COUNTRIES = {
     currency: "USD",
     description: "Economía dolarizada. Redes de corresponsales no bancarios (Banco del Barrio) y transferencias bancarias directas (Deuna!).",
     mrr: "$0.8M USD est.",
-    growth: "+16% YoY"
+    growth: "+16% YoY",
+    fintechChamber: {
+      name: "Asofintech Ecuador",
+      url: "https://asofintech.ec/"
+    }
   },
   CR: {
     name: "Costa Rica",
@@ -94,7 +126,11 @@ const COUNTRIES = {
     currency: "CRC",
     description: "Mercado altamente bancarizado y digital. Liderado ampliamente por el sistema de pagos instantáneos SINPE Móvil.",
     mrr: "$0.4M USD est.",
-    growth: "+22% YoY"
+    growth: "+22% YoY",
+    fintechChamber: {
+      name: "ASOFINTECH Costa Rica",
+      url: "https://asofintechcr.com/"
+    }
   },
   PA: {
     name: "Panamá",
@@ -102,7 +138,11 @@ const COUNTRIES = {
     currency: "USD",
     description: "Centro financiero regional. Dominado por la billetera móvil Yappy (Banco General) y transacciones de tarjeta internacional.",
     mrr: "$0.6M USD est.",
-    growth: "+14% YoY"
+    growth: "+14% YoY",
+    fintechChamber: {
+      name: "Cámara Fintech de Panamá",
+      url: "https://fintechpanama.org/"
+    }
   },
   BO: {
     name: "Bolivia",
@@ -110,7 +150,11 @@ const COUNTRIES = {
     currency: "BOB",
     description: "Ecosistema digital en rápido crecimiento gracias a la adopción nacional de los códigos QR interoperables 'Simple'.",
     mrr: "$0.3M USD est.",
-    growth: "+35% YoY"
+    growth: "+35% YoY",
+    fintechChamber: {
+      name: "Cámara Boliviana de Fintech",
+      url: "https://cbf.bo/"
+    }
   },
   PY: {
     name: "Paraguay",
@@ -118,7 +162,11 @@ const COUNTRIES = {
     currency: "PYG",
     description: "Mercado con fuerte expansión digital, dominado por el operador local Bancard y sus redes de Pago Móvil y QR.",
     mrr: "$0.3M USD est.",
-    growth: "+26% YoY"
+    growth: "+26% YoY",
+    fintechChamber: {
+      name: "Cámara Paraguaya de Fintech",
+      url: "https://fintech.org.py/"
+    }
   },
   GT: {
     name: "Guatemala",
@@ -126,7 +174,11 @@ const COUNTRIES = {
     currency: "GTQ",
     description: "El mayor mercado de Centroamérica. Influenciado fuertemente por transferencias, billeteras como Tigo Money y remesas.",
     mrr: "$0.5M USD est.",
-    growth: "+18% YoY"
+    growth: "+18% YoY",
+    fintechChamber: {
+      name: "Fintech Guatemala",
+      url: "https://guatemalafintech.com/"
+    }
   },
   DO: {
     name: "República Dominicana",
@@ -134,7 +186,11 @@ const COUNTRIES = {
     currency: "DOP",
     description: "Hub turístico y comercial del Caribe. Creciente digitalización bancaria liderada por la plataforma interbancaria tPago.",
     mrr: "$0.6M USD est.",
-    growth: "+20% YoY"
+    growth: "+20% YoY",
+    fintechChamber: {
+      name: "ADOFINTECH",
+      url: "https://adofintech.org/"
+    }
   }
 };
 

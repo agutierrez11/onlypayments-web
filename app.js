@@ -67,6 +67,10 @@ function selectCountry(countryCode, element) {
 
   // Actualizar banner del país
   const banner = document.getElementById("country-banner");
+  const fintechLink = country.fintechChamber
+    ? `<a href="${country.fintechChamber.url}" target="_blank" rel="noopener" class="fintech-chamber-link" style="color:var(--secondary); font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:4px; border-bottom: 1px dotted var(--secondary);">🏛️ ${country.fintechChamber.name} ↗</a>`
+    : '';
+
   banner.innerHTML = `
     <div class="country-banner-inner">
       <span class="country-banner-flag">${country.flag}</span>
@@ -77,6 +81,7 @@ function selectCountry(countryCode, element) {
           <span><strong>Moneda local:</strong> ${country.currency}</span>
           <span><strong>MRR Transaccionado (est.):</strong> ${country.mrr}</span>
           <span><strong>Crecimiento anual:</strong> ${country.growth}</span>
+          ${fintechLink ? `<span><strong>Cámara Fintech:</strong> ${fintechLink}</span>` : ''}
         </div>
       </div>
     </div>
