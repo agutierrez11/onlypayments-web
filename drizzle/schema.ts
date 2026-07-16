@@ -81,3 +81,31 @@ export const subscribers = mysqlTable("subscribers", {
 
 export type Subscriber = typeof subscribers.$inferSelect;
 export type InsertSubscriber = typeof subscribers.$inferInsert;
+
+export const communityPosts = mysqlTable("community_posts", {
+  id: varchar("id", { length: 64 }).primaryKey(),
+  title: text("title").notNull(),
+  body: text("body").notNull(),
+  author: varchar("author", { length: 255 }).default("Anónimo").notNull(),
+  authorTitle: varchar("author_title", { length: 128 }).default("Miembro").notNull(),
+  tag: varchar("tag", { length: 128 }).default("Opinión").notNull(),
+  country: varchar("country", { length: 128 }),
+  upvotes: int("upvotes").default(1).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CommunityPost = typeof communityPosts.$inferSelect;
+export type InsertCommunityPost = typeof communityPosts.$inferInsert;
+
+export const communityComments = mysqlTable("community_comments", {
+  id: varchar("id", { length: 64 }).primaryKey(),
+  postId: varchar("post_id", { length: 64 }).notNull(),
+  author: varchar("author", { length: 255 }).default("Anónimo").notNull(),
+  body: text("body").notNull(),
+  upvotes: int("upvotes").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type CommunityComment = typeof communityComments.$inferSelect;
+export type InsertCommunityComment = typeof communityComments.$inferInsert;
