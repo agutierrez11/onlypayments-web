@@ -582,8 +582,7 @@ export default function Home() {
                       </div>
                     </div>
                     <p className="text-xs text-muted-foreground font-light leading-relaxed">
-                      > [!NOTE]
-                      > **Particularidad de México:** Si las tarjetas son emitidas y adqueridas localmente en México, la transacción no viaja por las redes globales de Visa/MC, sino que se enruta de forma doméstica a través de los switches locales **Prosa** y **E-Global** para su compensación.
+                      <strong>Particularidad de México:</strong> Si las tarjetas son emitidas y adquiridas localmente en México, la transacción no viaja por las redes globales de Visa/MC, sino que se enruta de forma doméstica a través de los switches locales <strong>Prosa</strong> y <strong>E-Global</strong> para su compensación.
                     </p>
                   </div>
                 )}
