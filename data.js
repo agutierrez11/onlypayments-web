@@ -781,3 +781,90 @@ const PAYMENT_PROVIDERS = {
     { name: "Pagadito", role: "Agregador y pasarela de cobros", countries: "Centroamérica, Panamá", desc: "Permite a comercios centroamericanos vender en línea sin poseer cuentas merchant directas mediante una cuenta agregadora." }
   ]
 };
+
+const GLOSSARY_TERMS = [
+  {
+    term: "Adquirente (Acquirer)",
+    definition: "Banco o institución financiera autorizada por las marcas de tarjetas (Visa, Mastercard, etc.) para afiliar comercios y procesar sus transacciones de pago con tarjetas de crédito o débito domésticas o internacionales."
+  },
+  {
+    term: "Emisor (Issuer)",
+    definition: "La institución financiera (banco tradicional o fintech / neobanco) que otorga tarjetas de débito, crédito o prepago a los usuarios finales y administra las cuentas bancarias de los tarjetahabientes."
+  },
+  {
+    term: "Agregador de Pagos (Payment Facilitator / PayFac)",
+    definition: "Empresa tecnológica que actúa como intermediaria para permitir a pequeños y medianos comercios aceptar pagos electrónicos sin necesidad de abrir una cuenta merchant directa con un banco adquirente tradicional. Ejemplo: Clip en México o Bold en Colombia."
+  },
+  {
+    term: "Cámara de Compensación (Clearing House)",
+    definition: "Entidad que actúa como intermediaria para procesar, validar e intercambiar transacciones financieras entre diferentes bancos. En México, Prosa y E-Global actúan como las cámaras principales para transacciones de tarjeta domésticas."
+  },
+  {
+    term: "Gateway de Pagos (Pasarela)",
+    definition: "Software y servicio técnico encargado de capturar y cifrar los datos de la tarjeta en el checkout de la tienda online para transferirlos de manera segura a los adquirentes y redes de pago."
+  },
+  {
+    term: "Orquestador de Pagos (Payment Orchestrator)",
+    definition: "Plataforma de software que permite unificar múltiples gateways, adquirenter y métodos de pago alternativos en una sola integración. Rutea dinámicamente cada transacción hacia el canal con mayor tasa de conversión y menores costos."
+  },
+  {
+    term: "Tasa de Intercambio (Interchange Fee)",
+    definition: "Tarifa que el banco adquirente le paga al banco emisor por procesar una transacción con tarjeta. Es fijada por las marcas de tarjetas (Visa, Mastercard) y representa el costo base de aceptar un pago electrónico."
+  },
+  {
+    term: "D+N (Liquidación)",
+    definition: "Término que indica el plazo que transcurre desde que se realiza una transacción hasta que los fondos son transferidos a la cuenta bancaria del comercio. D+1 indica un día hábil después del cobro, mientras que D+0 o inmediato es la liquidación al instante."
+  },
+  {
+    term: "Contracargo (Chargeback)",
+    definition: "Proceso de disputa iniciado por un tarjetahabiente ante su banco emisor debido a un cargo no reconocido, fraude, o insatisfacción con el producto recibido. El monto de la transacción suele ser retenido al comercio."
+  },
+  {
+    term: "Tokenización de Tarjetas",
+    definition: "Tecnología que reemplaza los datos sensibles de una tarjeta (como el número PAN de 16 dígitos) por un identificador seguro único (token) para evitar fraudes en compras recurrentes o transacciones en un solo clic."
+  },
+  {
+    term: "3D Secure (3DS)",
+    definition: "Protocolo de seguridad XML diseñado para ser una capa de autenticación adicional para transacciones con tarjeta en línea. El usuario suele verificar su identidad a través de un código OTP en el móvil o huella digital en su app bancario."
+  },
+  {
+    term: "BNPL (Buy Now Pay Later)",
+    definition: "Modelo de financiamiento a plazos corto que permite al consumidor adquirir un bien online u offline de manera inmediata y dividir el pago en cuotas fijas periódicas, frecuentemente sin intereses y sin necesitar tarjeta de crédito. Ej. Kueski Pay en México."
+  },
+  {
+    term: "Open Banking (Banca Abierta)",
+    definition: "Práctica de compartir datos bancarios e iniciar transferencias de manera segura a través de APIs, previa autorización del usuario. Permite pagos de cuenta a cuenta directos de alta conversión y menor costo en el comercio electrónico."
+  },
+  {
+    term: "Embedded Payments (Pagos Embebidos)",
+    definition: "La integración directa de flujos de pago nativos dentro de plataformas y experiencias no financieras como apps de delivery, transporte (Uber, Rappi) o SaaS, haciendo que la transacción ocurra en segundo plano de manera invisible."
+  },
+  {
+    term: "Real-Time Payments (RTP)",
+    definition: "Sistemas de transferencias electrónicas inmediatas, irrevocables y operativas las 24 horas del día. Ejemplos en LATAM son PIX en Brasil, SPEI en México, Transferencias 3.0 en Argentina y SINPE Móvil en Costa Rica."
+  },
+  {
+    term: "PCI-DSS",
+    definition: "Estándar de Seguridad de Datos para la Industria de Tarjetas de Pago. Es un conjunto de requisitos y políticas de seguridad obligatorias para cualquier empresa que procese, almacene o transmita datos de tarjetas bancarias."
+  },
+  {
+    term: "Pay-in (Recaudo)",
+    definition: "El flujo de transacciones entrantes donde un comercio recibe y recolecta el dinero del cliente por una compra en línea."
+  },
+  {
+    term: "Pay-out (Dispersión)",
+    definition: "El flujo de transacciones salientes donde una empresa envía fondos a cuentas bancarias de terceros (ej. pago de comisiones, sueldos de repartidores, reembolsos a clientes)."
+  },
+  {
+    term: "Pre-funding",
+    definition: "Práctica comercial en la cual un comercio deposita saldo por adelantado en las cuentas de una pasarela o adquirente para garantizar fondos inmediatos en operaciones de dispersión (payout) de alta velocidad."
+  },
+  {
+    term: "Tasa de Aceptación (Approval Rate)",
+    definition: "El porcentaje de transacciones aprobadas con éxito en comparación con el total de intentos de cobro iniciados en una plataforma de comercio."
+  },
+  {
+    term: "KYC / AML",
+    definition: "Procesos regulatorios obligatorios ('Know Your Customer' y 'Anti-Money Laundering') que exigen a las fintechs y bancos verificar rigurosamente la identidad de sus clientes y comercios para mitigar actividades ilegales."
+  }
+];

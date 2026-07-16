@@ -31,6 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render de Ecosistema
   renderEcosystem();
   
+  // Inicializar estilo del botón activo de la biblioteca
+  const defaultLibBtn = document.getElementById("btn-tab-quien");
+  if (defaultLibBtn) {
+    defaultLibBtn.style.background = "rgba(124, 58, 237, 0.1)";
+    defaultLibBtn.style.borderColor = "var(--primary)";
+  }
+
   // Render de Noticias
   renderNews("all");
   
@@ -273,6 +280,73 @@ function highlightEcosystemStep(id) {
   if (activeStep) {
     activeStep.classList.add("active-step");
   }
+}
+
+// ── BIBLIOTECA DE EXPERTOS ──
+function switchLibraryTab(tabName, element) {
+  // Desactivar todas las pestañas
+  const tabBtns = document.querySelectorAll(".lib-tab-btn");
+  tabBtns.forEach(btn => {
+    btn.classList.remove("active");
+    btn.style.background = "var(--bg-card)";
+    btn.style.borderColor = "var(--border)";
+  });
+
+  // Activar botón pulsado
+  if (element) {
+    element.classList.add("active");
+    element.style.background = "rgba(124, 58, 237, 0.1)";
+    element.style.borderColor = "var(--primary)";
+  }
+
+  // Ocultar todos los contenidos de pestaña
+  const tabContents = document.querySelectorAll(".lib-tab-content");
+  tabContents.forEach(content => content.style.display = "none");
+
+  // Mostrar el correspondiente
+  const activeContent = document.getElementById(`lib-content-${tabName}`);
+  if (activeContent) {
+    activeContent.style.display = "block";
+  }
+
+  // Si abrimos la pestaña de diccionario, renderizar glosario por primera vez
+  if (tabName === 'diccionario') {
+    renderGlossary();
+  }
+}
+
+function renderGlossary(filteredTerms = null) {
+  const grid = document.getElementById("glossary-grid");
+  const terms = filteredTerms || GLOSSARY_TERMS;
+
+  if (terms.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 32px;">No se encontraron conceptos para tu búsqueda.</div>`;
+    return;
+  }
+
+  grid.innerHTML = terms.map(t => `
+    <div class="glossary-card" style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:20px; transition:var(--transition); position:relative; overflow:hidden; text-align:left;">
+      <div style="position:absolute; top:0; left:0; width:4px; height:100%; background:var(--primary);"></div>
+      <h4 style="font-size:16px; font-weight:700; margin-bottom:8px; color:var(--text-main);">${t.term}</h4>
+      <p style="font-size:13px; color:var(--text-muted); line-height:1.5; margin:0;">${t.definition}</p>
+    </div>
+  `).join("");
+}
+
+function searchGlossary() {
+  const query = document.getElementById("glossary-search").value.toLowerCase().trim();
+  
+  if (!query) {
+    renderGlossary();
+    return;
+  }
+
+  const filtered = GLOSSARY_TERMS.filter(t => 
+    t.term.toLowerCase().includes(query) || 
+    t.definition.toLowerCase().includes(query)
+  );
+
+  renderGlossary(filtered);
 }
 
 // ── NOTICIAS ──
