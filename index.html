@@ -131,6 +131,18 @@
     <!-- Grid de métodos -->
     <div class="methods-grid" id="methods-grid"></div>
 
+    <!-- Banner de feedback (supermercado) -->
+    <div class="feedback-banner" style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:10px; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-top:32px; text-align:left;">
+      <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:280px;">
+        <span style="font-size:28px;">🛒</span>
+        <div>
+          <h4 style="margin:0; font-size:15px; font-weight:700; color:var(--text-main);">¿Encontraste todo lo que buscabas?</h4>
+          <p style="margin:4px 0 0 0; font-size:13px; color:var(--text-muted);">Si falta algún método de pago de tu país, o crees que algún dato es incorrecto, ayúdanos a corregirlo.</p>
+        </div>
+      </div>
+      <button class="btn btn-ghost" onclick="suggestContribution('metodo')" style="font-size:13px; padding:8px 16px;">💡 Sugerir método</button>
+    </div>
+
     <!-- Fuente -->
     <div class="source-credit" style="margin-top: 32px; font-size: 13px; color: var(--text-dark); text-align: center;">
       📖 Fuentes: Datos compilados de los portales de datos y normativas de los **Bancos Centrales de LATAM** (Banxico, BCB, Banco de la República, BCRP, Banco Central de Chile), Cámaras Fintech nacionales y reguladores locales oficiales.
@@ -195,6 +207,18 @@
 
       <div class="glossary-grid" id="glossary-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:20px;">
         <!-- Se renderizará dinámicamente -->
+      </div>
+
+      <!-- Banner de feedback (supermercado) -->
+      <div class="feedback-banner" style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:10px; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-top:32px; text-align:left;">
+        <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:280px;">
+          <span style="font-size:28px;">📖</span>
+          <div>
+            <h4 style="margin:0; font-size:15px; font-weight:700; color:var(--text-main);">¿No encontraste el término que buscabas?</h4>
+            <p style="margin:4px 0 0 0; font-size:13px; color:var(--text-muted);">Si falta algún concepto clave de pagos, o quieres proponer una corrección, háznoslo saber.</p>
+          </div>
+        </div>
+        <button class="btn btn-ghost" onclick="suggestContribution('termino')" style="font-size:13px; padding:8px 16px;">✍️ Sugerir concepto</button>
       </div>
     </div>
   </div>

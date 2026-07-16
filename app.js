@@ -349,6 +349,34 @@ function searchGlossary() {
   renderGlossary(filtered);
 }
 
+function suggestContribution(type) {
+  // Desplazarse al form de la comunidad
+  const comunidadSec = document.getElementById("comunidad");
+  if (comunidadSec) {
+    comunidadSec.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Pre-llenar campos del post
+  const titleInput = document.getElementById("post-title");
+  const bodyInput = document.getElementById("post-body");
+  const tagSelect = document.getElementById("post-tag");
+
+  if (type === 'metodo') {
+    if (titleInput) titleInput.value = "[Sugerencia] Falta método de pago en [País]";
+    if (bodyInput) bodyInput.value = "Hola comunidad,\n\nSugerencia de método de pago:\n- Nombre del método: \n- País: \n- Tipo de método (A2A, Cash, Wallet, Tarjeta local): \n- Enlace o información de referencia: \n\n¡Gracias!";
+    if (tagSelect) tagSelect.value = "Recurso";
+  } else if (type === 'termino') {
+    if (titleInput) titleInput.value = "[Diccionario] Propuesta / Corrección de concepto: ";
+    if (bodyInput) bodyInput.value = "Hola comunidad,\n\nPropuesta de concepto para el glosario:\n- Término: \n- Definición propuesta: \n- Corrección (en caso de que aplique): \n\n¡Gracias!";
+    if (tagSelect) tagSelect.value = "Recurso";
+  }
+
+  // Poner foco en el título
+  setTimeout(() => {
+    if (titleInput) titleInput.focus();
+  }, 800); // Dar tiempo al scroll
+}
+
 // ── NOTICIAS ──
 function filterNews(tag, element) {
   const buttons = document.querySelectorAll(".news-filter");
