@@ -778,9 +778,10 @@ export default function Home() {
                       <img
                         src={expert.photo}
                         alt={expert.name}
-                        className="w-16 h-16 rounded-full object-cover object-top border-2 border-border flex-shrink-0"
+                        className="w-16 h-16 rounded-full object-cover object-center border-2 border-border flex-shrink-0 bg-secondary/50"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
+                          // Fallback si la imagen no carga
+                          (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(expert.name)}&background=random`;
                         }}
                       />
                       <div className="min-w-0">
