@@ -756,10 +756,104 @@ export default function Home() {
             </div>
           )}
 
+          {/* TAB 3: EXPERTOS */}
+          {activeLibraryTab === 'expertos' && (
+            <div className="max-w-5xl mx-auto space-y-8">
+
+              {/* Header */}
+              <div className="text-center space-y-2 pb-2">
+                <p className="text-xs text-muted-foreground font-light max-w-lg mx-auto leading-relaxed">
+                  Profesionales con trayectoria real en pagos LATAM. Elige según tu necesidad y conecta directamente.
+                </p>
+              </div>
+
+              {/* Grid de tarjetas */}
+              <div className="grid sm:grid-cols-2 gap-6">
+                {EXPERTS.map(expert => (
+                  <div key={expert.id} className="rounded-2xl border border-border bg-background/60 hover:border-accent/40 transition-all hover:shadow-lg p-6 flex flex-col gap-5">
+
+                    {/* Cabecera: foto + nombre */}
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={expert.photo}
+                        alt={expert.name}
+                        className="w-16 h-16 rounded-full object-cover object-top border-2 border-border flex-shrink-0"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                      <div className="min-w-0">
+                        <h4 className="font-bold text-sm leading-tight">{expert.name}</h4>
+                        <p className="text-[11px] text-accent font-mono mt-0.5 leading-tight">{expert.title}</p>
+                        <span className="text-[10px] text-muted-foreground font-light mt-1 block">{expert.country}</span>
+                      </div>
+                    </div>
+
+                    {/* Tag de necesidad */}
+                    {'need' in expert && (
+                      <div className="px-3 py-2 rounded-lg bg-accent/8 border border-accent/20 text-xs text-accent font-semibold">
+                        💡 {(expert as any).need}
+                      </div>
+                    )}
+
+                    {/* Bio */}
+                    <p className="text-xs text-muted-foreground font-light leading-relaxed">{expert.bio}</p>
+
+                    {/* Especialidades */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {expert.specialties.map(s => (
+                        <span key={s} className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-secondary/50 border border-border text-muted-foreground">{s}</span>
+                      ))}
+                    </div>
+
+                    {/* Highlights */}
+                    <ul className="space-y-1.5">
+                      {expert.highlights.map((h, i) => (
+                        <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
+                          <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <a
+                      href={expert.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-border bg-secondary/20 hover:bg-accent/10 hover:border-accent/40 transition-all text-xs font-semibold text-foreground"
+                    >
+                      <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current text-accent" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      Conectar en LinkedIn
+                    </a>
+
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA del formulario */}
+              <div className="p-5 rounded-2xl border border-dashed border-accent/30 bg-accent/5 flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
+                <div>
+                  <p className="text-sm font-bold">¿No sabes a quién acudir?</p>
+                  <p className="text-xs text-muted-foreground font-light mt-0.5">Llena el formulario y nosotros hacemos el match con el experto correcto para tu caso.</p>
+                </div>
+                <a
+                  href="#"
+                  onClick={(e) => { e.preventDefault(); document.querySelector('section.py-20.border-t.border-border.bg-card\\/20')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="flex-shrink-0 px-4 py-2 rounded-xl bg-accent text-accent-foreground text-xs font-bold hover:scale-[1.03] transition-transform shadow-sm"
+                >
+                  Describir mi necesidad →
+                </a>
+              </div>
+
+            </div>
+          )}
+
         </div>
       </section>
 
       {/* COMUNIDAD DE DEBATES (FORO DINE-IN TRPC) */}
+
       <section id="comunidad" ref={communitySectionRef} className="py-20 border-t border-border bg-secondary/10">
         <div className="container max-w-5xl">
           <div className="text-center mb-12 space-y-4">
