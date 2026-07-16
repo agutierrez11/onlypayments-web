@@ -3,357 +3,290 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onlypayments — El OnlyFans de tus Cobros Recurrentes</title>
-  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <title>Onlypayments · El mapa de pagos de América Latina</title>
+  <meta name="description" content="La guía más completa sobre medios de pago en América Latina. Métodos por país, ecosistema, noticias y comunidad de expertos en pagos.">
+  <meta property="og:title" content="Onlypayments · El mapa de pagos de LATAM">
+  <meta property="og:description" content="PSE, PIX, OXXO, Yape, SPEI y más. Aprende cómo funcionan los pagos en América Latina.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Chart.js para simulaciones financieras -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <!-- CSS principal -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- HEADER GLOBAL -->
-  <header id="app-header">
-    <div class="logo-area">
-      <span class="logo-icon">💸</span>
-      <span class="logo-text">Only<span class="text-gradient">payments</span></span>
-      <span class="badge-beta">PROTOTIPO</span>
+<!-- ── NAV ── -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="logo-icon">🌎</span>
+      <span class="logo-text">only<strong>payments</strong></span>
+      <span class="logo-badge">LATAM</span>
+    </a>
+    <div class="nav-links">
+      <a href="#metodos" class="nav-link">Métodos</a>
+      <a href="#ecosistema" class="nav-link">Ecosistema</a>
+      <a href="#noticias" class="nav-link">Noticias</a>
+      <a href="#comunidad" class="nav-link">Comunidad</a>
+      <a href="#colaboradores" class="nav-link">Colaboradores</a>
+      <a href="#comunidad" class="nav-cta">Opinar →</a>
     </div>
-    <div class="header-actions">
-      <div class="live-indicator">
-        <span class="live-dot animate-pulse"></span>
-        <span>Simulador Activo</span>
-      </div>
-      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">☀️ Modo Claro</button>
-    </div>
-  </header>
-
-  <!-- APP SHELL -->
-  <div id="app-shell">
-    
-    <!-- SIDEBAR -->
-    <aside id="sidebar">
-      <div class="nav-section">FINANZAS</div>
-      <div class="nav-item active" data-section="dashboard" onclick="navigate('dashboard')">
-        <span class="nav-icon">📈</span><span>Dashboard</span>
-      </div>
-      <div class="nav-item" data-section="links" onclick="navigate('links')">
-        <span class="nav-icon">🔗</span><span>PayLinks</span>
-        <span class="nav-badge" id="badge-links-count">0</span>
-      </div>
-      <div class="nav-item" data-section="subscribers" onclick="navigate('subscribers')">
-        <span class="nav-icon">👑</span><span>Suscriptores</span>
-        <span class="nav-badge" id="badge-sub-count">0</span>
-      </div>
-      
-      <div class="nav-section">SIMULADOR</div>
-      <div class="nav-item" data-section="generator" onclick="navigate('generator')">
-        <span class="nav-icon">⚡</span><span>Generar Tráfico</span>
-      </div>
-      
-      <div class="nav-section">INTEGRACIÓN</div>
-      <div class="nav-item" data-section="webhooks" onclick="navigate('webhooks')">
-        <span class="nav-icon">🔌</span><span>Webhooks & API</span>
-      </div>
-      
-      <!-- USER PROFILE MINI -->
-      <div class="sidebar-user">
-        <div class="user-avatar">🍑</div>
-        <div class="user-info">
-          <div class="user-name">Antonio Creador</div>
-          <div class="user-tier">Nivel Premium</div>
-        </div>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTAINER -->
-    <main id="main-content">
-
-      <!-- ── DASHBOARD ── -->
-      <div class="section active" id="sec-dashboard">
-        <div class="section-header">
-          <div>
-            <div class="section-title">📊 Resumen de Ingresos Recurrentes</div>
-            <div class="section-sub">Métricas financieras de tus suscripciones activas en tiempo real</div>
-          </div>
-          <div class="flex-actions">
-            <button class="btn btn-primary" onclick="simulatePayment()">⚡ Simular Venta Inmediata</button>
-          </div>
-        </div>
-
-        <!-- KPI CARDS -->
-        <div class="kpi-row">
-          <div class="kpi-card">
-            <div class="kpi-label">Ingresos Mensuales (MRR)</div>
-            <div class="kpi-value" id="kpi-mrr">$0.00</div>
-            <div class="kpi-sub">Suscripciones activas proyectadas</div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-label">Suscriptores Activos</div>
-            <div class="kpi-value" id="kpi-subs" style="color:var(--accent)">0</div>
-            <div class="kpi-sub">Fidelidad promedio: 94%</div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-label">Comisión Onlypayments (2%)</div>
-            <div class="kpi-value" id="kpi-fees" style="color:var(--muted)">$0.00</div>
-            <div class="kpi-sub">Ahorro del 8% contra OnlyFans</div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-label">Próximo Pago (Payout)</div>
-            <div class="kpi-value" id="kpi-payout" style="color:var(--green)">$0.00</div>
-            <div class="kpi-sub">Transferencia automática programada</div>
-          </div>
-        </div>
-
-        <!-- CHARTS SECTION -->
-        <div class="grid-layout-2">
-          <div class="chart-container card">
-            <div class="card-title">📈 Curva de Ingresos (Últimas 24h)</div>
-            <canvas id="chart-income" height="220"></canvas>
-          </div>
-          <div class="card feed-container">
-            <div class="card-title">🔔 Transacciones en Vivo</div>
-            <div class="transaction-feed" id="transaction-feed">
-              <div class="feed-placeholder">Esperando nuevas suscripciones...</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── PAYLINKS ── -->
-      <div class="section" id="sec-links">
-        <div class="section-header">
-          <div>
-            <div class="section-title">🔗 Tus Enlaces de Pago (PayLinks)</div>
-            <div class="section-sub">Genera y administra links personalizados de cobro rápido</div>
-          </div>
-          <button class="btn btn-primary" onclick="openCreateLinkModal()">+ Crear PayLink</button>
-        </div>
-
-        <div class="table-wrap">
-          <div class="table-scroll">
-            <table class="compact-table">
-              <thead>
-                <tr>
-                  <th>Nombre del Producto / Servicio</th>
-                  <th>Precio</th>
-                  <th>Frecuencia</th>
-                  <th>Visitas</th>
-                  <th>Conversión</th>
-                  <th>Enlace</th>
-                  <th style="text-align:right;">Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="links-tbody">
-                <!-- Cargado dinámicamente -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── SUBSCRIBERS ── -->
-      <div class="section" id="sec-subscribers">
-        <div class="section-header">
-          <div>
-            <div class="section-title">👑 Listado de Suscriptores Premium</div>
-            <div class="section-sub">Tus patrocinadores activos y su volumen de aportación acumulada</div>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <div class="table-scroll">
-            <table class="compact-table">
-              <thead>
-                <tr>
-                  <th>Suscriptor</th>
-                  <th>Plan Activo</th>
-                  <th>Mensualidad</th>
-                  <th>Total Aportado</th>
-                  <th>Último Pago</th>
-                  <th>Estado</th>
-                </tr>
-              </thead>
-              <tbody id="subs-tbody">
-                <!-- Cargado dinámicamente -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── TRAFFIC GENERATOR ── -->
-      <div class="section" id="sec-generator">
-        <div class="section-header">
-          <div>
-            <div class="section-title">⚡ Simulador de Tráfico y Ventas Orgánicas</div>
-            <div class="section-sub">Simula visitas masivas a tus PayLinks y observa el embudo de conversión</div>
-          </div>
-        </div>
-
-        <div class="grid-layout-2">
-          <div class="card">
-            <div class="card-title">Configuración del Simulador</div>
-            <p style="font-size:12px; color:var(--muted); margin-bottom:15px;">Ajusta los parámetros para generar visitas automáticas en segundo plano y probar la resistencia de tus analíticas.</p>
-            
-            <div class="form-group">
-              <label class="form-label" for="sim-speed">Frecuencia de Tráfico</label>
-              <select class="form-input" id="sim-speed">
-                <option value="off">Apagado</option>
-                <option value="slow">Bajo (1 visita c/ 5 segundos)</option>
-                <option value="medium" selected>Medio (1 visita c/ 2 segundos)</option>
-                <option value="fast">Alto (3 visitas c/ segundo)</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label" for="sim-conversion">Tasa de Conversión Promedio</label>
-              <select class="form-input" id="sim-conversion">
-                <option value="5">5% (Normal)</option>
-                <option value="15" selected>15% (Creador Famoso)</option>
-                <option value="35">35% (Contenido Exclusivo Viral)</option>
-              </select>
-            </div>
-            
-            <div style="margin-top:20px;">
-              <button class="btn btn-primary" id="btn-toggle-sim" onclick="toggleAutoSimulation()">Pausar Simulación</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Estadísticas del Embudo</div>
-            <div class="funnel-stats">
-              <div class="funnel-item">
-                <div class="funnel-label">Visitas Totales Generadas</div>
-                <div class="funnel-val" id="funnel-visits">0</div>
-              </div>
-              <div class="funnel-item">
-                <div class="funnel-label">Intento de Pago (Click en Checkout)</div>
-                <div class="funnel-val" id="funnel-clicks" style="color:var(--amber)">0</div>
-              </div>
-              <div class="funnel-item">
-                <div class="funnel-label">Suscripciones Exitosas (Ventas)</div>
-                <div class="funnel-val" id="funnel-sales" style="color:var(--green)">0</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── WEBHOOKS ── -->
-      <div class="section" id="sec-webhooks">
-        <div class="section-header">
-          <div>
-            <div class="section-title">🔌 Configuración de Webhooks y API</div>
-            <div class="section-sub">Automatiza acciones cuando entra un cobro conectándote con tu servidor</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Prueba de Endpoint (URL de Webhook)</div>
-          <p style="font-size:12px; color:var(--muted); margin-bottom:15px;">Enviaremos un JSON payload a esta URL cada vez que ocurra una transacción en el simulador.</p>
-          
-          <div class="form-group">
-            <label class="form-label" for="webhook-url">Webhook Destination URL</label>
-            <input class="form-input" type="url" id="webhook-url" placeholder="https://api.tudominio.com/webhook-receiver" value="https://httpbin.org/post">
-          </div>
-          
-          <div style="margin-top:15px; display:flex; gap:10px;">
-            <button class="btn btn-primary" onclick="testWebhook()">Enviar Webhook de Prueba</button>
-          </div>
-          
-          <div id="webhook-log-box" style="margin-top:20px; display:none;">
-            <div style="font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--muted); margin-bottom:6px;">LOG DE RESPUESTA DEL SERVIDOR:</div>
-            <pre class="code-box" id="webhook-log"></pre>
-          </div>
-        </div>
-      </div>
-
-    </main>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menú">☰</button>
   </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#metodos" onclick="toggleMobileMenu()">Métodos de Pago</a>
+    <a href="#ecosistema" onclick="toggleMobileMenu()">Ecosistema</a>
+    <a href="#noticias" onclick="toggleMobileMenu()">Noticias</a>
+    <a href="#comunidad" onclick="toggleMobileMenu()">Comunidad</a>
+    <a href="#colaboradores" onclick="toggleMobileMenu()">Colaboradores</a>
+  </div>
+</nav>
 
-  <!-- MODAL: CREAR PAYLINK -->
-  <div class="modal-overlay" id="modal-create-link">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 style="font-family:'Outfit',sans-serif; font-weight:700;">Crear Nuevo PayLink</h3>
-        <button class="close-btn" onclick="closeCreateLinkModal()">✕</button>
+<!-- ── HERO ── -->
+<section class="hero" id="inicio">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">🗺️ El mapa de pagos de América Latina</div>
+    <h1 class="hero-title">
+      Pagar en LATAM<br>
+      <span class="hero-gradient">no debería ser un misterio</span>
+    </h1>
+    <p class="hero-subtitle">
+      PSE, PIX, OXXO Pay, Yape, SPEI, Boleto, WebPay y más de 40 métodos de pago documentados.
+      La guía colaborativa más completa del ecosistema financiero latinoamericano.
+    </p>
+    <div class="hero-actions">
+      <a href="#metodos" class="btn btn-primary">Explorar métodos ↓</a>
+      <a href="#colaboradores" class="btn btn-ghost">Contribuir →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="stat-methods">40+</div>
+        <div class="hero-stat-label">Métodos</div>
       </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label class="form-label" for="new-link-name">Nombre del Producto / Servicio</label>
-          <input class="form-input" type="text" id="new-link-name" placeholder="Ej. Acceso VIP Premium Mensual">
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8</div>
+        <div class="hero-stat-label">Países</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="stat-posts">12</div>
+        <div class="hero-stat-label">Discusiones</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Open</div>
+      </div>
+    </div>
+  </div>
+  <!-- Países flotantes animados -->
+  <div class="hero-flags" aria-hidden="true">
+    <span class="flag-float" style="--d:0s;--x:10%;--y:20%">🇲🇽</span>
+    <span class="flag-float" style="--d:0.5s;--x:85%;--y:15%">🇧🇷</span>
+    <span class="flag-float" style="--d:1s;--x:20%;--y:75%">🇨🇴</span>
+    <span class="flag-float" style="--d:1.5s;--x:75%;--y:70%">🇵🇪</span>
+    <span class="flag-float" style="--d:2s;--x:50%;--y:85%">🇨🇱</span>
+    <span class="flag-float" style="--d:2.5s;--x:5%;--y:50%">🇦🇷</span>
+    <span class="flag-float" style="--d:3s;--x:92%;--y:45%">🇺🇾</span>
+    <span class="flag-float" style="--d:0.3s;--x:40%;--y:10%">🇪🇨</span>
+  </div>
+</section>
+
+<!-- ── MÉTODOS DE PAGO ── -->
+<section class="section-wrapper" id="metodos">
+  <div class="container">
+    <div class="section-label">💳 Métodos de Pago por País</div>
+    <h2 class="section-title">¿Cómo paga cada país?</h2>
+    <p class="section-sub">Selecciona un país para ver sus métodos de pago, tipos, comisiones estimadas y plazos de liquidación.</p>
+
+    <!-- Selector de País -->
+    <div class="country-selector" id="country-selector">
+      <button class="country-btn active" data-country="MX" onclick="selectCountry('MX', this)">🇲🇽 México</button>
+      <button class="country-btn" data-country="BR" onclick="selectCountry('BR', this)">🇧🇷 Brasil</button>
+      <button class="country-btn" data-country="CO" onclick="selectCountry('CO', this)">🇨🇴 Colombia</button>
+      <button class="country-btn" data-country="PE" onclick="selectCountry('PE', this)">🇵🇪 Perú</button>
+      <button class="country-btn" data-country="CL" onclick="selectCountry('CL', this)">🇨🇱 Chile</button>
+      <button class="country-btn" data-country="AR" onclick="selectCountry('AR', this)">🇦🇷 Argentina</button>
+      <button class="country-btn" data-country="UY" onclick="selectCountry('UY', this)">🇺🇾 Uruguay</button>
+      <button class="country-btn" data-country="EC" onclick="selectCountry('EC', this)">🇪🇨 Ecuador</button>
+    </div>
+
+    <!-- País info banner -->
+    <div class="country-banner" id="country-banner"></div>
+
+    <!-- Grid de métodos -->
+    <div class="methods-grid" id="methods-grid"></div>
+
+    <!-- Fuente -->
+    <div class="source-credit">
+      📖 Datos basados en el <strong>Diccionario de Medios de Pago v6.0 (2026)</strong> ·
+      Colaboración de <a href="https://www.linkedin.com/in/fernando-estevez-vazquez/" target="_blank" rel="noopener">Fernando Estévez Vázquez ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ECOSISTEMA ── -->
+<section class="section-wrapper section-dark" id="ecosistema">
+  <div class="container">
+    <div class="section-label">🗺️ Ecosistema de Pagos</div>
+    <h2 class="section-title">¿Quién es quién en pagos?</h2>
+    <p class="section-sub">Los 8 actores que participan en cada transacción con tarjeta. Entiende el rol de cada uno y cómo se relacionan entre sí.</p>
+
+    <div class="actors-grid" id="actors-grid"></div>
+
+    <!-- Flujo de transacción -->
+    <div class="flow-section">
+      <h3 class="flow-title">⚡ ¿Qué pasa cuando haces clic en "Pagar"?</h3>
+      <div class="flow-diagram" id="flow-diagram"></div>
+    </div>
+
+    <!-- Crédito Fernando -->
+    <div class="contributor-credit-block">
+      <img src="https://ui-avatars.com/api/?name=Fernando+Estevez&background=7c3aed&color=fff&size=64&font-size=0.33&bold=true" alt="Fernando Estévez" class="credit-avatar">
+      <div class="credit-body">
+        <div class="credit-name">Fernando Estévez Vázquez</div>
+        <div class="credit-desc">Toda la arquitectura de este ecosistema y el diccionario de medios de pago fueron documentados y compartidos por Fernando. Experto en pagos digitales y ecosistemas financieros en LATAM.</div>
+        <div class="credit-links">
+          <a href="https://www.linkedin.com/in/fernando-estevez-vazquez/" target="_blank" rel="noopener" class="credit-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            LinkedIn
+          </a>
+          <span class="credit-tag">📖 Diccionario de Pagos v6.0</span>
+          <span class="credit-tag">👤 ¿Quién es Quién en Pagos?</span>
         </div>
-        <div class="grid-layout-2" style="gap:10px;">
-          <div class="form-group">
-            <label class="form-label" for="new-link-price">Precio (USD)</label>
-            <input class="form-input" type="number" id="new-link-price" value="19.99" step="0.01">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="new-link-frequency">Frecuencia</label>
-            <select class="form-input" id="new-link-frequency">
-              <option value="Mensual">Mensual</option>
-              <option value="Pago Único">Pago Único</option>
-              <option value="Anual">Anual</option>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NOTICIAS ── -->
+<section class="section-wrapper" id="noticias">
+  <div class="container">
+    <div class="section-label">📰 Noticias del Ecosistema</div>
+    <h2 class="section-title">Lo más reciente en pagos LATAM</h2>
+    <p class="section-sub">Regulación, nuevos métodos, lanzamientos y tendencias que están cambiando cómo se paga en la región.</p>
+
+    <div class="news-filters" id="news-filters">
+      <button class="news-filter active" data-tag="all" onclick="filterNews('all', this)">Todos</button>
+      <button class="news-filter" data-tag="Brasil" onclick="filterNews('Brasil', this)">🇧🇷 Brasil</button>
+      <button class="news-filter" data-tag="México" onclick="filterNews('México', this)">🇲🇽 México</button>
+      <button class="news-filter" data-tag="Regulación" onclick="filterNews('Regulación', this)">⚖️ Regulación</button>
+      <button class="news-filter" data-tag="Cripto" onclick="filterNews('Cripto', this)">🪙 Cripto</button>
+      <button class="news-filter" data-tag="BNPL" onclick="filterNews('BNPL', this)">💳 BNPL</button>
+    </div>
+
+    <div class="news-grid" id="news-grid"></div>
+  </div>
+</section>
+
+<!-- ── COMUNIDAD / REDDIT ── -->
+<section class="section-wrapper section-dark" id="comunidad">
+  <div class="container">
+    <div class="section-label">💬 Comunidad</div>
+    <h2 class="section-title">Debates y opiniones</h2>
+    <p class="section-sub">¿Tienes una opinión sobre los pagos en LATAM? Comparte tu perspectiva, haz preguntas o responde a otros expertos del sector.</p>
+
+    <!-- Nueva publicación -->
+    <div class="new-post-card" id="new-post-card">
+      <div class="new-post-header">
+        <div class="user-avatar-generic">🙋</div>
+        <div class="new-post-inputs">
+          <input type="text" id="post-title" class="post-input post-title-input" placeholder="¿Qué quieres discutir sobre pagos en LATAM?">
+          <textarea id="post-body" class="post-input post-body-input" placeholder="Comparte tu análisis, pregunta o experiencia... (opcional)" rows="3"></textarea>
+          <div class="post-meta-row">
+            <select id="post-tag" class="post-select">
+              <option value="Pregunta">❓ Pregunta</option>
+              <option value="Opinión">💬 Opinión</option>
+              <option value="Análisis">📊 Análisis</option>
+              <option value="Noticia">📰 Noticia</option>
+              <option value="Recurso">📚 Recurso</option>
             </select>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" onclick="closeCreateLinkModal()">Cancelar</button>
-        <button class="btn btn-primary" onclick="saveNewPayLink()">Generar Link</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: PASARELA DE PAGO SIMULADA (CHECKOUT PRESTADO) -->
-  <div class="modal-overlay" id="modal-checkout">
-    <div class="checkout-modal-card">
-      <div class="checkout-header">
-        <div style="font-size:12px; font-weight:700; color:var(--purple)">🔒 ONLYPAYMENTS SECURE CHECKOUT</div>
-        <button class="close-btn" onclick="closeCheckoutModal()" style="color:#fff;">✕</button>
-      </div>
-      <div class="checkout-body">
-        <div class="checkout-product-info">
-          <div style="font-size:11px; color:#a1a1aa; text-transform:uppercase; letter-spacing:1px;">Estás comprando</div>
-          <h2 id="checkout-product-title" style="font-family:'Outfit',sans-serif; margin-top:2px; font-weight:700;">Acceso VIP Exclusivo</h2>
-          <div class="checkout-price" id="checkout-product-price">$19.99/mes</div>
-        </div>
-        
-        <div class="checkout-form">
-          <div class="form-group">
-            <label class="form-label" style="color:#a1a1aa; font-size:10px;">TITULAR DE LA TARJETA</label>
-            <input class="form-input checkout-input" type="text" id="chk-card-name" placeholder="John Doe" value="Antonio Tester">
-          </div>
-          <div class="form-group">
-            <label class="form-label" style="color:#a1a1aa; font-size:10px;">NÚMERO DE TARJETA</label>
-            <input class="form-input checkout-input" type="text" id="chk-card-num" placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242">
-          </div>
-          <div class="grid-layout-2" style="gap:10px;">
-            <div class="form-group">
-              <label class="form-label" style="color:#a1a1aa; font-size:10px;">EXPIRACIÓN</label>
-              <input class="form-input checkout-input" type="text" placeholder="12/28" value="12/29">
-            </div>
-            <div class="form-group">
-              <label class="form-label" style="color:#a1a1aa; font-size:10px;">CVC</label>
-              <input class="form-input checkout-input" type="password" placeholder="123" value="999">
-            </div>
-          </div>
-          
-          <button class="btn btn-checkout" id="btn-pay-submit" onclick="submitSimulatedPayment()">Pagar Seguro</button>
-          
-          <div style="font-size:9px; text-align:center; color:#71717a; margin-top:10px;">
-            Este pago es una simulación. Ningún cargo real será aplicado a tu tarjeta.
+            <select id="post-country" class="post-select">
+              <option value="">🌎 Todos los países</option>
+              <option value="🇲🇽 México">🇲🇽 México</option>
+              <option value="🇧🇷 Brasil">🇧🇷 Brasil</option>
+              <option value="🇨🇴 Colombia">🇨🇴 Colombia</option>
+              <option value="🇵🇪 Perú">🇵🇪 Perú</option>
+              <option value="🇨🇱 Chile">🇨🇱 Chile</option>
+              <option value="🇦🇷 Argentina">🇦🇷 Argentina</option>
+            </select>
+            <input type="text" id="post-author" class="post-input post-author-input" placeholder="Tu nombre (o anónimo)">
+            <button class="btn btn-primary" onclick="submitPost()">Publicar →</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- JAVASCRIPT PRINCIPAL -->
-  <script src="app.js"></script>
+    <!-- Sort controls -->
+    <div class="sort-controls">
+      <span class="sort-label">Ordenar:</span>
+      <button class="sort-btn active" onclick="sortPosts('hot', this)">🔥 Popular</button>
+      <button class="sort-btn" onclick="sortPosts('new', this)">✨ Recientes</button>
+      <button class="sort-btn" onclick="sortPosts('top', this)">⬆️ Top votos</button>
+    </div>
+
+    <!-- Feed de posts -->
+    <div class="posts-feed" id="posts-feed"></div>
+  </div>
+</section>
+
+<!-- ── COLABORADORES ── -->
+<section class="section-wrapper" id="colaboradores">
+  <div class="container">
+    <div class="section-label">👥 Colaboradores</div>
+    <h2 class="section-title">Las personas que hacen posible esto</h2>
+    <p class="section-sub">Expertos que comparten su conocimiento para que todo LATAM entienda mejor los pagos. ¿Quieres contribuir?</p>
+
+    <div class="contributors-grid" id="contributors-grid"></div>
+
+    <!-- CTA Contribuir -->
+    <div class="contribute-cta">
+      <div class="contribute-icon">✍️</div>
+      <h3 class="contribute-title">¿Quieres contribuir?</h3>
+      <p class="contribute-desc">Si tienes conocimiento sobre el ecosistema de pagos en LATAM — un artículo, un diccionario, una guía — podemos publicarlo aquí y darte visibilidad ante miles de personas del sector.</p>
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <a href="mailto:hola@onlypayments.lat?subject=Quiero contribuir" class="btn btn-primary">Escribirnos →</a>
+        <a href="#comunidad" class="btn btn-ghost">Unirte a la comunidad</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <span class="logo-icon">🌎</span>
+          <span class="logo-text">only<strong>payments</strong></span>
+          <span class="logo-badge">LATAM</span>
+        </div>
+        <p class="footer-desc">La guía colaborativa más completa del ecosistema de pagos en América Latina. Abierta para todos.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Explorar</div>
+        <a href="#metodos" class="footer-link">Métodos por país</a>
+        <a href="#ecosistema" class="footer-link">Ecosistema de pagos</a>
+        <a href="#noticias" class="footer-link">Noticias</a>
+        <a href="#comunidad" class="footer-link">Comunidad</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Colaboradores</div>
+        <a href="https://www.linkedin.com/in/fernando-estevez-vazquez/" target="_blank" class="footer-link">Fernando Estévez Vázquez</a>
+        <a href="#colaboradores" class="footer-link">Ver todos</a>
+        <a href="mailto:hola@onlypayments.lat" class="footer-link">Quiero contribuir</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Onlypayments · Sitio educativo y abierto · Ningún dato es asesoría financiera</div>
+      <div class="footer-credit">Hecho con 💜 para la comunidad de pagos LATAM</div>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
