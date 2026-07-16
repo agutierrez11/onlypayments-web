@@ -77,6 +77,7 @@ export default function Home() {
 
   // Formulario de intake de soluciones
   const [intakeService, setIntakeService] = useState<string[]>([]);
+  const [intakePainPoints, setIntakePainPoints] = useState<string[]>([]);
   const [intakeMarkets, setIntakeMarkets] = useState<string[]>([]);
   const [intakeCompanyType, setIntakeCompanyType] = useState("");
   const [intakeVolume, setIntakeVolume] = useState("");
@@ -91,7 +92,7 @@ export default function Home() {
   const handleIntakeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const body = encodeURIComponent(
-      `Tipo de solución: ${intakeService.join(', ')}\nMercados: ${intakeMarkets.join(', ')}\nTipo de empresa: ${intakeCompanyType}\nVolumen mensual: ${intakeVolume}\nDescripción: ${intakeDescription}\nContacto: ${intakeContact}`
+      `Tipo de solución: ${intakeService.join(', ')}\nDolores/Desafíos: ${intakePainPoints.join(', ')}\nMercados: ${intakeMarkets.join(', ')}\nTipo de empresa: ${intakeCompanyType}\nVolumen mensual: ${intakeVolume}\nDescripción: ${intakeDescription}\nContacto: ${intakeContact}`
     );
     window.open(`mailto:antoniogtzjimenez@gmail.com?subject=Solicitud de solución de pagos - OnlyPayments&body=${body}`);
     setIntakeSubmitted(true);
@@ -1151,7 +1152,7 @@ export default function Home() {
               <div className="space-y-3">
                 <label className="text-sm font-semibold block">¿Qué tipo de solución buscas? <span className="text-muted-foreground font-normal">(selecciona todas las que apliquen)</span></label>
                 <div className="flex flex-wrap gap-2">
-                  {["Gateway de Pagos","Adquirencia / Terminal","Factoraje","Compliance / Regulatorio","Wallet / Dispersión","BNPL","Open Finance","Otro"].map(s => (
+                  {["Gateway de Pagos","Adquirencia / Terminal","KYC / Onboarding B2B","Prevención de Fraude Automatizada","Factoraje","Compliance / Regulatorio","Wallet / Dispersión","Data Analytics para Pagos","BNPL","Open Finance","Bóveda de Tokens Segura","Otro"].map(s => (
                     <button type="button" key={s}
                       onClick={() => toggleIntakeMulti(intakeService, s, setIntakeService)}
                       className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
@@ -1159,6 +1160,21 @@ export default function Home() {
                           ? 'bg-accent text-accent-foreground border-accent'
                           : 'bg-background border-border text-muted-foreground hover:border-accent/50'
                       }`}>{s}</button>
+                  ))}
+                </div>
+              </div>
+              {/* Desafíos / Dolores */}
+              <div className="space-y-3">
+                <label className="text-sm font-semibold block">¿Cuál es tu desafío principal? <span className="text-muted-foreground font-normal">(selecciona los más críticos)</span></label>
+                <div className="flex flex-wrap gap-2">
+                  {["Prevención de Fraude e Identidad Sintética","Cumplimiento Normativo / Riesgo","Aprobaciones bajas (Falsos positivos)","Orquestación y Analítica de Datos","Costos de Procesamiento","Escalabilidad e Infraestructura"].map(p => (
+                    <button type="button" key={p}
+                      onClick={() => toggleIntakeMulti(intakePainPoints, p, setIntakePainPoints)}
+                      className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
+                        intakePainPoints.includes(p)
+                          ? 'bg-accent text-accent-foreground border-accent'
+                          : 'bg-background border-border text-muted-foreground hover:border-accent/50'
+                      }`}>{p}</button>
                   ))}
                 </div>
               </div>
