@@ -108,7 +108,7 @@
     <p class="section-sub">Selecciona un país para ver sus métodos de pago, tipos, comisiones estimadas y plazos de liquidación.</p>
 
     <!-- Selector de País -->
-    <div class="country-selector" id="country-selector">
+    <div class="country-selector" id="country-selector" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px;">
       <button class="country-btn active" data-country="MX" onclick="selectCountry('MX', this)">🇲🇽 México</button>
       <button class="country-btn" data-country="BR" onclick="selectCountry('BR', this)">🇧🇷 Brasil</button>
       <button class="country-btn" data-country="CO" onclick="selectCountry('CO', this)">🇨🇴 Colombia</button>
@@ -117,6 +117,12 @@
       <button class="country-btn" data-country="AR" onclick="selectCountry('AR', this)">🇦🇷 Argentina</button>
       <button class="country-btn" data-country="UY" onclick="selectCountry('UY', this)">🇺🇾 Uruguay</button>
       <button class="country-btn" data-country="EC" onclick="selectCountry('EC', this)">🇪🇨 Ecuador</button>
+      <button class="country-btn" data-country="CR" onclick="selectCountry('CR', this)">🇨🇷 Costa Rica</button>
+      <button class="country-btn" data-country="PA" onclick="selectCountry('PA', this)">🇵🇦 Panamá</button>
+      <button class="country-btn" data-country="BO" onclick="selectCountry('BO', this)">🇧🇴 Bolivia</button>
+      <button class="country-btn" data-country="PY" onclick="selectCountry('PY', this)">🇵🇾 Paraguay</button>
+      <button class="country-btn" data-country="GT" onclick="selectCountry('GT', this)">🇬🇹 Guatemala</button>
+      <button class="country-btn" data-country="DO" onclick="selectCountry('DO', this)">🇩🇴 R. Dominicana</button>
     </div>
 
     <!-- País info banner -->
@@ -249,6 +255,14 @@
               <option value="🇵🇪 Perú">🇵🇪 Perú</option>
               <option value="🇨🇱 Chile">🇨🇱 Chile</option>
               <option value="🇦🇷 Argentina">🇦🇷 Argentina</option>
+              <option value="🇺🇾 Uruguay">🇺🇾 Uruguay</option>
+              <option value="🇪🇨 Ecuador">🇪🇨 Ecuador</option>
+              <option value="🇨🇷 Costa Rica">🇨🇷 Costa Rica</option>
+              <option value="🇵🇦 Panamá">🇵🇦 Panamá</option>
+              <option value="🇧🇴 Bolivia">🇧🇴 Bolivia</option>
+              <option value="🇵🇾 Paraguay">🇵🇾 Paraguay</option>
+              <option value="🇬🇹 Guatemala">🇬🇹 Guatemala</option>
+              <option value="🇩🇴 R. Dominicana">🇩🇴 R. Dominicana</option>
             </select>
             <input type="text" id="post-author" class="post-input post-author-input" placeholder="Tu nombre (o anónimo)">
             <button class="btn btn-primary" onclick="submitPost()">Publicar →</button>

@@ -87,6 +87,54 @@ const COUNTRIES = {
     description: "Economía dolarizada. Redes de corresponsales no bancarios (Banco del Barrio) y transferencias bancarias directas (Deuna!).",
     mrr: "$0.8M USD est.",
     growth: "+16% YoY"
+  },
+  CR: {
+    name: "Costa Rica",
+    flag: "🇨🇷",
+    currency: "CRC",
+    description: "Mercado altamente bancarizado y digital. Liderado ampliamente por el sistema de pagos instantáneos SINPE Móvil.",
+    mrr: "$0.4M USD est.",
+    growth: "+22% YoY"
+  },
+  PA: {
+    name: "Panamá",
+    flag: "🇵🇦",
+    currency: "USD",
+    description: "Centro financiero regional. Dominado por la billetera móvil Yappy (Banco General) y transacciones de tarjeta internacional.",
+    mrr: "$0.6M USD est.",
+    growth: "+14% YoY"
+  },
+  BO: {
+    name: "Bolivia",
+    flag: "🇧🇴",
+    currency: "BOB",
+    description: "Ecosistema digital en rápido crecimiento gracias a la adopción nacional de los códigos QR interoperables 'Simple'.",
+    mrr: "$0.3M USD est.",
+    growth: "+35% YoY"
+  },
+  PY: {
+    name: "Paraguay",
+    flag: "🇵🇾",
+    currency: "PYG",
+    description: "Mercado con fuerte expansión digital, dominado por el operador local Bancard y sus redes de Pago Móvil y QR.",
+    mrr: "$0.3M USD est.",
+    growth: "+26% YoY"
+  },
+  GT: {
+    name: "Guatemala",
+    flag: "🇬🇹",
+    currency: "GTQ",
+    description: "El mayor mercado de Centroamérica. Influenciado fuertemente por transferencias, billeteras como Tigo Money y remesas.",
+    mrr: "$0.5M USD est.",
+    growth: "+18% YoY"
+  },
+  DO: {
+    name: "República Dominicana",
+    flag: "🇩🇴",
+    currency: "DOP",
+    description: "Hub turístico y comercial del Caribe. Creciente digitalización bancaria liderada por la plataforma interbancaria tPago.",
+    mrr: "$0.6M USD est.",
+    growth: "+20% YoY"
   }
 };
 
@@ -355,6 +403,78 @@ const PAYMENT_METHODS = {
       description: "Red de corresponsales no bancarios del Banco Guayaquil. Permite a los usuarios realizar depósitos y pagos de compras online en efectivo en tiendas de barrio autorizadas.",
       compliance: "Cero riesgo de contracargo. Excelente capilaridad en zonas rurales.",
       providers: ["Banco Guayaquil directo", "Kushki"]
+    }
+  ],
+  CR: [
+    {
+      name: "SINPE Móvil",
+      type: "A2A / Transferencia Móvil",
+      logo: "⚡",
+      settlement: "Inmediato",
+      fee: "Tarifa plana muy baja ($0.10 - $0.50 USD) o gratis",
+      description: "El sistema de transferencias interbancarias en tiempo real líder en Costa Rica. El usuario asocia su cuenta bancaria a su número de teléfono y puede realizar pagos inmediatos desde la app de su banco.",
+      compliance: "Cero contracargo. Muy seguro. Límites diarios por cuenta para evitar fraudes.",
+      providers: ["BAC Credomatic", "Banco Nacional", "Banco de Costa Rica"]
+    }
+  ],
+  PA: [
+    {
+      name: "Yappy (Banco General)",
+      type: "A2A / Billetera Móvil",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "1.0% - 1.5%",
+      description: "Billetera digital y canal de pago de Banco General que se ha convertido en el estándar de pagos interpersonales y comerciales en Panamá. Permite enviar dinero y pagar usando el número de celular del comercio.",
+      compliance: "Sin contracargos. Fuerte control contra el fraude mediante doble factor en el app bancario.",
+      providers: ["Banco General directo", "PixelPay"]
+    }
+  ],
+  BO: [
+    {
+      name: "QR Simple Bolivia",
+      type: "A2A / Pago por QR",
+      logo: "✨",
+      settlement: "Inmediato",
+      fee: "0.5% - 1.0%",
+      description: "La solución nacional interoperable de códigos QR en Bolivia. Permite a los clientes pagar escaneando el código QR de un comercio desde cualquier aplicación bancaria boliviana.",
+      compliance: "Transferencia directa de cuenta a cuenta sin riesgo de disputas de tarjetas.",
+      providers: ["Bancos bolivianos asociados", "Kushki"]
+    }
+  ],
+  PY: [
+    {
+      name: "Pago Móvil (Bancard)",
+      type: "Red de Cobros / App",
+      logo: "🏪",
+      settlement: "D+1",
+      fee: "2.5% - 3.5%",
+      description: "La plataforma de cobros del procesador local Bancard en Paraguay. Permite pagar facturas, servicios y compras online mediante tarjetas nacionales de débito/crédito o transferencia.",
+      compliance: "Conexión directa con la adquirencia de Bancard.",
+      providers: ["Bancard", "dLocal"]
+    }
+  ],
+  GT: [
+    {
+      name: "Tigo Money Guatemala",
+      type: "Billetera Móvil",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "2.0% - 3.5%",
+      description: "Billetera móvil y servicio de dinero electrónico muy extendido en Guatemala para la población no bancarizada. Permite recargas, retiros físicos y pagos online.",
+      compliance: "Asume el control transaccional del balance móvil.",
+      providers: ["Tigo Money directo", "PixelPay"]
+    }
+  ],
+  DO: [
+    {
+      name: "tPago",
+      type: "A2A / Red Interbancaria",
+      logo: "⚡",
+      settlement: "Inmediato",
+      fee: "1.0% - 2.0%",
+      description: "Plataforma que vincula las cuentas bancarias de los principales bancos de República Dominicana a los teléfonos móviles de los usuarios para realizar transferencias y compras en segundos.",
+      compliance: "Requiere autenticación robusta mediante PIN tPago en el celular.",
+      providers: ["Banco Popular", "Banreservas", "tPago directo"]
     }
   ]
 };
