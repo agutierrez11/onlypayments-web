@@ -381,7 +381,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             
             {/* Info Macro */}
-            <Card className="p-8 border-border bg-background/50 backdrop-blur space-y-6 flex flex-col justify-between">
+            <Card className="p-8 border-border bg-background/50 backdrop-blur space-y-6 flex flex-col self-start sticky top-24">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
