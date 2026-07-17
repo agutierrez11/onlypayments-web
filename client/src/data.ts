@@ -265,6 +265,16 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
       providers: ["Conekta", "Openpay", "Stripe", "PayU", "Mercado Pago"]
     },
     {
+      name: "CoDi (Cobro Digital)",
+      type: "A2A / QR SPEI",
+      logo: "📸",
+      settlement: "Inmediato",
+      fee: "Gratis o tarifa muy baja",
+      description: "Plataforma de cobros digitales desarrollada por Banxico sobre la infraestructura SPEI. Funciona generando un código QR o una liga de pago que, al ser escaneada con la app bancaria del pagador, detona una transferencia SPEI inmediata. Lanzado en 2019, ha tenido adopción moderada pero es el precursor directo de DiMo. Ideal para comercios físicos y profesionales independientes que buscan cobros sin comisiones de tarjeta.",
+      compliance: "Regulado por Banxico. Sin contracargos. Requiere que el comercio y el pagador estén en un banco participante de SPEI con soporte CoDi.",
+      providers: ["BBVA México", "Banamex", "Banorte", "Santander", "HSBC", "Scotiabank"]
+    },
+    {
       name: "Paynet y Redes de Efectivo Alternas",
       type: "Efectivo / Corresponsalía",
       logo: "🏬",
@@ -309,26 +319,66 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
       providers: ["Wompi", "PayU", "ePayco", "Mercado Pago Colombia"]
     },
     {
+      name: "Bre-B",
+      type: "A2A / Pagos Inmediatos Interoperables",
+      logo: "⚡",
+      settlement: "Inmediato",
+      fee: "Gratis entre personas · tarifa baja para comercios",
+      description: "El sistema de pagos instantáneos interoperables de Colombia impulsado por la Superintendencia Financiera y el Banco de la República, lanzado en 2024. Inspirado en el éxito de PIX (Brasil) y SPEI (México), Bre-B permite transferencias de cuenta a cuenta en segundos usando alias (celular, email, cédula) entre todos los bancos y fintechs participantes. Representa la mayor reforma a la infraestructura de pagos en Colombia en dos décadas y rivaliza directamente con PSE en el segmento digital.",
+      compliance: "Regulado por la Superintendencia Financiera de Colombia. Sin contracargos. Irrevocable.",
+      providers: ["Bancolombia", "Davivienda", "BBVA Colombia", "Nequi", "Daviplata", "Wompi", "Bold"]
+    },
+    {
+      name: "Nequi / Daviplata",
+      type: "Wallet Móvil / A2A",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "Gratis P2P · 2.0% - 3.5% comercios",
+      description: "Las dos billeteras digitales dominantes en Colombia, cada una con más de 18 millones de usuarios activos. Nequi (Bancolombia) y Daviplata (Davivienda) permiten pagos por QR, transferencias P2P, pago de servicios y acceso a microcrédito. Son el principal canal de inclusión financiera digital del país, especialmente en zonas rurales donde el efectivo dominaba.",
+      compliance: "Reguladas como depósitos de bajo monto por la Superintendencia Financiera. Límites diarios según nivel de verificación KYC.",
+      providers: ["Nequi directo", "Daviplata directo", "PayU", "Wompi", "ePayco"]
+    },
+    {
       name: "Efecty",
       type: "Efectivo / Redes locales",
       logo: "🏪",
       settlement: "D+1",
       fee: "3.0% - 4.0%",
-      description: "Redes físicas de giros y recaudos masivos en Colombia.",
-      compliance: "Cero contracargo. Útil para inclusión financiera.",
+      description: "Una de las redes físicas de giros y recaudos más grandes de Colombia con más de 12,000 puntos. Cubre regiones donde la bancarización digital es baja. El cliente paga en efectivo con un código de referencia generado en el checkout online.",
+      compliance: "Cero contracargo. Útil para inclusión financiera en segmentos rurales y semi-urbanos.",
       providers: ["PayU", "ePayco", "Wompi", "dLocal"]
     }
   ],
   PE: [
     {
-      name: "Yape / Plin",
+      name: "Yape (BCP)",
       type: "A2A / Billetera Móvil",
       logo: "📱",
       settlement: "Inmediato",
-      fee: "0.5% - 2.8% o gratis para usuarios",
-      description: "Las dos billeteras móviles interoperables dominantes en Perú. Permiten pagar escaneando un código QR único o mediante número celular.",
-      compliance: "Liquidación inmediata, autenticación biométrica y límites de transacciones diarias.",
-      providers: ["Yape Directo", "Plin Directo", "Culqi", "Niubiz", "IziPay"]
+      fee: "Gratis P2P · 1.5% - 2.8% comercios",
+      description: "La billetera digital del Banco de Crédito del Perú (BCP) y la app de pagos más descargada del país con más de 15 millones de usuarios. Permite transferencias P2P instantáneas usando número de celular, pagos con QR en comercios físicos y online, y compras en marketplaces. Tiene la particularidad de que no se requiere ser cliente BCP para usarla, ampliando masivamente su alcance. En 2023 se convirtió en interoperable con Plin.",
+      compliance: "Regulada por la SBS (Superintendencia de Banca y Seguros). Autenticación biométrica. Límites diarios por nivel KYC.",
+      providers: ["Yape Directo (BCP)", "Culqi", "Niubiz", "IziPay", "Mercado Pago Perú"]
+    },
+    {
+      name: "Plin",
+      type: "A2A / Billetera Móvil Interoperable",
+      logo: "💜",
+      settlement: "Inmediato",
+      fee: "Gratis P2P · 1.5% - 2.5% comercios",
+      description: "La plataforma de pagos instantáneos interoperables creada por la alianza de BBVA Perú, Interbank, Scotiabank y Banbif. Permite transferencias entre usuarios de cualquiera de estos bancos usando solo el número de celular. En 2023 se estableció la interoperabilidad técnica con Yape, consolidando un duopolio que cubre más del 85% de los pagos digitales del Perú.",
+      compliance: "Regulada por la SBS. Cada banco participante es responsable del KYC de sus usuarios. Irrevocable.",
+      providers: ["BBVA Perú", "Interbank", "Scotiabank Perú", "Banbif", "Culqi"]
+    },
+    {
+      name: "BIM (Billetera Móvil)",
+      type: "Wallet Móvil / Inclusión Financiera",
+      logo: "🌍",
+      settlement: "Inmediato",
+      fee: "Gratis o tarifa mínima",
+      description: "Iniciativa pública-privada única en LATAM, impulsada por la Asociación de Bancos del Perú (ASBANC). BIM está diseñada para la inclusión financiera de los 7+ millones de peruanos sin cuenta bancaria. Funciona en cualquier celular (incluso sin smartphone) usando SMS/USSD y permite recibir pagos del Estado, remesas y realizar compras.",
+      compliance: "Regulada por la SBS y el BCRP. Identificación simplificada para usuarios sin documentos. Límites muy bajos de transacción.",
+      providers: ["Bancos miembros de ASBANC", "Operadoras móviles (Claro, Movistar, Entel)"]
     }
   ],
   CL: [
