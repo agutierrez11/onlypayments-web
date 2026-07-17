@@ -830,7 +830,16 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
     { name: "Velafi", role: "Validación y Prevención de Fraude", countries: "México, LATAM", desc: "Especialista en prevención de fraude, validación de identidad y verificación de empresas." },
     { name: "ClearSale", role: "Prevención de Fraude B2C", countries: "Brasil, LATAM", desc: "Gigante brasileño en revisión manual y automática de fraude e-commerce." },
     { name: "Kount", role: "Prevención de Fraude Digital", countries: "Global", desc: "Plataforma de Equifax basada en inteligencia artificial para gestión de identidades y pagos." },
+    { name: "Signifyd", role: "Garantía de Fraude e-commerce", countries: "Global", desc: "Prevención de fraude con modelo de garantía financiera (chargeback protection) para comercios." },
+    { name: "Konduto", role: "Análisis de Comportamiento Antifraude", countries: "Brasil, LATAM", desc: "Adquirida por Boa Vista, pionera en el uso de IA y análisis de navegación para prevenir fraude en e-commerce." },
     { name: "CyberSource", role: "Gateway y Fraude (Visa)", countries: "Global", desc: "Plataforma global de Visa con motor de decisión de riesgo avanzado." }
+  ],
+  HUBS_ORQUESTADORES: [
+    { name: "Yuno", role: "Orquestador de Pagos", countries: "LATAM, Global", desc: "Permite a los comercios integrar múltiples métodos de pago y ruteo inteligente con una sola API.", isPartner: true },
+    { name: "Spreedly", role: "Bóveda de Tarjetas y Orquestación", countries: "Global", desc: "Hub de pagos y tokenización independiente (agnóstico al adquirente)." },
+    { name: "Primer", role: "Automatización y Orquestación", countries: "Global", desc: "Plataforma drag-and-drop para construir flujos de pago y conectar servicios de terceros sin código." },
+    { name: "Gr4vy", role: "Cloud Payment Orchestration", countries: "Global", desc: "Infraestructura cloud nativa para orquestar múltiples procesadores y optimizar tasas de aprobación." },
+    { name: "Cellulant", role: "Hub de Pagos", countries: "Global", desc: "Orquestador especializado en mercados emergentes y métodos de pago alternativos." }
   ]
 };
 
