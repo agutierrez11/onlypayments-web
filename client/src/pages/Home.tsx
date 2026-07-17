@@ -706,6 +706,67 @@ export default function Home() {
                   </p>
                 </div>
 
+                {/* Directorio de Proveedores y Pasarelas */}
+                <div className="mt-12 space-y-6">
+                  <h4 className="text-xl font-bold tracking-tight text-center mb-8">Directorio del Ecosistema</h4>
+                  
+                  {Object.entries(PAYMENT_PROVIDERS).map(([category, providers]) => {
+                    // Ordenamos silenciosamente para que los partners (isPartner: true) siempre aparezcan de primeros
+                    const sortedProviders = [...providers].sort((a, b) => {
+                      if (a.isPartner && !b.isPartner) return -1;
+                      if (!a.isPartner && b.isPartner) return 1;
+                      return 0;
+                    });
+                    
+                    return (
+                      <div key={category} className="mb-10">
+                        <h5 className="font-bold text-sm tracking-widest text-muted-foreground uppercase mb-4 px-2">
+                          {category.replace("_", " ")}
+                        </h5>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          {sortedProviders.map((prov) => (
+                            <Card 
+                              key={prov.name} 
+                              className={`p-5 flex flex-col justify-between transition-all hover:border-primary/50 ${
+                                prov.isPartner ? 'bg-primary/5 border-primary/30 shadow-sm scale-[1.01]' : 'bg-background/40 border-border'
+                              }`}
+                            >
+                              <div>
+                                <div className="flex items-center justify-between mb-2">
+                                  <h6 className="font-bold text-base flex items-center gap-2">
+                                    {prov.name}
+                                    {prov.isPartner && (
+                                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider" title="Partner Verificado">
+                                        <Check className="w-3 h-3" /> Fast-Track
+                                      </span>
+                                    )}
+                                  </h6>
+                                </div>
+                                <span className="text-[11px] font-mono text-accent block mb-3">{prov.role}</span>
+                                <p className="text-xs text-muted-foreground leading-relaxed mb-4">{prov.desc}</p>
+                              </div>
+                              
+                              <div className="flex flex-col sm:flex-row gap-3 sm:items-center justify-between mt-4 pt-4 border-t border-border/50">
+                                <span className="text-[10px] text-muted-foreground"><Globe className="inline w-3 h-3 mr-1" />{prov.countries}</span>
+                                {prov.isPartner && (
+                                  <Button 
+                                    size="sm" 
+                                    className="h-8 text-xs font-semibold shadow-sm"
+                                    onClick={() => window.location.href = `mailto:antoniogtzjimenez@gmail.com?subject=Solicitud de Integración VIP: ${prov.name}&body=Hola,%20me%20interesa%20iniciar%20el%20fast-track%20de%20integración%20con%20${prov.name}.`}
+                                  >
+                                    <Zap className="w-3 h-3 mr-1" />
+                                    Agendar Integración VIP
+                                  </Button>
+                                )}
+                              </div>
+                            </Card>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
               </div>
 
             </div>

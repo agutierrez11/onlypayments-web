@@ -34,6 +34,7 @@ export interface PaymentProvider {
   role: string;
   countries: string;
   desc: string;
+  isPartner?: boolean;
 }
 
 export interface GlossaryTerm {
@@ -714,6 +715,7 @@ export const ECOSYSTEM_ACTORS: EcosystemActor[] = [
 
 export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
   REGIONAL: [
+    { name: "Toku", role: "Optimización de Pagos Recurrentes", countries: "México, Chile, LATAM", desc: "Plataforma líder para pagos de suscripción con recuperación inteligente de fallos (SaaS B2B).", isPartner: true },
     { name: "dLocal", role: "Agregador Regional / PayFac", countries: "Uruguay, Brasil, México, Colombia, Chile, Argentina, Perú", desc: "Infraestructura unificada de cobros y dispersiones (payouts) para mercados emergentes." },
     { name: "EBANX", role: "Agregador Regional / Procesador", countries: "Brasil, México, Colombia, Chile, Argentina, Perú, Ecuador", desc: "Especialista en conectar comercios globales con métodos de pago locales." },
     { name: "Mercado Pago", role: "Agregador / Billetera Digital", countries: "Argentina, Brasil, México, Colombia, Chile, Perú", desc: "El ecosistema fintech más grande de la región. Pasarela, links y procesamiento físico." },
@@ -721,6 +723,8 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
     { name: "Stripe", role: "Gateway / Adquirente", countries: "México, Brasil (Soporte local)", desc: "El estándar tecnológico para cobros online. APIs premium." }
   ],
   MX: [
+    { name: "Netpay", role: "Adquirente Omnicanal", countries: "México", desc: "Soluciones de terminales físicas y e-commerce con condiciones comerciales preferenciales.", isPartner: true },
+    { name: "EfevoPay", role: "Agregador / B2B", countries: "México", desc: "Gestión de adquirencia para comercios tradicionales con alto margen de personalización.", isPartner: true },
     { name: "Openpay", role: "Pasarela / Agregador (BBVA)", countries: "México", desc: "Propiedad de BBVA. Alta tasa de aprobación y red Paynet." },
     { name: "Conekta", role: "Agregador de Pagos", countries: "México", desc: "Especialista en pagos con tarjeta y efectivo offline mediante OXXO Pay." },
     { name: "Clip", role: "Agregador físico & Online", countries: "México", desc: "Líder indiscutible de cobros presenciales para pymes." }
@@ -750,6 +754,8 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
     { name: "BAC Credomatic", role: "Adquirente líder", countries: "Centroamérica (CR, PA, GT, SV, HN)", desc: "El banco adquirente y procesador de pagos más grande de Centroamérica." }
   ],
   KYC_AML: [
+    { name: "Unico", role: "Identidad Digital Integral", countries: "LATAM, Global", desc: "Líder en validación de identidad y firma electrónica con alto nivel de conversión.", isPartner: true },
+    { name: "YG Consultores", role: "Compliance y Regulación", countries: "LATAM", desc: "Firma especializada en el diseño e implementación de marcos legales para Fintechs.", isPartner: true },
     { name: "Incode", role: "Biometría e Identidad Omnicanal", countries: "México, Global", desc: "Plataforma líder en onboarding automatizado de extremo a extremo." },
     { name: "Sumsub", role: "KYC/KYB Integral", countries: "Global", desc: "Verificación completa KYC/KYB y AML, con gran tracción en iGaming." },
     { name: "Riskified", role: "Prevención de Fraude AI", countries: "Global", desc: "Gestión de fraude transaccional impulsada por Inteligencia Artificial y machine learning." },
