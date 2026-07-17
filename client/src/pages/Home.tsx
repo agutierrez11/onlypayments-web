@@ -1446,10 +1446,10 @@ export default function Home() {
             <span className="text-[10px] px-1.5 py-0.5 rounded bg-secondary/80 border border-border text-muted-foreground font-mono">2026</span>
           </div>
           <p className="text-xs text-muted-foreground font-light max-w-md mx-auto">
-            Datos basados en el Diccionario de Medios de Pago v6.0 y normativas de Bancos Centrales globales.
+            Datos curados a partir del Diccionario de Medios de Pago v6.0, normativas de Bancos Centrales globales y reportes públicos del ecosistema fintech (ej. Finnovista).
           </p>
           <div className="text-[10px] text-muted-foreground/60">
-            &copy; 2026 OnlyPayments. Todos los derechos reservados.
+            &copy; 2026 OnlyPayments. Directorio informativo. Las marcas comerciales listadas pertenecen a sus respectivos dueños.
           </div>
         </div>
       </footer>
