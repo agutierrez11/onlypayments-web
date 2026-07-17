@@ -1,5 +1,5 @@
-import React, { useRef, useMemo } from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Globe, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { COUNTRIES, PAYMENT_METHODS, Country } from "../data";
@@ -16,34 +16,39 @@ export function EcosystemDirectory({
   const selectedCountry = useMemo(() => COUNTRIES[selectedCountryKey] || COUNTRIES.MX, [selectedCountryKey]);
   const selectedCountryMethods = useMemo(() => PAYMENT_METHODS[selectedCountryKey] || [], [selectedCountryKey]);
 
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 480; // approximate card width + gap
-      scrollContainerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % selectedCountryMethods.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + selectedCountryMethods.length) % selectedCountryMethods.length);
   };
 
   return (
-    <section className="relative py-24 bg-background overflow-hidden" id="explorador">
-      <div className="flex flex-col xl:flex-row gap-12 w-full max-w-[1600px] mx-auto px-6 lg:px-12 items-center xl:items-stretch">
+    <section className="relative py-32 bg-background overflow-hidden" id="explorador">
+      {/* Luces de fondo */}
+      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2" />
+      
+      <div className="flex flex-col xl:flex-row w-full max-w-[1400px] mx-auto px-6 lg:px-12 items-center xl:items-start gap-16">
         
         {/* Intro Text & Country Selection */}
-        <div className="w-full xl:w-1/3 min-w-[300px] xl:min-w-[400px] flex flex-col justify-center z-20">
+        <div className="w-full xl:w-1/3 flex flex-col z-20 xl:sticky xl:top-32">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="space-y-6"
           >
-            {/* Added pt-12 to ensure title is not cut off by navbar */}
-            <h2 className="text-4xl font-extrabold tracking-tight pt-12 xl:pt-0">Ecosistema Global</h2>
-            <p className="text-muted-foreground font-light text-lg">
-              Selecciona un país para analizar sus rieles y regulaciones de forma dinámica.
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-secondary/80 backdrop-blur-md border border-border/50">
+               <Globe className="w-4 h-4 text-primary" />
+               <span className="text-xs font-semibold tracking-wide uppercase text-foreground font-mono">Radar Global</span>
+            </div>
+            
+            <h2 className="text-5xl font-extrabold tracking-tight">Marketplace 3D</h2>
+            <p className="text-muted-foreground font-light text-xl leading-relaxed">
+              Explora los métodos de pago líderes por región en una vista de ingeniería.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-4">
@@ -53,128 +58,156 @@ export function EcosystemDirectory({
                 return (
                   <button
                     key={key}
-                    onClick={() => setSelectedCountryKey(key)}
-                    className={`px-4 py-2.5 rounded-full border text-sm font-semibold flex items-center gap-2 transition-all duration-300 ${
+                    onClick={() => {
+                      setSelectedCountryKey(key);
+                      setActiveIndex(0);
+                    }}
+                    className={`px-5 py-3 rounded-xl border text-sm font-semibold flex items-center gap-3 transition-all duration-300 ${
                       isSelected 
-                        ? 'bg-foreground text-background border-foreground shadow-xl scale-105' 
-                        : 'bg-secondary/40 hover:bg-secondary/80 border-border text-foreground'
+                        ? 'bg-primary text-primary-foreground border-primary shadow-[0_0_20px_rgba(var(--primary),0.3)] scale-105' 
+                        : 'bg-background hover:bg-secondary/40 border-border/60 text-foreground'
                     }`}
                   >
-                    <span className="text-xl">{country.flag}</span>
+                    <span className="text-2xl drop-shadow-sm">{country.flag}</span>
                     {country.name}
                   </button>
                 );
               })}
             </div>
             
-            <div className="pt-8 border-t border-border/50">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground">{selectedCountry.name}</h3>
-                  <span className="text-xs text-muted-foreground font-mono uppercase">Moneda: {selectedCountry.currency}</span>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground mt-4 leading-relaxed font-light">{selectedCountry.description}</p>
-              
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 backdrop-blur-sm">
-                  <span className="text-[10px] text-primary uppercase font-bold font-mono tracking-wider block mb-1">MRR Fintech</span>
-                  <p className="text-xl font-extrabold text-foreground">{selectedCountry.mrr}</p>
-                </div>
-                <div className="p-4 rounded-xl bg-accent/5 border border-accent/20 backdrop-blur-sm">
-                  <span className="text-[10px] text-accent uppercase font-bold font-mono tracking-wider block mb-1">Crecimiento</span>
-                  <p className="text-xl font-extrabold text-foreground">{selectedCountry.growth}</p>
-                </div>
+            <div className="pt-8 border-t border-white/5 mt-8">
+              <div className="p-6 rounded-2xl bg-black/40 border border-white/5 backdrop-blur-xl space-y-4">
+                 <div>
+                   <h3 className="text-2xl font-bold text-white">{selectedCountry.name}</h3>
+                   <span className="text-xs text-white/50 font-mono uppercase tracking-widest mt-1 block">Moneda: {selectedCountry.currency}</span>
+                 </div>
+                 <p className="text-sm text-white/70 leading-relaxed font-light">{selectedCountry.description}</p>
+                 
+                 <div className="grid grid-cols-2 gap-4 pt-2">
+                   <div className="space-y-1">
+                     <span className="text-[10px] text-primary uppercase font-bold font-mono tracking-wider block">MRR Fintech</span>
+                     <p className="text-xl font-extrabold text-white">{selectedCountry.mrr}</p>
+                   </div>
+                   <div className="space-y-1">
+                     <span className="text-[10px] text-accent uppercase font-bold font-mono tracking-wider block">Crecimiento</span>
+                     <p className="text-xl font-extrabold text-white">{selectedCountry.growth}</p>
+                   </div>
+                 </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Horizontal Scroll Area for APMs with Arrows */}
-        <div className="w-full xl:w-2/3 relative flex items-center group/carousel mt-12 xl:mt-0">
+        {/* 3D Cascading Carousel */}
+        <div className="w-full xl:w-2/3 relative h-[600px] flex items-center justify-center perspective-[2000px]">
           
-          <button 
-            onClick={() => scroll('left')} 
-            className="absolute -left-4 xl:left-4 z-30 p-3 rounded-full bg-background/80 backdrop-blur border border-border shadow-lg text-foreground opacity-100 xl:opacity-0 xl:group-hover/carousel:opacity-100 transition-all hover:scale-110 hover:bg-background disabled:opacity-30"
-            aria-label="Desplazar a la izquierda"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+          {selectedCountryMethods.length > 0 ? (
+            <div className="relative w-full max-w-[500px] h-full transform-style-3d">
+              <AnimatePresence mode="popLayout">
+                {selectedCountryMethods.map((method, idx) => {
+                  // Calcular la distancia relativa al índice activo
+                  let distance = idx - activeIndex;
+                  // Manejar el wrap-around para hacerlo infinito visualmente
+                  if (distance > selectedCountryMethods.length / 2) distance -= selectedCountryMethods.length;
+                  if (distance < -selectedCountryMethods.length / 2) distance += selectedCountryMethods.length;
 
-          <div 
-            ref={scrollContainerRef} 
-            className="flex gap-8 overflow-x-auto snap-x snap-mandatory py-10 px-4 xl:px-20 w-full no-scrollbar"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {selectedCountryMethods.length > 0 ? (
-              selectedCountryMethods.map((method, idx) => (
-                <motion.div 
-                  key={idx}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="w-[380px] md:w-[450px] h-[500px] flex-shrink-0 snap-center"
-                >
-                  <Card className="w-full h-full p-8 rounded-3xl border-border/50 bg-background/40 backdrop-blur-xl shadow-2xl flex flex-col justify-between overflow-hidden relative group">
-                    {/* Glowing background on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <div className="relative z-10 space-y-6">
-                      <div className="flex items-center justify-between">
-                        <div className="w-16 h-16 rounded-2xl bg-secondary/80 flex items-center justify-center text-4xl shadow-inner border border-white/5">
-                          {method.logo}
+                  // Solo renderizamos las tarjetas que están "cerca" para optimizar
+                  if (Math.abs(distance) > 2) return null;
+
+                  const isCenter = distance === 0;
+                  const xOffset = distance * 120;
+                  const zOffset = -Math.abs(distance) * 150;
+                  const rotateY = distance * -15;
+                  const opacity = 1 - Math.abs(distance) * 0.3;
+                  const zIndex = 10 - Math.abs(distance);
+
+                  return (
+                    <motion.div
+                      key={`${selectedCountryKey}-${idx}`}
+                      initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                      animate={{ 
+                        opacity, 
+                        x: xOffset,
+                        z: zOffset,
+                        rotateY,
+                        scale: isCenter ? 1 : 0.9,
+                        zIndex
+                      }}
+                      exit={{ opacity: 0, scale: 0.8, y: -50 }}
+                      transition={{ duration: 0.6, type: "spring", bounce: 0.2 }}
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[450px]"
+                    >
+                      <Card className={`w-full h-full p-8 rounded-3xl backdrop-blur-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 ${
+                        isCenter 
+                          ? 'border-primary/50 bg-[#0a0a0f]/90 shadow-[0_20px_50px_rgba(0,0,0,0.5),_0_0_30px_rgba(var(--primary),0.2)]' 
+                          : 'border-white/10 bg-[#0a0a0f]/50 shadow-xl pointer-events-none'
+                      }`}>
+                        
+                        <div className="relative z-10 space-y-6">
+                          <div className="flex items-center justify-between">
+                            <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center text-5xl shadow-inner border border-white/10">
+                              {method.logo}
+                            </div>
+                            <span className="text-[10px] font-mono px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold tracking-widest uppercase border border-primary/30">
+                              {method.type}
+                            </span>
+                          </div>
+                          
+                          <div>
+                            <h5 className="font-extrabold text-4xl mb-3 tracking-tight text-white">{method.name}</h5>
+                            <p className="text-base text-white/60 leading-relaxed font-light line-clamp-3">{method.description}</p>
+                          </div>
                         </div>
-                        <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-foreground text-background font-bold tracking-widest uppercase">
-                          {method.type}
-                        </span>
-                      </div>
-                      
-                      <div>
-                        <h5 className="font-extrabold text-3xl mb-2 tracking-tight">{method.name}</h5>
-                        <p className="text-sm text-muted-foreground leading-relaxed font-light">{method.description}</p>
-                      </div>
-                    </div>
 
-                    <div className="relative z-10 p-5 rounded-2xl bg-secondary/40 border border-white/10 grid grid-cols-2 gap-4 mt-auto">
-                      <div>
-                        <span className="text-[10px] text-muted-foreground block uppercase font-mono font-bold tracking-wider mb-1">Liquidación</span>
-                        <span className="font-bold text-foreground">{method.settlement}</span>
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-muted-foreground block uppercase font-mono font-bold tracking-wider mb-1">Comisión</span>
-                        <span className="font-bold text-accent">{method.fee}</span>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))
-            ) : (
-              <div className="w-[450px] h-[500px] flex items-center justify-center flex-shrink-0 snap-center mx-auto">
-                <Card className="w-full h-full p-8 border-dashed border-2 border-border/50 bg-secondary/10 flex flex-col items-center justify-center text-center space-y-4 rounded-3xl">
-                  <span className="text-5xl opacity-50">🏜️</span>
-                  <p className="text-lg font-bold">No hay métodos registrados</p>
-                  <p className="text-sm text-muted-foreground">Esperando datos regulatorios para este país.</p>
-                </Card>
-              </div>
-            )}
-          </div>
+                        <div className="relative z-10 p-6 rounded-2xl bg-black/40 border border-white/5 grid grid-cols-2 gap-6 mt-auto">
+                          <div>
+                            <span className="text-[10px] text-white/40 block uppercase font-mono font-bold tracking-wider mb-2">Liquidación</span>
+                            <span className="font-bold text-white text-lg">{method.settlement}</span>
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-white/40 block uppercase font-mono font-bold tracking-wider mb-2">Comisión Avg.</span>
+                            <span className="font-bold text-accent text-lg">{method.fee}</span>
+                          </div>
+                        </div>
+                      </Card>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
 
-          <button 
-            onClick={() => scroll('right')} 
-            className="absolute -right-4 xl:right-4 z-30 p-3 rounded-full bg-background/80 backdrop-blur border border-border shadow-lg text-foreground opacity-100 xl:opacity-0 xl:group-hover/carousel:opacity-100 transition-all hover:scale-110 hover:bg-background disabled:opacity-30"
-            aria-label="Desplazar a la derecha"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+              {/* Controles del Carousel */}
+              {selectedCountryMethods.length > 1 && (
+                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-4 z-50">
+                  <button 
+                    onClick={handlePrev}
+                    className="w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:scale-110 transition-all backdrop-blur-md"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <div className="text-xs font-mono text-white/50 tracking-widest">
+                    {activeIndex + 1} / {selectedCountryMethods.length}
+                  </div>
+                  <button 
+                    onClick={handleNext}
+                    className="w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:scale-110 transition-all backdrop-blur-md"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="w-full max-w-[500px] h-[450px] flex items-center justify-center">
+              <Card className="w-full h-full p-8 border-dashed border-2 border-white/10 bg-white/5 flex flex-col items-center justify-center text-center space-y-4 rounded-3xl backdrop-blur-md">
+                <span className="text-6xl opacity-50 mb-4">🏜️</span>
+                <p className="text-xl font-bold text-white">Infraestructura en Mapeo</p>
+                <p className="text-sm text-white/50 max-w-[250px]">Nuestros agentes están analizando los datos regulatorios para este país.</p>
+              </Card>
+            </div>
+          )}
+
         </div>
-
       </div>
-
-      {/* Internal CSS for hiding scrollbar */}
-      <style dangerouslySetInnerHTML={{__html: `
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}} />
     </section>
   );
 }

@@ -1,338 +1,188 @@
 import React, { useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Zap, User, Store, Landmark, CreditCard, Building2, Coins, ArrowRight, Server, ShieldCheck } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { ECOSYSTEM_ACTORS } from "../data";
+import { motion } from "framer-motion";
+import { User, Store, Landmark, CreditCard, Building2, Server, Zap, Coins, ShieldCheck } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function EcosystemFlows() {
-  const [activeFlowModel, setActiveFlowModel] = useState<'4partes' | 'mexico' | '3partes'>('mexico');
-  const [selectedActorId, setSelectedActorId] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const leftColRef = useRef<HTMLDivElement>(null);
+  const rightColRef = useRef<HTMLDivElement>(null);
   
-  const actorsScrollRef = useRef<HTMLDivElement>(null);
-  const flowsScrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollActors = (direction: 'left' | 'right') => {
-    if (actorsScrollRef.current) {
-      const scrollAmount = 400;
-      actorsScrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
+  const steps = [
+    {
+      title: "01 / EL ORIGEN",
+      desc: "Todo comienza cuando un cliente inicia una compra. Ya sea ingresando una tarjeta de crédito en Santiago o escaneando un código SPEI en CDMX, los datos se encriptan al instante bajo estándares internacionales.",
+      icon: User,
+      color: "text-blue-500",
+      flow: [
+        { label: "Comprador", icon: User }
+      ]
+    },
+    {
+      title: "02 / LA PASARELA",
+      desc: "El comercio no procesa la tarjeta directamente. Utiliza un Gateway o Pasarela (ej. Stripe, Mercado Pago) que orquesta la transacción, aplica reglas antifraude y tokeniza el PAN de la tarjeta.",
+      icon: Server,
+      color: "text-slate-400",
+      flow: [
+        { label: "Comprador", icon: User },
+        { label: "Gateway", icon: Server, highlight: true }
+      ]
+    },
+    {
+      title: "03 / EL ADQUIRENTE",
+      desc: "La pasarela envía la transacción al Banco Adquirente del comercio. Este es el responsable de solicitar los fondos a la red. Aquí se genera la famosa 'Tasa de Descuento'.",
+      icon: Landmark,
+      color: "text-indigo-400",
+      flow: [
+        { label: "Gateway", icon: Server },
+        { label: "Adquirente", icon: Landmark, highlight: true }
+      ]
+    },
+    {
+      title: "04 / SWITCH LOCAL O GLOBAL",
+      desc: "Dependiendo del país, la transacción viaja por la red de Visa/MC (4 partes global) o por un Switch Local como Prosa/E-Global en México para ser compensada.",
+      icon: Zap,
+      color: "text-amber-500",
+      flow: [
+        { label: "Adquirente", icon: Landmark },
+        { label: "Red / Switch", icon: Zap, highlight: true }
+      ]
+    },
+    {
+      title: "05 / EL EMISOR",
+      desc: "Finalmente, el banco que emitió la tarjeta del comprador recibe la petición. Verifica saldo, reglas de riesgo y responde: APROBADA o RECHAZADA. El dinero inicia su camino de regreso.",
+      icon: Building2,
+      color: "text-emerald-500",
+      flow: [
+        { label: "Red / Switch", icon: Zap },
+        { label: "Emisor", icon: Building2, highlight: true }
+      ]
     }
-  };
+  ];
 
-  const scrollFlows = (direction: 'left' | 'right') => {
-    if (flowsScrollRef.current) {
-      const scrollAmount = 300;
-      flowsScrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
+  useGSAP(() => {
+    // Pin la columna derecha
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top top",
+      end: "bottom bottom",
+      pin: rightColRef.current,
+      pinSpacing: false
+    });
+
+    // Actualizar activeIndex basado en el scroll de la columna izquierda
+    const textBlocks = gsap.utils.toArray(".text-block") as HTMLElement[];
+    textBlocks.forEach((block, i) => {
+      ScrollTrigger.create({
+        trigger: block,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => setActiveIndex(i),
+        onEnterBack: () => setActiveIndex(i)
       });
-    }
-  };
+    });
+  }, { scope: containerRef });
 
   return (
-    <div className="space-y-16 max-w-[1400px] mx-auto px-6">
-      
-      {/* Selector de Modelos y Visualización del Diagrama */}
-      <div className="space-y-8 relative">
-        <div className="flex flex-col md:flex-row items-center justify-between p-4 rounded-2xl border border-border bg-card/30 backdrop-blur shadow-sm gap-4">
-          <div>
-            <h4 className="text-sm font-bold">Esquemas de Procesamiento B2B</h4>
-            <p className="text-xs text-muted-foreground font-light">Compara cómo viaja el dinero según el modelo regulatorio local.</p>
-          </div>
-          <div className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-secondary/30 border border-border">
-            <button 
-              onClick={() => setActiveFlowModel('4partes')}
-              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${activeFlowModel === '4partes' ? 'bg-primary text-primary-foreground shadow-md scale-105' : 'text-muted-foreground hover:text-foreground hover:bg-background/50'}`}
-            >
-              4 Partes (Global)
-            </button>
-            <button 
-              onClick={() => setActiveFlowModel('mexico')}
-              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${activeFlowModel === 'mexico' ? 'bg-primary text-primary-foreground shadow-md scale-105' : 'text-muted-foreground hover:text-foreground hover:bg-background/50'}`}
-            >
-              Flujo México (Switches locales)
-            </button>
-            <button 
-              onClick={() => setActiveFlowModel('3partes')}
-              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${activeFlowModel === '3partes' ? 'bg-primary text-primary-foreground shadow-md scale-105' : 'text-muted-foreground hover:text-foreground hover:bg-background/50'}`}
-            >
-              3 Partes (Cerrados)
-            </button>
-          </div>
-        </div>
-
-        <Card className="p-8 md:p-12 border-border bg-background/50 backdrop-blur-xl shadow-2xl rounded-3xl relative group/flows overflow-hidden">
-          {/* Ambient Glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-primary/10 blur-[80px] pointer-events-none rounded-full" />
-          
-          <button 
-            onClick={() => scrollFlows('left')} 
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-background/80 backdrop-blur border border-border shadow-lg text-foreground opacity-100 md:opacity-0 md:group-hover/flows:opacity-100 transition-all hover:scale-110 hover:bg-background"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          <div ref={flowsScrollRef} className="overflow-x-auto no-scrollbar snap-x snap-mandatory py-4 px-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <AnimatePresence mode="wait">
-              {activeFlowModel === '4partes' && (
-                <motion.div 
-                  key="4partes"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-8 min-w-max"
-                >
-                  <h5 className="text-sm font-bold text-accent uppercase font-mono tracking-wider flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                    Modelo de 4 Partes (Global)
-                  </h5>
-                  <div className="flex items-end justify-center gap-2 py-10 w-full overflow-x-auto min-w-max pb-12">
-                    {[
-                      { title: "Tarjetahabiente", icon: User, color: "text-blue-500", highlight: false },
-                      { title: "Comercio", icon: Store, color: "text-indigo-400", highlight: false },
-                      { title: "Adquirente", icon: Landmark, color: "text-indigo-500", highlight: false },
-                      { title: "Red de tarjetas", icon: CreditCard, color: "text-blue-600", highlight: true },
-                      { title: "Banco emisor", icon: Building2, color: "text-blue-700", highlight: false }
-                    ].map((step, idx, arr) => (
-                      <React.Fragment key={idx}>
-                        {/* Actor Node */}
-                        <motion.div 
-                          whileHover={{ scale: 1.1, y: -5 }}
-                          className={`flex flex-col items-center justify-end w-32 shrink-0 ${step.highlight ? 'drop-shadow-[0_0_15px_rgba(37,99,235,0.4)]' : ''}`}
-                        >
-                          <div className={`p-4 rounded-2xl mb-4 ${step.highlight ? 'bg-primary/10' : 'bg-transparent'}`}>
-                            <step.icon className={`w-16 h-16 ${step.color} drop-shadow-md`} strokeWidth={1.5} />
-                          </div>
-                          <span className={`text-sm font-bold text-center ${step.highlight ? 'text-primary' : 'text-foreground/80'}`}>
-                            {step.title}
-                          </span>
-                        </motion.div>
-
-                        {/* Connector Arrow */}
-                        {idx < arr.length - 1 && (
-                          <div className="flex flex-col items-center justify-end h-full pb-8 shrink-0 px-2 md:px-4">
-                            <div className="w-8 h-8 rounded-full bg-secondary/80 border border-border flex items-center justify-center text-xs font-bold text-foreground shadow-sm mb-2">
-                              {idx + 1}
-                            </div>
-                            <ArrowRight className="w-8 h-8 text-muted-foreground/50" />
-                          </div>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-4xl pt-4">
-                    * El adquirente cobra una <strong className="text-foreground">tasa de descuento</strong> al comercio, y le paga una <strong className="text-foreground">tasa de intercambio</strong> al banco emisor. La marca de tarjeta actúa como la autopista que unifica la comunicación a nivel internacional.
-                  </p>
-                </motion.div>
-              )}
-
-              {activeFlowModel === 'mexico' && (
-                <motion.div 
-                  key="mexico"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-8 min-w-max"
-                >
-                  <h5 className="text-sm font-bold text-accent uppercase font-mono tracking-wider flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                    Flujo México (Cámaras de Compensación Domésticas)
-                  </h5>
-                  <div className="flex items-end justify-center gap-2 py-10 w-full overflow-x-auto min-w-max pb-12">
-                    {[
-                      { title: "Comprador", icon: User, color: "text-blue-500", highlight: false },
-                      { title: "Gateway", icon: Server, color: "text-slate-500", highlight: false },
-                      { title: "Adquirente", icon: Landmark, color: "text-indigo-500", highlight: false },
-                      { title: "Switch Local", icon: Zap, color: "text-amber-500", highlight: true },
-                      { title: "Emisor", icon: Building2, color: "text-blue-700", highlight: false },
-                      { title: "SPEI (A2A)", icon: Coins, color: "text-green-500", highlight: false }
-                    ].map((step, idx, arr) => (
-                      <React.Fragment key={idx}>
-                        {/* Actor Node */}
-                        <motion.div 
-                          whileHover={{ scale: 1.1, y: -5 }}
-                          className={`flex flex-col items-center justify-end w-28 md:w-32 shrink-0 ${step.highlight ? 'drop-shadow-[0_0_15px_rgba(245,158,11,0.4)]' : ''}`}
-                        >
-                          <div className={`p-4 rounded-2xl mb-4 ${step.highlight ? 'bg-accent/10' : 'bg-transparent'}`}>
-                            <step.icon className={`w-14 h-14 md:w-16 md:h-16 ${step.color} drop-shadow-md`} strokeWidth={1.5} />
-                          </div>
-                          <span className={`text-sm font-bold text-center ${step.highlight ? 'text-accent' : 'text-foreground/80'}`}>
-                            {step.title}
-                          </span>
-                        </motion.div>
-
-                        {/* Connector Arrow */}
-                        {idx < arr.length - 1 && (
-                          <div className="flex flex-col items-center justify-end h-full pb-8 shrink-0 px-1 md:px-2">
-                            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-secondary/80 border border-border flex items-center justify-center text-[10px] md:text-xs font-bold text-foreground shadow-sm mb-2">
-                              {idx + 1}
-                            </div>
-                            <ArrowRight className="w-6 h-6 md:w-8 md:h-8 text-muted-foreground/50" />
-                          </div>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-4xl pt-4">
-                    <strong>Particularidad de México:</strong> Si las tarjetas son emitidas y adquiridas localmente en México, la transacción no viaja por las redes globales de Visa/MC, sino que se enruta de forma doméstica a través de los switches locales <strong className="text-foreground">Prosa</strong> y <strong className="text-foreground">E-Global</strong> para su compensación.
-                  </p>
-                </motion.div>
-              )}
-
-              {activeFlowModel === '3partes' && (
-                <motion.div 
-                  key="3partes"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-8 min-w-max"
-                >
-                  <h5 className="text-sm font-bold text-accent uppercase font-mono tracking-wider flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                    Modelo de 3 Partes (Bucle Cerrado)
-                  </h5>
-                  <div className="flex items-end justify-center gap-2 py-10 w-full overflow-x-auto min-w-max pb-12">
-                    {[
-                      { title: "Cliente", icon: User, color: "text-blue-500", highlight: false },
-                      { title: "Banco emisor", icon: Building2, color: "text-indigo-500", highlight: false },
-                      { title: "Transbank", icon: ShieldCheck, color: "text-purple-600", highlight: true },
-                      { title: "Comercio", icon: Store, color: "text-indigo-400", highlight: false }
-                    ].map((step, idx, arr) => (
-                      <React.Fragment key={idx}>
-                        {/* Actor Node */}
-                        <motion.div 
-                          whileHover={{ scale: 1.1, y: -5 }}
-                          className={`flex flex-col items-center justify-end w-40 shrink-0 ${step.highlight ? 'drop-shadow-[0_0_15px_rgba(147,51,234,0.4)]' : ''}`}
-                        >
-                          <div className={`p-4 rounded-2xl mb-4 ${step.highlight ? 'bg-primary/10' : 'bg-transparent'}`}>
-                            <step.icon className={`w-16 h-16 ${step.color} drop-shadow-md`} strokeWidth={1.5} />
-                          </div>
-                          <span className={`text-sm font-bold text-center ${step.highlight ? 'text-primary' : 'text-foreground/80'}`}>
-                            {step.title}
-                          </span>
-                        </motion.div>
-
-                        {/* Connector Arrow */}
-                        {idx < arr.length - 1 && (
-                          <div className="flex flex-col items-center justify-end h-full pb-8 shrink-0 px-4 md:px-8">
-                            <div className="w-8 h-8 rounded-full bg-secondary/80 border border-border flex items-center justify-center text-xs font-bold text-foreground shadow-sm mb-2">
-                              {idx + 1}
-                            </div>
-                            <ArrowRight className="w-8 h-8 text-muted-foreground/50" />
-                          </div>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-4xl pt-4">
-                    * El esquema de bucle cerrado o de 3 partes significa que una sola empresa actúa como el emisor de la tarjeta, la red de procesamiento y el adquirente de los comercios (históricamente American Express).
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <button 
-            onClick={() => scrollFlows('right')} 
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-background/80 backdrop-blur border border-border shadow-lg text-foreground opacity-100 md:opacity-0 md:group-hover/flows:opacity-100 transition-all hover:scale-110 hover:bg-background"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </Card>
-      </div>
-
-      {/* Actores Clave (Horizontal Scroll) */}
-      <div className="space-y-8 pt-12">
-        <h4 className="text-3xl font-extrabold tracking-tight text-center">Los {ECOSYSTEM_ACTORS.length} Actores Clave de la Cadena</h4>
+    <div ref={containerRef} className="relative w-full max-w-[1400px] mx-auto px-6 bg-background pt-20">
+      <div className="flex flex-col md:flex-row relative">
         
-        <div className="relative group/actors flex items-center -mx-6 px-6 md:mx-0 md:px-0">
-          
-          <button 
-            onClick={() => scrollActors('left')} 
-            className="absolute -left-4 z-30 p-3 rounded-full bg-background/90 backdrop-blur border border-border shadow-xl text-foreground opacity-100 md:opacity-0 md:group-hover/actors:opacity-100 transition-all hover:scale-110 hover:bg-background"
-            aria-label="Anterior"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          <div 
-            ref={actorsScrollRef} 
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory py-8 w-full no-scrollbar px-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {ECOSYSTEM_ACTORS.map((actor, idx) => {
-              const isSelected = selectedActorId === actor.id;
-              return (
-                <motion.button
-                  key={actor.id}
-                  onClick={() => setSelectedActorId(actor.id)}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className={`relative flex-shrink-0 snap-center w-[300px] h-[350px] p-8 rounded-3xl border text-left flex flex-col transition-all group overflow-hidden ${
-                    isSelected
-                      ? 'bg-primary/5 border-primary shadow-xl shadow-primary/10'
-                      : 'bg-background hover:bg-secondary/20 border-border/60 shadow-lg'
-                  }`}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 ${isSelected ? 'opacity-100' : 'group-hover:opacity-100'}`} />
-                  
-                  <div className="relative z-10 flex-1 flex flex-col">
-                    <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-secondary text-secondary-foreground font-bold uppercase tracking-widest self-start mb-4">
-                      {actor.role}
-                    </span>
-                    <h5 className="font-extrabold text-2xl tracking-tight leading-tight mb-4">{actor.title}</h5>
-                    <p className={`text-sm font-light leading-relaxed flex-1 ${isSelected ? 'text-foreground' : 'text-muted-foreground'}`}>
-                      {actor.description}
-                    </p>
-                  </div>
-                  
-                  <div className="relative z-10 w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-bold text-muted-foreground mt-4">
-                    {idx + 1}
-                  </div>
-                </motion.button>
-              );
-            })}
+        {/* Columna Izquierda (Scroll) */}
+        <div ref={leftColRef} className="w-full md:w-1/2 md:pr-16 pb-[50vh]">
+          <div className="mb-32">
+            <h2 className="text-4xl font-extrabold tracking-tight mb-4">La Anatomía del Pago</h2>
+            <p className="text-muted-foreground font-light text-lg">
+              Descubre qué pasa exactamente en los 2 segundos que tarda en procesarse una transacción en América Latina.
+            </p>
           </div>
 
-          <button 
-            onClick={() => scrollActors('right')} 
-            className="absolute -right-4 z-30 p-3 rounded-full bg-background/90 backdrop-blur border border-border shadow-xl text-foreground opacity-100 md:opacity-0 md:group-hover/actors:opacity-100 transition-all hover:scale-110 hover:bg-background"
-            aria-label="Siguiente"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+          <div className="space-y-[60vh]">
+            {steps.map((step, i) => (
+              <div key={i} className="text-block min-h-[40vh] flex flex-col justify-center">
+                <h3 className={`text-2xl font-bold font-mono tracking-tight mb-6 transition-colors duration-500 ${activeIndex === i ? 'text-primary' : 'text-muted-foreground'}`}>
+                  {step.title}
+                </h3>
+                <p className={`text-lg leading-relaxed font-light transition-opacity duration-500 ${activeIndex === i ? 'opacity-100' : 'opacity-40'}`}>
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Crédito */}
-        <div className="flex items-center gap-4 p-5 rounded-2xl border border-border/50 bg-secondary/20 backdrop-blur max-w-3xl mx-auto">
-          <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0 text-accent font-extrabold shadow-inner">FE</div>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Diagrama y contenidos basados en el{" "}
-            <strong className="text-foreground">Diccionario de Medios de Pago v6.0 (2026)</strong>{" "}
-            · Colaboración de{" "}
-            <a
-              href="https://www.linkedin.com/in/fernando-estevez-vazquez/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent font-bold hover:underline"
-            >
-              Fernando Estévez Vázquez ↗
-            </a>
-          </p>
+        {/* Columna Derecha (Fija / Sticky Lienzo Técnico) */}
+        <div className="hidden md:block w-1/2 relative">
+          <div ref={rightColRef} className="h-screen w-full flex items-center justify-center p-8 absolute top-0">
+            
+            <div className="w-full h-[600px] rounded-3xl border border-white/10 bg-[#0f1115] shadow-2xl relative overflow-hidden flex items-center justify-center">
+              
+              {/* Background Grid del Lienzo */}
+              <div className="absolute inset-0 opacity-[0.15] [background-image:linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:30px_30px]" />
+              
+              {/* Contenido Visual Dinámico */}
+              <div className="z-10 w-full px-12">
+                <motion.div 
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, type: "spring" }}
+                  className="flex items-center justify-center gap-8 w-full"
+                >
+                  {steps[activeIndex].flow.map((node, idx, arr) => (
+                    <React.Fragment key={idx}>
+                      
+                      <div className={`flex flex-col items-center justify-center gap-4 w-32 h-32 rounded-2xl border backdrop-blur-md transition-all duration-500 ${node.highlight ? 'bg-primary/20 border-primary/50 shadow-[0_0_30px_rgba(var(--primary),0.3)]' : 'bg-white/5 border-white/10'}`}>
+                        <node.icon className={`w-12 h-12 ${node.highlight ? 'text-primary' : 'text-white/50'}`} strokeWidth={1.5} />
+                        <span className={`text-[11px] font-mono font-bold uppercase tracking-widest ${node.highlight ? 'text-primary' : 'text-white/50'}`}>
+                          {node.label}
+                        </span>
+                      </div>
+
+                      {idx < arr.length - 1 && (
+                        <div className="flex-1 h-px bg-white/20 relative">
+                           <div className="absolute top-1/2 left-0 w-full h-[2px] -translate-y-1/2 bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
+                           <ArrowRight className="absolute top-1/2 right-0 -translate-y-1/2 w-4 h-4 text-primary" />
+                        </div>
+                      )}
+
+                    </React.Fragment>
+                  ))}
+                </motion.div>
+                
+                {/* Metadatos técnicos debajo */}
+                <motion.div 
+                  key={`meta-${activeIndex}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="mt-16 text-center"
+                >
+                  <div className="inline-flex gap-4 p-3 rounded-xl bg-black/50 border border-white/10">
+                     <div className="text-left">
+                       <div className="text-[9px] text-white/40 font-mono uppercase tracking-widest">Protocolo</div>
+                       <div className="text-xs text-white/80 font-mono">ISO 8583 / REST API</div>
+                     </div>
+                     <div className="w-px h-8 bg-white/10" />
+                     <div className="text-left">
+                       <div className="text-[9px] text-white/40 font-mono uppercase tracking-widest">Latencia Est.</div>
+                       <div className="text-xs text-emerald-400 font-mono">~120ms</div>
+                     </div>
+                  </div>
+                </motion.div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-
-      <style dangerouslySetInnerHTML={{__html: `
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}} />
     </div>
   );
 }
