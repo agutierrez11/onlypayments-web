@@ -267,6 +267,9 @@ export default function Home() {
               <a href="#explorador" className="text-sm font-medium hover:text-accent transition-colors">Explorador</a>
               <a href="#biblioteca" className="text-sm font-medium hover:text-accent transition-colors">Biblioteca de Expertos</a>
               <a href="#comunidad" className="text-sm font-medium hover:text-accent transition-colors">Comunidad</a>
+              <button onClick={() => navigate('/remesas')} className="text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                Remesas
+              </button>
             </div>
 
             <div className="flex items-center gap-3 border-l border-border pl-3">
@@ -320,6 +323,14 @@ export default function Home() {
                 Explorar Países <ArrowRight className="w-4 h-4" />
               </Button>
             </a>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="w-full sm:w-auto border-primary/50 text-primary hover:bg-primary/10"
+              onClick={() => navigate('/remesas')}
+            >
+              Mercado de Remesas
+            </Button>
             <a href="#comunidad">
               <Button size="lg" variant="outline" className="w-full sm:w-auto border-border hover:bg-secondary/40">
                 Únete a los Debates

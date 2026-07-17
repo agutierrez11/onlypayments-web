@@ -913,3 +913,150 @@ export const EXPERTS: ExpertProfile[] = [
   }
 ];
 
+export type RemittanceCorridor = {
+  id: string;
+  from: string;
+  to: string;
+  fromFlag: string;
+  toFlag: string;
+  volumeUSD: number;
+  gdpPercent: number;
+  avgFeePercent: number;
+  lastMile: string[];
+  dominantPlayers: string[];
+  informalChannel?: string;
+};
+
+export const REMITTANCE_CORRIDORS: RemittanceCorridor[] = [
+  {
+    id: "us-mx",
+    from: "US", to: "MX",
+    fromFlag: "🇺🇸", toFlag: "🇲🇽",
+    volumeUSD: 67000,
+    gdpPercent: 3.5,
+    avgFeePercent: 3.2,
+    lastMile: ["SPEI", "Efectivo (Corresponsales)", "Wallets"],
+    dominantPlayers: ["Remitly", "Western Union", "Ria", "Vigo"],
+    informalChannel: "Zelle P2P"
+  },
+  {
+    id: "us-gt",
+    from: "US", to: "GT",
+    fromFlag: "🇺🇸", toFlag: "🇬🇹",
+    volumeUSD: 21000,
+    gdpPercent: 20.0,
+    avgFeePercent: 4.1,
+    lastMile: ["Tigo Money", "Banca Rural (Efectivo)"],
+    dominantPlayers: ["Western Union", "MoneyGram", "Remitly"],
+    informalChannel: "Efectivo por encomiendas"
+  },
+  {
+    id: "us-hn",
+    from: "US", to: "HN",
+    fromFlag: "🇺🇸", toFlag: "🇭🇳",
+    volumeUSD: 9000,
+    gdpPercent: 27.0,
+    avgFeePercent: 4.5,
+    lastMile: ["Tigo Money", "Efectivo en puntos de venta"],
+    dominantPlayers: ["Western Union", "MoneyGram", "Ria"],
+  },
+  {
+    id: "us-do",
+    from: "US", to: "DO",
+    fromFlag: "🇺🇸", toFlag: "🇩🇴",
+    volumeUSD: 10000,
+    gdpPercent: 10.0,
+    avgFeePercent: 3.8,
+    lastMile: ["tPago", "Vuelve", "Efectivo local"],
+    dominantPlayers: ["Vimenca (Western Union)", "Caribe Express", "Remitly"],
+  },
+  {
+    id: "us-co",
+    from: "US", to: "CO",
+    fromFlag: "🇺🇸", toFlag: "🇨🇴",
+    volumeUSD: 11000,
+    gdpPercent: 2.5,
+    avgFeePercent: 3.5,
+    lastMile: ["Nequi", "Daviplata", "Efecty"],
+    dominantPlayers: ["Remitly", "WorldRemit", "Western Union"],
+  },
+  {
+    id: "us-pe",
+    from: "US", to: "PE",
+    fromFlag: "🇺🇸", toFlag: "🇵🇪",
+    volumeUSD: 4500,
+    gdpPercent: 1.9,
+    avgFeePercent: 3.6,
+    lastMile: ["Yape", "BIM", "Cajas Municipales"],
+    dominantPlayers: ["GlobalNet", "Western Union", "Jet Perú"],
+  },
+  {
+    id: "us-br",
+    from: "US", to: "BR",
+    fromFlag: "🇺🇸", toFlag: "🇧🇷",
+    volumeUSD: 4000,
+    gdpPercent: 0.2,
+    avgFeePercent: 3.0,
+    lastMile: ["PIX (Cross-border)"],
+    dominantPlayers: ["Wise", "Remessa Online", "Nomad"],
+  },
+  {
+    id: "us-sv",
+    from: "US", to: "SV",
+    fromFlag: "🇺🇸", toFlag: "🇸🇻",
+    volumeUSD: 8000,
+    gdpPercent: 24.0,
+    avgFeePercent: 4.2,
+    lastMile: ["Chivo Wallet (Crypto/USD)", "Efectivo"],
+    dominantPlayers: ["Western Union", "MoneyGram", "Ria"],
+  },
+  {
+    id: "us-ec",
+    from: "US", to: "EC",
+    fromFlag: "🇺🇸", toFlag: "🇪🇨",
+    volumeUSD: 4500,
+    gdpPercent: 3.9,
+    avgFeePercent: 3.5,
+    lastMile: ["Deuna!", "Pichincha Mi Vecino"],
+    dominantPlayers: ["Delgado Travel", "Western Union", "MoneyGram"],
+  }
+];
+
+export type RemittanceActor = {
+  id: string;
+  name: string;
+  category: "MTO Incumbente" | "Neoremesadora" | "Infraestructura Last-Mile" | "Canal Informal";
+  description: string;
+  examples: string[];
+};
+
+export const REMITTANCE_ACTORS: RemittanceActor[] = [
+  {
+    id: "mto",
+    name: "MTOs Tradicionales",
+    category: "MTO Incumbente",
+    description: "Operadores tradicionales de transferencia de dinero con gran presencia de sucursales físicas para envío y recepción en efectivo.",
+    examples: ["Western Union", "MoneyGram", "Ria Money Transfer"]
+  },
+  {
+    id: "neo",
+    name: "Fintechs / Neoremesadoras",
+    category: "Neoremesadora",
+    description: "Plataformas digitales (App/Web) que ofrecen mejores tasas de cambio y menores comisiones operando sobre rieles bancarios e infraestructura local de terceros.",
+    examples: ["Remitly", "Wise", "WorldRemit", "Zepz (Sendwave)"]
+  },
+  {
+    id: "lastmile",
+    name: "Redes Last-Mile y Corresponsales",
+    category: "Infraestructura Last-Mile",
+    description: "Proveedores de infraestructura local, billeteras y puntos físicos en el país receptor que entregan el dinero al usuario final (bancarizado o no).",
+    examples: ["Billeteras (Tigo Money, Nequi)", "Redes de Efectivo (OXXO, Farmacias)"]
+  },
+  {
+    id: "informal",
+    name: "Canales Informales (P2P)",
+    category: "Canal Informal",
+    description: "Sistemas peer-to-peer usados para remesas mediante triangulación de saldos o cripto, evadiendo controles formales de money transfer.",
+    examples: ["Zelle (USA a cuentas US en LATAM)", "Cripto P2P (Binance P2P)", "Encomiendas físicas"]
+  }
+];

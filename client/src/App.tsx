@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import NewsFeed from "./pages/NewsFeed";
 import NewsDetail from "./pages/NewsDetail";
 import PaymentStacks from "./pages/PaymentStacks";
+import Remesas from "./pages/Remesas";
 import HowToGuides from "./pages/HowToGuides";
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
       <Route path={"/news"} component={NewsFeed} />
       <Route path={"/news/:id"} component={NewsDetail} />
       <Route path={"/stacks"} component={PaymentStacks} />
+      <Route path={"/remesas"} component={Remesas} />
       <Route path={"/guides"} component={HowToGuides} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
