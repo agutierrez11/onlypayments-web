@@ -292,9 +292,19 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
       logo: "⚡",
       settlement: "Inmediato",
       fee: "0.2% - 0.9% o gratis para personas",
-      description: "El sistema de pagos instantáneos del Banco Central de Brasil. Utiliza llaves (email, teléfono, CPF) y códigos QR.",
-      compliance: "Cero contracargo tradicional. Dispone de un mecanismo de devolución especial (MED) exclusivo en casos de fraude comprobado.",
-      providers: ["Bancos brasileños", "dLocal", "EBANX", "Stripe", "Mercado Pago"]
+      description: "El sistema de pagos instantáneos del Banco Central de Brasil, lanzado en 2020. Utiliza llaves (email, teléfono, CPF) y códigos QR. Con más de 800 millones de transacciones mensuales, Pix es el sistema de pagos instantáneos más exitoso del mundo después del UPI de India. Ha suplantado a las tarjetas de crédito y efectivo como método preferido de pago en Brasil, incluyendo comercio online, POS y P2P.",
+      compliance: "Cero contracargo tradicional. MED (Mecanismo Especial de Devolución) para fraudes. Irrevocable, Regulado por el Banco Central do Brasil.",
+      providers: ["Bancos brasileños", "dLocal", "EBANX", "Stripe", "Mercado Pago", "PagBank", "Stone"]
+    },
+    {
+      name: "PIX Automático",
+      type: "A2A / Pagos Recurrentes",
+      logo: "🔄",
+      settlement: "Inmediato",
+      fee: "0.2% - 0.5% por cobro automático",
+      description: "La evolución del Pix lanzada en junio de 2025. Permite programar cobros recurrentes autorizados por el usuario (servicios, suscripciones, gimnasios, servicios públicos) sin necesitar tarjeta de crédito. El usuario autoriza una vez y el banco lo notifica antes de cada débito, manteniendo control total. Es el mayor competidor del débito automático bancario tradicional y de las tarjetas de crédito para pagos recurrentes en Brasil.",
+      compliance: "Regulado por el BACEN. El usuario puede cancelar la autorización en cualquier momento. Sin contracargos.",
+      providers: ["Bancos brasileños", "PagBank", "Asaas", "Iugu", "EBANX", "dLocal"]
     },
     {
       name: "Boleto Bancário",
@@ -302,9 +312,9 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
       logo: "📄",
       settlement: "D+1 a D+2",
       fee: "Tarifa fija por boleto liquidado",
-      description: "Método de pago oficial brasileño regulado por Febraban. Es un documento impreso o digital con código de barras.",
+      description: "Método de pago oficial brasileño regulado por Febraban. Es un documento impreso o digital con código de barras que puede pagarse en bancos, loterías o apps bancarias. Aunque PIX lo ha reemplazado en muchos contextos, el boleto sigue siendo relevante para facturas de empresas grandes y cobros formales.",
       compliance: "Sin contracargos. Conversión de compra moderada (alrededor de 50% de boletos emitidos se pagan).",
-      providers: ["dLocal", "EBANX", "Stripe Brasil", "Asaas"]
+      providers: ["dLocal", "EBANX", "Stripe Brasil", "Asaas", "PagBank"]
     }
   ],
   CO: [
@@ -383,62 +393,132 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
   ],
   CL: [
     {
+      name: "Khipu",
+      type: "A2A / Open Banking",
+      logo: "⚡",
+      settlement: "Inmediato",
+      fee: "0.5% - 1.5%",
+      description: "El líder de pagos A2A en Chile, procesando ~1% del PIB nacional y más de 4M de transacciones mensuales. Funciona conectando directamente al usuario con su app bancaria via Open Finance para autorizar transferencias instantáneas a comercios, sin necesidad de ingresar datos de tarjeta. Es 6x más barato que las tarjetas tradicionales para el comercio y no tiene contracargos. Muy popular en e-commerce y servicios universitarios.",
+      compliance: "Sin contracargos. Irrevocable. Regulado por la CMF. Integra Open Finance para conexión segura con bancos.",
+      providers: ["Khipu directo", "Flow Chile", "EBANX", "dLocal"]
+    },
+    {
+      name: "MACH (BCI)",
+      type: "Wallet Móvil / P2P",
+      logo: "📱",
+      settlement: "Inmediato P2P · D+1 comercios",
+      fee: "Gratis P2P · 1.8% - 2.5% comercios",
+      description: "La billetera digital del BCI y una de las más populares en Chile con millones de usuarios. Permite pagos P2P instantáneos, pagar servicios, recargar el celular, comprar en el extranjero con una tarjeta MACH Visa Prepago y pagar en e-commerce tanto en Chile como internacionalmente sin tarjeta de crédito bancaria tradicional.",
+      compliance: "Regulada por la CMF como emisor de dinero electrónico. KYC simplificado para onboarding. Sin contracargos en P2P.",
+      providers: ["MACH directo (BCI)", "Flow Chile", "Getnet Chile"]
+    },
+    {
       name: "Webpay Plus",
       type: "Tarjeta de Débito/Crédito local",
       logo: "💳",
       settlement: "D+1 (Débito), D+2 (Crédito)",
       fee: "1.2% - 2.9%",
-      description: "La red de procesamiento de Transbank que conecta todas las tarjetas chilenas en el e-commerce. Soporta cuotas sin intereses y Redcompra.",
+      description: "La red de procesamiento de Transbank que conecta todas las tarjetas chilenas en el e-commerce. Soporta cuotas sin intereses y Redcompra. Históricamente fue el método dominante, aunque está siendo competido por soluciones A2A más baratas como Khipu.",
       compliance: "Sujeto a contracargos. Requiere autenticación 3DS forzada en la mayoría de bancos chilenos.",
       providers: ["Transbank directo", "Getnet Chile", "Flow Chile", "Pago Fácil"]
     }
   ],
   AR: [
     {
-      name: "Transferencias Inmediatas (MODO / QR)",
-      type: "A2A / QR Interoperable",
+      name: "Transferencias 3.0 (QR Interoperable)",
+      type: "A2A / QR Nacional Interoperable",
       logo: "⚡",
       settlement: "Inmediato",
       fee: "0.8% - 1.5%",
-      description: "QR interoperable que unifica a los bancos tradicionales para transferencias inmediatas de cuenta a cuenta.",
-      compliance: "Sin contracargos. Muy ventajoso debido al bajísimo arancel y liquidación inmediata para el comercio.",
-      providers: ["Mercado Pago", "Ualá Bis", "Prisma (Payway)", "dLocal"]
+      description: "La iniciativa del Banco Central de la República Argentina (BCRA) para unificar todos los QR de pago del país en un solo estándar interoperable. Cualquier app bancaria o billetera (Mercado Pago, MODO, Ualá) puede escanear cualquier QR y hacer la transferencia instantánea. Es el método de pago digital de mayor crecimiento en Argentina, superando incluso a las tarjetas en muchos puntos de venta físicos.",
+      compliance: "Sin contracargos. Regulado por el BCRA. Irrevocable. Muy conveniente por el arancel bajo comparado con tarjetas.",
+      providers: ["Mercado Pago", "MODO", "Ualá Bis", "Prisma (Payway)", "dLocal", "Naranja X"]
+    },
+    {
+      name: "MODO",
+      type: "A2A / Super Wallet Bancaria",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "Gratis P2P · 0.8% - 1.2% comercios",
+      description: "La billetera digital impulsada por la alianza de más de 30 bancos argentinos, actuando como la capa de experiencia de usuario sobre el QR interoperable de Transferencias 3.0. MODO permite pagar con cualquier tarjeta de débito bancaria, crédito o cuenta en pesos de forma instantánea escaneando un QR. En 2026 integró la capacidad de pagar con códigos QR de PIX en Brasil.",
+      compliance: "Regulada por el BCRA. KYC bancario completo. Sin contracargos en transferencias A2A.",
+      providers: ["MODO directo", "Prisma (Payway)", "dLocal"]
+    },
+    {
+      name: "Ualá Bis",
+      type: "Wallet / Agregador Pyme",
+      logo: "💜",
+      settlement: "Inmediato",
+      fee: "1.5% - 2.5%",
+      description: "La división para comercios del neobanco Ualá. Permite a pequeños y medianos negocios cobrar con QR, links de pago y datafónos móviles, con liquidación inmediata en la cuenta Ualá y acceso a microcréditos basados en el historial transaccional.",
+      compliance: "Regulada como Proveedor de Servicios de Pago (PSP) por el BCRA. Sin contracargos en transferencias.",
+      providers: ["Ualá Bis directo", "dLocal"]
     }
   ],
   UY: [
+    {
+      name: "Transferencias Instantáneas (BROU / Itaú)",
+      type: "A2A / Banca Digital",
+      logo: "⚡",
+      settlement: "Inmediato",
+      fee: "Gratis o tarifa mínima",
+      description: "Uruguay tiene uno de los niveles de bancarización más altos de LATAM (~80%). Las transferencias bancarias instantáneas entre cuentas de los principales bancos (BROU, Itú, Santander, BBVA) son el método A2A predominante. El BROU (Banco República Oriental del Uruguay) ofrece transferencias interbancarias 24/7 con liquidación inmediata como estándar.",
+      compliance: "Regulado por el Banco Central del Uruguay (BCU). Sin contracargos.",
+      providers: ["BROU directo", "Itaú Uruguay", "Santander Uruguay", "dLocal", "Paganza"]
+    },
     {
       name: "Redpagos / Abitab",
       type: "Efectivo / Redes locales",
       logo: "🏪",
       settlement: "D+1",
       fee: "3.5% - 4.5%",
-      description: "Redes físicas de pagos en Uruguay con cobertura nacional. El cliente emite un voucher digital y paga en efectivo.",
-      compliance: "Sin riesgo de contracargo.",
-      providers: ["dLocal", "Sistarbanc", "Uruguay directo"]
+      description: "Redes físicas de pagos en Uruguay con cobertura nacional que incluyen más de 2,000 agencias combinadas entre Redpagos y Abitab. Son el canal de pago de facturas, recargas y servicios del gobierno. El cliente emite un voucher digital y paga en efectivo en el punto más cercano.",
+      compliance: "Sin riesgo de contracargo. Reguladas por el BCU como redes de cobranza.",
+      providers: ["dLocal", "Sistarbanc", "Paganza", "Uruguay directo"]
     }
   ],
   EC: [
     {
       name: "Deuna!",
-      type: "Billetera Móvil / A2A",
+      type: "Wallet Móvil / A2A",
       logo: "📱",
       settlement: "Inmediato",
-      fee: "1.5% - 2.5%",
-      description: "La billetera móvil impulsada por el Banco Pichincha. Permite transferir dinero a cualquier persona con su número celular.",
-      compliance: "Sin contracargos.",
-      providers: ["Banco Pichincha directo", "Kushki"]
+      fee: "1.0% - 2.5%",
+      description: "La billetera digital líder en Ecuador respaldada por Banco Pichincha con más de 6 millones de usuarios. Permite pagos P2P y P2B (persona a comercio) mediante códigos QR o número de celular, pago de servicios, recargas y transferencias. Destaca por funcionar incluso sin conexión a internet y por 'Deuna Veci', su red de puntos físicos para depósitos y retiros de efectivo. Es la plataforma de inclusión financiera digital más exitosa del país.",
+      compliance: "Sin contracargos. Regulada por la Superintendencia de Bancos del Ecuador. KYC simplificado.",
+      providers: ["Banco Pichincha directo", "Kushki", "PayPhone Ecuador"]
+    },
+    {
+      name: "PayPhone",
+      type: "A2A / Botones de Pago",
+      logo: "📲",
+      settlement: "Inmediato",
+      fee: "1.5% - 3.0%",
+      description: "La pasarela y billetera digital ecuatoriana más utilizada por comercios. Permite cobrar con botones de pago en apps, links, redes sociales y QR. Soporta pagos con tarjetas y A2A desde cuentas bancarias. Muy popular en pymes y profesionales independientes.",
+      compliance: "Regulada por la Superintendencia de Bancos. Sin contracargos en A2A.",
+      providers: ["PayPhone directo", "Kushki"]
     }
   ],
   CR: [
     {
       name: "SINPE Móvil",
-      type: "A2A / Transferencia Móvil",
+      type: "A2A / RTP Interbancario Nacional",
       logo: "⚡",
       settlement: "Inmediato",
-      fee: "Tarifa plana muy baja o gratis",
-      description: "El sistema de transferencias interbancarias en tiempo real líder en Costa Rica.",
-      compliance: "Cero contracargo. Muy seguro.",
-      providers: ["BAC Credomatic", "Banco Nacional", "Banco de Costa Rica"]
+      fee: "Gratis o tarifa mínima (₡500 por transacción)",
+      description: "El sistema de pagos móviles instantáneos administrado por el Banco Central de Costa Rica (BCCR). Es uno de los modelos más maduros de interoperabilidad total en LATAM: cualquier usuario de cualquier banco puede enviar o recibir dinero instantáneamente usando solo el número de teléfono. Sin necesidad de IBAN o número de cuenta. Tiene cobertura en prácticamente todas las entidades financieras del país, incluyendo cooperativas.",
+      compliance: "Regulado por el BCCR. Sin contracargos. Irrevocable. Considerado benchmark regional de interoperabilidad.",
+      providers: ["BAC Credomatic", "Banco Nacional", "Banco de Costa Rica", "Scotiabank CR", "Promerica"]
+    },
+    {
+      name: "SINPE (Transferencias Bancarias)",
+      type: "A2A / Sistema Interbancario",
+      logo: "🏦",
+      settlement: "Inmediato (SINPE LBTR) · D+1 (SINPE ACH)",
+      fee: "Gratis para montos pequeños · tarifa plana altos montos",
+      description: "La infraestructura madre del sistema financiero costarricense. SINPE LBTR (Liquidación Bruta en Tiempo Real) procesa transferencias de alto valor entre instituciones financieras en tiempo real. Es el backbone sobre el cual opera SINPE Móvil.",
+      compliance: "Regulado directamente por el BCCR. Para uso corporativo principalmente.",
+      providers: ["Todos los bancos regulados en Costa Rica"]
     }
   ],
   PA: [
@@ -447,22 +527,42 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
       type: "A2A / Billetera Móvil",
       logo: "📱",
       settlement: "Inmediato",
-      fee: "1.0% - 1.5%",
-      description: "Billetera digital y canal de pago de Banco General en Panamá. Permite enviar dinero usando el número de celular.",
-      compliance: "Sin contracargos. Fuerte control contra el fraude.",
-      providers: ["Banco General directo", "PixelPay"]
+      fee: "Gratis P2P · 1.0% - 1.5% comercios",
+      description: "La plataforma de pagos móviles más popular de Panamá, operada por Banco General. Permite enviar dinero instantáneamente usando el número de celular, pagar facturas del gobierno, servicios públicos y realizar cobros en comercios. Ha expandido su ecosistema para incluir Caja de Ahorros y otras instituciones. Integra APIs para que negocios automaticen sus cobros P2B.",
+      compliance: "Sin contracargos. Regulada por la Superintendencia de Bancos de Panamá. Fuerte autenticación biométrica.",
+      providers: ["Banco General directo", "Caja de Ahorros", "PixelPay"]
+    },
+    {
+      name: "tPago",
+      type: "A2A / Multi-banco Digital",
+      logo: "📲",
+      settlement: "Inmediato",
+      fee: "1.0% - 2.0%",
+      description: "Plataforma digital panameña que permite centralizar múltiples cuentas bancarias y tarjetas de diferentes bancos en una sola app. Facilita transferencias instantáneas entre cuentas, pago de servicios y transacciones a comercios participantes. A diferencia de Yappy (mono-banco), tPago es multi-banco y cubre Banistmo, Banvivienda y otras instituciones.",
+      compliance: "Regulada por la Superintendencia de Bancos de Panamá. KYC bancario completo.",
+      providers: ["Banistmo", "Banvivienda", "tPago directo"]
     }
   ],
   BO: [
     {
       name: "QR Simple Bolivia",
-      type: "A2A / Pago por QR",
+      type: "A2A / QR Interoperable Nacional",
       logo: "✨",
       settlement: "Inmediato",
       fee: "0.5% - 1.0%",
-      description: "La solución nacional interoperable de códigos QR en Bolivia.",
-      compliance: "Transferencia directa de cuenta a cuenta.",
-      providers: ["Bancos bolivianos asociados", "Kushki"]
+      description: "La solución nacional interoperable de códigos QR en Bolivia impulsada por el Banco Central de Bolivia (BCB). Permite a los usuarios de cualquier banco o billetera pagar escaneando un único código QR. Es uno de los sistemas de QR interoperable de mayor adopción en la región andina, con cobertura en bancos, cooperativas y microfinancieras. Ha impulsado enormemente la inclusión financiera en zonas rurales.",
+      compliance: "Regulado por el BCB y la ASFI (Autoridad de Supervisión del Sistema Financiero). Sin contracargos.",
+      providers: ["Bancos bolivianos asociados", "BNB", "Banco Mercantil Santa Cruz", "Kushki"]
+    },
+    {
+      name: "Billeteras Móviles (Tigo Money)",
+      type: "Wallet Móvil / Fintech",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "1.5% - 3.0%",
+      description: "Las billeteras móviles de operadoras de telecomunicaciones y fintechs complementan el ecosistema de pagos boliviano. Tigo Money es la dominante, con fuerte penetración en zonas donde la bancarización tradicional es baja. Permite envío de remesas internas, pago de servicios y cobros P2P.",
+      compliance: "Reguladas por la ASFI. Funcionan sobre redes celulares (incluso sin smartphone). Límites de transacción por nivel KYC.",
+      providers: ["Tigo Money", "Banco Fíe", "bancos microfinancieros"]
     }
   ],
   PY: [
