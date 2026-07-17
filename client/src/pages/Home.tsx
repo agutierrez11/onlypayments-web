@@ -35,6 +35,8 @@ import {
   Country, 
   PaymentMethod 
 } from "../data";
+import { HeroParallax } from "@/components/HeroParallax";
+import { EcosystemDirectory } from "@/components/EcosystemDirectory";
 
 export default function Home() {
   const { user } = useAuth();
@@ -342,199 +344,21 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* HERO SECTION */}
-      <section className="relative z-10 overflow-hidden py-24 sm:py-32">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div
-            className="absolute top-20 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-40 animate-pulse"
-            style={{ transform: `translate3d(0, ${scrollY * 0.2}px, 0)` }}
-          ></div>
-          <div
-            className="absolute bottom-20 right-1/4 w-96 h-96 bg-accent/15 rounded-full blur-3xl opacity-30"
-            style={{ transform: `translate3d(0, ${scrollY * -0.15}px, 0)` }}
-          ></div>
-        </div>
+      <HeroParallax 
+        onExplore={() => {
+          document.getElementById('explorador')?.scrollIntoView({ behavior: 'smooth' })
+        }}
+        onRemittances={() => navigate('/remesas')}
+        onCommunity={() => {
+          document.getElementById('comunidad')?.scrollIntoView({ behavior: 'smooth' })
+        }}
+      />
 
-        <div className="container max-w-4xl text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 border border-border shadow-inner">
-            <span className="w-2 h-2 rounded-full bg-accent animate-ping"></span>
-            <span className="text-xs font-semibold tracking-wide uppercase text-muted-foreground font-mono">Diccionario & Quién es Quién v6.0</span>
-          </div>
-          
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-            El Mapa de Pagos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Global</span>
-          </h1>
-          
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
-            Una plataforma interactiva para explorar métodos de pago locales, switches regulatorios, actores clave del ecosistema e inteligencia colectiva B2B.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <a href="#explorador">
-              <Button size="lg" className="w-full sm:w-auto gap-2 bg-gradient-to-r from-primary to-primary/90 text-white shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform">
-                Explorar Países <ArrowRight className="w-4 h-4" />
-              </Button>
-            </a>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="w-full sm:w-auto border-primary/50 text-primary hover:bg-primary/10"
-              onClick={() => navigate('/remesas')}
-            >
-              Mercado de Remesas
-            </Button>
-            <a href="#comunidad">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-border hover:bg-secondary/40">
-                Únete a los Debates
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* EXPLORADOR DE PAÍSES */}
-      <section id="explorador" className="relative z-10 py-20 border-t border-border bg-card/10 backdrop-blur-[2px]">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Explorador de Pagos Locales</h2>
-            <p className="text-muted-foreground font-light">
-              Selecciona un país para analizar su contexto macro, regulaciones, cámaras fintech oficiales y sus principales métodos de pago alternativos (APMs).
-            </p>
-          </div>
-
-          {/* Fila de Botones de Países */}
-          <div className="flex flex-wrap gap-2 justify-center mb-12 max-w-5xl mx-auto">
-            {Object.keys(COUNTRIES).map(key => {
-              const country = COUNTRIES[key];
-              const isSelected = selectedCountryKey === key;
-              return (
-                <button
-                  key={key}
-                  onClick={() => setSelectedCountryKey(key)}
-                  className={`px-4 py-2.5 rounded-xl border text-sm font-semibold flex items-center gap-2 transition-all hover:scale-[1.03] ${
-                    isSelected 
-                      ? 'bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20' 
-                      : 'bg-background hover:bg-secondary/40 border-border'
-                  }`}
-                >
-                  <span className="text-base">{country.flag}</span>
-                  {country.name}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Ficha Dinámica del País */}
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            
-            {/* Info Macro */}
-            <Card className="p-8 border-border bg-background/50 backdrop-blur space-y-6 flex flex-col self-start sticky top-24">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-4xl">{selectedCountry.flag}</span>
-                    <div>
-                      <h3 className="text-2xl font-bold">{selectedCountry.name}</h3>
-                      <span className="text-xs text-muted-foreground font-mono">Moneda: {selectedCountry.currency}</span>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed font-light">{selectedCountry.description}</p>
-              </div>
-
-              <div className="pt-6 border-t border-border space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-3.5 rounded-lg bg-secondary/20 border border-border">
-                    <span className="text-[10px] text-muted-foreground uppercase font-semibold font-mono tracking-wider">MRR Fintech</span>
-                    <p className="text-base font-bold text-accent">{selectedCountry.mrr}</p>
-                  </div>
-                  <div className="p-3.5 rounded-lg bg-secondary/20 border border-border">
-                    <span className="text-[10px] text-muted-foreground uppercase font-semibold font-mono tracking-wider">Crecimiento</span>
-                    <p className="text-base font-bold text-emerald-500">{selectedCountry.growth}</p>
-                  </div>
-                </div>
-
-                {selectedCountry.fintechChamber && (
-                  <a 
-                    href={selectedCountry.fintechChamber.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3.5 rounded-lg border border-accent/20 bg-accent/5 hover:bg-accent/10 transition-colors text-xs font-semibold text-accent"
-                  >
-                    <span>Cámara: {selectedCountry.fintechChamber.name}</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                )}
-              </div>
-            </Card>
-
-            {/* Lista de Métodos de Pago Alternativos (APMs) */}
-            <div className="lg:col-span-2 space-y-4">
-              <div className="flex items-center justify-between">
-                <h4 className="text-lg font-bold tracking-tight flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-accent" />
-                  Métodos de Pago Clave
-                </h4>
-                <span className="text-xs text-muted-foreground font-mono">{selectedCountryMethods.length} rieles listados</span>
-              </div>
-
-              {selectedCountryMethods.length > 0 ? (
-                <div className="flex flex-wrap gap-4">
-                  {selectedCountryMethods.map((method, idx) => (
-                    <Card key={idx} className="p-6 border-border bg-background/50 hover:border-accent/40 transition-colors flex flex-col justify-between w-full md:w-[calc(50%-0.5rem)]">
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xl">{method.logo}</span>
-                            <h5 className="font-bold text-base">{method.name}</h5>
-                          </div>
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-secondary/50 border border-border">{method.type}</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground leading-relaxed font-light">{method.description}</p>
-                      </div>
-
-                      <div className="mt-4 pt-4 border-t border-border/60 grid grid-cols-2 gap-2 text-[10px]">
-                        <div>
-                          <span className="text-muted-foreground block uppercase font-mono">Liquidación:</span>
-                          <span className="font-semibold">{method.settlement}</span>
-                        </div>
-                        <div>
-                          <span className="text-muted-foreground block uppercase font-mono">Comisión Promedio:</span>
-                          <span className="font-semibold text-accent">{method.fee}</span>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              ) : (
-                <Card className="p-8 border-dashed border-2 border-border flex flex-col items-center justify-center text-center space-y-4">
-                  <span className="text-3xl">🏜️</span>
-                  <div className="space-y-1">
-                    <p className="text-sm font-semibold">No hay métodos alternativos registrados</p>
-                    <p className="text-xs text-muted-foreground max-w-xs">Aún estamos recolectando la información oficial del banco central para este país.</p>
-                  </div>
-                </Card>
-              )}
-
-              {/* Supermarket Banners */}
-              <div className="p-4 rounded-xl border border-dashed border-accent/30 bg-accent/5 flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
-                <div className="text-center sm:text-left">
-                  <p className="text-xs font-bold text-accent">🏪 ¿Encontraste todo lo que buscabas?</p>
-                  <p className="text-[11px] text-muted-foreground font-light">¿Falta algún método de pago clave para {selectedCountry.name}?</p>
-                </div>
-                <button 
-                  onClick={() => suggestContribution('payment')}
-                  className="px-3.5 py-1.5 rounded-lg bg-accent text-accent-foreground text-xs font-bold hover:scale-[1.03] transition-transform shadow-sm"
-                >
-                  Agregar método
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <EcosystemDirectory 
+        selectedCountryKey={selectedCountryKey}
+        setSelectedCountryKey={setSelectedCountryKey}
+        suggestContribution={suggestContribution}
+      />
 
       {/* BIBLIOTECA DE EXPERTOS */}
       <section id="biblioteca" className="relative z-10 py-20 border-t border-border bg-background/60 backdrop-blur-[2px]">
