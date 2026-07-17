@@ -834,12 +834,14 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
     { name: "Konduto", role: "Análisis de Comportamiento Antifraude", countries: "Brasil, LATAM", desc: "Adquirida por Boa Vista, pionera en el uso de IA y análisis de navegación para prevenir fraude en e-commerce." },
     { name: "CyberSource", role: "Gateway y Fraude (Visa)", countries: "Global", desc: "Plataforma global de Visa con motor de decisión de riesgo avanzado." }
   ],
-  HUBS_ORQUESTADORES: [
+  ORQUESTADORES: [
     { name: "Yuno", role: "Orquestador de Pagos", countries: "LATAM, Global", desc: "Permite a los comercios integrar múltiples métodos de pago y ruteo inteligente con una sola API.", isPartner: true },
-    { name: "Spreedly", role: "Bóveda de Tarjetas y Orquestación", countries: "Global", desc: "Hub de pagos y tokenización independiente (agnóstico al adquirente)." },
-    { name: "Primer", role: "Automatización y Orquestación", countries: "Global", desc: "Plataforma drag-and-drop para construir flujos de pago y conectar servicios de terceros sin código." },
-    { name: "Gr4vy", role: "Cloud Payment Orchestration", countries: "Global", desc: "Infraestructura cloud nativa para orquestar múltiples procesadores y optimizar tasas de aprobación." },
-    { name: "Cellulant", role: "Hub de Pagos", countries: "Global", desc: "Orquestador especializado en mercados emergentes y métodos de pago alternativos." }
+    { name: "DEUNA", role: "Orquestador y Checkout One-Click", countries: "LATAM", desc: "Plataforma de orquestación de pagos que optimiza la conversión con una experiencia de checkout unificada." },
+    { name: "OrquestaPay", role: "Orquestador de Pagos", countries: "LATAM", desc: "Orquestación y enrutamiento inteligente de transacciones para optimizar tasas de aceptación." },
+    { name: "Toku", role: "Orquestador de Pagos Recurrentes", countries: "Chile, México, LATAM", desc: "Especialista en orquestación de pagos recurrentes, suscripciones y cobranza automatizada." }
+  ],
+  HUBS_POR_VERTICAL: [
+    { name: "Paynau", role: "Hub de Pagos por Vertical", countries: "México, LATAM", desc: "Agregador y hub de pagos especializado en resolver necesidades específicas por vertical (B2B, corporativo, etc)." }
   ]
 };
 
