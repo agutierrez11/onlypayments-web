@@ -253,11 +253,52 @@ export default function Home() {
     subscribeMutation.mutate({ email: newsletterEmail });
   };
 
+  // Scroll tracking para el fondo parallax: cada blob decorativo se mueve a
+  // una velocidad distinta respecto al scroll para dar sensación de profundidad.
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    let rafId = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => setScrollY(window.scrollY));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans transition-colors duration-300">
+    <div className="min-h-screen text-foreground font-sans transition-colors duration-300">
+      {/* FONDO PARALLAX GLOBAL — capa fija con blobs de color y grid de puntos,
+          cada elemento se desplaza a distinta velocidad al hacer scroll. */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute -top-40 -left-32 w-[550px] h-[550px] rounded-full bg-primary/15 blur-3xl"
+          style={{ transform: `translate3d(0, ${scrollY * 0.08}px, 0)` }}
+        />
+        <div
+          className="absolute top-1/4 -right-40 w-[480px] h-[480px] rounded-full bg-accent/15 blur-3xl"
+          style={{ transform: `translate3d(0, ${scrollY * -0.12}px, 0)` }}
+        />
+        <div
+          className="absolute bottom-0 left-1/4 w-[420px] h-[420px] rounded-full bg-primary/10 blur-3xl"
+          style={{ transform: `translate3d(0, ${scrollY * 0.15}px, 0)` }}
+        />
+        <div
+          className="absolute top-2/3 right-1/3 w-[350px] h-[350px] rounded-full bg-accent/10 blur-3xl"
+          style={{ transform: `translate3d(0, ${scrollY * -0.06}px, 0)` }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(circle,var(--border)_1px,transparent_1px)] [background-size:28px_28px]"
+          style={{ transform: `translate3d(0, ${scrollY * 0.03}px, 0)` }}
+        />
+      </div>
       
       {/* HEADER / NAVIGATION */}
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border relative">
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
@@ -302,10 +343,16 @@ export default function Home() {
       </nav>
 
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden py-24 sm:py-32">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-40 animate-pulse"></div>
-          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-accent/15 rounded-full blur-3xl opacity-30"></div>
+      <section className="relative z-10 overflow-hidden py-24 sm:py-32">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div
+            className="absolute top-20 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-40 animate-pulse"
+            style={{ transform: `translate3d(0, ${scrollY * 0.2}px, 0)` }}
+          ></div>
+          <div
+            className="absolute bottom-20 right-1/4 w-96 h-96 bg-accent/15 rounded-full blur-3xl opacity-30"
+            style={{ transform: `translate3d(0, ${scrollY * -0.15}px, 0)` }}
+          ></div>
         </div>
 
         <div className="container max-w-4xl text-center space-y-8">
@@ -346,7 +393,7 @@ export default function Home() {
       </section>
 
       {/* EXPLORADOR DE PAÍSES */}
-      <section id="explorador" className="py-20 border-t border-border bg-card/10">
+      <section id="explorador" className="relative z-10 py-20 border-t border-border bg-card/10 backdrop-blur-[2px]">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Explorador de Pagos Locales</h2>
@@ -432,9 +479,9 @@ export default function Home() {
               </div>
 
               {selectedCountryMethods.length > 0 ? (
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="flex flex-wrap gap-4">
                   {selectedCountryMethods.map((method, idx) => (
-                    <Card key={idx} className="p-6 border-border bg-background/50 hover:border-accent/40 transition-colors flex flex-col justify-between">
+                    <Card key={idx} className="p-6 border-border bg-background/50 hover:border-accent/40 transition-colors flex flex-col justify-between w-full md:w-[calc(50%-0.5rem)]">
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
@@ -490,7 +537,7 @@ export default function Home() {
       </section>
 
       {/* BIBLIOTECA DE EXPERTOS */}
-      <section id="biblioteca" className="py-20 border-t border-border">
+      <section id="biblioteca" className="relative z-10 py-20 border-t border-border bg-background/60 backdrop-blur-[2px]">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Biblioteca de Expertos</h2>
@@ -667,15 +714,15 @@ export default function Home() {
 
               {/* Grilla de Actores */}
               <div className="space-y-6">
-                <h4 className="text-lg font-bold tracking-tight text-center">Los 8 Actores Clave de la Cadena</h4>
-                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <h4 className="text-lg font-bold tracking-tight text-center">Los {ECOSYSTEM_ACTORS.length} Actores Clave de la Cadena</h4>
+                <div className="flex flex-wrap gap-4">
                   {ECOSYSTEM_ACTORS.map(actor => {
                     const isSelected = selectedActorId === actor.id;
                     return (
                       <button
                         key={actor.id}
                         onClick={() => setSelectedActorId(actor.id)}
-                        className={`p-5 rounded-xl border text-left flex flex-col justify-between transition-all hover:scale-[1.02] ${
+                        className={`p-5 rounded-xl border text-left flex flex-col justify-between transition-all hover:scale-[1.02] w-full sm:w-[calc(50%-0.5rem)] md:w-[calc(25%-0.75rem)] ${
                           isSelected
                             ? 'bg-primary/5 border-primary shadow-sm'
                             : 'bg-background hover:bg-secondary/20 border-border'
@@ -769,7 +816,7 @@ export default function Home() {
                               <AccordionTrigger className="hover:no-underline py-4">
                                 <div className="flex items-center justify-between w-full pr-4">
                                   <h5 className="font-bold text-sm tracking-widest text-muted-foreground uppercase">
-                                    {category.replace("_", " ")}
+                                    {category.replace(/_/g, " ")}
                                   </h5>
                                   <span className="text-xs font-mono text-muted-foreground bg-secondary/50 px-2 py-1 rounded-full">
                                     {providers.length} actores
@@ -986,7 +1033,7 @@ export default function Home() {
 
       {/* COMUNIDAD DE DEBATES (FORO DINE-IN TRPC) */}
 
-      <section id="comunidad" ref={communitySectionRef} className="py-20 border-t border-border bg-secondary/10">
+      <section id="comunidad" ref={communitySectionRef} className="relative z-10 py-20 border-t border-border bg-secondary/10 backdrop-blur-[2px]">
         <div className="container max-w-5xl">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Comunidad de Debates B2B</h2>
@@ -1259,7 +1306,7 @@ export default function Home() {
       </section>
 
       {/* FORMULARIO DE INTAKE — ENCUENTRA TU SOLUCIÓN */}
-      <section className="py-20 border-t border-border bg-card/20">
+      <section className="relative z-10 py-20 border-t border-border bg-card/20 backdrop-blur-[2px]">
         <div className="container max-w-3xl">
           <div className="text-center space-y-3 mb-12">
             <span className="text-[10px] font-mono text-accent tracking-widest uppercase">Matching de Soluciones · Gratuito</span>
@@ -1397,7 +1444,7 @@ export default function Home() {
       </section>
 
       {/* REGISTRO AL NEWSLETTER REAL */}
-      <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10 border-t border-border">
+      <section className="relative z-10 py-20 bg-gradient-to-r from-primary/10 to-accent/10 border-t border-border backdrop-blur-[2px]">
         <div className="container max-w-2xl text-center space-y-6">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Recibe la señal de los pagos B2B</h2>
           <p className="text-muted-foreground font-light leading-relaxed">
@@ -1439,7 +1486,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border py-12 bg-card/40">
+      <footer className="relative z-10 border-t border-border py-12 bg-card/40 backdrop-blur-[2px]">
         <div className="container text-center space-y-4">
           <div className="flex items-center justify-center gap-2">
             <span className="font-bold text-base">OnlyPayments</span>
