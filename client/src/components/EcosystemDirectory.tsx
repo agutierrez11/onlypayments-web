@@ -175,23 +175,26 @@ export function EcosystemDirectory({
                 })}
               </AnimatePresence>
 
-              {/* Controles del Carousel */}
+              {/* Controles del Carousel - Altamente Visibles */}
               {selectedCountryMethods.length > 1 && (
-                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-4 z-50">
+                <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-6 z-50">
                   <button 
                     onClick={handlePrev}
-                    className="w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:scale-110 transition-all backdrop-blur-md"
+                    className="w-14 h-14 rounded-full flex items-center justify-center bg-slate-900 text-white shadow-xl hover:bg-primary hover:text-white hover:scale-110 hover:-translate-x-2 transition-all group"
                   >
-                    <ChevronLeft className="w-5 h-5" />
+                    <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
                   </button>
-                  <div className="text-xs font-mono text-white/50 tracking-widest">
-                    {activeIndex + 1} / {selectedCountryMethods.length}
+                  <div className="flex flex-col items-center">
+                    <span className="text-[10px] uppercase font-mono font-bold tracking-widest text-slate-400">Navegar</span>
+                    <div className="text-sm font-mono font-bold text-slate-800 dark:text-white">
+                      {activeIndex + 1} / {selectedCountryMethods.length}
+                    </div>
                   </div>
                   <button 
                     onClick={handleNext}
-                    className="w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:scale-110 transition-all backdrop-blur-md"
+                    className="w-14 h-14 rounded-full flex items-center justify-center bg-slate-900 text-white shadow-xl hover:bg-primary hover:text-white hover:scale-110 hover:translate-x-2 transition-all group"
                   >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               )}

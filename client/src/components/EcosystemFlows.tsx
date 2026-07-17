@@ -1,153 +1,226 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Play, ArrowRight, ArrowDown, ArrowLeft } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { User, Landmark, Server, Zap, Building2, ArrowRight, Play, Pause } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function EcosystemFlows() {
-  // Animación para las flechas (pulso secuencial)
-  const pulseVariant = {
-    initial: { opacity: 0.2, scale: 0.8 },
-    animate: (custom: number) => ({
-      opacity: [0.2, 1, 0.2],
-      scale: [0.8, 1.2, 0.8],
-      transition: {
-        duration: 1.5,
-        repeat: Infinity,
-        delay: custom * 0.2,
-        ease: "easeInOut"
-      }
-    })
-  };
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const steps = [
+    {
+      id: "01",
+      title: "EL ORIGEN",
+      desc: "Todo comienza cuando un cliente inicia una compra. Ya sea ingresando una tarjeta de crédito o escaneando un código SPEI, los datos se encriptan al instante bajo estándares internacionales (PCI-DSS).",
+      icon: User,
+      color: "text-blue-500",
+      flow: [
+        { label: "Comprador", icon: User }
+      ]
+    },
+    {
+      id: "02",
+      title: "LA PASARELA",
+      desc: "El comercio no procesa la tarjeta directamente. Utiliza un Gateway o Pasarela (ej. Stripe, Mercado Pago) que orquesta la transacción, aplica reglas antifraude y tokeniza el PAN de la tarjeta para máxima seguridad.",
+      icon: Server,
+      color: "text-slate-400",
+      flow: [
+        { label: "Comprador", icon: User },
+        { label: "Gateway", icon: Server, highlight: true }
+      ]
+    },
+    {
+      id: "03",
+      title: "EL ADQUIRENTE",
+      desc: "La pasarela envía la transacción enrutada al Banco Adquirente del comercio. Este es el responsable de solicitar los fondos a la red. Aquí se genera la famosa 'Tasa de Descuento'.",
+      icon: Landmark,
+      color: "text-indigo-400",
+      flow: [
+        { label: "Gateway", icon: Server },
+        { label: "Adquirente", icon: Landmark, highlight: true }
+      ]
+    },
+    {
+      id: "04",
+      title: "EL SWITCH / RED",
+      desc: "Visa, Mastercard, o cámaras de compensación locales (como Prosa o e-Global) validan la ruta de la transacción y conectan el banco del comercio con el banco del comprador en milisegundos.",
+      icon: Zap,
+      color: "text-amber-500",
+      flow: [
+        { label: "Adquirente", icon: Landmark },
+        { label: "Red / Switch", icon: Zap, highlight: true }
+      ]
+    },
+    {
+      id: "05",
+      title: "EL EMISOR",
+      desc: "Finalmente, el banco que emitió la tarjeta del comprador recibe la petición. Verifica saldo, reglas de riesgo y responde: APROBADA o RECHAZADA. El dinero inicia su camino de regreso confirmando la venta.",
+      icon: Building2,
+      color: "text-emerald-500",
+      flow: [
+        { label: "Red / Switch", icon: Zap },
+        { label: "Emisor", icon: Building2, highlight: true }
+      ]
+    }
+  ];
+
+  // Auto-play logic
+  useEffect(() => {
+    if (!isPlaying) return;
+    
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % steps.length);
+    }, 4500);
+    
+    return () => clearInterval(interval);
+  }, [isPlaying, steps.length]);
 
   return (
-    <section className="relative w-full py-24 bg-background overflow-hidden flex flex-col items-center justify-center min-h-[900px]">
+    <section className="relative w-full max-w-[1200px] mx-auto px-6 py-24 bg-background">
       
-      {/* Background Gradients (SaaS Aesthetic) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute inset-0 opacity-[0.03] [background-image:linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] [background-size:60px_60px]" />
-
-      <div className="text-center mb-16 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-2 text-white">
-          CÓMO FUNCIONAN
-        </h2>
-        <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
-          LAS PLATAFORMAS DE PAGOS
-        </h3>
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">La Anatomía del Pago</h2>
+        <p className="text-muted-foreground font-light text-lg max-w-2xl mx-auto">
+          Descubre qué pasa exactamente en los <strong className="text-foreground">2 segundos</strong> que tarda en procesarse una transacción en América Latina.
+        </p>
       </div>
 
-      {/* Grid Container 2x2 */}
-      <div className="relative w-full max-w-[900px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 px-6">
+      {/* Caja Negra Principal */}
+      <div className="w-full bg-[#0a0a0c] rounded-3xl border border-white/10 shadow-2xl overflow-hidden relative">
         
-        {/* Block 1: Orquestador (Top Left) */}
-        <div className="relative group bg-[#0d0f12] border border-white/10 rounded-3xl p-8 hover:border-primary/50 transition-colors shadow-2xl z-10 flex flex-col justify-between h-[280px]">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-          
-          <div className="flex items-center gap-6 mb-8 relative z-10">
-            {/* Logos simulados con texto estilizado */}
-            <span className="text-2xl font-black tracking-tighter text-[#e83e8c]">yuno</span>
-            <span className="text-xl font-bold tracking-tight text-white">deuna!</span>
-          </div>
-          
-          <div className="relative z-10">
-            <h4 className="text-xl font-bold text-white mb-3">Orquestador</h4>
-            <p className="text-sm text-white/50 leading-relaxed font-light">
-              El orquestador valida, tokeniza y enruta el pago al adquirente; reintenta si es necesario para maximizar la aprobación.
-            </p>
-          </div>
-        </div>
+        {/* Background Grid */}
+        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-        {/* Flechas Top (Orquestador -> Adquirente) */}
-        <div className="hidden md:flex absolute top-[140px] left-[50%] -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-1 z-0 w-16">
-          {[0, 1, 2].map((i) => (
-            <motion.div key={`top-${i}`} custom={i} variants={pulseVariant} initial="initial" animate="animate">
-              <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-pink-500 border-b-[8px] border-b-transparent" />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Block 2: Adquirente (Top Right) */}
-        <div className="relative group bg-[#0d0f12] border border-white/10 rounded-3xl p-8 hover:border-emerald-500/50 transition-colors shadow-2xl z-10 flex flex-col justify-between h-[280px]">
-          <div className="absolute inset-0 bg-gradient-to-bl from-emerald-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="p-8 md:p-12 relative z-10 flex flex-col min-h-[600px]">
           
-          <div className="flex items-center gap-6 mb-8 relative z-10">
-            <span className="text-xl font-bold text-white">checkout.com</span>
-            <span className="text-xl font-bold text-[#635bff]">stripe</span>
-            <span className="text-xl font-bold text-[#0abf53]">adyen</span>
-          </div>
-          
-          <div className="relative z-10">
-            <h4 className="text-xl font-bold text-white mb-3">Adquirente</h4>
-            <p className="text-sm text-white/50 leading-relaxed font-light">
-              Envía la solicitud de pago al esquema de tarjetas y procesa los fondos con el banco del comercio.
-            </p>
-          </div>
-        </div>
-
-        {/* Flechas Right (Adquirente -> Esquema) */}
-        <div className="hidden md:flex absolute top-[50%] right-[25%] md:right-[22%] -translate-y-1/2 translate-x-1/2 flex-col items-center justify-center gap-1 z-0 h-16">
-          {[0, 1, 2].map((i) => (
-            <motion.div key={`right-${i}`} custom={i} variants={pulseVariant} initial="initial" animate="animate">
-              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-t-[12px] border-t-emerald-500 border-r-[8px] border-r-transparent" />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Block 4: Emisor (Bottom Left) */}
-        <div className="relative group bg-[#0d0f12] border border-white/10 rounded-3xl p-8 hover:border-blue-500/50 transition-colors shadow-2xl z-10 flex flex-col justify-between h-[280px] order-last md:order-3">
-          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-          
-          <div className="flex items-center gap-6 mb-8 relative z-10">
-            <span className="text-xl font-bold text-[#d71e28]">WELLS FARGO</span>
-            <span className="text-2xl font-bold text-[#003b70]">citi</span>
-            <span className="text-xl font-bold text-[#117aca]">CHASE</span>
-          </div>
-          
-          <div className="relative z-10">
-            <h4 className="text-xl font-bold text-white mb-3">Emisor</h4>
-            <p className="text-sm text-white/50 leading-relaxed font-light">
-              Verifica fondos, evalúa el riesgo de fraude de su cliente, y finalmente aprueba o rechaza la transacción.
-            </p>
-          </div>
-        </div>
-
-        {/* Flechas Bottom (Esquema -> Emisor) */}
-        <div className="hidden md:flex absolute bottom-[140px] left-[50%] -translate-x-1/2 translate-y-1/2 items-center justify-center gap-1 z-0 w-16">
-          {[2, 1, 0].map((i) => (
-            <motion.div key={`bottom-${i}`} custom={i} variants={pulseVariant} initial="initial" animate="animate">
-              <div className="w-0 h-0 border-t-[8px] border-t-transparent border-r-[12px] border-r-blue-500 border-b-[8px] border-b-transparent" />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Flechas Left (Emisor -> Orquestador) - Completando el ciclo (opcional) */}
-        <div className="hidden md:flex absolute top-[50%] left-[25%] md:left-[22%] -translate-y-1/2 -translate-x-1/2 flex-col items-center justify-center gap-1 z-0 h-16">
-          {[2, 1, 0].map((i) => (
-            <motion.div key={`left-${i}`} custom={i} variants={pulseVariant} initial="initial" animate="animate">
-              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-b-[12px] border-b-purple-500 border-r-[8px] border-r-transparent" />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Block 3: Esquema (Bottom Right) */}
-        <div className="relative group bg-[#0d0f12] border border-white/10 rounded-3xl p-8 hover:border-orange-500/50 transition-colors shadow-2xl z-10 flex flex-col justify-between h-[280px] order-3 md:order-last">
-          <div className="absolute inset-0 bg-gradient-to-tl from-orange-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-          
-          <div className="flex items-center gap-6 mb-8 relative z-10">
-            <div className="flex -space-x-2">
-              <div className="w-8 h-8 rounded-full bg-[#eb001b] opacity-90 mix-blend-multiply" />
-              <div className="w-8 h-8 rounded-full bg-[#f79e1b] opacity-90 mix-blend-multiply" />
+          {/* Navegación de Pasos */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6 mb-12">
+            <div className="flex flex-wrap items-center gap-2 md:gap-6">
+              {steps.map((step, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setActiveIndex(idx);
+                    setIsPlaying(false);
+                  }}
+                  className={`flex items-center gap-3 text-sm font-mono tracking-widest transition-all duration-300 ${
+                    activeIndex === idx 
+                      ? 'text-primary' 
+                      : 'text-white/40 hover:text-white/80'
+                  }`}
+                >
+                  <span className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                    activeIndex === idx 
+                      ? 'bg-primary/20 border-primary shadow-[0_0_15px_rgba(var(--primary),0.3)]' 
+                      : 'bg-white/5 border-white/10'
+                  }`}>
+                    {step.id}
+                  </span>
+                  <span className="hidden md:block uppercase font-bold">{step.title}</span>
+                </button>
+              ))}
             </div>
-            <span className="text-2xl font-black italic text-[#1a1f71]">VISA</span>
-            <span className="text-sm font-bold text-[#006fcf]">AMEX</span>
+            
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="text-white/50 hover:text-white hover:bg-white/10 rounded-full"
+            >
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            </Button>
           </div>
-          
-          <div className="relative z-10">
-            <h4 className="text-xl font-bold text-white mb-3">Esquema</h4>
-            <p className="text-sm text-white/50 leading-relaxed font-light">
-              Valida el pago, estandariza la comunicación (ISO 8583) y proporciona la infraestructura de red global.
-            </p>
-          </div>
-        </div>
 
+          {/* Área de Visualización (El Dibujo) */}
+          <div className="flex-1 flex items-center justify-center relative min-h-[250px]">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={activeIndex}
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 1.05, y: -10 }}
+                transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
+                className="flex items-center justify-center gap-4 md:gap-12 w-full max-w-3xl"
+              >
+                {steps[activeIndex].flow.map((node, idx, arr) => (
+                  <React.Fragment key={idx}>
+                    
+                    {/* Nodo */}
+                    <div className={`flex flex-col items-center justify-center gap-4 w-28 h-28 md:w-40 md:h-40 rounded-2xl md:rounded-3xl border backdrop-blur-md transition-all duration-500 relative ${
+                      node.highlight 
+                        ? 'bg-primary/20 border-primary/50 shadow-[0_0_40px_rgba(var(--primary),0.2)]' 
+                        : 'bg-white/5 border-white/10'
+                    }`}>
+                      {node.highlight && (
+                        <div className="absolute inset-0 rounded-3xl bg-primary/20 animate-ping opacity-20" />
+                      )}
+                      <node.icon className={`w-10 h-10 md:w-16 md:h-16 ${node.highlight ? 'text-primary' : 'text-white/50'}`} strokeWidth={1.5} />
+                      <span className={`text-[10px] md:text-xs font-mono font-bold uppercase tracking-widest text-center px-2 ${node.highlight ? 'text-primary' : 'text-white/50'}`}>
+                        {node.label}
+                      </span>
+                    </div>
+
+                    {/* Conector */}
+                    {idx < arr.length - 1 && (
+                      <div className="flex-1 h-[2px] bg-white/10 relative min-w-[40px]">
+                         <motion.div 
+                           initial={{ left: "0%" }}
+                           animate={{ left: "100%" }}
+                           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                           className="absolute top-1/2 w-4 h-4 md:w-8 md:h-[2px] -translate-y-1/2 bg-primary rounded-full md:rounded-none shadow-[0_0_10px_rgba(var(--primary),0.8)]" 
+                         />
+                         <ArrowRight className="hidden md:block absolute top-1/2 right-0 -translate-y-1/2 w-4 h-4 text-white/30 translate-x-full" />
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Área de Texto y Protocolos */}
+          <div className="mt-auto pt-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-8 border-t border-white/10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`text-${activeIndex}`}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+                className="max-w-xl"
+              >
+                <h3 className="text-2xl font-bold font-mono text-white mb-3">
+                  {steps[activeIndex].id} / {steps[activeIndex].title}
+                </h3>
+                <p className="text-white/60 leading-relaxed font-light text-sm md:text-base">
+                  {steps[activeIndex].desc}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`metrics-${activeIndex}`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="flex items-center gap-4 bg-black/50 border border-white/10 rounded-xl p-4 shrink-0"
+              >
+                <div className="flex flex-col">
+                  <span className="text-[9px] uppercase tracking-widest text-white/40 font-mono mb-1">Protocolo</span>
+                  <span className="font-mono text-xs md:text-sm text-white font-bold">ISO 8583 / REST API</span>
+                </div>
+                <div className="w-px h-8 bg-white/10 mx-2" />
+                <div className="flex flex-col">
+                  <span className="text-[9px] uppercase tracking-widest text-white/40 font-mono mb-1">Latencia Est.</span>
+                  <span className="font-mono text-xs md:text-sm font-bold text-[#00f0ff]">~120ms</span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+        </div>
       </div>
     </section>
   );
