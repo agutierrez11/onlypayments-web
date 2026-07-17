@@ -208,6 +208,22 @@ export function EcosystemDirectory({
 
         </div>
       </div>
+
+      {/* Fuentes Oficiales */}
+      <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 mt-32">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-white/30 uppercase tracking-widest">
+          <div className="flex items-center gap-2">
+            <span>Fuentes de Datos Oficiales</span>
+            <span className="w-8 h-[1px] bg-white/10 mx-2" />
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+            <span className="hover:text-white/70 transition-colors">Carlos Javier Guel (Hey Banco)</span>
+            <span className="hover:text-white/70 transition-colors">Asociación Fintech Guatemala</span>
+            <span className="hover:text-white/70 transition-colors">LatamFintech Hub</span>
+            <span className="hover:text-white/70 transition-colors">Utila</span>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
