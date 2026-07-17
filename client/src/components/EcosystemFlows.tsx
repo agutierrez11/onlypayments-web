@@ -88,17 +88,17 @@ export function EcosystemFlows() {
       <div className="flex flex-col md:flex-row relative">
         
         {/* Columna Izquierda (Scroll) */}
-        <div ref={leftColRef} className="w-full md:w-1/2 md:pr-16 pb-[50vh]">
-          <div className="mb-32">
+        <div ref={leftColRef} className="w-full md:w-1/2 md:pr-16 pb-[10vh]">
+          <div className="mb-16">
             <h2 className="text-4xl font-extrabold tracking-tight mb-4">La Anatomía del Pago</h2>
             <p className="text-muted-foreground font-light text-lg">
               Descubre qué pasa exactamente en los 2 segundos que tarda en procesarse una transacción en América Latina.
             </p>
           </div>
 
-          <div className="space-y-[60vh]">
+          <div className="space-y-[15vh]">
             {steps.map((step, i) => (
-              <div key={i} className="text-block min-h-[40vh] flex flex-col justify-center">
+              <div key={i} className="text-block min-h-[25vh] flex flex-col justify-center">
                 <h3 className={`text-2xl font-bold font-mono tracking-tight mb-6 transition-colors duration-500 ${activeIndex === i ? 'text-primary' : 'text-muted-foreground'}`}>
                   {step.title}
                 </h3>

@@ -221,14 +221,6 @@ export function HeroParallax({
           >
             Construir mi Stack <ArrowRight className="w-4 h-4" />
           </Button>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            onClick={onCommunity}
-            className="w-full sm:w-auto border-border/50 bg-background/50 backdrop-blur hover:bg-secondary/40 transition-all duration-300 rounded-xl h-14 px-8 text-base font-mono uppercase tracking-widest text-xs"
-          >
-            Acceder al Radar
-          </Button>
         </div>
       </div>
     </section>

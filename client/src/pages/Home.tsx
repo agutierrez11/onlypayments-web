@@ -38,7 +38,6 @@ import {
 import { HeroParallax } from "@/components/HeroParallax";
 import { EcosystemDirectory } from "@/components/EcosystemDirectory";
 import { EcosystemFlows } from "@/components/EcosystemFlows";
-import NervRadarDemo from "@/components/NervRadarDemo";
 
 export default function Home() {
   const { user } = useAuth();
@@ -361,13 +360,6 @@ export default function Home() {
         setSelectedCountryKey={setSelectedCountryKey}
         suggestContribution={suggestContribution}
       />
-
-      {/* NERV RADAR MVP - B2B MATCHMAKING */}
-      <section className="relative z-10 py-10 border-t border-border bg-background/40 backdrop-blur-[2px]">
-        <div className="container">
-          <NervRadarDemo />
-        </div>
-      </section>
 
       {/* BIBLIOTECA DE EXPERTOS */}
       <section id="biblioteca" className="relative z-10 py-20 border-t border-border bg-background/60 backdrop-blur-[2px]">
