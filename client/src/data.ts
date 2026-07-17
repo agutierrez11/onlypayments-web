@@ -87,8 +87,8 @@ export const COUNTRIES: Record<string, Country> = {
     mrr: "$1.4M USD est.",
     growth: "+28% YoY",
     fintechChamber: {
-      name: "Fintech Perú",
-      url: "https://fintechperu.com/"
+      name: "Peru Payments",
+      url: "https://perupayments.com/es/"
     }
   },
   CL: {

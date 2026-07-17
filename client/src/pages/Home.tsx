@@ -41,7 +41,7 @@ export default function Home() {
   const [, navigate] = useLocation();
 
   // Estados generales
-  const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
   const [selectedCountryKey, setSelectedCountryKey] = useState<string>("MX");
 
   // Biblioteca de Expertos Tabs
