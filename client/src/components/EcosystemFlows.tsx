@@ -1,23 +1,17 @@
-import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { User, Store, Landmark, CreditCard, Building2, Server, Zap, Coins, ShieldCheck, ArrowRight } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { User, Landmark, Server, Zap, Building2, ArrowRight, Play, Pause } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function EcosystemFlows() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const leftColRef = useRef<HTMLDivElement>(null);
-  const rightColRef = useRef<HTMLDivElement>(null);
-  
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const steps = [
     {
-      title: "01 / EL ORIGEN",
-      desc: "Todo comienza cuando un cliente inicia una compra. Ya sea ingresando una tarjeta de crédito en Santiago o escaneando un código SPEI en CDMX, los datos se encriptan al instante bajo estándares internacionales.",
+      id: "01",
+      title: "EL ORIGEN",
+      desc: "Todo comienza cuando un cliente inicia una compra. Ya sea ingresando una tarjeta de crédito o escaneando un código SPEI, los datos se encriptan al instante bajo estándares internacionales (PCI-DSS).",
       icon: User,
       color: "text-blue-500",
       flow: [
@@ -25,8 +19,9 @@ export function EcosystemFlows() {
       ]
     },
     {
-      title: "02 / LA PASARELA",
-      desc: "El comercio no procesa la tarjeta directamente. Utiliza un Gateway o Pasarela (ej. Stripe, Mercado Pago) que orquesta la transacción, aplica reglas antifraude y tokeniza el PAN de la tarjeta.",
+      id: "02",
+      title: "LA PASARELA",
+      desc: "El comercio no procesa la tarjeta directamente. Utiliza un Gateway o Pasarela (ej. Stripe, Mercado Pago) que orquesta la transacción, aplica reglas antifraude y tokeniza el PAN de la tarjeta para máxima seguridad.",
       icon: Server,
       color: "text-slate-400",
       flow: [
@@ -35,8 +30,9 @@ export function EcosystemFlows() {
       ]
     },
     {
-      title: "03 / EL ADQUIRENTE",
-      desc: "La pasarela envía la transacción al Banco Adquirente del comercio. Este es el responsable de solicitar los fondos a la red. Aquí se genera la famosa 'Tasa de Descuento'.",
+      id: "03",
+      title: "EL ADQUIRENTE",
+      desc: "La pasarela envía la transacción enrutada al Banco Adquirente del comercio. Este es el responsable de solicitar los fondos a la red. Aquí se genera la famosa 'Tasa de Descuento'.",
       icon: Landmark,
       color: "text-indigo-400",
       flow: [
@@ -45,8 +41,9 @@ export function EcosystemFlows() {
       ]
     },
     {
-      title: "04 / SWITCH LOCAL O GLOBAL",
-      desc: "Dependiendo del país, la transacción viaja por la red de Visa/MC (4 partes global) o por un Switch Local como Prosa/E-Global en México para ser compensada.",
+      id: "04",
+      title: "EL SWITCH / RED",
+      desc: "Visa, Mastercard, o cámaras de compensación locales (como Prosa o e-Global) validan la ruta de la transacción y conectan el banco del comercio con el banco del comprador en milisegundos.",
       icon: Zap,
       color: "text-amber-500",
       flow: [
@@ -55,8 +52,9 @@ export function EcosystemFlows() {
       ]
     },
     {
-      title: "05 / EL EMISOR",
-      desc: "Finalmente, el banco que emitió la tarjeta del comprador recibe la petición. Verifica saldo, reglas de riesgo y responde: APROBADA o RECHAZADA. El dinero inicia su camino de regreso.",
+      id: "05",
+      title: "EL EMISOR",
+      desc: "Finalmente, el banco que emitió la tarjeta del comprador recibe la petición. Verifica saldo, reglas de riesgo y responde: APROBADA o RECHAZADA. El dinero inicia su camino de regreso confirmando la venta.",
       icon: Building2,
       color: "text-emerald-500",
       flow: [
@@ -66,117 +64,164 @@ export function EcosystemFlows() {
     }
   ];
 
-  useGSAP(() => {
-    // El pinSpacing de GSAP causaba saltos, así que usaremos CSS `sticky` nativo en su lugar.
-    // Animación de los textos al hacer scroll (Columna izquierda)
-
-    // Actualizar activeIndex basado en el scroll de la columna izquierda
-    const textBlocks = gsap.utils.toArray(".text-block") as HTMLElement[];
-    textBlocks.forEach((block, i) => {
-      ScrollTrigger.create({
-        trigger: block,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => setActiveIndex(i),
-        onEnterBack: () => setActiveIndex(i)
-      });
-    });
-  }, { scope: containerRef });
+  // Auto-play logic
+  useEffect(() => {
+    if (!isPlaying) return;
+    
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % steps.length);
+    }, 4500);
+    
+    return () => clearInterval(interval);
+  }, [isPlaying, steps.length]);
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-[1400px] mx-auto px-6 bg-background pt-20">
-      <div className="flex flex-col md:flex-row relative">
+    <section className="relative w-full max-w-[1200px] mx-auto px-6 py-24 bg-background">
+      
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">La Anatomía del Pago</h2>
+        <p className="text-muted-foreground font-light text-lg max-w-2xl mx-auto">
+          Descubre qué pasa exactamente en los <strong className="text-foreground">2 segundos</strong> que tarda en procesarse una transacción en América Latina.
+        </p>
+      </div>
+
+      {/* Caja Negra Principal */}
+      <div className="w-full bg-[#0a0a0c] rounded-3xl border border-white/10 shadow-2xl overflow-hidden relative">
         
-        {/* Columna Izquierda (Scroll) */}
-        <div ref={leftColRef} className="w-full md:w-1/2 md:pr-16 pb-[10vh]">
-          <div className="mb-16">
-            <h2 className="text-4xl font-extrabold tracking-tight mb-4">La Anatomía del Pago</h2>
-            <p className="text-muted-foreground font-light text-lg">
-              Descubre qué pasa exactamente en los 2 segundos que tarda en procesarse una transacción en América Latina.
-            </p>
-          </div>
+        {/* Background Grid */}
+        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-          <div className="space-y-[15vh]">
-            {steps.map((step, i) => (
-              <div key={i} className="text-block min-h-[25vh] flex flex-col justify-center">
-                <h3 className={`text-2xl font-bold font-mono tracking-tight mb-6 transition-colors duration-500 ${activeIndex === i ? 'text-primary' : 'text-muted-foreground'}`}>
-                  {step.title}
-                </h3>
-                <p className={`text-lg leading-relaxed font-light transition-opacity duration-500 ${activeIndex === i ? 'opacity-100' : 'opacity-40'}`}>
-                  {step.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Columna Derecha (Fija / Sticky Lienzo Técnico) */}
-        <div className="hidden md:block w-1/2 relative">
-          <div ref={rightColRef} className="h-screen w-full flex items-center justify-center p-8 sticky top-0">
-            
-            <div className="w-full h-[600px] rounded-3xl border border-white/10 bg-[#0f1115] shadow-2xl relative overflow-hidden flex items-center justify-center">
-              
-              {/* Background Grid del Lienzo */}
-              <div className="absolute inset-0 opacity-[0.15] [background-image:linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:30px_30px]" />
-              
-              {/* Contenido Visual Dinámico */}
-              <div className="z-10 w-full px-12">
-                <motion.div 
-                  key={activeIndex}
-                  initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, type: "spring" }}
-                  className="flex items-center justify-center gap-8 w-full"
+        <div className="p-8 md:p-12 relative z-10 flex flex-col min-h-[600px]">
+          
+          {/* Navegación de Pasos */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6 mb-12">
+            <div className="flex flex-wrap items-center gap-2 md:gap-6">
+              {steps.map((step, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setActiveIndex(idx);
+                    setIsPlaying(false);
+                  }}
+                  className={`flex items-center gap-3 text-sm font-mono tracking-widest transition-all duration-300 ${
+                    activeIndex === idx 
+                      ? 'text-primary' 
+                      : 'text-white/40 hover:text-white/80'
+                  }`}
                 >
-                  {steps[activeIndex].flow.map((node, idx, arr) => (
-                    <React.Fragment key={idx}>
-                      
-                      <div className={`flex flex-col items-center justify-center gap-4 w-32 h-32 rounded-2xl border backdrop-blur-md transition-all duration-500 ${node.highlight ? 'bg-primary/20 border-primary/50 shadow-[0_0_30px_rgba(var(--primary),0.3)]' : 'bg-white/5 border-white/10'}`}>
-                        <node.icon className={`w-12 h-12 ${node.highlight ? 'text-primary' : 'text-white/50'}`} strokeWidth={1.5} />
-                        <span className={`text-[11px] font-mono font-bold uppercase tracking-widest ${node.highlight ? 'text-primary' : 'text-white/50'}`}>
-                          {node.label}
-                        </span>
-                      </div>
-
-                      {idx < arr.length - 1 && (
-                        <div className="flex-1 h-px bg-white/20 relative">
-                           <div className="absolute top-1/2 left-0 w-full h-[2px] -translate-y-1/2 bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
-                           <ArrowRight className="absolute top-1/2 right-0 -translate-y-1/2 w-4 h-4 text-primary" />
-                        </div>
-                      )}
-
-                    </React.Fragment>
-                  ))}
-                </motion.div>
-                
-                {/* Metadatos técnicos debajo */}
-                <motion.div 
-                  key={`meta-${activeIndex}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="mt-16 text-center"
-                >
-                  <div className="inline-flex gap-4 p-3 rounded-xl bg-black/50 border border-white/10">
-                     <div className="text-left">
-                       <div className="text-[9px] text-white/40 font-mono uppercase tracking-widest">Protocolo</div>
-                       <div className="text-xs text-white/80 font-mono">ISO 8583 / REST API</div>
-                     </div>
-                     <div className="w-px h-8 bg-white/10" />
-                     <div className="text-left">
-                       <div className="text-[9px] text-white/40 font-mono uppercase tracking-widest">Latencia Est.</div>
-                       <div className="text-xs text-emerald-400 font-mono">~120ms</div>
-                     </div>
-                  </div>
-                </motion.div>
-
-              </div>
+                  <span className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                    activeIndex === idx 
+                      ? 'bg-primary/20 border-primary shadow-[0_0_15px_rgba(var(--primary),0.3)]' 
+                      : 'bg-white/5 border-white/10'
+                  }`}>
+                    {step.id}
+                  </span>
+                  <span className="hidden md:block uppercase font-bold">{step.title}</span>
+                </button>
+              ))}
             </div>
-
+            
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="text-white/50 hover:text-white hover:bg-white/10 rounded-full"
+            >
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            </Button>
           </div>
+
+          {/* Área de Visualización (El Dibujo) */}
+          <div className="flex-1 flex items-center justify-center relative min-h-[250px]">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={activeIndex}
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 1.05, y: -10 }}
+                transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
+                className="flex items-center justify-center gap-4 md:gap-12 w-full max-w-3xl"
+              >
+                {steps[activeIndex].flow.map((node, idx, arr) => (
+                  <React.Fragment key={idx}>
+                    
+                    {/* Nodo */}
+                    <div className={`flex flex-col items-center justify-center gap-4 w-28 h-28 md:w-40 md:h-40 rounded-2xl md:rounded-3xl border backdrop-blur-md transition-all duration-500 relative ${
+                      node.highlight 
+                        ? 'bg-primary/20 border-primary/50 shadow-[0_0_40px_rgba(var(--primary),0.2)]' 
+                        : 'bg-white/5 border-white/10'
+                    }`}>
+                      {node.highlight && (
+                        <div className="absolute inset-0 rounded-3xl bg-primary/20 animate-ping opacity-20" />
+                      )}
+                      <node.icon className={`w-10 h-10 md:w-16 md:h-16 ${node.highlight ? 'text-primary' : 'text-white/50'}`} strokeWidth={1.5} />
+                      <span className={`text-[10px] md:text-xs font-mono font-bold uppercase tracking-widest text-center px-2 ${node.highlight ? 'text-primary' : 'text-white/50'}`}>
+                        {node.label}
+                      </span>
+                    </div>
+
+                    {/* Conector */}
+                    {idx < arr.length - 1 && (
+                      <div className="flex-1 h-[2px] bg-white/10 relative min-w-[40px]">
+                         <motion.div 
+                           initial={{ left: "0%" }}
+                           animate={{ left: "100%" }}
+                           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                           className="absolute top-1/2 w-4 h-4 md:w-8 md:h-[2px] -translate-y-1/2 bg-primary rounded-full md:rounded-none shadow-[0_0_10px_rgba(var(--primary),0.8)]" 
+                         />
+                         <ArrowRight className="hidden md:block absolute top-1/2 right-0 -translate-y-1/2 w-4 h-4 text-white/30 translate-x-full" />
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Área de Texto y Protocolos */}
+          <div className="mt-auto pt-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-8 border-t border-white/10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`text-${activeIndex}`}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+                className="max-w-xl"
+              >
+                <h3 className="text-2xl font-bold font-mono text-white mb-3">
+                  {steps[activeIndex].id} / {steps[activeIndex].title}
+                </h3>
+                <p className="text-white/60 leading-relaxed font-light text-sm md:text-base">
+                  {steps[activeIndex].desc}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`metrics-${activeIndex}`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="flex items-center gap-4 bg-black/50 border border-white/10 rounded-xl p-4 shrink-0"
+              >
+                <div className="flex flex-col">
+                  <span className="text-[9px] uppercase tracking-widest text-white/40 font-mono mb-1">Protocolo</span>
+                  <span className="font-mono text-xs md:text-sm text-white font-bold">ISO 8583 / REST API</span>
+                </div>
+                <div className="w-px h-8 bg-white/10 mx-2" />
+                <div className="flex flex-col">
+                  <span className="text-[9px] uppercase tracking-widest text-white/40 font-mono mb-1">Latencia Est.</span>
+                  <span className="font-mono text-xs md:text-sm font-bold text-[#00f0ff]">~120ms</span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 }
