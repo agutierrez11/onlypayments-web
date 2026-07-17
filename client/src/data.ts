@@ -567,38 +567,90 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
   ],
   PY: [
     {
-      name: "Pago Móvil (Bancard)",
-      type: "Red de Cobros / App",
-      logo: "🏪",
+      name: "Giros Tigo (Tigo Money Paraguay)",
+      type: "Wallet Móvil / Remesas Internas",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "1.5% - 3.0%",
+      description: "Tigo Money es el líder del dinero móvil en Paraguay, con penetración masiva en zonas rurales donde no hay sucursales bancarias. Permite enviar y recibir dinero, pagar facturas y realizar recargas. Es el canal principal para remesas internas (Ciudad del Este → Asunción) y tiene alta adopción en trabajadores rurales y agrícolas.",
+      compliance: "Regulado por el Banco Central del Paraguay (BCP). Requiere verificación de identidad para envíos sobre G 2,000,000.",
+      providers: ["Tigo Money directo", "dLocal", "Bancard"]
+    },
+    {
+      name: "Pago Electrónico (Bancard)",
+      type: "Red Adquirente / A2A",
+      logo: "🏦",
       settlement: "D+1",
       fee: "2.5% - 3.5%",
-      description: "La plataforma de cobros del procesador local Bancard en Paraguay.",
-      compliance: "Conexión directa con la adquirencia de Bancard.",
+      description: "Bancard es el procesador y adquirente líder de Paraguay. Su plataforma de pagos electrónicos conecta a comercios con todos los bancos locales. También opera la red de cajeros automáticos más grande del país y es el backbone del sistema de pagos digitales paraguayo.",
+      compliance: "Regulado por el BCP. Sin contracargos en pagos directos A2A.",
       providers: ["Bancard", "dLocal"]
     }
   ],
   GT: [
     {
       name: "Tigo Money Guatemala",
-      type: "Billetera Móvil",
+      type: "Billetera Móvil / Remesas",
       logo: "📱",
       settlement: "Inmediato",
       fee: "2.0% - 3.5%",
-      description: "Billetera móvil y servicio de dinero electrónico en Guatemala.",
-      compliance: "Asume el control transaccional del balance móvil.",
-      providers: ["Tigo Money directo", "PixelPay"]
+      description: "Tigo Money es la billetera móvil dominante en Guatemala y uno de los canales más usados para recibir remesas desde Estados Unidos. Con más de 2 millones de usuarios activos, permite recibir dinero en efectivo en tiendas Tigo o retirarlo en la red de agentes. Es vital entender que Guatemala es uno de los mayores receptores de remesas de LATAM (~$21B anuales, equivalente al 20% del PIB), principalmente del corredor USA→Guatemala, siendo Tigo Money el canal preferido para quienes no tienen cuenta bancaria.",
+      compliance: "Regulado por la Superintendencia de Bancos de Guatemala (SIB). KYC por número de teléfono. Límites de balance por nivel de verificación.",
+      providers: ["Tigo Money directo", "PixelPay", "PayCash (puntos físicos)"]
+    },
+    {
+      name: "Transferencias Bancarias (G&T / Banrural)",
+      type: "A2A / Banca Tradicional",
+      logo: "🏦",
+      settlement: "Inmediato (dentro del mismo banco) · D+1 (interbancario)",
+      fee: "Q25 - Q50 por transacción",
+      description: "Las transferencias interbancarias en Guatemala operan a través del Sistema de Pagos del Banco de Guatemala (SIPAGO). Banrural es el banco más grande por número de agencias rurales y es el principal canal para que población indígena y rural reciba remesas en zonas donde no llegan los ATMs de bancos urbanos. G&T Continental es el banco más grande por activos.",
+      compliance: "Regulado por la SIB y el Banco de Guatemala. SIPAGO como infraestructura de compensación interbancaria.",
+      providers: ["G&T Continental", "Banrural", "BAM", "Industrial", "dLocal"]
     }
   ],
   DO: [
     {
-      name: "tPago",
-      type: "A2A / Red Interbancaria",
+      name: "tPago (Transacción Interbancaria)",
+      type: "A2A / RTP Interbancario",
       logo: "⚡",
       settlement: "Inmediato",
       fee: "1.0% - 2.0%",
-      description: "Plataforma que vincula las cuentas bancarias de los principales bancos de República Dominicana.",
-      compliance: "Requiere autenticación robusta mediante PIN tPago.",
-      providers: ["Banco Popular", "Banreservas", "tPago directo"]
+      description: "El sistema de pagos inmediatos interbancarios de República Dominicana impulsado por el Banco Central (BCRD). tPago vincula las cuentas bancarias de los principales bancos (Banco Popular, Banreservas, BHD León, Scotiabank RD) para transferencias instantáneas usando número de celular o código QR. República Dominicana es uno de los mayores receptores de remesas del Caribe (~$10B anuales, ~10% del PIB), principalmente desde el corredor USA→DO.",
+      compliance: "Regulado por el BCRD y la SB (Superintendencia de Bancos). KYC obligatorio. Límites diarios por tipo de cuenta.",
+      providers: ["Banco Popular", "Banreservas", "BHD León", "tPago directo"]
+    },
+    {
+      name: "Vuelve (Remesas & Wallets)",
+      type: "Wallet / Pago de Remesas",
+      logo: "💸",
+      settlement: "Inmediato",
+      fee: "Gratis para receptor · tarifa fija para remitente",
+      description: "La principal plataforma digital de recepción de remesas en República Dominicana. Permite al receptor en RD recibir la remesa directamente en su celular y usarla para pagar servicios, hacer transferencias P2P o retirar en efectivo en puntos autorizados. Compite con puntos de pago de Western Union y MoneyGram pero con tarifas mucho menores para el receptor.",
+      compliance: "Regulado por el BCRD como proveedor de servicios de pago. Sujeto a regulación AML/KYC del GAFI.",
+      providers: ["Vuelve directo", "PayCash (red física)", "dLocal"]
+    }
+  ],
+  HN: [
+    {
+      name: "Transferencias LBTR (BCH)",
+      type: "A2A / Sistema Interbancario",
+      logo: "⚡",
+      settlement: "Inmediato (LBTR) · D+1 (ACH)",
+      fee: "L 25 - L 80 por transacción",
+      description: "El Sistema de Liquidación Bruta en Tiempo Real del Banco Central de Honduras (BCH). Es la infraestructura madre del sistema de pagos interbanarios del país. Honduras es el país con mayor dependencia de remesas en LATAM: ~$9B anuales equivalen al ~27% del PIB. El corredor principal es USA→Honduras (especialmente Florida, Louisiana y Texas). La mayoría de los hondureños receptores de remesas vive en áreas rurales sin acceso bancario.",
+      compliance: "Regulado por el BCH y la Comisión Nacional de Bancos y Seguros (CNBS). AML/KYC obligatorio.",
+      providers: ["Todos los bancos regulados en Honduras", "BAC Honduras", "Ficohsa", "Atlántida"]
+    },
+    {
+      name: "Tigo Money Honduras",
+      type: "Wallet Móvil / Remesas Last-Mile",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "2.0% - 3.5%",
+      description: "La billetera móvil más importante para el last-mile de remesas en Honduras. Dado que el 45%+ de la población no tiene cuenta bancaria, Tigo Money es el canal principal para que los receptores de remesas en zonas rurales reciban y usen su dinero. Permite recibir envíos desde Western Union, MoneyGram y plataformas digitales, retirar en efectivo en agentes Tigo y pagar servicios básicos.",
+      compliance: "Regulado por el BCH y la CNBS. KYC por número de teléfono y DPI. Límites de transacción por nivel KYC.",
+      providers: ["Tigo Money directo", "PayCash (8,614 puntos)", "Western Union", "dLocal"]
     }
   ]
 };
