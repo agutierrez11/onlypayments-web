@@ -220,9 +220,39 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
       logo: "⚡",
       settlement: "Inmediato",
       fee: "Tarifa plana muy baja o gratis",
-      description: "El Sistema de Pagos Electrónicos Interbancarios desarrollado por Banco de México. Permite transferencias inmediatas irrevocables las 24/7 a través de números CLABE de 18 dígitos o números celulares.",
-      compliance: "Sin contracargos. Cero riesgo de disputas para el comercio.",
-      providers: ["Bancos mexicanos", "Stripe", "Conekta", "Openpay", "Kushki"]
+      description: "El Sistema de Pagos Electrónicos Interbancarios desarrollado por Banco de México. Opera 24/7 con transferencias irrevocables via CLABE de 18 dígitos. Es la columna vertebral de todos los pagos digitales en México.",
+      compliance: "Sin contracargos. Cero riesgo de disputas para el comercio. Regulado directamente por Banxico.",
+      providers: ["Bancos mexicanos", "Stripe", "Conekta", "Openpay", "Kushki", "STP", "Arcus"]
+    },
+    {
+      name: "STP (Sistema de Transferencias y Pagos)",
+      type: "Infraestructura SPEI / IFPE",
+      logo: "🔧",
+      settlement: "Inmediato",
+      fee: "Tarifa por transferencia (mayorista)",
+      description: "El 'motor oculto' detrás de las fintechs mexicanas. STP es la IFPE (Institución de Fondos de Pago Electrónico) regulada por Banxico que actúa como puente tecnológico para que wallets, neobancos, exchanges cripto y plataformas de dispersión (payouts) puedan emitir y recibir transferencias SPEI 24/7 sin ser bancos directamente. Sin STP, no existe Clip, Mercado Pago MX, ni la mayoría de las fintechs.",
+      compliance: "Regulado como IFPE por la Ley Fintech. Requiere apertura de cuenta de concentración. Sin contracargos.",
+      providers: ["STP directo", "Arcus (Mastercard)", "Cuenca", "Conekta", "Kushki"]
+    },
+    {
+      name: "Billeteras Digitales (Wallets)",
+      type: "Wallet Móvil / Stored Value",
+      logo: "📱",
+      settlement: "Inmediato",
+      fee: "0% entre usuarios · 2.5% - 3.9% comercios",
+      description: "Plataformas de dinero electrónico de alto crecimiento que eliminan la necesidad de cuentas bancarias tradicionales. Dominan pagos P2P, pago de servicios y cobros con QR en puntos de venta físicos. Mercado Pago lidera con más de 25M de usuarios activos en México. Spin by OXXO integra los 20,000 puntos OXXO como red de cash-in. Baz (Azteca) apunta a la base de la pirámide. Klar es el neobanco sin comisiones.",
+      compliance: "Reguladas como IFPEs o Bancos. Límites de transacción por nivel de KYC del usuario.",
+      providers: ["Mercado Pago", "Spin by OXXO", "Baz (Banco Azteca)", "Klar", "Cuenca", "Stori"]
+    },
+    {
+      name: "DiMo (Dinero Móvil)",
+      type: "A2A / Transferencia por Celular",
+      logo: "📲",
+      settlement: "Inmediato",
+      fee: "Gratis para el usuario final",
+      description: "Iniciativa oficial de Banco de México montada sobre la infraestructura SPEI. Permite enviar y recibir dinero usando únicamente el número de teléfono celular de 10 dígitos, sin necesidad de conocer la CLABE interbancaria. Fue lanzado en 2023 y está disponible en los principales bancos y fintechs participantes.",
+      compliance: "Regulado directamente por Banxico. Requiere alta del número celular en el banco. Sin contracargos.",
+      providers: ["BBVA México", "Banamex", "Santander", "Banorte", "HSBC", "Mercado Pago", "Nu México"]
     },
     {
       name: "OXXO Pay",
@@ -230,9 +260,19 @@ export const PAYMENT_METHODS: Record<string, PaymentMethod[]> = {
       logo: "🏪",
       settlement: "D+1",
       fee: "3.5% - 4.5% + $10 MXN",
-      description: "La red de tiendas de conveniencia más grande de México. Permite a los clientes pagar sus compras en línea en efectivo mediante un código de barra digital de 14 dígitos en tiempo real.",
+      description: "La red de tiendas de conveniencia más grande de México con más de 22,000 puntos. Permite a los clientes pagar compras en línea en efectivo mediante un código de barra de 14 dígitos. Es el APM más importante para segmentos sub-bancarizados.",
       compliance: "Sin contracargos. Muy seguro contra fraudes pero dependiente de que el cliente realice la acción física.",
       providers: ["Conekta", "Openpay", "Stripe", "PayU", "Mercado Pago"]
+    },
+    {
+      name: "Paynet y Redes de Efectivo Alternas",
+      type: "Efectivo / Corresponsalía",
+      logo: "🏬",
+      settlement: "D+1",
+      fee: "2.5% - 3.9%",
+      description: "La principal alternativa a OXXO Pay. Paynet (operada por Openpay/BBVA) conecta más de 40,000 puntos de pago en efectivo incluyendo 7-Eleven, Farmacias del Ahorro, Walmart, Bodega Aurrera y Sam's Club. Esencial para llegar a segmentos que no tienen acceso a OXXO o que buscan distribución geográfica más amplia.",
+      compliance: "Sin contracargos. Cada punto de pago actúa como corresponsal no bancario regulado por CNBV.",
+      providers: ["Openpay (Paynet)", "PayU", "Conekta", "Banorte", "Banamex"]
     }
   ],
   BR: [
