@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { User, Store, Landmark, CreditCard, Building2, Server, Zap, Coins, ShieldCheck } from "lucide-react";
+import { User, Store, Landmark, CreditCard, Building2, Server, Zap, Coins, ShieldCheck, ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -67,14 +67,8 @@ export function EcosystemFlows() {
   ];
 
   useGSAP(() => {
-    // Pin la columna derecha
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top top",
-      end: "bottom bottom",
-      pin: rightColRef.current,
-      pinSpacing: false
-    });
+    // El pinSpacing de GSAP causaba saltos, así que usaremos CSS `sticky` nativo en su lugar.
+    // Animación de los textos al hacer scroll (Columna izquierda)
 
     // Actualizar activeIndex basado en el scroll de la columna izquierda
     const textBlocks = gsap.utils.toArray(".text-block") as HTMLElement[];
@@ -118,7 +112,7 @@ export function EcosystemFlows() {
 
         {/* Columna Derecha (Fija / Sticky Lienzo Técnico) */}
         <div className="hidden md:block w-1/2 relative">
-          <div ref={rightColRef} className="h-screen w-full flex items-center justify-center p-8 absolute top-0">
+          <div ref={rightColRef} className="h-screen w-full flex items-center justify-center p-8 sticky top-0">
             
             <div className="w-full h-[600px] rounded-3xl border border-white/10 bg-[#0f1115] shadow-2xl relative overflow-hidden flex items-center justify-center">
               
