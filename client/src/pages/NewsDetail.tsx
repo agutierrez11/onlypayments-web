@@ -98,7 +98,7 @@ export default function NewsDetail() {
               {news.content && (
                 <div className="prose prose-invert max-w-none">
                   <div className="space-y-4 text-foreground leading-relaxed">
-                    {news.content.split("\n").map((paragraph, idx) => (
+                    {news.content.split("\n").map((paragraph: string, idx: number) => (
                       <p key={idx}>{paragraph}</p>
                     ))}
                   </div>
@@ -117,7 +117,7 @@ export default function NewsDetail() {
                     {/* Parse the impact and tools content */}
                     <div className="prose prose-invert max-w-none">
                       <div className="space-y-4 text-foreground leading-relaxed">
-                        {news.impactAndTools.split("\n").map((line, idx) => {
+                        {news.impactAndTools.split("\n").map((line: string, idx: number) => {
                           if (line.startsWith("##")) {
                             return (
                               <h3 key={idx} className="text-xl font-bold mt-4 mb-2">

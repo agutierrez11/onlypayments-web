@@ -86,6 +86,16 @@ const localPaymentStacks: any[] = [
     components: "### Arquitectura de Pagos Recomendada\n1. **Core Gateway:** [Adyen Brasil](https://www.adyen.com) o [EBANX](https://www.ebanx.com) para procesamiento local con enrutamiento inteligente.\n2. **Pix Dynamic QR:** Implementación de Pix con actualización de estado en tiempo real (Webhooks D+0).\n3. **Financiamiento local:** Soporte obligatorio para *Parcelas* (compras en cuotas con tarjeta local) e integración con Boleto Bancário simplificado.",
     createdAt: new Date(),
     updatedAt: new Date()
+  },
+  {
+    id: 3,
+    name: "iGaming & Apuestas Deportivas LATAM",
+    description: "Stack especializado para operadores de iGaming y apuestas, enfocado en altas tasas de conversión sin contracargos mediante pagos A2A y e-wallets, junto con onboarding automatizado (KYC/AML).",
+    country: "LATAM",
+    businessModel: "iGaming",
+    components: "### Arquitectura de Pagos Recomendada\n1. **Procesador Regional:** [dLocal](https://dlocal.com) o [Kushki](https://kushkipagos.com) para cobrar localmente sin entidad legal en cada país.\n2. **Rieles Cero Contracargos (Pay-In):** Pix (Brasil), SPEI (México), Bre-B / PSE (Colombia), Yape/Plin (Perú).\n3. **Prevención de Fraude & KYC:** [Sumsub](https://sumsub.com) (especializado en iGaming), [Incode](https://incode.com) u [Onfido](https://onfido.com) para onboarding y anti-lavado.\n4. **Dispersiones Rápidas (Pay-Out):** APIs de pagos en tiempo real para retiro de premios instantáneo.",
+    createdAt: new Date(),
+    updatedAt: new Date()
   }
 ];
 

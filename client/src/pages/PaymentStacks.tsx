@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Filter } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 
-type BusinessModel = "e-commerce" | "SaaS" | "remesas";
+type BusinessModel = "e-commerce" | "SaaS" | "remesas" | "iGaming";
 
 export default function PaymentStacks() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
@@ -13,8 +13,8 @@ export default function PaymentStacks() {
 
   const { data: stacks, isLoading } = trpc.paymentStacks.list.useQuery();
 
-  const countries = ["Brasil", "México", "Colombia", "Perú", "Argentina", "Chile"];
-  const businessModels: BusinessModel[] = ["e-commerce", "SaaS", "remesas"];
+  const countries = ["Brasil", "México", "Colombia", "Perú", "Argentina", "Chile", "LATAM"];
+  const businessModels: BusinessModel[] = ["e-commerce", "SaaS", "remesas", "iGaming"];
 
   const filteredStacks = stacks?.filter((stack) => {
     const matchesCountry = selectedCountry === null || stack.country === selectedCountry;
@@ -87,6 +87,7 @@ export default function PaymentStacks() {
                   {model === "e-commerce" && "E-commerce"}
                   {model === "SaaS" && "SaaS"}
                   {model === "remesas" && "Remesas"}
+                  {model === "iGaming" && "iGaming"}
                 </Button>
               ))}
             </div>
@@ -121,6 +122,7 @@ export default function PaymentStacks() {
                           {stack.businessModel === "e-commerce" && "E-commerce"}
                           {stack.businessModel === "SaaS" && "SaaS"}
                           {stack.businessModel === "remesas" && "Remesas"}
+                          {stack.businessModel === "iGaming" && "iGaming"}
                         </Badge>
                       </div>
                     </div>
@@ -136,7 +138,7 @@ export default function PaymentStacks() {
                     <div className="mb-4">
                       <h4 className="font-semibold text-sm mb-2">Componentes</h4>
                       <div className="space-y-1 text-sm">
-                        {stack.components.split("\n").slice(0, 3).map((comp, idx) => (
+                        {stack.components.split("\n").slice(0, 3).map((comp: string, idx: number) => (
                           <p key={idx} className="text-muted-foreground">
                             • {comp.trim()}
                           </p>

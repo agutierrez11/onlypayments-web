@@ -703,6 +703,12 @@ export const ECOSYSTEM_ACTORS: EcosystemActor[] = [
     title: "8. Orquestador de Pagos",
     role: "Ruteador inteligente",
     description: "Plataforma tecnológica que conecta al comercio con múltiples adquirentes y gateways simultáneamente."
+  },
+  {
+    id: 9,
+    title: "9. KYC, AML & Fraud Prevention",
+    role: "Identidad y Cumplimiento",
+    description: "Procesos y herramientas para verificar identidad, prevenir fraude y cumplir normativas contra lavado de dinero."
   }
 ];
 
@@ -742,6 +748,19 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
   REST: [
     { name: "Kushki", role: "Orquestador / Adquirente regional", countries: "Ecuador, Colombia, México, Chile, Perú", desc: "Opera como adquirente no bancario regional y orquestador tecnológico." },
     { name: "BAC Credomatic", role: "Adquirente líder", countries: "Centroamérica (CR, PA, GT, SV, HN)", desc: "El banco adquirente y procesador de pagos más grande de Centroamérica." }
+  ],
+  KYC_AML: [
+    { name: "Incode", role: "Biometría e Identidad Omnicanal", countries: "México, Global", desc: "Plataforma líder en onboarding automatizado de extremo a extremo." },
+    { name: "Sumsub", role: "KYC/KYB Integral", countries: "Global", desc: "Verificación completa KYC/KYB y AML, con gran tracción en iGaming." },
+    { name: "Riskified", role: "Prevención de Fraude AI", countries: "Global", desc: "Gestión de fraude transaccional impulsada por Inteligencia Artificial y machine learning." },
+    { name: "Truora", role: "Background Checks / Auth", countries: "Colombia, LATAM", desc: "Autenticación fluida por WhatsApp y validación de antecedentes penales." },
+    { name: "MetaMap", role: "KYC/KYB", countries: "Global, LATAM", desc: "Solución integral de onboarding ampliamente adoptada por fintechs regionales." },
+    { name: "KYC SYSTEMS", role: "Regtech / AML", countries: "México", desc: "Solución especializada en normativa local de la CNBV y UIF para prevención de lavado." },
+    { name: "Onfido", role: "KYC e Identidad AI", countries: "Global", desc: "Plataforma de verificación de identidad escalable basada en biometría e IA." },
+    { name: "Shufti Pro", role: "Verificación de Identidad KYC", countries: "Global", desc: "Automatización global de flujos de verificación KYC." },
+    { name: "LexisNexis", role: "Inteligencia de Identidad y AML", countries: "Global", desc: "Análisis masivo de riesgo, listas sancionadas (OFAC) y compliance global." },
+    { name: "Auco", role: "Automatización de Cumplimiento", countries: "México, LATAM", desc: "Automatización de flujos de cumplimiento normativo y KYC corporativo." },
+    { name: "Velafi", role: "Validación y Prevención de Fraude", countries: "México, LATAM", desc: "Especialista en prevención de fraude, validación de identidad y verificación de empresas." }
   ]
 };
 
@@ -844,6 +863,7 @@ export interface ExpertProfile {
   bio: string;
   specialties: string[];
   highlights: string[];
+  need?: string;
 }
 
 export const EXPERTS: ExpertProfile[] = [
