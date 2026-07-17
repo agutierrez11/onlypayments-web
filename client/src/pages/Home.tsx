@@ -781,8 +781,8 @@ export default function Home() {
                                   {sortedProviders.map((prov) => (
                                     <Card 
                                       key={prov.name} 
-                                      className={`p-5 flex flex-col justify-between transition-all hover:border-primary/50 ${
-                                        prov.isPartner ? 'bg-primary/5 border-primary/30 shadow-sm scale-[1.01]' : 'bg-background/40 border-border'
+                                      className={`p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
+                                        prov.isPartner ? 'bg-foreground/5 backdrop-blur-md border-foreground/20' : 'bg-background/60 backdrop-blur-sm border-border/50 hover:bg-foreground/[0.02]'
                                       }`}
                                     >
                                       <div>
@@ -854,7 +854,7 @@ export default function Home() {
                     <Card 
                       key={idx} 
                       onClick={() => setGlossaryExpandedTerm(isExpanded ? null : item.term)}
-                      className="p-5 border-border bg-background/40 hover:border-accent/30 transition-colors cursor-pointer flex flex-col justify-between space-y-2"
+                      className="p-5 border-border/50 bg-background/60 backdrop-blur-sm hover:bg-foreground/[0.02] hover:-translate-y-0.5 transition-all cursor-pointer flex flex-col justify-between space-y-2 shadow-sm"
                     >
                       <div className="flex items-center justify-between">
                         <h5 className="font-bold text-sm tracking-tight text-foreground">{item.term}</h5>
@@ -901,7 +901,7 @@ export default function Home() {
               {/* Grid de tarjetas */}
               <div className="grid sm:grid-cols-2 gap-6">
                 {EXPERTS.map(expert => (
-                  <div key={expert.id} className="rounded-2xl border border-border bg-background/60 hover:border-accent/40 transition-all hover:shadow-lg p-6 flex flex-col gap-5">
+                  <div key={expert.id} className="rounded-2xl border border-border/50 bg-background/60 backdrop-blur-md hover:bg-foreground/[0.02] hover:-translate-y-1 hover:shadow-xl transition-all duration-300 p-6 flex flex-col gap-5">
 
                     {/* Cabecera: foto + nombre */}
                     <div className="flex items-center gap-4">

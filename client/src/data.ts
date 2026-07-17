@@ -716,17 +716,20 @@ export const ECOSYSTEM_ACTORS: EcosystemActor[] = [
 export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
   REGIONAL: [
     { name: "Toku", role: "Optimización de Pagos Recurrentes", countries: "México, Chile, LATAM", desc: "Plataforma líder para pagos de suscripción con recuperación inteligente de fallos (SaaS B2B).", isPartner: true },
-    { name: "dLocal", role: "Agregador Regional / PayFac", countries: "Uruguay, Brasil, México, Colombia, Chile, Argentina, Perú", desc: "Infraestructura unificada de cobros y dispersiones (payouts) para mercados emergentes." },
-    { name: "EBANX", role: "Agregador Regional / Procesador", countries: "Brasil, México, Colombia, Chile, Argentina, Perú, Ecuador", desc: "Especialista en conectar comercios globales con métodos de pago locales." },
-    { name: "Mercado Pago", role: "Agregador / Billetera Digital", countries: "Argentina, Brasil, México, Colombia, Chile, Perú", desc: "El ecosistema fintech más grande de la región. Pasarela, links y procesamiento físico." },
-    { name: "PayU", role: "Gateway / Agregador", countries: "Colombia, México, Brasil, Argentina, Chile, Perú", desc: "Pionera en el procesamiento de pagos en LATAM." },
+    { name: "dLocal", role: "Agregador Regional / PayFac", countries: "LATAM", desc: "Infraestructura unificada de cobros y dispersiones (payouts) para mercados emergentes." },
+    { name: "EBANX", role: "Agregador Regional / Procesador", countries: "LATAM", desc: "Especialista en conectar comercios globales con métodos de pago locales." },
+    { name: "Mercado Pago", role: "Agregador / Billetera Digital", countries: "LATAM", desc: "El ecosistema fintech más grande de la región. Pasarela, links y procesamiento físico." },
+    { name: "PayU", role: "Gateway / Agregador", countries: "LATAM", desc: "Pionera en el procesamiento de pagos en LATAM." },
     { name: "Stripe", role: "Gateway / Adquirente", countries: "México, Brasil (Soporte local)", desc: "El estándar tecnológico para cobros online. APIs premium." },
     { name: "Belvo", role: "Open Finance / APIs", countries: "LATAM", desc: "Plataforma líder de APIs de banca abierta e iniciación de pagos." },
     { name: "Prometeo", role: "Open Banking", countries: "LATAM", desc: "Infraestructura de interoperabilidad y pagos cuenta a cuenta (A2A)." },
     { name: "Pomelo", role: "Emisión de Tarjetas", countries: "LATAM", desc: "Infraestructura moderna para lanzar y escalar negocios de tarjetas y pagos." },
     { name: "Dock", role: "BaaS / Emisión", countries: "Brasil, LATAM", desc: "Soluciones completas de Banking as a Service y emisión de tarjetas." },
     { name: "Geopagos", role: "Infraestructura Adquirente", countries: "LATAM", desc: "Tecnología de marca blanca para adquirentes y agregadores en toda la región." },
-    { name: "8B (8b.world)", role: "Scan to Pay / Pagos con QR", countries: "Global (Mercados Emergentes)", desc: "Core especializado en orquestación de pagos con código QR, conectando métodos locales transfronterizos.", isPartner: true }
+    { name: "8B (8b.world)", role: "Scan to Pay / Pagos con QR", countries: "Global (Mercados Emergentes)", desc: "Core especializado en orquestación de pagos con código QR, conectando métodos locales transfronterizos.", isPartner: true },
+    { name: "Kushki", role: "Orquestador / Adquirente regional", countries: "LATAM", desc: "Opera como adquirente no bancario regional y orquestador tecnológico." },
+    { name: "Matera", role: "Core Banking & Pix", countries: "LATAM", desc: "Infraestructura de core bancario y procesamiento instantáneo." },
+    { name: "Volt", role: "Open Banking Payments", countries: "Global, Brasil", desc: "Red global de pagos A2A e iniciación de pagos en tiempo real." }
   ],
   MX: [
     { name: "Netpay", role: "Adquirente Omnicanal", countries: "México", desc: "Soluciones de terminales físicas y e-commerce con condiciones comerciales preferenciales.", isPartner: true },
@@ -738,43 +741,78 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
     { name: "Bzpay", role: "Agregador de Pagos", countries: "México", desc: "Servicios y procesamiento de pagos.", isPartner: true },
     { name: "Axxi Pay", role: "Agregador de Pagos", countries: "México", desc: "Plataforma de adquirencia.", isPartner: true },
     { name: "Previvale", role: "Vales y Beneficios", countries: "México", desc: "Vales de despensa y beneficios para empleados.", isPartner: true },
-    { name: "Openpay", role: "Pasarela / Agregador (BBVA)", countries: "México", desc: "Propiedad de BBVA. Alta tasa de aprobación y red Paynet." },
+    { name: "Openpay", role: "Pasarela / Agregador", countries: "México", desc: "Propiedad de BBVA. Alta tasa de aprobación y red Paynet." },
     { name: "Conekta", role: "Agregador de Pagos", countries: "México", desc: "Especialista en pagos con tarjeta y efectivo offline mediante OXXO Pay." },
     { name: "Clip", role: "Agregador físico & Online", countries: "México", desc: "Líder indiscutible de cobros presenciales para pymes." },
-    { name: "Bitso", role: "Crypto / Pagos", countries: "México, LATAM", desc: "Exchange líder habilitando remesas y pagos B2B con criptomonedas." },
-    { name: "Clara", role: "Gestión de Gastos B2B", countries: "México, LATAM", desc: "Tarjetas corporativas y control de gastos inteligente para empresas." },
-    { name: "Xepelin", role: "Pagos B2B / Factoraje", countries: "México, Chile", desc: "Plataforma de pagos B2B y financiamiento corporativo." },
+    { name: "Bitso", role: "Crypto / Pagos", countries: "México", desc: "Exchange líder habilitando remesas y pagos B2B con criptomonedas." },
+    { name: "Clara", role: "Gestión de Gastos B2B", countries: "México", desc: "Tarjetas corporativas y control de gastos inteligente para empresas." },
+    { name: "Xepelin", role: "Pagos B2B / Factoraje", countries: "México", desc: "Plataforma de pagos B2B y financiamiento corporativo." },
     { name: "Stori", role: "Neobanco / Tarjetas", countries: "México", desc: "Inclusión financiera con tarjetas de crédito y cuentas de alto rendimiento." },
     { name: "Klar", role: "Neobanco / Pagos", countries: "México", desc: "Alternativa digital a la banca tradicional con cuentas y crédito." },
     { name: "Aplazo", role: "BNPL", countries: "México", desc: "Plataforma de Buy Now, Pay Later para e-commerce y tiendas físicas." },
     { name: "Kueski Pay", role: "BNPL", countries: "México", desc: "El ecosistema de pagos a plazos (BNPL) más grande de México." },
     { name: "Spin by OXXO", role: "Billetera Digital", countries: "México", desc: "Ecosistema de pagos y tarjetas vinculado a la red OXXO." },
     { name: "STP", role: "Infraestructura SPEI", countries: "México", desc: "Principal conexión corporativa e infraestructura para transferencias SPEI directas." },
-    { name: "Albo", role: "Neobanco / B2B", countries: "México", desc: "Cuentas digitales para consumidores y herramientas financieras empresariales." }
+    { name: "Albo", role: "Neobanco / B2B", countries: "México", desc: "Cuentas digitales para consumidores y herramientas financieras empresariales." },
+    { name: "Billpocket", role: "mPOS", countries: "México", desc: "Agregador físico adquirido por Kushki para terminales punto de venta móviles." },
+    { name: "Sr. Pago", role: "mPOS / Agregador", countries: "México", desc: "Terminales móviles para pymes y no bancarizados (adquirida por Konfío)." },
+    { name: "Fondeadora", role: "Billetera Empresarial", countries: "México", desc: "Tarjetas corporativas e individuales de diseño impecable." },
+    { name: "Konfío", role: "Pagos B2B / Crédito", countries: "México", desc: "Plataforma financiera integral para pequeñas y medianas empresas." },
+    { name: "Covalto", role: "B2B / Banco PYME", countries: "México", desc: "Banco digital especializado en factoraje y crédito PYME." },
+    { name: "Swap", role: "Billetera / P2P", countries: "México", desc: "Pagos persona a persona sin comisiones a cualquier tarjeta o CLABE." },
+    { name: "Zettle (PayPal)", role: "mPOS", countries: "México", desc: "Terminales y soluciones integrales de punto de venta (anteriormente iZettle)." }
   ],
   BR: [
     { name: "PagBank", role: "Adquirente / Wallet", countries: "Brasil", desc: "Pionero de la agregación de pagos en Brasil." },
-    { name: "Stone", role: "Adquirente e Infraestructura", countries: "Brasil", desc: "Líder en cobros físicos y pasarelas en e-commerce." }
+    { name: "Stone", role: "Adquirente e Infraestructura", countries: "Brasil", desc: "Líder en cobros físicos y pasarelas en e-commerce." },
+    { name: "Cielo", role: "Adquirente / Procesador", countries: "Brasil", desc: "Una de las redes de pago más grandes de Brasil." },
+    { name: "Rede", role: "Adquirente (Itaú)", countries: "Brasil", desc: "Brazo de adquirencia del banco Itaú Unibanco." },
+    { name: "Getnet", role: "Adquirente Global", countries: "Brasil", desc: "Plataforma de adquirencia originada en Brasil, propiedad del Santander." },
+    { name: "Nubank", role: "Neobanco / Emisor", countries: "Brasil", desc: "El banco digital más grande de América Latina fuera de Asia." },
+    { name: "PicPay", role: "Billetera / Súper App", countries: "Brasil", desc: "Red social de pagos líder en P2P y QR en Brasil." },
+    { name: "Pagar.me", role: "Pasarela / Agregador", countries: "Brasil", desc: "Solución robusta de e-commerce (parte de StoneCo)." },
+    { name: "Zoop", role: "Fintech as a Service", countries: "Brasil", desc: "Plataforma white-label de adquirencia y BaaS." },
+    { name: "C6 Bank", role: "Neobanco", countries: "Brasil", desc: "Banco digital completo con infraestructura de pagos propia." }
   ],
   CO: [
-    { name: "Wompi", role: "Pasarela / Agregador (Bancolombia)", countries: "Colombia", desc: "La pasarela oficial de Bancolombia." },
-    { name: "Bold", role: "Agregador Pyme", countries: "Colombia", desc: "Datáfonos móviles y botones de PSE simples." }
+    { name: "Wompi", role: "Pasarela (Bancolombia)", countries: "Colombia", desc: "La pasarela oficial de Bancolombia para pagos online." },
+    { name: "Bold", role: "Agregador Pyme", countries: "Colombia", desc: "Datáfonos móviles y botones de PSE simples." },
+    { name: "Addi", role: "BNPL", countries: "Colombia", desc: "La plataforma líder de Buy Now, Pay Later en Colombia y Brasil." },
+    { name: "Nequi", role: "Billetera Digital", countries: "Colombia", desc: "La súper app financiera más utilizada para P2P en Colombia." },
+    { name: "DaviPlata", role: "Billetera Digital", countries: "Colombia", desc: "Ecosistema de pagos móviles nativo del Banco Davivienda." },
+    { name: "ePayco", role: "Agregador / Pasarela", countries: "Colombia", desc: "Ecosistema de pagos integrales, recaudos y dispersiones." },
+    { name: "Credibanco", role: "Red de Adquirencia", countries: "Colombia", desc: "Red histórica de procesamiento de tarjetas (Visa) en Colombia." },
+    { name: "Redeban", role: "Red de Adquirencia", countries: "Colombia", desc: "Red de procesamiento (Mastercard) e infraestructura financiera central." }
   ],
   AR: [
-    { name: "Payway", role: "Adquirente (Prisma)", countries: "Argentina", desc: "La red principal que procesa y gestiona la interoperabilidad del código QR MODO." },
-    { name: "Ualá Bis", role: "Agregador de Pagos", countries: "Argentina", desc: "Cobros inmediatos acreditados en la cuenta de Ualá." }
+    { name: "Payway", role: "Adquirente (Prisma)", countries: "Argentina", desc: "Red que procesa y gestiona la interoperabilidad del código QR MODO." },
+    { name: "Ualá", role: "Billetera / Agregador", countries: "Argentina", desc: "Ecosistema financiero y cobros inmediatos acreditados en la cuenta (Ualá Bis)." },
+    { name: "MODO", role: "Billetera de Bancos", countries: "Argentina", desc: "Solución unificada de pagos QR y A2A de los bancos tradicionales argentinos." },
+    { name: "Naranja X", role: "Emisor y Wallet", countries: "Argentina", desc: "Fintech con fuerte penetración en emisión de tarjetas y créditos." },
+    { name: "Fiserv Arg", role: "Adquirente Global", countries: "Argentina", desc: "Operador de la marca Posnet y principal procesador junto a Prisma." },
+    { name: "Todo Pago", role: "Agregador / Billetera", countries: "Argentina", desc: "Solución de Prisma Medios de Pago para e-commerce." }
   ],
   CL: [
     { name: "Transbank", role: "Adquirente histórico", countries: "Chile", desc: "El operador que históricamente monopolizó el procesamiento de tarjetas." },
-    { name: "Getnet Chile", role: "Adquirente competidor (Santander)", countries: "Chile", desc: "Introdujo el modelo de 4 partes en Chile rompiendo el monopolio." }
+    { name: "Getnet Chile", role: "Adquirente competidor", countries: "Chile", desc: "Introdujo el modelo de 4 partes en Chile rompiendo el monopolio." },
+    { name: "Mach", role: "Billetera Digital (Bci)", countries: "Chile", desc: "Cuenta digital prepago con mayor crecimiento en el país." },
+    { name: "Tenpo", role: "Neobanco", countries: "Chile", desc: "Primera fintech emisora de cuentas digitales y tarjetas prepago en Chile." },
+    { name: "Fintoc", role: "Open Banking / A2A", countries: "Chile", desc: "APIs para iniciación de pagos de cuenta a cuenta en Chile y México." },
+    { name: "PagoFácil", role: "Agregador / Pasarela", countries: "Chile", desc: "Solución sencilla de pagos online para pymes chilenas." }
   ],
   PE: [
-    { name: "Niubiz", role: "Adquirente y Gateway Principal", countries: "Perú", desc: "Anteriormente VisaNet Perú. El procesador más grande del país." },
-    { name: "IziPay", role: "Adquirente multimarca", countries: "Perú", desc: "Unifica el procesamiento de Visa y Mastercard." }
+    { name: "Niubiz", role: "Adquirente y Gateway", countries: "Perú", desc: "Anteriormente VisaNet Perú. El procesador más grande del país." },
+    { name: "IziPay", role: "Adquirente multimarca", countries: "Perú", desc: "Unifica el procesamiento de Visa y Mastercard." },
+    { name: "Yape", role: "Billetera Digital (BCP)", countries: "Perú", desc: "La aplicación de pagos P2P y QR dominante en Perú." },
+    { name: "Plin", role: "Red de Pagos A2A", countries: "Perú", desc: "Red interoperable de pagos inmediatos entre bancos (Interbank, BBVA, Scotiabank)." },
+    { name: "Culqi", role: "Pasarela / Agregador", countries: "Perú", desc: "Plataforma de pagos omnicanal propiedad de BCP/Krealo." },
+    { name: "PagoEfectivo", role: "Pagos Alternativos", countries: "Perú", desc: "El método líder de pagos en efectivo e internet (adquirida por Paysafe)." }
   ],
   REST: [
-    { name: "Kushki", role: "Orquestador / Adquirente regional", countries: "Ecuador, Colombia, México, Chile, Perú", desc: "Opera como adquirente no bancario regional y orquestador tecnológico." },
-    { name: "BAC Credomatic", role: "Adquirente líder", countries: "Centroamérica (CR, PA, GT, SV, HN)", desc: "El banco adquirente y procesador de pagos más grande de Centroamérica." }
+    { name: "BAC Credomatic", role: "Adquirente líder", countries: "Centroamérica", desc: "El banco adquirente y procesador de pagos más grande de Centroamérica." },
+    { name: "Hugo", role: "Súper App / Wallet", countries: "Centroamérica", desc: "Plataforma de delivery que evolucionó a servicios financieros (adquirida por Delivery Hero)." },
+    { name: "PagueloFacil", role: "Pasarela / Agregador", countries: "Panamá", desc: "Solución robusta de pagos en línea en Panamá." },
+    { name: "Kash", role: "P2P Transfers", countries: "Centroamérica", desc: "Aplicación móvil para transferencias respaldada por Mastercard." }
   ],
   KYC_AML: [
     { name: "Unico", role: "Identidad Digital Integral", countries: "LATAM, Global", desc: "Líder en validación de identidad y firma electrónica con alto nivel de conversión.", isPartner: true },
@@ -789,7 +827,10 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
     { name: "Shufti Pro", role: "Verificación de Identidad KYC", countries: "Global", desc: "Automatización global de flujos de verificación KYC." },
     { name: "LexisNexis", role: "Inteligencia de Identidad y AML", countries: "Global", desc: "Análisis masivo de riesgo, listas sancionadas (OFAC) y compliance global." },
     { name: "Auco", role: "Automatización de Cumplimiento", countries: "México, LATAM", desc: "Automatización de flujos de cumplimiento normativo y KYC corporativo." },
-    { name: "Velafi", role: "Validación y Prevención de Fraude", countries: "México, LATAM", desc: "Especialista en prevención de fraude, validación de identidad y verificación de empresas." }
+    { name: "Velafi", role: "Validación y Prevención de Fraude", countries: "México, LATAM", desc: "Especialista en prevención de fraude, validación de identidad y verificación de empresas." },
+    { name: "ClearSale", role: "Prevención de Fraude B2C", countries: "Brasil, LATAM", desc: "Gigante brasileño en revisión manual y automática de fraude e-commerce." },
+    { name: "Kount", role: "Prevención de Fraude Digital", countries: "Global", desc: "Plataforma de Equifax basada en inteligencia artificial para gestión de identidades y pagos." },
+    { name: "CyberSource", role: "Gateway y Fraude (Visa)", countries: "Global", desc: "Plataforma global de Visa con motor de decisión de riesgo avanzado." }
   ]
 };
 
