@@ -1134,18 +1134,102 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="relative z-10 border-t border-border py-12 bg-card/40 backdrop-blur-[2px]">
-        <div className="container text-center space-y-4">
-          <div className="flex items-center justify-center gap-2">
-            <span className="font-bold text-base">OnlyPayments</span>
-            <span className="text-[10px] px-1.5 py-0.5 rounded bg-secondary/80 border border-border text-muted-foreground font-mono">2026</span>
+      {/* FOOTER: MARCO LEGAL Y TRANSPARENCIA */}
+      <footer className="relative z-10 border-t border-border py-16 bg-card/40 backdrop-blur-[2px]">
+        <div className="container space-y-16">
+          
+          <div className="space-y-8 max-w-6xl mx-auto">
+            <div className="text-center space-y-2">
+              <h4 className="text-sm font-bold uppercase tracking-widest text-foreground">Marco Legal y Transparencia</h4>
+              <p className="text-xs text-muted-foreground">Operamos e informamos en estricto cumplimiento con los reguladores financieros de la región.</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-xs text-muted-foreground">
+              {/* Chile */}
+              <div className="space-y-3 p-5 rounded-2xl border border-border/50 bg-background/50 hover:bg-background transition-colors shadow-sm">
+                <div className="flex items-center gap-2 font-bold text-foreground text-sm">
+                  <span className="text-lg">🇨🇱</span> CMF Chile & Banco Central
+                </div>
+                <p className="leading-relaxed">Operación bajo normativa de Tasas de Intercambio reguladas por la CMF y el Banco Central de Chile.</p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <a href="https://cmfchile.cl" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors underline decoration-border underline-offset-4">CMF Chile ↗</a>
+                  <a href="https://bcentral.cl" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors underline decoration-border underline-offset-4">Banco Central ↗</a>
+                </div>
+              </div>
+              
+              {/* Mexico */}
+              <div className="space-y-3 p-5 rounded-2xl border border-border/50 bg-background/50 hover:bg-background transition-colors shadow-sm">
+                <div className="flex items-center gap-2 font-bold text-foreground text-sm">
+                  <span className="text-lg">🇲🇽</span> Banxico & CNBV
+                </div>
+                <p className="leading-relaxed">Cumplimiento con las disposiciones de Cuotas de Intercambio del Banco de México (Banxico) y la CNBV.</p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <a href="https://banxico.org.mx" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors underline decoration-border underline-offset-4">Banxico ↗</a>
+                </div>
+              </div>
+
+              {/* Brasil */}
+              <div className="space-y-3 p-5 rounded-2xl border border-border/50 bg-background/50 hover:bg-background transition-colors shadow-sm">
+                <div className="flex items-center gap-2 font-bold text-foreground text-sm">
+                  <span className="text-lg">🇧🇷</span> Banco Central do Brasil
+                </div>
+                <p className="leading-relaxed">Institución de pago conforme a la regulación de Arranjos de Pagamento del Banco Central do Brasil (BCB).</p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <a href="https://bcb.gov.br" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors underline decoration-border underline-offset-4">BCB ↗</a>
+                </div>
+              </div>
+
+              {/* Colombia */}
+              <div className="space-y-3 p-5 rounded-2xl border border-border/50 bg-background/50 hover:bg-background transition-colors shadow-sm">
+                <div className="flex items-center gap-2 font-bold text-foreground text-sm">
+                  <span className="text-lg">🇨🇴</span> SFC & Banco de la República
+                </div>
+                <p className="leading-relaxed">Adherido al Sistema de Pagos de Bajo Valor supervisado por la Superintendencia Financiera de Colombia (SFC).</p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <a href="https://superfinanciera.gov.co" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors underline decoration-border underline-offset-4">SFC ↗</a>
+                </div>
+              </div>
+
+              {/* Argentina */}
+              <div className="space-y-3 p-5 rounded-2xl border border-border/50 bg-background/50 hover:bg-background transition-colors shadow-sm">
+                <div className="flex items-center gap-2 font-bold text-foreground text-sm">
+                  <span className="text-lg">🇦🇷</span> BCRA
+                </div>
+                <p className="leading-relaxed">Proveedor de Servicios de Pago (PSP) registrado ante el BCRA y compatible con Transferencias 3.0.</p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <a href="https://www.bcra.gob.ar/transferencias-3-0/" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors underline decoration-border underline-offset-4">Transferencias 3.0 ↗</a>
+                  <a href="https://bcra.gob.ar" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors underline decoration-border underline-offset-4">Registro PSP ↗</a>
+                </div>
+              </div>
+
+              {/* Perú */}
+              <div className="space-y-3 p-5 rounded-2xl border border-border/50 bg-background/50 hover:bg-background transition-colors shadow-sm">
+                <div className="flex items-center gap-2 font-bold text-foreground text-sm">
+                  <span className="text-lg">🇵🇪</span> BCRP
+                </div>
+                <p className="leading-relaxed">Operaciones interoperables bajo los lineamientos del Banco Central de Reserva del Perú (BCRP).</p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <a href="https://bcrp.gob.pe" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors underline decoration-border underline-offset-4">BCRP ↗</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="text-xs text-muted-foreground font-light max-w-md mx-auto">
-            Datos curados a partir del Diccionario de Medios de Pago v6.0, normativas de Bancos Centrales globales y reportes públicos del ecosistema fintech (ej. Finnovista).
-          </p>
-          <div className="text-[10px] text-muted-foreground/60">
-            &copy; 2026 OnlyPayments. Directorio informativo. Las marcas comerciales listadas pertenecen a sus respectivos dueños.
+
+          <div className="border-t border-border/40 pt-8 mt-12 text-center space-y-5">
+            <div className="flex items-center justify-center gap-2">
+              <span className="font-bold text-base">OnlyPayments</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-secondary/80 border border-border text-muted-foreground font-mono">2026</span>
+            </div>
+            
+            <p className="text-xs text-muted-foreground font-light max-w-lg mx-auto leading-relaxed">
+              Datos curados a partir del Diccionario de Medios de Pago v6.0, normativas de Bancos Centrales globales y reportes públicos del ecosistema fintech.
+            </p>
+            
+            <div className="text-[10px] text-muted-foreground/60 flex items-center justify-center gap-4 flex-wrap">
+              <span>&copy; 2026 OnlyPayments.</span>
+              <span>Directorio informativo y educativo.</span>
+              <span>Las marcas comerciales listadas pertenecen a sus respectivos dueños.</span>
+            </div>
           </div>
         </div>
       </footer>
