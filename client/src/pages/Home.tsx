@@ -37,6 +37,7 @@ import {
 } from "../data";
 import { HeroParallax } from "@/components/HeroParallax";
 import { EcosystemDirectory } from "@/components/EcosystemDirectory";
+import { EcosystemFlows } from "@/components/EcosystemFlows";
 
 export default function Home() {
   const { user } = useAuth();
@@ -407,194 +408,21 @@ export default function Home() {
           {/* TAB 1: QUIÉN ES QUIÉN & MODELOS DE FLUJO */}
           {activeLibraryTab === 'ecosistema' && (
             <div className="space-y-12 max-w-6xl mx-auto">
-              
-              {/* Selector de Modelos */}
-              <div className="flex flex-col sm:flex-row items-center justify-between p-4 rounded-xl border border-border bg-card/30 gap-4">
-                <div>
-                  <h4 className="text-sm font-bold">Esquemas de Procesamiento B2B</h4>
-                  <p className="text-xs text-muted-foreground font-light">Compara cómo viaja el dinero según el modelo regulatorio local.</p>
+              <EcosystemFlows />
+
+              {/* Directorio de Proveedores y Pasarelas */}
+              <div className="mt-12 space-y-6">
+                <h4 className="text-xl font-bold tracking-tight text-center mb-8">Directorio del Ecosistema</h4>
+                
+                <div className="relative max-w-md mx-auto mb-8">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Buscar empresa (ej. Stripe, Toku, Clip)..."
+                    className="pl-10 h-12 bg-background/50 border-primary/20 focus-visible:ring-primary/50"
+                    value={providerSearchQuery}
+                    onChange={(e) => setProviderSearchQuery(e.target.value)}
+                  />
                 </div>
-                <div className="flex gap-2 p-1 rounded-lg bg-secondary/20 border border-border">
-                  <button 
-                    onClick={() => setActiveFlowModel('4partes')}
-                    className={`px-3 py-1.5 rounded text-xs font-semibold transition-all ${activeFlowModel === '4partes' ? 'bg-primary text-white shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
-                  >
-                    4 Partes (Global)
-                  </button>
-                  <button 
-                    onClick={() => setActiveFlowModel('mexico')}
-                    className={`px-3 py-1.5 rounded text-xs font-semibold transition-all ${activeFlowModel === 'mexico' ? 'bg-primary text-white shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
-                  >
-                    Flujo México (Switches locales)
-                  </button>
-                  <button 
-                    onClick={() => setActiveFlowModel('3partes')}
-                    className={`px-3 py-1.5 rounded text-xs font-semibold transition-all ${activeFlowModel === '3partes' ? 'bg-primary text-white shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
-                  >
-                    3 Partes (Cerrados)
-                  </button>
-                </div>
-              </div>
-
-              {/* Visualización del Diagrama de Flujo */}
-              <Card className="p-8 border-border bg-background/30 backdrop-blur shadow-inner">
-                {activeFlowModel === '4partes' && (
-                  <div className="space-y-6">
-                    <h5 className="text-sm font-bold text-accent uppercase font-mono tracking-wider">Modelo de 4 Partes (Global)</h5>
-                    <div className="grid grid-cols-2 md:grid-cols-6 gap-4 text-center">
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">1. Comprador</span>
-                        <span className="text-[10px] text-muted-foreground">Inicia compra</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">2. Gateway</span>
-                        <span className="text-[10px] text-muted-foreground">Cifra y envía</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">3. Adquirente</span>
-                        <span className="text-[10px] text-muted-foreground">Procesa arancel</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-primary/50 bg-primary/5 shadow-inner">
-                        <span className="text-xs font-bold block mb-1 text-primary">4. Red Tarjetas</span>
-                        <span className="text-[10px] text-muted-foreground">Visa/MC internacional</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">5. Emisor</span>
-                        <span className="text-[10px] text-muted-foreground">Valida fondos</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">6. Liquidación</span>
-                        <span className="text-[10px] text-muted-foreground">Comercio cobra</span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground font-light leading-relaxed">
-                      * El adquirente cobra una **tasa de descuento** al comercio, y le paga una **tasa de intercambio** al banco emisor. La marca de tarjeta actúa como la autopista que unifica la comunicación a nivel internacional.
-                    </p>
-                  </div>
-                )}
-
-                {activeFlowModel === 'mexico' && (
-                  <div className="space-y-6">
-                    <h5 className="text-sm font-bold text-accent uppercase font-mono tracking-wider">Flujo México (Cámaras de Compensación Domésticas)</h5>
-                    <div className="grid grid-cols-2 md:grid-cols-6 gap-4 text-center">
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">1. Comprador</span>
-                        <span className="text-[10px] text-muted-foreground">Checkout tarjeta</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">2. Gateway</span>
-                        <span className="text-[10px] text-muted-foreground">Captura de datos</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">3. Adquirente</span>
-                        <span className="text-[10px] text-muted-foreground">Banco local</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-accent/50 bg-accent/5 shadow-inner">
-                        <span className="text-xs font-bold block mb-1 text-accent">4. Switch Local</span>
-                        <span className="text-[10px] text-muted-foreground">Prosa / E-Global</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">5. Emisor</span>
-                        <span className="text-[10px] text-muted-foreground">Banco mexicano</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">6. SPEI (en efectivo/A2A)</span>
-                        <span className="text-[10px] text-muted-foreground">Compensación Banco de México</span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground font-light leading-relaxed">
-                      <strong>Particularidad de México:</strong> Si las tarjetas son emitidas y adquiridas localmente en México, la transacción no viaja por las redes globales de Visa/MC, sino que se enruta de forma doméstica a través de los switches locales <strong>Prosa</strong> y <strong>E-Global</strong> para su compensación.
-                    </p>
-                  </div>
-                )}
-
-                {activeFlowModel === '3partes' && (
-                  <div className="space-y-6">
-                    <h5 className="text-sm font-bold text-accent uppercase font-mono tracking-wider">Modelo de 3 Partes (Bucle Cerrado)</h5>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">1. Tarjetahabiente</span>
-                        <span className="text-[10px] text-muted-foreground">Posee tarjeta cerrada</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-primary/50 bg-primary/5">
-                        <span className="text-xs font-bold block mb-1 text-primary">2. Red / Emisor / Adquirente</span>
-                        <span className="text-[10px] text-muted-foreground">Es la misma entidad (ej. AMEX)</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">3. Comercio</span>
-                        <span className="text-[10px] text-muted-foreground">Afiliado directo</span>
-                      </div>
-                      <div className="p-4 rounded-xl border border-border bg-secondary/10">
-                        <span className="text-xs font-bold block mb-1">4. Liquidación</span>
-                        <span className="text-[10px] text-muted-foreground">Pago directo</span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground font-light leading-relaxed">
-                      * El esquema de bucle cerrado o de 3 partes significa que una sola empresa actúa como el emisor de la tarjeta, la red de procesamiento y el adquirente de los comercios (históricamente American Express, o Transbank en Chile bajo su antiguo monopolio regulatorio).
-                    </p>
-                  </div>
-                )}
-              </Card>
-
-              {/* Grilla de Actores */}
-              <div className="space-y-6">
-                <h4 className="text-lg font-bold tracking-tight text-center">Los {ECOSYSTEM_ACTORS.length} Actores Clave de la Cadena</h4>
-                <div className="flex flex-wrap gap-4">
-                  {ECOSYSTEM_ACTORS.map(actor => {
-                    const isSelected = selectedActorId === actor.id;
-                    return (
-                      <button
-                        key={actor.id}
-                        onClick={() => setSelectedActorId(actor.id)}
-                        className={`p-5 rounded-xl border text-left flex flex-col justify-between transition-all hover:scale-[1.02] w-full sm:w-[calc(50%-0.5rem)] md:w-[calc(25%-0.75rem)] ${
-                          isSelected
-                            ? 'bg-primary/5 border-primary shadow-sm'
-                            : 'bg-background hover:bg-secondary/20 border-border'
-                        }`}
-                      >
-                        <div className="space-y-2">
-                          <span className="text-[10px] font-mono text-accent font-semibold block">{actor.role}</span>
-                          <h5 className="font-bold text-sm">{actor.title}</h5>
-                        </div>
-                        <p className={`text-xs font-light mt-3 leading-relaxed border-t pt-3 ${isSelected ? 'text-foreground border-primary/30' : 'text-muted-foreground border-border'}`}>
-                          {actor.description}
-                        </p>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Crédito Fernando Estévez */}
-                <div className="mt-4 flex items-center gap-3 p-4 rounded-xl border border-border bg-secondary/10">
-                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 text-accent font-bold text-sm">FE</div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    Diagrama de actores y contenidos del glosario basados en el{" "}
-                    <strong className="text-foreground">Diccionario de Medios de Pago v6.0 (2026)</strong>{" "}
-                    · Colaboración de{" "}
-                    <a
-                      href="https://www.linkedin.com/in/fernando-estevez-vazquez/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent font-semibold hover:underline"
-                    >
-                      Fernando Estévez Vázquez ↗
-                    </a>
-                  </p>
-                </div>
-
-                {/* Directorio de Proveedores y Pasarelas */}
-                <div className="mt-12 space-y-6">
-                  <h4 className="text-xl font-bold tracking-tight text-center mb-8">Directorio del Ecosistema</h4>
-                  
-                  <div className="relative max-w-md mx-auto mb-8">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Buscar empresa (ej. Stripe, Toku, Clip)..."
-                      className="pl-10 h-12 bg-background/50 border-primary/20 focus-visible:ring-primary/50"
-                      value={providerSearchQuery}
-                      onChange={(e) => setProviderSearchQuery(e.target.value)}
-                    />
-                  </div>
 
                   {(() => {
                     const filteredCategories = Object.entries(PAYMENT_PROVIDERS).map(([category, providers]) => {
@@ -695,10 +523,7 @@ export default function Home() {
                     );
                   })()}
                 </div>
-
               </div>
-
-            </div>
           )}
 
           {/* TAB 2: DICCIONARIO DE PAGOS */}
