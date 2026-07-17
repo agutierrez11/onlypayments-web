@@ -720,14 +720,36 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
     { name: "EBANX", role: "Agregador Regional / Procesador", countries: "Brasil, México, Colombia, Chile, Argentina, Perú, Ecuador", desc: "Especialista en conectar comercios globales con métodos de pago locales." },
     { name: "Mercado Pago", role: "Agregador / Billetera Digital", countries: "Argentina, Brasil, México, Colombia, Chile, Perú", desc: "El ecosistema fintech más grande de la región. Pasarela, links y procesamiento físico." },
     { name: "PayU", role: "Gateway / Agregador", countries: "Colombia, México, Brasil, Argentina, Chile, Perú", desc: "Pionera en el procesamiento de pagos en LATAM." },
-    { name: "Stripe", role: "Gateway / Adquirente", countries: "México, Brasil (Soporte local)", desc: "El estándar tecnológico para cobros online. APIs premium." }
+    { name: "Stripe", role: "Gateway / Adquirente", countries: "México, Brasil (Soporte local)", desc: "El estándar tecnológico para cobros online. APIs premium." },
+    { name: "Belvo", role: "Open Finance / APIs", countries: "LATAM", desc: "Plataforma líder de APIs de banca abierta e iniciación de pagos." },
+    { name: "Prometeo", role: "Open Banking", countries: "LATAM", desc: "Infraestructura de interoperabilidad y pagos cuenta a cuenta (A2A)." },
+    { name: "Pomelo", role: "Emisión de Tarjetas", countries: "LATAM", desc: "Infraestructura moderna para lanzar y escalar negocios de tarjetas y pagos." },
+    { name: "Dock", role: "BaaS / Emisión", countries: "Brasil, LATAM", desc: "Soluciones completas de Banking as a Service y emisión de tarjetas." },
+    { name: "Geopagos", role: "Infraestructura Adquirente", countries: "LATAM", desc: "Tecnología de marca blanca para adquirentes y agregadores en toda la región." }
   ],
   MX: [
     { name: "Netpay", role: "Adquirente Omnicanal", countries: "México", desc: "Soluciones de terminales físicas y e-commerce con condiciones comerciales preferenciales.", isPartner: true },
     { name: "EfevoPay", role: "Agregador / B2B", countries: "México", desc: "Gestión de adquirencia para comercios tradicionales con alto margen de personalización.", isPartner: true },
+    { name: "Broxel", role: "Billetera / Pagos B2B", countries: "México", desc: "Soluciones de medios de pago, tarjetas corporativas y remesas.", isPartner: true },
+    { name: "Planet", role: "Agregador / Fintech", countries: "México, Global", desc: "Soluciones de pago integradas para retail y hospitality.", isPartner: true },
+    { name: "Prosepago", role: "Agregador de Pagos", countries: "México", desc: "Agregador de pagos con enfoque en PYMES.", isPartner: true },
+    { name: "Paibo", role: "Agregador de Pagos", countries: "México", desc: "Soluciones de cobro y terminales.", isPartner: true },
+    { name: "Bzpay", role: "Agregador de Pagos", countries: "México", desc: "Servicios y procesamiento de pagos.", isPartner: true },
+    { name: "Axxi Pay", role: "Agregador de Pagos", countries: "México", desc: "Plataforma de adquirencia.", isPartner: true },
+    { name: "Previvale", role: "Vales y Beneficios", countries: "México", desc: "Vales de despensa y beneficios para empleados.", isPartner: true },
     { name: "Openpay", role: "Pasarela / Agregador (BBVA)", countries: "México", desc: "Propiedad de BBVA. Alta tasa de aprobación y red Paynet." },
     { name: "Conekta", role: "Agregador de Pagos", countries: "México", desc: "Especialista en pagos con tarjeta y efectivo offline mediante OXXO Pay." },
-    { name: "Clip", role: "Agregador físico & Online", countries: "México", desc: "Líder indiscutible de cobros presenciales para pymes." }
+    { name: "Clip", role: "Agregador físico & Online", countries: "México", desc: "Líder indiscutible de cobros presenciales para pymes." },
+    { name: "Bitso", role: "Crypto / Pagos", countries: "México, LATAM", desc: "Exchange líder habilitando remesas y pagos B2B con criptomonedas." },
+    { name: "Clara", role: "Gestión de Gastos B2B", countries: "México, LATAM", desc: "Tarjetas corporativas y control de gastos inteligente para empresas." },
+    { name: "Xepelin", role: "Pagos B2B / Factoraje", countries: "México, Chile", desc: "Plataforma de pagos B2B y financiamiento corporativo." },
+    { name: "Stori", role: "Neobanco / Tarjetas", countries: "México", desc: "Inclusión financiera con tarjetas de crédito y cuentas de alto rendimiento." },
+    { name: "Klar", role: "Neobanco / Pagos", countries: "México", desc: "Alternativa digital a la banca tradicional con cuentas y crédito." },
+    { name: "Aplazo", role: "BNPL", countries: "México", desc: "Plataforma de Buy Now, Pay Later para e-commerce y tiendas físicas." },
+    { name: "Kueski Pay", role: "BNPL", countries: "México", desc: "El ecosistema de pagos a plazos (BNPL) más grande de México." },
+    { name: "Spin by OXXO", role: "Billetera Digital", countries: "México", desc: "Ecosistema de pagos y tarjetas vinculado a la red OXXO." },
+    { name: "STP", role: "Infraestructura SPEI", countries: "México", desc: "Principal conexión corporativa e infraestructura para transferencias SPEI directas." },
+    { name: "Albo", role: "Neobanco / B2B", countries: "México", desc: "Cuentas digitales para consumidores y herramientas financieras empresariales." }
   ],
   BR: [
     { name: "PagBank", role: "Adquirente / Wallet", countries: "Brasil", desc: "Pionero de la agregación de pagos en Brasil." },
