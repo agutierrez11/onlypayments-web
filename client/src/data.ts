@@ -725,7 +725,8 @@ export const PAYMENT_PROVIDERS: Record<string, PaymentProvider[]> = {
     { name: "Prometeo", role: "Open Banking", countries: "LATAM", desc: "Infraestructura de interoperabilidad y pagos cuenta a cuenta (A2A)." },
     { name: "Pomelo", role: "Emisión de Tarjetas", countries: "LATAM", desc: "Infraestructura moderna para lanzar y escalar negocios de tarjetas y pagos." },
     { name: "Dock", role: "BaaS / Emisión", countries: "Brasil, LATAM", desc: "Soluciones completas de Banking as a Service y emisión de tarjetas." },
-    { name: "Geopagos", role: "Infraestructura Adquirente", countries: "LATAM", desc: "Tecnología de marca blanca para adquirentes y agregadores en toda la región." }
+    { name: "Geopagos", role: "Infraestructura Adquirente", countries: "LATAM", desc: "Tecnología de marca blanca para adquirentes y agregadores en toda la región." },
+    { name: "8B (8b.world)", role: "Scan to Pay / Pagos con QR", countries: "Global (Mercados Emergentes)", desc: "Core especializado en orquestación de pagos con código QR, conectando métodos locales transfronterizos.", isPartner: true }
   ],
   MX: [
     { name: "Netpay", role: "Adquirente Omnicanal", countries: "México", desc: "Soluciones de terminales físicas y e-commerce con condiciones comerciales preferenciales.", isPartner: true },
