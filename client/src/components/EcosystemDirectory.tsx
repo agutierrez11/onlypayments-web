@@ -163,85 +163,78 @@ export function EcosystemDirectory() {
           })}
         </div>
 
-        {/* Data Table */}
-        <div className="bg-card border border-border/50 rounded-2xl overflow-hidden shadow-xl">
-          <div className="overflow-x-auto w-full">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-muted/30 text-muted-foreground text-xs uppercase tracking-wider whitespace-nowrap">
-                <tr>
-                  <th className="px-6 py-4 font-semibold">Proveedor</th>
-                  <th className="px-6 py-4 font-semibold">Categoría</th>
-                  <th className="px-6 py-4 font-semibold">Tier Target</th>
-                  <th className="px-6 py-4 font-semibold">Cobertura</th>
-                  <th className="px-6 py-4 font-semibold">Features Clave</th>
-                  <th className="px-6 py-4 font-semibold text-right">Integración</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/50">
-                <AnimatePresence>
-                  {filteredProviders.map((provider) => {
-                    const CatIcon = categoryIcons[provider.category];
-                    return (
-                      <motion.tr 
-                        key={provider.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        className="hover:bg-muted/20 transition-colors group"
-                      >
-                        <td className="px-6 py-5 whitespace-nowrap">
-                          <div className="font-bold text-base text-foreground">{provider.name}</div>
-                          <div className="text-xs text-muted-foreground">{provider.website}</div>
-                        </td>
-                        <td className="px-6 py-5 whitespace-nowrap">
-                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border ${categoryColors[provider.category]}`}>
-                            <CatIcon className="w-3 h-3" />
-                            {provider.category}
-                          </span>
-                        </td>
-                        <td className="px-6 py-5 whitespace-nowrap">
-                           <Badge variant={provider.tier === 'enterprise' ? 'default' : 'secondary'} className="text-[10px] uppercase">
-                             {provider.tier}
-                           </Badge>
-                        </td>
-                        <td className="px-6 py-5 whitespace-nowrap">
-                          <div className="flex gap-1">
-                            {provider.coverage.map(c => (
-                              <span key={c} className="text-xs px-2 py-0.5 rounded bg-muted text-muted-foreground border border-border/50">{c}</span>
-                            ))}
+        {/* Bento Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence>
+            {filteredProviders.map((provider) => {
+              const CatIcon = categoryIcons[provider.category];
+              return (
+                <motion.div 
+                  key={provider.id}
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="glass-panel glass-panel-hover rounded-3xl p-6 flex flex-col justify-between group cursor-pointer relative overflow-hidden"
+                >
+                  {/* Subtle Background Glow per Category */}
+                  <div className={`absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-20 pointer-events-none transition-opacity duration-500 group-hover:opacity-40 ${categoryColors[provider.category].split(' ')[0].replace('text-', 'bg-')}`} />
+
+                  <div>
+                    <div className="flex justify-between items-start mb-6">
+                      <div>
+                        <div className="font-extrabold text-2xl text-foreground tracking-tight mb-1">{provider.name}</div>
+                        <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
+                          {provider.website} <ChevronRight className="w-3 h-3" />
+                        </a>
+                      </div>
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-widest border ${categoryColors[provider.category]}`}>
+                        <CatIcon className="w-3.5 h-3.5" />
+                        {provider.category}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      <Badge variant={provider.tier === 'enterprise' ? 'default' : 'secondary'} className="text-[10px] uppercase tracking-wider bg-white/5 border-white/10">
+                        {provider.tier}
+                      </Badge>
+                      {provider.coverage.map(c => (
+                        <span key={c} className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-white/70 border border-white/10">{c}</span>
+                      ))}
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="text-xs font-mono text-white/40 uppercase tracking-widest">Core Capabilities</div>
+                      <div className="flex flex-col gap-2">
+                        {provider.features.map((f, i) => (
+                          <div key={i} className="flex items-start gap-2 text-white/70 text-sm">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span>{f}</span>
                           </div>
-                        </td>
-                        <td className="px-6 py-5">
-                          <div className="flex flex-wrap items-center gap-4">
-                            {provider.features.slice(0, 2).map((f, i) => (
-                              <div key={i} className="flex items-center gap-1.5 text-muted-foreground text-xs whitespace-nowrap">
-                                <CheckCircle2 className="w-3 h-3 text-primary" />
-                                {f}
-                              </div>
-                            ))}
-                          </div>
-                        </td>
-                        <td className="px-6 py-5 text-right whitespace-nowrap">
-                          <button className="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-semibold text-xs transition-colors opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0">
-                            Ver Documentación
-                            <ChevronRight className="w-4 h-4" />
-                          </button>
-                        </td>
-                      </motion.tr>
-                    )
-                  })}
-                </AnimatePresence>
-              </tbody>
-            </table>
-            
-            {filteredProviders.length === 0 && (
-              <div className="text-center py-16 text-muted-foreground">
-                <Server className="w-12 h-12 mx-auto mb-4 opacity-20" />
-                No se encontraron proveedores con ese filtro.
-              </div>
-            )}
-          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 pt-4 border-t border-white/10 flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
+                    <span className="text-xs font-mono text-white/50">API Docs</span>
+                    <button className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-black transition-colors">
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
         </div>
+        
+        {filteredProviders.length === 0 && (
+          <div className="text-center py-24 text-muted-foreground glass-panel rounded-3xl mt-8">
+            <Server className="w-16 h-16 mx-auto mb-6 opacity-20" />
+            <h3 className="text-xl font-bold text-white mb-2">No se encontraron resultados</h3>
+            <p className="text-white/50">Intenta con otros filtros o términos de búsqueda.</p>
+          </div>
+        )}
 
       </div>
     </section>
