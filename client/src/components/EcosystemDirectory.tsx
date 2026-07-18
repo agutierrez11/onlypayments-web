@@ -120,9 +120,9 @@ export function EcosystemDirectory() {
 
         {/* Data Table */}
         <div className="bg-card border border-border/50 rounded-2xl overflow-hidden shadow-xl">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-muted/30 text-muted-foreground text-xs uppercase tracking-wider">
+          <div className="overflow-x-auto w-full">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-muted/30 text-muted-foreground text-xs uppercase tracking-wider whitespace-nowrap">
                 <tr>
                   <th className="px-6 py-4 font-semibold">Proveedor</th>
                   <th className="px-6 py-4 font-semibold">Categoría</th>
@@ -144,22 +144,22 @@ export function EcosystemDirectory() {
                         exit={{ opacity: 0, scale: 0.95 }}
                         className="hover:bg-muted/20 transition-colors group"
                       >
-                        <td className="px-6 py-5">
+                        <td className="px-6 py-5 whitespace-nowrap">
                           <div className="font-bold text-base text-foreground">{provider.name}</div>
                           <div className="text-xs text-muted-foreground">{provider.website}</div>
                         </td>
-                        <td className="px-6 py-5">
+                        <td className="px-6 py-5 whitespace-nowrap">
                           <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border ${categoryColors[provider.category]}`}>
                             <CatIcon className="w-3 h-3" />
                             {provider.category}
                           </span>
                         </td>
-                        <td className="px-6 py-5">
+                        <td className="px-6 py-5 whitespace-nowrap">
                            <Badge variant={provider.tier === 'enterprise' ? 'default' : 'secondary'} className="text-[10px] uppercase">
                              {provider.tier}
                            </Badge>
                         </td>
-                        <td className="px-6 py-5">
+                        <td className="px-6 py-5 whitespace-nowrap">
                           <div className="flex gap-1">
                             {provider.coverage.map(c => (
                               <span key={c} className="text-xs px-2 py-0.5 rounded bg-muted text-muted-foreground border border-border/50">{c}</span>
@@ -167,16 +167,16 @@ export function EcosystemDirectory() {
                           </div>
                         </td>
                         <td className="px-6 py-5">
-                          <div className="flex items-center gap-4">
+                          <div className="flex flex-wrap items-center gap-4">
                             {provider.features.slice(0, 2).map((f, i) => (
-                              <div key={i} className="flex items-center gap-1.5 text-muted-foreground text-xs">
+                              <div key={i} className="flex items-center gap-1.5 text-muted-foreground text-xs whitespace-nowrap">
                                 <CheckCircle2 className="w-3 h-3 text-primary" />
                                 {f}
                               </div>
                             ))}
                           </div>
                         </td>
-                        <td className="px-6 py-5 text-right">
+                        <td className="px-6 py-5 text-right whitespace-nowrap">
                           <button className="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-semibold text-xs transition-colors opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0">
                             Ver Documentación
                             <ChevronRight className="w-4 h-4" />
