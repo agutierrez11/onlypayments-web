@@ -14,14 +14,41 @@ interface Provider {
 }
 
 const PROVIDERS_DB: Provider[] = [
+  // --- GATEWAYS ---
   { id: "stripe", name: "Stripe", category: "gateway", tier: "enterprise", coverage: ["Global", "MX", "BR"], features: ["API First", "Suscripciones", "Connect"], website: "stripe.com" },
-  { id: "8b", name: "8b", category: "orquestador", tier: "enterprise", coverage: ["MX", "Latam"], features: ["Scan to Pay", "A2A Routing", "Zero Fees Base"], website: "8b.world" },
-  { id: "mercadopago", name: "Mercado Pago", category: "adquirente", tier: "growth", coverage: ["Latam"], features: ["Billetera", "Crédito", "POS"], website: "mercadopago.com" },
-  { id: "clearsale", name: "ClearSale", category: "antifraude", tier: "enterprise", coverage: ["Global"], features: ["Machine Learning", "Revisión Manual", "Chargeback Guarantee"], website: "clear.sale" },
-  { id: "signifyd", name: "Signifyd", category: "antifraude", tier: "enterprise", coverage: ["Global"], features: ["Garantía de Contracargo", "Decisión Instantánea"], website: "signifyd.com" },
   { id: "dlocal", name: "dLocal", category: "gateway", tier: "enterprise", coverage: ["Latam", "APAC", "EMEA"], features: ["Cross-border", "Alternative Methods", "Payouts"], website: "dlocal.com" },
+  { id: "ebanx", name: "EBANX", category: "gateway", tier: "enterprise", coverage: ["Latam", "África", "Asia"], features: ["Pix", "Cross-border", "Local Acquiring"], website: "ebanx.com" },
+  { id: "kushki", name: "Kushki", category: "gateway", tier: "enterprise", coverage: ["Latam"], features: ["Adquirencia Regional", "Suscripciones", "Pay by Link"], website: "kushkipagos.com" },
+  { id: "conekta", name: "Conekta", category: "gateway", tier: "growth", coverage: ["MX"], features: ["OXXO Pay", "SPEI", "Tarjetas"], website: "conekta.com" },
+  { id: "openpay", name: "Openpay", category: "gateway", tier: "growth", coverage: ["MX", "CO", "PE"], features: ["Red Paynet", "Antifraude Básico", "Billetera"], website: "openpay.mx" },
+  { id: "payu", name: "PayU", category: "gateway", tier: "enterprise", coverage: ["Latam", "Global"], features: ["Integraciones Locales", "Múltiples Monedas"], website: "payu.com" },
+  { id: "adyen", name: "Adyen", category: "gateway", tier: "enterprise", coverage: ["Global", "MX", "BR"], features: ["Adquirencia Directa", "Omnicanalidad", "Risk Management"], website: "adyen.com" },
+
+  // --- ORQUESTADORES ---
+  { id: "8b", name: "8b", category: "orquestador", tier: "enterprise", coverage: ["MX", "Latam"], features: ["Scan to Pay", "A2A Routing", "Zero Fees Base"], website: "8b.world" },
+  { id: "yuno", name: "Yuno", category: "orquestador", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Smart Routing", "1 Click Checkout", "Dashboard Unificado"], website: "yuno.co" },
+  { id: "primer", name: "Primer", category: "orquestador", tier: "enterprise", coverage: ["Global"], features: ["Workflows Drag & Drop", "Agnóstico", "Fallbacks"], website: "primer.io" },
+  { id: "spreedly", name: "Spreedly", category: "orquestador", tier: "enterprise", coverage: ["Global"], features: ["Bóveda PCI", "Network Tokens", "API Agnóstica"], website: "spreedly.com" },
+  { id: "gr4vy", name: "Gr4vy", category: "orquestador", tier: "enterprise", coverage: ["Global"], features: ["Cloud Native", "Infraestructura Dedicada", "Smart Routing"], website: "gr4vy.com" },
+
+  // --- ANTI-FRAUDE ---
+  { id: "clearsale", name: "ClearSale", category: "antifraude", tier: "enterprise", coverage: ["Global", "BR", "MX"], features: ["Machine Learning", "Revisión Manual", "Chargeback Guarantee"], website: "clear.sale" },
+  { id: "signifyd", name: "Signifyd", category: "antifraude", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Garantía de Contracargo", "Decisión Instantánea", "SCA"], website: "signifyd.com" },
+  { id: "riskified", name: "Riskified", category: "antifraude", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Chargeback Guarantee", "Policy Protect", "Deco"], website: "riskified.com" },
+  { id: "konduto", name: "Konduto", category: "antifraude", tier: "growth", coverage: ["BR", "Latam"], features: ["Comportamiento de Navegación", "Reglas Custom", "ML"], website: "konduto.com" },
+  { id: "sift", name: "Sift", category: "antifraude", tier: "enterprise", coverage: ["Global"], features: ["Digital Trust", "Account Takeover", "Dispute Management"], website: "sift.com" },
+  { id: "bayonet", name: "Bayonet", category: "antifraude", tier: "startup", coverage: ["MX", "Latam"], features: ["Graph Network Latam", "Alertas Tempranas", "Reglas Flexibles"], website: "bayonet.io" },
+  { id: "cybersource", name: "Cybersource", category: "antifraude", tier: "enterprise", coverage: ["Global"], features: ["Decision Manager", "Visa Network", "Reglas Complejas"], website: "cybersource.com" },
+
+  // --- ADQUIRENTES / AGREGADORES ---
+  { id: "mercadopago", name: "Mercado Pago", category: "adquirente", tier: "growth", coverage: ["Latam"], features: ["Billetera", "Crédito", "Agregador"], website: "mercadopago.com" },
   { id: "prosa", name: "Prosa", category: "adquirente", tier: "enterprise", coverage: ["MX"], features: ["Cámara de Compensación", "Switch", "ATM"], website: "prosa.com.mx" },
-  { id: "conekta", name: "Conekta", category: "gateway", tier: "growth", coverage: ["MX"], features: ["OXXO Pay", "Transferencias", "Tarjetas"], website: "conekta.com" },
+  { id: "eglobal", name: "E-Global", category: "adquirente", tier: "enterprise", coverage: ["MX"], features: ["Switch", "Procesamiento Emisor/Adquirente"], website: "eglobal.com.mx" },
+  { id: "fiserv", name: "Fiserv", category: "adquirente", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Procesamiento Core", "Terminales POS", "Omnicanalidad"], website: "fiserv.com" },
+  { id: "getnet", name: "Getnet", category: "adquirente", tier: "enterprise", coverage: ["Latam", "Global"], features: ["Adquirencia Directa", "E-commerce", "POS"], website: "getnet.com" },
+  { id: "clip", name: "Clip", category: "adquirente", tier: "growth", coverage: ["MX"], features: ["Agregador", "Terminales Físicas", "Préstamos"], website: "clip.mx" },
+  { id: "niubiz", name: "Niubiz", category: "adquirente", tier: "enterprise", coverage: ["PE"], features: ["Adquirencia Perú", "Pago con DNI", "E-commerce"], website: "niubiz.com.pe" },
+  { id: "transbank", name: "Transbank", category: "adquirente", tier: "enterprise", coverage: ["CL"], features: ["Webpay", "Adquirencia Chile", "POS"], website: "transbank.cl" },
 ];
 
 const categoryColors = {
