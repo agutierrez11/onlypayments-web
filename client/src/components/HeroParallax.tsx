@@ -26,7 +26,7 @@ export function HeroParallax({
   const yWidgetBottom = useTransform(scrollYProgress, [0, 1], [0, -250]);
 
   return (
-    <section ref={containerRef} className="relative z-10 overflow-hidden min-h-[100vh] flex items-center justify-center bg-background">
+    <section ref={containerRef} className="relative z-10 overflow-hidden pt-32 pb-72 lg:pb-96 flex flex-col items-center justify-start bg-background">
       
       {/* Premium Flow Shader Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -42,7 +42,7 @@ export function HeroParallax({
       {/* Main Content */}
       <motion.div 
         style={{ y: yText, opacity: opacityText }}
-        className="container max-w-6xl text-center space-y-10 z-20 relative px-6 mt-12"
+        className="container max-w-6xl text-center space-y-10 z-20 relative px-6"
       >
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -166,7 +166,7 @@ export function HeroParallax({
           initial={{ opacity: 0, y: 150, rotateX: 15 }}
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 1.8, delay: 0.8, ease: "easeOut" }}
-          className="absolute -bottom-[5%] left-1/2 -translate-x-1/2 w-[400px] p-8 rounded-[2rem] glass-panel flex flex-col gap-6 transform-style-3d shadow-[0_-20px_80px_rgba(255,255,255,0.05)] border-t border-white/20"
+          className="absolute bottom-8 lg:bottom-16 left-1/2 -translate-x-1/2 w-[400px] max-w-[90vw] p-8 rounded-[2rem] glass-panel flex flex-col gap-6 transform-style-3d shadow-[0_-20px_80px_rgba(255,255,255,0.05)] border-t border-white/20"
         >
            <div className="flex items-center gap-4">
              <div className="p-4 bg-white/10 rounded-2xl shadow-inner">
