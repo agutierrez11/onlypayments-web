@@ -86,128 +86,123 @@ export function EcosystemDirectory({
                  <div className="grid grid-cols-2 gap-4 pt-2">
                    <div className="space-y-1">
                      <span className="text-[10px] text-primary uppercase font-bold font-mono tracking-wider block">MRR Fintech</span>
-                     <p className="text-xl font-extrabold text-white">{selectedCountry.mrr}</p>
-                   </div>
-                   <div className="space-y-1">
-                     <span className="text-[10px] text-accent uppercase font-bold font-mono tracking-wider block">Crecimiento</span>
-                     <p className="text-xl font-extrabold text-white">{selectedCountry.growth}</p>
-                   </div>
-                 </div>
-              </div>
-            </div>
-          </motion.div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {countryKeys.map((key) => {
+              const country = COUNTRIES[key];
+              const isSelected = key === selectedCountryKey;
+              return (
+                <button
+                  key={key}
+                  onClick={() => setSelectedCountryKey(key)}
+                  className={`
+                    relative p-4 rounded-2xl flex items-center gap-4 transition-all duration-300 text-left overflow-hidden group
+                    ${isSelected 
+                      ? "bg-white/10 border-white/20 shadow-[0_0_30px_rgba(var(--primary),0.15)]" 
+                      : "bg-transparent border-transparent hover:bg-white/5"}
+                    border
+                  `}
+                >
+                  {isSelected && (
+                    <motion.div 
+                      layoutId="activeCountryIndicator"
+                      className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-50"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <span className="text-3xl relative z-10 filter drop-shadow-md group-hover:scale-110 transition-transform">{country.flag}</span>
+                  <div className="relative z-10">
+                    <span className={`block font-bold text-lg tracking-tight ${isSelected ? "text-white" : "text-white/60"}`}>
+                      {country.name}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedCountryKey}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md"
+            >
+              <h4 className="text-sm font-mono text-primary font-bold uppercase tracking-wider mb-2">Panorama</h4>
+              <p className="text-sm text-white/70 leading-relaxed">
+                {selectedCountryData.description}
+              </p>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
-        {/* 3D Cascading Carousel */}
-        <div className="w-full xl:w-2/3 relative h-[600px] flex items-center justify-center perspective-[2000px]">
-          
-          {selectedCountryMethods.length > 0 ? (
-            <div className="relative w-full max-w-[500px] h-full transform-style-3d">
-              <AnimatePresence mode="popLayout">
-                {selectedCountryMethods.map((method, idx) => {
-                  // Calcular la distancia relativa al índice activo
-                  let distance = idx - activeIndex;
-                  // Manejar el wrap-around para hacerlo infinito visualmente
-                  if (distance > selectedCountryMethods.length / 2) distance -= selectedCountryMethods.length;
-                  if (distance < -selectedCountryMethods.length / 2) distance += selectedCountryMethods.length;
-
-                  // Solo renderizamos las tarjetas que están "cerca" para optimizar
-                  if (Math.abs(distance) > 2) return null;
-
-                  const isCenter = distance === 0;
-                  const xOffset = distance * 120;
-                  const zOffset = -Math.abs(distance) * 150;
-                  const rotateY = distance * -15;
-                  const opacity = 1 - Math.abs(distance) * 0.3;
-                  const zIndex = 10 - Math.abs(distance);
-
-                  return (
-                    <motion.div
-                      key={`${selectedCountryKey}-${idx}`}
-                      initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                      animate={{ 
-                        opacity, 
-                        x: xOffset,
-                        z: zOffset,
-                        rotateY,
-                        scale: isCenter ? 1 : 0.9,
-                        zIndex
-                      }}
-                      exit={{ opacity: 0, scale: 0.8, y: -50 }}
-                      transition={{ duration: 0.6, type: "spring", bounce: 0.2 }}
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[450px]"
-                    >
-                      <Card className={`w-full h-full p-8 rounded-3xl backdrop-blur-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 ${
-                        isCenter 
-                          ? 'border-primary/50 bg-[#0a0a0f]/90 shadow-[0_20px_50px_rgba(0,0,0,0.5),_0_0_30px_rgba(var(--primary),0.2)]' 
-                          : 'border-white/10 bg-[#0a0a0f]/50 shadow-xl pointer-events-none'
-                      }`}>
+        {/* Right Column: Bento Grid of Methods */}
+        <div className="w-full lg:w-2/3">
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={selectedCountryKey}
+              initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
+              transition={{ duration: 0.4, staggerChildren: 0.1 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {selectedCountryMethods.length > 0 ? (
+                selectedCountryMethods.map((method, idx) => (
+                  <motion.div
+                    key={method.id || method.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    className="group relative"
+                  >
+                    <Card className="h-full p-6 lg:p-8 bg-[#0d0f12]/80 border-white/5 hover:border-white/20 transition-all duration-300 rounded-3xl overflow-hidden backdrop-blur-xl hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] hover:-translate-y-1">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      
+                      <div className="relative z-10 flex flex-col h-full space-y-6">
+                        <div className="flex items-start justify-between">
+                          <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-4xl shadow-inner group-hover:scale-110 transition-transform duration-500">
+                            {method.logo}
+                          </div>
+                          <span className="text-[9px] font-mono px-3 py-1 rounded-full bg-white/5 text-white/60 border border-white/10 uppercase tracking-widest">
+                            {method.type}
+                          </span>
+                        </div>
                         
-                        <div className="relative z-10 space-y-6">
-                          <div className="flex items-center justify-between">
-                            <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center text-5xl shadow-inner border border-white/10">
-                              {method.logo}
-                            </div>
-                            <span className="text-[10px] font-mono px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold tracking-widest uppercase border border-primary/30">
-                              {method.type}
-                            </span>
-                          </div>
-                          
-                          <div>
-                            <h5 className="font-extrabold text-4xl mb-3 tracking-tight text-white">{method.name}</h5>
-                            <p className="text-base text-white/60 leading-relaxed font-light line-clamp-3">{method.description}</p>
-                          </div>
+                        <div className="flex-grow">
+                          <h5 className="font-extrabold text-2xl mb-2 tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all">
+                            {method.name}
+                          </h5>
+                          <p className="text-sm text-white/50 leading-relaxed font-light line-clamp-3">
+                            {method.description}
+                          </p>
                         </div>
 
-                        <div className="relative z-10 p-6 rounded-2xl bg-black/40 border border-white/5 grid grid-cols-2 gap-6 mt-auto">
+                        <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/5">
                           <div>
-                            <span className="text-[10px] text-white/40 block uppercase font-mono font-bold tracking-wider mb-2">Liquidación</span>
-                            <span className="font-bold text-white text-lg">{method.settlement}</span>
+                            <span className="text-[10px] text-white/30 uppercase font-mono font-bold tracking-widest block mb-1">Liquidación</span>
+                            <span className="font-bold text-white text-sm">{method.settlement}</span>
                           </div>
                           <div>
-                            <span className="text-[10px] text-white/40 block uppercase font-mono font-bold tracking-wider mb-2">Comisión Avg.</span>
-                            <span className="font-bold text-accent text-lg">{method.fee}</span>
+                            <span className="text-[10px] text-white/30 uppercase font-mono font-bold tracking-widest block mb-1">Comisión Avg</span>
+                            <span className="font-bold text-primary text-sm">{method.fee}</span>
                           </div>
                         </div>
-                      </Card>
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
-
-              {/* Controles del Carousel - Altamente Visibles */}
-              {selectedCountryMethods.length > 1 && (
-                <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-6 z-50">
-                  <button 
-                    onClick={handlePrev}
-                    className="w-14 h-14 rounded-full flex items-center justify-center bg-slate-900 text-white shadow-xl hover:bg-primary hover:text-white hover:scale-110 hover:-translate-x-2 transition-all group"
-                  >
-                    <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
-                  </button>
-                  <div className="flex flex-col items-center">
-                    <span className="text-[10px] uppercase font-mono font-bold tracking-widest text-slate-400">Navegar</span>
-                    <div className="text-sm font-mono font-bold text-slate-800 dark:text-white">
-                      {activeIndex + 1} / {selectedCountryMethods.length}
-                    </div>
-                  </div>
-                  <button 
-                    onClick={handleNext}
-                    className="w-14 h-14 rounded-full flex items-center justify-center bg-slate-900 text-white shadow-xl hover:bg-primary hover:text-white hover:scale-110 hover:translate-x-2 transition-all group"
-                  >
-                    <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                      </div>
+                    </Card>
+                  </motion.div>
+                ))
+              ) : (
+                <div className="col-span-full h-[400px] flex items-center justify-center">
+                  <Card className="w-full max-w-sm p-12 border-dashed border-2 border-white/10 bg-white/5 flex flex-col items-center justify-center text-center space-y-4 rounded-3xl backdrop-blur-md">
+                    <span className="text-6xl opacity-50 mb-4">🏜️</span>
+                    <p className="text-xl font-bold text-white">Infraestructura en Mapeo</p>
+                    <p className="text-sm text-white/50">Nuestros agentes están analizando los datos regulatorios para este país.</p>
+                  </Card>
                 </div>
               )}
-            </div>
-          ) : (
-            <div className="w-full max-w-[500px] h-[450px] flex items-center justify-center">
-              <Card className="w-full h-full p-8 border-dashed border-2 border-white/10 bg-white/5 flex flex-col items-center justify-center text-center space-y-4 rounded-3xl backdrop-blur-md">
-                <span className="text-6xl opacity-50 mb-4">🏜️</span>
-                <p className="text-xl font-bold text-white">Infraestructura en Mapeo</p>
-                <p className="text-sm text-white/50 max-w-[250px]">Nuestros agentes están analizando los datos regulatorios para este país.</p>
-              </Card>
-            </div>
-          )}
 
         </div>
       </div>
