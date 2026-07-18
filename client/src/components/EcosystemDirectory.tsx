@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Building2, Server, ShieldCheck, CheckCircle2, ChevronRight, Filter, Network, Fingerprint } from "lucide-react";
+import { Globe, Building2, Server, ShieldCheck, CheckCircle2, ChevronRight, Filter, Network, Fingerprint, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface Provider {
