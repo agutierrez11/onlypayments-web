@@ -38,6 +38,7 @@ import {
 import { HeroParallax } from "@/components/HeroParallax";
 import { EcosystemDirectory } from "@/components/EcosystemDirectory";
 import { EcosystemFlows } from "@/components/EcosystemFlows";
+import { AssessmentQuiz } from "@/components/AssessmentQuiz";
 
 export default function Home() {
   const { user } = useAuth();
@@ -1091,6 +1092,9 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {/* LEAD MAGNET: ASSESSMENT QUIZ */}
+      <AssessmentQuiz />
 
       {/* REGISTRO AL NEWSLETTER REAL */}
       <section className="relative z-10 py-20 bg-gradient-to-r from-primary/10 to-accent/10 border-t border-border backdrop-blur-[2px]">
