@@ -1,12 +1,12 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Building2, Server, ShieldCheck, CheckCircle2, ChevronRight, Filter } from "lucide-react";
+import { Globe, Building2, Server, ShieldCheck, CheckCircle2, ChevronRight, Filter, Network } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface Provider {
   id: string;
   name: string;
-  category: "gateway" | "adquirente" | "antifraude" | "orquestador";
+  category: "gateway" | "adquirente" | "antifraude" | "orquestador" | "switch";
   tier: "enterprise" | "growth" | "startup";
   coverage: string[];
   features: string[];
@@ -14,7 +14,7 @@ interface Provider {
 }
 
 const PROVIDERS_DB: Provider[] = [
-  // --- GATEWAYS ---
+  // --- GATEWAYS / AGREGADORES ---
   { id: "stripe", name: "Stripe", category: "gateway", tier: "enterprise", coverage: ["Global", "MX", "BR"], features: ["API First", "Suscripciones", "Connect"], website: "stripe.com" },
   { id: "dlocal", name: "dLocal", category: "gateway", tier: "enterprise", coverage: ["Latam", "APAC", "EMEA"], features: ["Cross-border", "Alternative Methods", "Payouts"], website: "dlocal.com" },
   { id: "ebanx", name: "EBANX", category: "gateway", tier: "enterprise", coverage: ["Latam", "África", "Asia"], features: ["Pix", "Cross-border", "Local Acquiring"], website: "ebanx.com" },
@@ -23,6 +23,8 @@ const PROVIDERS_DB: Provider[] = [
   { id: "openpay", name: "Openpay", category: "gateway", tier: "growth", coverage: ["MX", "CO", "PE"], features: ["Red Paynet", "Antifraude Básico", "Billetera"], website: "openpay.mx" },
   { id: "payu", name: "PayU", category: "gateway", tier: "enterprise", coverage: ["Latam", "Global"], features: ["Integraciones Locales", "Múltiples Monedas"], website: "payu.com" },
   { id: "adyen", name: "Adyen", category: "gateway", tier: "enterprise", coverage: ["Global", "MX", "BR"], features: ["Adquirencia Directa", "Omnicanalidad", "Risk Management"], website: "adyen.com" },
+  { id: "mercadopago", name: "Mercado Pago", category: "gateway", tier: "growth", coverage: ["Latam"], features: ["Billetera", "Crédito", "Agregador"], website: "mercadopago.com" },
+  { id: "clip", name: "Clip", category: "gateway", tier: "growth", coverage: ["MX"], features: ["Agregador", "Terminales Físicas", "Préstamos"], website: "clip.mx" },
 
   // --- ORQUESTADORES ---
   { id: "8b", name: "8b", category: "orquestador", tier: "enterprise", coverage: ["MX", "Latam"], features: ["Scan to Pay", "A2A Routing", "Zero Fees Base"], website: "8b.world" },
@@ -40,15 +42,15 @@ const PROVIDERS_DB: Provider[] = [
   { id: "bayonet", name: "Bayonet", category: "antifraude", tier: "startup", coverage: ["MX", "Latam"], features: ["Graph Network Latam", "Alertas Tempranas", "Reglas Flexibles"], website: "bayonet.io" },
   { id: "cybersource", name: "Cybersource", category: "antifraude", tier: "enterprise", coverage: ["Global"], features: ["Decision Manager", "Visa Network", "Reglas Complejas"], website: "cybersource.com" },
 
-  // --- ADQUIRENTES / AGREGADORES ---
-  { id: "mercadopago", name: "Mercado Pago", category: "adquirente", tier: "growth", coverage: ["Latam"], features: ["Billetera", "Crédito", "Agregador"], website: "mercadopago.com" },
-  { id: "prosa", name: "Prosa", category: "adquirente", tier: "enterprise", coverage: ["MX"], features: ["Cámara de Compensación", "Switch", "ATM"], website: "prosa.com.mx" },
-  { id: "eglobal", name: "E-Global", category: "adquirente", tier: "enterprise", coverage: ["MX"], features: ["Switch", "Procesamiento Emisor/Adquirente"], website: "eglobal.com.mx" },
+  // --- ADQUIRENTES DIRECTOS (Bancos/Procesadores Core) ---
   { id: "fiserv", name: "Fiserv", category: "adquirente", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Procesamiento Core", "Terminales POS", "Omnicanalidad"], website: "fiserv.com" },
   { id: "getnet", name: "Getnet", category: "adquirente", tier: "enterprise", coverage: ["Latam", "Global"], features: ["Adquirencia Directa", "E-commerce", "POS"], website: "getnet.com" },
-  { id: "clip", name: "Clip", category: "adquirente", tier: "growth", coverage: ["MX"], features: ["Agregador", "Terminales Físicas", "Préstamos"], website: "clip.mx" },
   { id: "niubiz", name: "Niubiz", category: "adquirente", tier: "enterprise", coverage: ["PE"], features: ["Adquirencia Perú", "Pago con DNI", "E-commerce"], website: "niubiz.com.pe" },
   { id: "transbank", name: "Transbank", category: "adquirente", tier: "enterprise", coverage: ["CL"], features: ["Webpay", "Adquirencia Chile", "POS"], website: "transbank.cl" },
+
+  // --- SWITCHES / CÁMARAS DE COMPENSACIÓN ---
+  { id: "prosa", name: "Prosa", category: "switch", tier: "enterprise", coverage: ["MX"], features: ["Cámara de Compensación", "Switch Transaccional", "ATM"], website: "prosa.com.mx" },
+  { id: "eglobal", name: "E-Global", category: "switch", tier: "enterprise", coverage: ["MX"], features: ["Switch", "Procesamiento Emisor/Adquirente"], website: "eglobal.com.mx" },
 ];
 
 const categoryColors = {
@@ -56,6 +58,7 @@ const categoryColors = {
   adquirente: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20",
   antifraude: "text-rose-500 bg-rose-500/10 border-rose-500/20",
   orquestador: "text-purple-500 bg-purple-500/10 border-purple-500/20",
+  switch: "text-amber-500 bg-amber-500/10 border-amber-500/20",
 };
 
 const categoryIcons = {
@@ -63,6 +66,7 @@ const categoryIcons = {
   adquirente: Building2,
   antifraude: ShieldCheck,
   orquestador: Globe,
+  switch: Network,
 };
 
 export function EcosystemDirectory() {
