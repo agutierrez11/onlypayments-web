@@ -29,6 +29,10 @@ const PROVIDERS_DB: Provider[] = [
   // --- ORQUESTADORES ---
   { id: "8b", name: "8b", category: "orquestador", tier: "enterprise", coverage: ["MX", "Latam"], features: ["Scan to Pay", "A2A Routing", "Zero Fees Base"], website: "8b.world" },
   { id: "yuno", name: "Yuno", category: "orquestador", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Smart Routing", "1 Click Checkout", "Dashboard Unificado"], website: "yuno.co" },
+  { id: "deuna", name: "DEUNA", category: "orquestador", tier: "growth", coverage: ["Latam"], features: ["One-Click Checkout", "Orquestación Latam", "Aumento de Conversión"], website: "deuna.com" },
+  { id: "toku", name: "Toku", category: "orquestador", tier: "growth", coverage: ["CL", "MX", "Latam"], features: ["Recaudación Automática", "Suscripciones B2B", "Smart Routing"], website: "trytoku.com" },
+  { id: "orkestapay", name: "OrkestaPay", category: "orquestador", tier: "startup", coverage: ["MX"], features: ["Smart Routing MX", "Agnóstico", "Switch Multi-Adquirente"], website: "orkestapay.com" },
+  { id: "paynau", name: "Paynau", category: "orquestador", tier: "startup", coverage: ["MX", "Latam"], features: ["Multi-Gateway", "Links de Pago", "Checkout Unificado"], website: "paynau.com" },
   { id: "primer", name: "Primer", category: "orquestador", tier: "enterprise", coverage: ["Global"], features: ["Workflows Drag & Drop", "Agnóstico", "Fallbacks"], website: "primer.io" },
   { id: "spreedly", name: "Spreedly", category: "orquestador", tier: "enterprise", coverage: ["Global"], features: ["Bóveda PCI", "Network Tokens", "API Agnóstica"], website: "spreedly.com" },
   { id: "gr4vy", name: "Gr4vy", category: "orquestador", tier: "enterprise", coverage: ["Global"], features: ["Cloud Native", "Infraestructura Dedicada", "Smart Routing"], website: "gr4vy.com" },
