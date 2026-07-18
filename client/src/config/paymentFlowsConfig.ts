@@ -4,14 +4,13 @@ export const PAYMENT_SCENARIOS = [
   {
     id: 'tarjeta-estandar',
     name: 'Pago con Tarjeta',
-    description: 'El flujo tradicional de 4 partes (Four-Party Model).',
+    description: 'El clásico Modelo de 4 Partes (Four-Party Model) de la industria.',
     icon: CreditCard,
     steps: [
-      { id: 1, name: 'ORIGEN', label: 'El Origen', icon: User, desc: 'Comprador ingresa tarjeta en el Checkout.', protocol: 'HTTPS', latency: '0ms' },
-      { id: 2, name: 'PASARELA', label: 'Gateway', icon: Server, desc: 'Tokenización y reglas básicas antifraude.', protocol: 'REST API', latency: '45ms' },
-      { id: 3, name: 'ADQUIRENTE', label: 'Adquirente', icon: Building2, desc: 'Solicita fondos a la red y cobra Tasa de Descuento.', protocol: 'ISO 8583', latency: '120ms' },
-      { id: 4, name: 'RED', label: 'Switch / Red', icon: Zap, desc: 'Visa/MC rutea la transacción al emisor.', protocol: 'ISO 8583', latency: '180ms' },
-      { id: 5, name: 'EMISOR', label: 'Emisor', icon: Landmark, desc: 'Aprueba o rechaza por fondos y riesgo.', protocol: 'Core Bancario', latency: '300ms' },
+      { id: 1, name: 'TARJETAHABIENTE', label: 'Comprador', icon: User, desc: 'Dueño de la tarjeta. Inicia la compra.', protocol: 'NFC/Web', latency: '0ms' },
+      { id: 2, name: 'COMERCIO', label: 'Merchant', icon: Server, desc: 'Vende el producto. Captura vía Gateway/POS.', protocol: 'REST API', latency: '45ms' },
+      { id: 3, name: 'ADQUIRENTE', label: 'Banco Adquirente', icon: Building2, desc: 'Adquiere la transacción y la rutea a la Red (Visa/MC).', protocol: 'ISO 8583', latency: '120ms' },
+      { id: 4, name: 'EMISOR', label: 'Banco Emisor', icon: Landmark, desc: 'Dueño de los fondos. Autoriza o declina.', protocol: 'Core Bancario', latency: '300ms' },
     ]
   },
   {
