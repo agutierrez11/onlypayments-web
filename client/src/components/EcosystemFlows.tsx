@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Play, Pause, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PAYMENT_SCENARIOS } from "../data/paymentFlowsConfig";
+import { PAYMENT_SCENARIOS } from "../config/paymentFlowsConfig";
 
 export function EcosystemFlows() {
   const [activeScenarioIdx, setActiveScenarioIdx] = useState(0);
