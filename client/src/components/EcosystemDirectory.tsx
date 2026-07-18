@@ -1,12 +1,12 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Building2, Server, ShieldCheck, CheckCircle2, ChevronRight, Filter, Network } from "lucide-react";
+import { Globe, Building2, Server, ShieldCheck, CheckCircle2, ChevronRight, Filter, Network, Fingerprint } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface Provider {
   id: string;
   name: string;
-  category: "gateway" | "adquirente" | "antifraude" | "orquestador" | "switch";
+  category: "gateway" | "adquirente" | "antifraude" | "orquestador" | "switch" | "identidad";
   tier: "enterprise" | "growth" | "startup";
   coverage: string[];
   features: string[];
@@ -37,11 +37,19 @@ const PROVIDERS_DB: Provider[] = [
   { id: "spreedly", name: "Spreedly", category: "orquestador", tier: "enterprise", coverage: ["Global"], features: ["Bóveda PCI", "Network Tokens", "API Agnóstica"], website: "spreedly.com" },
   { id: "gr4vy", name: "Gr4vy", category: "orquestador", tier: "enterprise", coverage: ["Global"], features: ["Cloud Native", "Infraestructura Dedicada", "Smart Routing"], website: "gr4vy.com" },
 
+  // --- IDENTIDAD & KYC ---
+  { id: "unico", name: "Unico", category: "identidad", tier: "enterprise", coverage: ["BR", "Latam"], features: ["Biometría Facial", "ID Tech", "Firma Electrónica"], website: "unico.io" },
+  { id: "truora", name: "Truora", category: "identidad", tier: "growth", coverage: ["Latam"], features: ["KYC/KYB", "WhatsApp Onboarding", "Background Checks"], website: "truora.com" },
+  { id: "sumsub", name: "Sumsub", category: "identidad", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Full-cycle KYC", "AML Screening", "Orquestación Identidad"], website: "sumsub.com" },
+  { id: "incode", name: "Incode", category: "identidad", tier: "enterprise", coverage: ["Global", "MX"], features: ["Biometría Pasiva", "Liveness", "Reconocimiento Facial"], website: "incode.com" },
+
   // --- ANTI-FRAUDE ---
   { id: "clearsale", name: "ClearSale", category: "antifraude", tier: "enterprise", coverage: ["Global", "BR", "MX"], features: ["Machine Learning", "Revisión Manual", "Chargeback Guarantee"], website: "clear.sale" },
   { id: "signifyd", name: "Signifyd", category: "antifraude", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Garantía de Contracargo", "Decisión Instantánea", "SCA"], website: "signifyd.com" },
   { id: "riskified", name: "Riskified", category: "antifraude", tier: "enterprise", coverage: ["Global", "Latam"], features: ["Chargeback Guarantee", "Policy Protect", "Deco"], website: "riskified.com" },
+  { id: "fraudio", name: "Fraudio", category: "antifraude", tier: "growth", coverage: ["Global", "Latam"], features: ["AI Anti-Fraud", "Red Centralizada", "Fricción Cero"], website: "fraudio.com" },
   { id: "konduto", name: "Konduto", category: "antifraude", tier: "growth", coverage: ["BR", "Latam"], features: ["Comportamiento de Navegación", "Reglas Custom", "ML"], website: "konduto.com" },
+  { id: "auco", name: "Auco", category: "antifraude", tier: "startup", coverage: ["Latam"], features: ["Prevención IA", "Análisis Transaccional", "Rules Engine"], website: "auco.ai" },
   { id: "sift", name: "Sift", category: "antifraude", tier: "enterprise", coverage: ["Global"], features: ["Digital Trust", "Account Takeover", "Dispute Management"], website: "sift.com" },
   { id: "bayonet", name: "Bayonet", category: "antifraude", tier: "startup", coverage: ["MX", "Latam"], features: ["Graph Network Latam", "Alertas Tempranas", "Reglas Flexibles"], website: "bayonet.io" },
   { id: "cybersource", name: "Cybersource", category: "antifraude", tier: "enterprise", coverage: ["Global"], features: ["Decision Manager", "Visa Network", "Reglas Complejas"], website: "cybersource.com" },
@@ -63,6 +71,7 @@ const categoryColors = {
   antifraude: "text-rose-500 bg-rose-500/10 border-rose-500/20",
   orquestador: "text-purple-500 bg-purple-500/10 border-purple-500/20",
   switch: "text-amber-500 bg-amber-500/10 border-amber-500/20",
+  identidad: "text-indigo-500 bg-indigo-500/10 border-indigo-500/20",
 };
 
 const categoryIcons = {
@@ -71,6 +80,7 @@ const categoryIcons = {
   antifraude: ShieldCheck,
   orquestador: Globe,
   switch: Network,
+  identidad: Fingerprint,
 };
 
 export function EcosystemDirectory() {
