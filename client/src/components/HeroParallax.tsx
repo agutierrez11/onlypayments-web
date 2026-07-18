@@ -42,7 +42,7 @@ export function HeroParallax({
       {/* Main Content */}
       <motion.div 
         style={{ y: yText, opacity: opacityText }}
-        className="container max-w-6xl text-center space-y-10 z-20 relative px-6 mt-[-5%]"
+        className="container max-w-6xl text-center space-y-10 z-20 relative px-6 mt-12"
       >
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -61,7 +61,7 @@ export function HeroParallax({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
-          className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tighter leading-[0.95] text-white"
+          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter leading-[0.95] text-white"
         >
           El Ecosistema <br />
           <span className="text-gradient-primary">

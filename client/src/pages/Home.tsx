@@ -324,11 +324,11 @@ export default function Home() {
 
 
               {user ? (
-                <Button variant="outline" size="sm" onClick={() => navigate("/dashboard")} className="hidden sm:inline-flex border-accent/30 text-accent hover:bg-accent/10">
+                <Button variant="outline" size="sm" onClick={() => navigate("/dashboard")} className="hidden sm:inline-flex border-white/20 text-white hover:bg-white/10">
                   Mi Dashboard
                 </Button>
               ) : (
-                <Button size="sm" onClick={startLogin} className="hidden sm:inline-flex bg-primary hover:bg-primary/95 text-white">
+                <Button size="sm" onClick={startLogin} className="hidden sm:inline-flex bg-white text-black hover:bg-white/90 font-semibold shadow-sm">
                   Ingresar
                 </Button>
               )}
@@ -491,34 +491,34 @@ export default function Home() {
                         }}
                       />
                       <div className="min-w-0">
-                        <h4 className="font-bold text-sm leading-tight">{expert.name}</h4>
-                        <p className="text-[11px] text-accent font-mono mt-0.5 leading-tight">{expert.title}</p>
-                        <span className="text-[10px] text-muted-foreground font-light mt-1 block">{expert.country}</span>
+                        <h4 className="font-bold text-sm leading-tight text-white">{expert.name}</h4>
+                        <p className="text-[11px] text-white/60 font-mono mt-0.5 leading-tight">{expert.title}</p>
+                        <span className="text-[10px] text-white/50 font-light mt-1 block">{expert.country}</span>
                       </div>
                     </div>
 
                     {/* Tag de necesidad */}
                     {'need' in expert && (
-                      <div className="px-3 py-2 rounded-lg bg-accent/8 border border-accent/20 text-xs text-accent font-semibold">
+                      <div className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-xs text-white/90 font-medium">
                         💡 {(expert as any).need}
                       </div>
                     )}
 
                     {/* Bio */}
-                    <p className="text-xs text-muted-foreground font-light leading-relaxed">{expert.bio}</p>
+                    <p className="text-xs text-white/70 font-light leading-relaxed">{expert.bio}</p>
 
                     {/* Especialidades */}
                     <div className="flex flex-wrap gap-1.5">
                       {expert.specialties.map(s => (
-                        <span key={s} className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-secondary/50 border border-border text-muted-foreground">{s}</span>
+                        <span key={s} className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/60">{s}</span>
                       ))}
                     </div>
 
                     {/* Highlights */}
                     <ul className="space-y-1.5">
                       {expert.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
-                          <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
+                        <li key={i} className="flex items-start gap-2 text-xs text-white/70">
+                          <Check className="w-3.5 h-3.5 text-white/40 mt-0.5 shrink-0" />
                           <span>{h}</span>
                         </li>
                       ))}
