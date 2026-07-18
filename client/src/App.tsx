@@ -11,6 +11,7 @@ import NewsDetail from "./pages/NewsDetail";
 import PaymentStacks from "./pages/PaymentStacks";
 import Remesas from "./pages/Remesas";
 import HowToGuides from "./pages/HowToGuides";
+import Diccionario from "./pages/Diccionario";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -22,6 +23,7 @@ function Router() {
       <Route path={"/stacks"} component={PaymentStacks} />
       <Route path={"/remesas"} component={Remesas} />
       <Route path={"/guides"} component={HowToGuides} />
+      <Route path={"/diccionario"} component={Diccionario} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

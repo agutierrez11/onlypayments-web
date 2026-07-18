@@ -1,11 +1,25 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe2, ArrowRight, TrendingDown } from "lucide-react";
+import { Globe2, ArrowRight, TrendingDown, ArrowLeft } from "lucide-react";
 import { REMITTANCE_CORRIDORS, REMITTANCE_ACTORS } from "../data";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
 
 export default function Remesas() {
   return (
     <div className="min-h-screen bg-background">
+      {/* Header / Navigation */}
+      <div className="border-b border-border/40 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
+        <div className="container py-4">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
+              <ArrowLeft className="w-4 h-4" />
+              Volver al inicio
+            </Button>
+          </Link>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <div className="border-b border-border py-12 bg-card/50">
         <div className="container">
