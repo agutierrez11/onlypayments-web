@@ -181,14 +181,28 @@ export function AssessmentQuiz() {
                 animate={{ opacity: 1, y: 0 }}
                 className="w-full max-w-xl mx-auto text-center"
               >
-                <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 className="w-10 h-10 text-emerald-500" />
+                <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6 ring-4 ring-accent/10">
+                  <CheckCircle2 className="w-10 h-10 text-accent" />
                 </div>
-                <h3 className="text-3xl font-bold mb-4 text-white">
-                  ¡Diagnóstico Enviado!
+                <h3 className="text-3xl font-bold mb-4 text-foreground tracking-tight">
+                  ¡Diagnóstico Generado!
                 </h3>
-                <p className="text-muted-foreground text-lg mb-8">
-                  El reporte ha sido enviado a <strong className="text-foreground">{email}</strong>. Revisa tu bandeja de entrada en los próximos minutos.
+                <div className="space-y-4 mb-8 bg-background/50 border border-border p-6 rounded-2xl text-left max-w-sm mx-auto">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-accent" />
+                    <span>Score de madurez calculado</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-accent" />
+                    <span>Benchmark de industria generado</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <Mail className="w-4 h-4 text-accent" />
+                    <span>Reporte enviado a <strong>{email}</strong></span>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground font-mono mb-8 max-w-md mx-auto">
+                  *Esta es una demostración de la experiencia B2B Premium de OnlyPayments.
                 </p>
                 
                 <Button 

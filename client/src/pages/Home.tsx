@@ -93,6 +93,7 @@ export default function Home() {
   const [intakeDescription, setIntakeDescription] = useState("");
   const [intakeContact, setIntakeContact] = useState("");
   const [intakeSubmitted, setIntakeSubmitted] = useState(false);
+  const [intakeIsSubmitting, setIntakeIsSubmitting] = useState(false);
 
   const toggleIntakeMulti = (arr: string[], val: string, setter: (v: string[]) => void) => {
     setter(arr.includes(val) ? arr.filter(x => x !== val) : [...arr, val]);
@@ -100,11 +101,11 @@ export default function Home() {
 
   const handleIntakeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const body = encodeURIComponent(
-      `Tipo de solución: ${intakeService.join(', ')}\nDolores/Desafíos: ${intakePainPoints.join(', ')}\nMercados: ${intakeMarkets.join(', ')}\nTipo de empresa: ${intakeCompanyType}\nVolumen mensual: ${intakeVolume}\nDescripción: ${intakeDescription}\nContacto: ${intakeContact}`
-    );
-    window.open(`mailto:antoniogtzjimenez@gmail.com?subject=Solicitud de solución de pagos - OnlyPayments&body=${body}`);
-    setIntakeSubmitted(true);
+    setIntakeIsSubmitting(true);
+    setTimeout(() => {
+      setIntakeIsSubmitting(false);
+      setIntakeSubmitted(true);
+    }, 1500);
   };
 
   // Referencias a elementos para scroll
@@ -166,14 +167,10 @@ export default function Home() {
     }
   }, [expandedCommentsPostId]);
 
-  // Manejar modo oscuro en HTML
+  // Manejar modo oscuro en HTML (Forzado a siempre oscuro para estética premium)
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
+    document.documentElement.classList.add("dark");
+  }, []);
 
   const selectedCountry = useMemo(() => {
     return COUNTRIES[selectedCountryKey] || COUNTRIES.MX;
@@ -323,14 +320,8 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-3 border-l border-border pl-3">
-              {/* Botón modo claro/oscuro */}
-              <button 
-                onClick={() => setDarkMode(!darkMode)}
-                className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-secondary/40 transition-colors"
-                title={darkMode ? "Modo Claro" : "Modo Oscuro"}
-              >
-                {darkMode ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4 text-primary" />}
-              </button>
+              {/* Botón modo claro/oscuro eliminado para forzar estética dark premium */}
+
 
               {user ? (
                 <Button variant="outline" size="sm" onClick={() => navigate("/dashboard")} className="hidden sm:inline-flex border-accent/30 text-accent hover:bg-accent/10">
@@ -411,120 +402,8 @@ export default function Home() {
             <div className="space-y-12 max-w-6xl mx-auto">
               <EcosystemFlows />
 
-              {/* Directorio de Proveedores y Pasarelas */}
-              <div className="mt-12 space-y-6">
-                <h4 className="text-xl font-bold tracking-tight text-center mb-8">Directorio del Ecosistema</h4>
-                
-                <div className="relative max-w-md mx-auto mb-8">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Buscar empresa (ej. Stripe, Toku, Clip)..."
-                    className="pl-10 h-12 bg-background/50 border-primary/20 focus-visible:ring-primary/50"
-                    value={providerSearchQuery}
-                    onChange={(e) => setProviderSearchQuery(e.target.value)}
-                  />
-                </div>
-
-                  {(() => {
-                    const filteredCategories = Object.entries(PAYMENT_PROVIDERS).map(([category, providers]) => {
-                      const query = providerSearchQuery.toLowerCase();
-                      const filtered = providers.filter(p => 
-                        p.name.toLowerCase().includes(query) || 
-                        p.desc.toLowerCase().includes(query) || 
-                        p.role.toLowerCase().includes(query)
-                      );
-                      return { category, providers: filtered };
-                    }).filter(c => c.providers.length > 0);
-
-                    if (filteredCategories.length === 0) {
-                      return (
-                        <div className="text-center py-12 px-4 border border-dashed rounded-xl bg-secondary/5">
-                          <h3 className="font-bold text-lg mb-2">No encontramos "{providerSearchQuery}"</h3>
-                          <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
-                            Aún no tenemos a esta empresa en nuestro radar o está en proceso de revisión. Lo dejaremos como pendiente para agregarlo.
-                          </p>
-                          <Button 
-                            variant="outline"
-                            onClick={() => window.location.href = `mailto:antoniogtzjimenez@gmail.com?subject=Agregar Empresa: ${providerSearchQuery}&body=Hola,%20me%20gustaría%20sugerir%20que%20agreguen%20a%20${providerSearchQuery}%20al%20directorio.`}
-                          >
-                            <Zap className="w-4 h-4 mr-2" />
-                            Sugerir Empresa
-                          </Button>
-                        </div>
-                      );
-                    }
-
-                    return (
-                      <Accordion type="single" collapsible className="w-full space-y-4">
-                        {filteredCategories.map(({category, providers}) => {
-                          // Ordenamos silenciosamente para que los partners (isPartner: true) siempre aparezcan de primeros
-                          const sortedProviders = [...providers].sort((a, b) => {
-                            if (a.isPartner && !b.isPartner) return -1;
-                            if (!a.isPartner && b.isPartner) return 1;
-                            return 0;
-                          });
-                          
-                          return (
-                            <AccordionItem key={category} value={category} className="border rounded-lg bg-card px-4 shadow-sm">
-                              <AccordionTrigger className="hover:no-underline py-4">
-                                <div className="flex items-center justify-between w-full pr-4">
-                                  <h5 className="font-bold text-sm tracking-widest text-muted-foreground uppercase">
-                                    {category.replace(/_/g, " ")}
-                                  </h5>
-                                  <span className="text-xs font-mono text-muted-foreground bg-secondary/50 px-2 py-1 rounded-full">
-                                    {providers.length} actores
-                                  </span>
-                                </div>
-                              </AccordionTrigger>
-                              <AccordionContent className="pt-2 pb-6">
-                                <div className="grid md:grid-cols-2 gap-4">
-                                  {sortedProviders.map((prov) => (
-                                    <Card 
-                                      key={prov.name} 
-                                      className={`p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
-                                        prov.isPartner ? 'bg-foreground/5 backdrop-blur-md border-foreground/20' : 'bg-background/60 backdrop-blur-sm border-border/50 hover:bg-foreground/[0.02]'
-                                      }`}
-                                    >
-                                      <div>
-                                        <div className="flex items-center justify-between mb-2">
-                                          <h6 className="font-bold text-base flex items-center gap-2">
-                                            {prov.name}
-                                            {prov.isPartner && (
-                                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider" title="Partner Verificado">
-                                                <Check className="w-3 h-3" /> Fast-Track
-                                              </span>
-                                            )}
-                                          </h6>
-                                        </div>
-                                        <span className="text-[11px] font-mono text-accent block mb-3">{prov.role}</span>
-                                        <p className="text-xs text-muted-foreground leading-relaxed mb-4">{prov.desc}</p>
-                                      </div>
-                                      
-                                      <div className="flex flex-col sm:flex-row gap-3 sm:items-center justify-between mt-4 pt-4 border-t border-border/50">
-                                        <span className="text-[10px] text-muted-foreground"><Globe className="inline w-3 h-3 mr-1" />{prov.countries}</span>
-                                        {prov.isPartner && (
-                                          <Button 
-                                            size="sm" 
-                                            className="h-8 text-xs font-semibold shadow-sm"
-                                            onClick={() => window.location.href = `mailto:antoniogtzjimenez@gmail.com?subject=Solicitud de Integración VIP: ${prov.name}&body=Hola,%20me%20interesa%20iniciar%20el%20fast-track%20de%20integración%20con%20${prov.name}.`}
-                                          >
-                                            <Zap className="w-3 h-3 mr-1" />
-                                            Agendar Integración VIP
-                                          </Button>
-                                        )}
-                                      </div>
-                                    </Card>
-                                  ))}
-                                </div>
-                              </AccordionContent>
-                            </AccordionItem>
-                          );
-                        })}
-                      </Accordion>
-                    );
-                  })()}
-                </div>
               </div>
+
           )}
 
           {/* TAB 2: DICCIONARIO DE PAGOS */}
@@ -1083,8 +962,17 @@ export default function Home() {
                 <p className="text-[11px] text-muted-foreground">
                   🔒 Tu información es confidencial. No compartimos datos sin tu autorización.
                 </p>
-                <Button type="submit" size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-8 w-full sm:w-auto">
-                  Enviar solicitud →
+                <Button type="submit" size="lg" disabled={intakeIsSubmitting} className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-8 w-full sm:w-auto">
+                  {intakeIsSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Procesando...
+                    </>
+                  ) : (
+                    <>
+                      Enviar solicitud →
+                    </>
+                  )}
                 </Button>
               </div>
 

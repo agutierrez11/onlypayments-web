@@ -218,9 +218,9 @@ export function EcosystemDirectory() {
 
                   <div className="mt-8 pt-4 border-t border-white/10 flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
                     <span className="text-xs font-mono text-white/50">API Docs</span>
-                    <button className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-black transition-colors">
+                    <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-black transition-colors">
                       <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </a>
                   </div>
                 </motion.div>
               )
