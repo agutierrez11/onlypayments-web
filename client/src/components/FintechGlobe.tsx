@@ -44,14 +44,6 @@ export default function FintechGlobe() {
     }
   }, [globeData]);
 
-  if (isLoading) {
-    return (
-      <div className="w-full h-full min-h-[500px] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
   // Optimize colors based on theme, we assume dark mode as premium default
   const isDark = theme === 'dark' || true; // Enforcing dark aesthetic for the globe as requested
 
@@ -62,7 +54,9 @@ export default function FintechGlobe() {
     <div id="globe-container" className="w-full h-full min-h-[500px] flex items-center justify-center relative overflow-hidden rounded-xl bg-background/5 border border-white/5 backdrop-blur-sm">
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none" />
       
-      {windowDimensions.width > 0 && (
+      {isLoading ? (
+        <Loader2 className="w-8 h-8 animate-spin text-primary z-20" />
+      ) : windowDimensions.width > 0 && (
         <Globe
           ref={globeRef as any}
           width={windowDimensions.width}
