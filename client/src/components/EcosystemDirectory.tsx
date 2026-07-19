@@ -175,7 +175,7 @@ export function EcosystemDirectory() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="glass-panel glass-panel-hover rounded-3xl p-6 flex flex-col justify-between group cursor-pointer relative overflow-hidden"
+                  className="glass-panel glass-panel-hover rounded-2xl p-5 flex flex-col justify-between group cursor-pointer relative overflow-hidden"
                 >
                   {/* Subtle Background Glow per Category */}
                   <div className={`absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-20 pointer-events-none transition-opacity duration-500 group-hover:opacity-40 ${categoryColors[provider.category].split(' ')[0].replace('text-', 'bg-')}`} />
@@ -183,7 +183,7 @@ export function EcosystemDirectory() {
                   <div>
                     <div className="flex justify-between items-start mb-6">
                       <div>
-                        <div className="font-extrabold text-2xl text-foreground tracking-tight mb-1">{provider.name}</div>
+                        <div className="font-extrabold text-xl text-foreground tracking-tight mb-0.5">{provider.name}</div>
                         <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
                           {provider.website} <ChevronRight className="w-3 h-3" />
                         </a>
@@ -194,7 +194,7 @@ export function EcosystemDirectory() {
                       </span>
                     </div>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-1.5 mb-4">
                       <Badge variant={provider.tier === 'enterprise' ? 'default' : 'secondary'} className="text-[10px] uppercase tracking-wider bg-white/5 border-white/10">
                         {provider.tier}
                       </Badge>
@@ -203,12 +203,11 @@ export function EcosystemDirectory() {
                       ))}
                     </div>
 
-                    <div className="space-y-3">
-                      <div className="text-xs font-mono text-white/40 uppercase tracking-widest">Core Capabilities</div>
-                      <div className="flex flex-col gap-2">
+                    <div className="space-y-2">
+                      <div className="flex flex-col gap-1.5">
                         {provider.features.map((f, i) => (
-                          <div key={i} className="flex items-start gap-2 text-white/70 text-sm">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                          <div key={i} className="flex items-center gap-2 text-white/70 text-xs">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                             <span>{f}</span>
                           </div>
                         ))}
@@ -216,7 +215,7 @@ export function EcosystemDirectory() {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-4 border-t border-white/10 flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-5 pt-3 border-t border-white/10 flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
                     <span className="text-xs font-mono text-white/50">API Docs</span>
                     <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-black transition-colors">
                       <ArrowRight className="w-4 h-4" />
