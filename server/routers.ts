@@ -3,7 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import { getNews, getNewsById, getPaymentStacks, getGuides, subscribeUser, getSubscriberByEmail, getCommunityPosts, insertCommunityPost, getCommentsByPostId, insertCommunityComment, upvotePost, upvoteComment } from "./db";
+import { getNews, getNewsById, getPaymentStacks, getGuides, subscribeUser, getSubscriberByEmail, getCommunityPosts, insertCommunityPost, getCommentsByPostId, insertCommunityComment, upvotePost, upvoteComment, getFintechGlobeData } from "./db";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -106,6 +106,11 @@ export const appRouter = router({
       await upvoteComment(input.commentId);
       return { success: true };
     })
+  }),
+  fintechs: router({
+    globeData: publicProcedure.query(async () => {
+      return getFintechGlobeData();
+    }),
   }),
 });
 

@@ -39,6 +39,7 @@ import { HeroParallax } from "@/components/HeroParallax";
 import { EcosystemDirectory } from "@/components/EcosystemDirectory";
 import { EcosystemFlows } from "@/components/EcosystemFlows";
 import { AssessmentQuiz } from "@/components/AssessmentQuiz";
+import FintechGlobe from "@/components/FintechGlobe";
 
 export default function Home() {
   const { user } = useAuth();
@@ -347,11 +348,23 @@ export default function Home() {
         }}
       />
 
-      <EcosystemDirectory 
-        selectedCountryKey={selectedCountryKey}
-        setSelectedCountryKey={setSelectedCountryKey}
-        suggestContribution={suggestContribution}
-      />
+      {/* GLOBO INTERACTIVO FINTECH */}
+      <section className="relative z-10 py-12 border-t border-border bg-background/80 backdrop-blur-md">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center mb-10 space-y-4">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text">Cobertura Global Fintech</h2>
+            <p className="text-muted-foreground font-light">
+              Explora de forma interactiva el posicionamiento de miles de empresas Fintech alrededor del mundo.
+            </p>
+          </div>
+          
+          <div className="w-full h-[600px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-primary/5">
+            <FintechGlobe />
+          </div>
+        </div>
+      </section>
+
+      <EcosystemDirectory />
 
       {/* BIBLIOTECA DE EXPERTOS */}
       <section id="biblioteca" className="relative z-10 py-20 border-t border-border bg-background/60 backdrop-blur-[2px]">

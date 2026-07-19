@@ -2,6 +2,9 @@ import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertGuide, InsertNews, InsertPaymentStack, InsertSubscriber, InsertUser, InsertCommunityPost, InsertCommunityComment, guides, news, paymentStacks, subscribers, users, communityPosts, communityComments } from "../drizzle/schema";
 import { ENV } from './_core/env';
+import fs from 'fs';
+import path from 'path';
+import { getCoordinates } from '../shared/countryCoordinates';
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
@@ -456,3 +459,39 @@ export async function upvoteComment(commentId: string) {
       .where(eq(communityComments.id, commentId));
   }
 }
+
+let cachedGlobeData: any[] | null = null;
+
+export const getFintechGlobeData = async () => {
+  if (cachedGlobeData) return cachedGlobeData;
+  
+  try {
+    const filePath = path.join(process.cwd(), 'verified_fintech_gold.json');
+    if (!fs.existsSync(filePath)) {
+      console.warn("[getFintechGlobeData] JSON data file not found:", filePath);
+      return [];
+    }
+    const rawData = fs.readFileSync(filePath, 'utf-8');
+    const data = JSON.parse(rawData);
+    
+    // Process and optimize data for the globe
+    const globeData = data.map((item: any) => {
+      const [lat, lng] = getCoordinates(item.pais);
+      return {
+        name: item.nombre,
+        industry: item.vertical,
+        country: item.pais,
+        lat,
+        lng,
+        // Calculate a relative size based on score or default to 0.5
+        size: item.fintech_score ? Math.min(item.fintech_score / 10, 1.5) : 0.5
+      };
+    }).filter((item: any) => item.lat !== 0 || item.lng !== 0); // exclude defaults if desired, or keep them if LatAm generic
+
+    cachedGlobeData = globeData;
+    return globeData;
+  } catch (error) {
+    console.error("[getFintechGlobeData] Error processing globe data:", error);
+    return [];
+  }
+};
