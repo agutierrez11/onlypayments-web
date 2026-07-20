@@ -466,13 +466,15 @@ export const getFintechGlobeData = async () => {
   if (cachedGlobeData) return cachedGlobeData;
   
   try {
-    const filePath = path.join(process.cwd(), 'verified_fintech_gold.json');
-    if (!fs.existsSync(filePath)) {
-      console.warn("[getFintechGlobeData] JSON data file not found:", filePath);
+    let data: any[] = [];
+    try {
+      // Import directly so the bundler includes it in the serverless output
+      const importedData = require('../verified_fintech_gold.json');
+      data = importedData.default || importedData;
+    } catch (e) {
+      console.warn("[getFintechGlobeData] JSON data file not found or failed to parse:", e);
       return [];
     }
-    const rawData = fs.readFileSync(filePath, 'utf-8');
-    const data = JSON.parse(rawData);
     
     // Process and optimize data for the globe
     const globeData = data.map((item: any) => {
