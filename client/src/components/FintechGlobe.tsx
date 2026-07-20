@@ -77,7 +77,6 @@ export default function FintechGlobe() {
           pointColor={() => '#4ade80'}
           pointAltitude={(d: any) => Math.max(d.size * 0.05, 0.02)}
           pointRadius={(d: any) => Math.max(d.size * 0.4, 0.2)}
-          pointsMerge={true}
           
           // Tooltips are handled by point objects when hovered
           pointLabel={(d: any) => `
