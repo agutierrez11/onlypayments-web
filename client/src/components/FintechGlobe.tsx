@@ -11,23 +11,26 @@ export default function FintechGlobe() {
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const { theme } = useTheme();
 
-  // Handle window resize
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Handle container resize reliably
   useEffect(() => {
-    const handleResize = () => {
-      // Find parent container dimensions to be responsive
-      const container = document.getElementById('globe-container');
-      if (container) {
-        setWindowDimensions({
-          width: container.clientWidth,
-          height: container.clientHeight || 500
-        });
-      }
-    };
+    if (!containerRef.current) return;
     
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        if (entry.contentRect.width > 0) {
+          setWindowDimensions({
+            width: entry.contentRect.width,
+            height: entry.contentRect.height || 500
+          });
+        }
+      }
+    });
+    
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [isLoading]);
 
   // Configure globe auto-rotation and initial position
   useEffect(() => {
@@ -51,7 +54,7 @@ export default function FintechGlobe() {
   // Or we can just use hexBin for density
   
   return (
-    <div id="globe-container" className="w-full h-full min-h-[500px] flex items-center justify-center relative overflow-hidden rounded-xl bg-background/5 border border-white/5 backdrop-blur-sm">
+    <div ref={containerRef} id="globe-container" className="w-full h-full min-h-[500px] flex items-center justify-center relative overflow-hidden rounded-xl bg-background/5 border border-white/5 backdrop-blur-sm">
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none" />
       
       {isLoading ? (
@@ -63,8 +66,8 @@ export default function FintechGlobe() {
           height={windowDimensions.height}
           
           // Globe aesthetics
-          globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
-          bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
+          globeImageUrl="https://unpkg.com/three-globe/example/img/earth-dark.jpg"
+          bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
           backgroundColor="rgba(0,0,0,0)" // Transparent background
           
           // Points / Hexbin configuration for density
