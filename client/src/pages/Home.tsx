@@ -363,8 +363,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* EcosystemDirectory removed - Globe replaces this feature */}
+      
+      {/* EcosystemDirectory has been redesigned to a compact list instead of huge cards */}
+      <EcosystemDirectory />
 
       {/* BIBLIOTECA DE EXPERTOS */}
       <section id="biblioteca" className="relative z-10 py-20 border-t border-border bg-background/60 backdrop-blur-[2px]">

@@ -163,63 +163,51 @@ export function EcosystemDirectory() {
           })}
         </div>
 
-        {/* Bento Grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Compact List Layout */}
+        <div className="flex flex-col gap-3">
           <AnimatePresence>
             {filteredProviders.map((provider) => {
               const CatIcon = categoryIcons[provider.category];
               return (
                 <motion.div 
                   key={provider.id}
-                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="glass-panel glass-panel-hover rounded-2xl p-5 flex flex-col justify-between group cursor-pointer relative overflow-hidden"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="glass-panel glass-panel-hover rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden"
                 >
-                  {/* Subtle Background Glow per Category */}
-                  <div className={`absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-20 pointer-events-none transition-opacity duration-500 group-hover:opacity-40 ${categoryColors[provider.category].split(' ')[0].replace('text-', 'bg-')}`} />
-
-                  <div>
-                    <div className="flex justify-between items-start mb-6">
-                      <div>
-                        <div className="font-extrabold text-xl text-foreground tracking-tight mb-0.5">{provider.name}</div>
-                        <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
-                          {provider.website} <ChevronRight className="w-3 h-3" />
+                  <div className="flex items-center gap-4 min-w-[200px]">
+                    <span className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center border ${categoryColors[provider.category]}`}>
+                      <CatIcon className="w-5 h-5" />
+                    </span>
+                    <div>
+                      <div className="font-bold text-base text-foreground flex items-center gap-2">
+                        {provider.name}
+                        <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors opacity-0 group-hover:opacity-100 hidden md:flex items-center gap-1">
+                          <ChevronRight className="w-3 h-3" />
                         </a>
                       </div>
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-widest border ${categoryColors[provider.category]}`}>
-                        <CatIcon className="w-3.5 h-3.5" />
-                        {provider.category}
-                      </span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      <Badge variant={provider.tier === 'enterprise' ? 'default' : 'secondary'} className="text-[10px] uppercase tracking-wider bg-white/5 border-white/10">
-                        {provider.tier}
-                      </Badge>
-                      {provider.coverage.map(c => (
-                        <span key={c} className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-white/70 border border-white/10">{c}</span>
-                      ))}
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="flex flex-col gap-1.5">
-                        {provider.features.map((f, i) => (
-                          <div key={i} className="flex items-center gap-2 text-white/70 text-xs">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                            <span>{f}</span>
-                          </div>
-                        ))}
-                      </div>
+                      <span className="text-xs text-muted-foreground capitalize">{provider.category}</span>
                     </div>
                   </div>
 
-                  <div className="mt-5 pt-3 border-t border-white/10 flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
-                    <span className="text-xs font-mono text-white/50">API Docs</span>
-                    <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-black transition-colors">
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
+                  <div className="flex flex-wrap gap-1.5 flex-1 items-center">
+                    {provider.features.map((f, i) => (
+                      <span key={i} className="text-[10px] px-2 py-0.5 rounded border border-white/10 text-white/70">
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2 md:min-w-[150px] justify-end">
+                    {provider.coverage.slice(0,2).map(c => (
+                      <span key={c} className="text-[10px] uppercase font-bold text-white/50">{c}</span>
+                    ))}
+                    {provider.coverage.length > 2 && <span className="text-[10px] text-white/30">+{provider.coverage.length - 2}</span>}
+                    <Badge variant={provider.tier === 'enterprise' ? 'default' : 'secondary'} className="text-[9px] uppercase scale-90 ml-2">
+                      {provider.tier}
+                    </Badge>
                   </div>
                 </motion.div>
               )

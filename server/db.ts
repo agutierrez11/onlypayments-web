@@ -478,7 +478,11 @@ export const getFintechGlobeData = async () => {
     
     // Process and optimize data for the globe
     const globeData = data.map((item: any) => {
-      const [lat, lng] = getCoordinates(item.pais);
+      const [baseLat, baseLng] = getCoordinates(item.pais);
+      // Add slight jitter so that hundreds of points in "Mexico" don't overlap on the exact same pixel
+      const lat = baseLat + (Math.random() - 0.5) * 3.0;
+      const lng = baseLng + (Math.random() - 0.5) * 3.0;
+      
       return {
         name: item.nombre,
         industry: item.vertical,
