@@ -99,7 +99,11 @@ const categoryConfig = {
   comercial: { label: 'Comercial y Finanzas', color: 'bg-emerald-500/15 text-emerald-500 border-emerald-500/20', icon: DollarSign },
 };
 
-export default function Diccionario() {
+interface Props {
+  isEmbed?: boolean;
+}
+
+export default function Diccionario({ isEmbed }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -139,16 +143,28 @@ export default function Diccionario() {
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header / Navigation */}
-      <div className="border-b border-border/40 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container py-4">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
-              <ArrowLeft className="w-4 h-4" />
-              Volver al inicio
-            </Button>
-          </Link>
+      {!isEmbed ? (
+        <div className="border-b border-border/40 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
+          <div className="container py-4">
+            <Link href="/">
+              <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
+                <ArrowLeft className="w-4 h-4" />
+                Volver al inicio
+              </Button>
+            </Link>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="border-b border-border/40 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
+          <div className="container py-4 flex justify-center items-center">
+            <span className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">Latam Digital Bridge</Badge>
+              x
+              <span className="font-bold">OnlyPayments</span>
+            </span>
+          </div>
+        </div>
+      )}
 
       <div className="container max-w-3xl pt-16">
         <div className="text-center mb-10">

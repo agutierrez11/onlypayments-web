@@ -24,6 +24,9 @@ function Router() {
       <Route path={"/remesas"} component={Remesas} />
       <Route path={"/guides"} component={HowToGuides} />
       <Route path={"/diccionario"} component={Diccionario} />
+      <Route path={"/embed/diccionario"}>
+        <Diccionario isEmbed />
+      </Route>
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
