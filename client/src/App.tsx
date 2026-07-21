@@ -13,6 +13,7 @@ import Remesas from "./pages/Remesas";
 import HowToGuides from "./pages/HowToGuides";
 import Diccionario from "./pages/Diccionario";
 import LatamFintechDashboard from "./pages/LatamFintechDashboard";
+import IntroduccionesB2B from "./pages/IntroduccionesB2B";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -26,6 +27,7 @@ function Router() {
       <Route path={"/guides"} component={HowToGuides} />
       <Route path={"/diccionario"} component={Diccionario} />
       <Route path={"/latam-dashboard"} component={LatamFintechDashboard} />
+      <Route path={"/b2b-intros"} component={IntroduccionesB2B} />
       <Route path={"/embed/diccionario"}>
         <Diccionario isEmbed />
       </Route>

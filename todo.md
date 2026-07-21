@@ -54,6 +54,6 @@
 - [x] Crear checkpoint final del proyecto.
 
 ## Próximos Pasos Estratégicos (Roadmap Fase 2)
+- [x] **Motor de Enriquecimiento B2B (Data-Crossing)**: Implementar la funcionalidad core de monetización donde los usuarios pueden subir sus bases de datos / contactos de LinkedIn y el sistema cruza la data para identificar el stack de pagos de esas empresas.
+- [x] **Dashboard B2B para Usuarios Enterprise & Marketplace Pay-per-Intro**: Panel interactivo donde los usuarios gestionan sus intros calificadas ($150 USD), simulan la dispersión Stripe Connect (70%/15%/15%) y prueban la búsqueda semántica híbrida.
 - [ ] **Migración a Next.js 14+ (App Router)**: Mover la arquitectura a Next.js para lograr SSR/SSG nativo, habilitar SEO por página/país/método de pago, y consolidar el backend usando Route Handlers y Server Actions.
-- [ ] **Motor de Enriquecimiento B2B (Data-Crossing)**: Implementar la funcionalidad core de monetización donde los usuarios pueden subir sus bases de datos / contactos de LinkedIn y el sistema cruza la data para identificar el stack de pagos de esas empresas.
-- [ ] **Dashboard B2B para Usuarios Enterprise**: Panel privado donde los usuarios (ej. SDRs, Account Executives) gestionan sus leads enriquecidos y ven reportes de penetración de mercado.

@@ -312,12 +312,19 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-5">
               <a href="#explorador" className="text-sm font-medium hover:text-accent transition-colors">Explorador</a>
               <a href="#biblioteca" className="text-sm font-medium hover:text-accent transition-colors">Biblioteca de Expertos</a>
               <a href="#comunidad" className="text-sm font-medium hover:text-accent transition-colors">Comunidad</a>
               <button onClick={() => navigate('/remesas')} className="text-sm font-bold text-primary hover:text-primary/80 transition-colors">
                 Remesas
+              </button>
+              <button onClick={() => navigate('/latam-dashboard')} className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors">
+                Radar Latam
+              </button>
+              <button onClick={() => navigate('/b2b-intros')} className="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors bg-cyan-950/60 px-3 py-1 rounded-lg border border-cyan-800/60 shadow-sm flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5 fill-cyan-400" />
+                Intros B2B
               </button>
             </div>
 
