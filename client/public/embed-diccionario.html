@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diccionario de Medios de Pago v6.0 — Fernando Estévez & OnlyPayments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #020408;
+      --bg-card: #0a0e17;
+      --accent: #00f5d4;
+      --text: #e8f4f8;
+      --text-dim: #6b8a9a;
+      --border: rgba(0,245,212,0.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      padding-bottom: 40px;
+    }
+    .header-bar {
+      border-bottom: 1px solid var(--border);
+      background: rgba(2,4,8,0.95);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    .brand-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .author-badge {
+      background: #0a0e17;
+      border: 1px solid rgba(0,245,212,0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      color: #fff;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+    .title-sec {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .badge-top {
+      display: inline-block;
+      background: rgba(0,245,212,0.08);
+      border: 1px solid rgba(0,245,212,0.2);
+      color: var(--accent);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .sub {
+      color: var(--text-dim);
+      font-size: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .search-box {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 36px;
+    }
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 20px 14px 44px;
+      color: #fff;
+      font-size: 14px;
+      font-family: 'Rajdhani', sans-serif;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(0,245,212,0.15);
+    }
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 16px;
+    }
+    
+    /* CATEGORIES GRID (MATCHER STYLE) */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .cat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+    }
+    .cat-card:hover, .cat-card.active {
+      border-color: var(--accent);
+      background: #0e1626;
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0,245,212,0.1);
+    }
+    .cat-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: inline-block;
+      background: #020408;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,245,212,0.1);
+    }
+    .cat-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .cat-desc {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* TERMS GRID */
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .term-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .term-card:hover {
+      border-color: rgba(0,245,212,0.4);
+      background: #0c121e;
+    }
+    .term-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .term-title-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .term-icon { font-size: 22px; }
+    .term-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .term-def {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-card {
+      background: #0a0e17;
+      border: 1px solid rgba(0,245,212,0.3);
+      border-radius: 20px;
+      padding: 28px;
+      max-width: 540px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <div class="header-bar">
+    <div class="brand-tag">
+      📖 DICCIONARIO FINTECH v6.0
+      <span class="author-badge">Fernando Estévez</span>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim);">
+      Powered by OnlyPayments
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="title-sec">
+      <div class="badge-top">LATAM Fintech Knowledge Base</div>
+      <h1>Diccionario de Medios de Pago</h1>
+      <p class="sub">Toda la terminología técnica, legal y comercial estructurada para profesionales por Fernando Estévez.</p>
+    </div>
+
+    <!-- Buscador -->
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" class="search-input" placeholder="Buscar término (ej. PIX, SPEI, PCI DSS, BaaS)..." oninput="filterTerms()">
+    </div>
+
+    <!-- Categorías Estilo Matcher -->
+    <div class="cat-grid">
+      <div class="cat-card" onclick="selectCat('comercial', this)">
+        <div class="cat-icon">💳</div>
+        <div class="cat-title">Comercial & Finanzas</div>
+        <div class="cat-desc">Adquirencia, MDR, Cuota de Intercambio, Liquidación</div>
+      </div>
+      <div class="cat-card" onclick="selectCat('tecnico', this)">
+        <div class="cat-icon">⚡</div>
+        <div class="cat-title">Técnico & Core</div>
+        <div class="cat-desc">PIX, SPEI, Bre-B, Pasarelas, Tokenización, 3DS2</div>
+      </div>
+      <div class="cat-card" onclick="selectCat('legal', this)">
+        <div class="cat-icon">⚖️</div>
+        <div class="cat-title">Legal & Compliance</div>
+        <div class="cat-desc">PCI DSS 4.0, KYC/KYB, PLD, Ley Fintech</div>
+      </div>
+      <div class="cat-card" onclick="selectCat('infraestructura', this)">
+        <div class="cat-icon">🏛️</div>
+        <div class="cat-title">BaaS & Neobancos</div>
+        <div class="cat-desc">BaaS, Open Finance, Licencias IFPE, Wallets</div>
+      </div>
+    </div>
+
+    <!-- Grid de Términos -->
+    <div class="terms-grid" id="terms-container"></div>
+  </div>
+
+  <!-- Modal Detalle -->
+  <div class="modal-overlay" id="detail-modal" onclick="closeModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <span id="m-icon" style="font-size: 32px;">📄</span>
+        <div>
+          <div id="m-title" style="font-family: Orbitron; font-size: 22px; font-weight: 700; color: #fff;"></div>
+          <div id="m-acronym" style="font-family: JetBrains Mono; font-size: 11px; color: #00f5d4;"></div>
+        </div>
+      </div>
+      <div id="m-def" style="background: #020408; border: 1px solid rgba(0,245,212,0.15); padding: 16px; border-radius: 12px; font-size: 14px; line-height: 1.6; color: #e8f4f8; margin-bottom: 16px;"></div>
+      <div id="m-source" style="font-family: JetBrains Mono; font-size: 11px; color: #6b8a9a;"></div>
+    </div>
+  </div>
+
+  <script>
+    const terms = [
+      { id: '1', term: 'Adquirente', cat: 'comercial', icon: '💳', def: 'Entidad financiera regulada que procesa pagos con tarjeta en nombre del comercio y asume el riesgo de crédito inicial de las transacciones.', source: 'Banco de México (Banxico)' },
+      { id: '2', term: 'Contracargo (Chargeback)', cat: 'legal', icon: '🛡️', def: 'Mecanismo de disputa donde el titular de la tarjeta solicita a su banco emisor la devolución de un cargo, revirtiendo los fondos del comercio.', source: 'Regulación Visa Core Rules' },
+      { id: '3', term: 'Pasarela de Pagos (Gateway)', cat: 'tecnico', icon: '🔌', def: 'Infraestructura tecnológica que encripta y transmite de forma segura los datos de pago desde el checkout hacia el procesador o adquirente.' },
+      { id: '4', term: 'Cuota de Intercambio', cat: 'comercial', icon: '📊', def: 'Comisión que el banco adquirente paga al banco emisor por cada transacción con tarjeta, regulada o determinada por Visa / Mastercard.', source: 'CNBV México' },
+      { id: '5', term: 'Liquidación (Settlement)', cat: 'comercial', icon: '🏦', def: 'Proceso final donde el adquirente transfiere los fondos correspondientes a las ventas aprobadas hacia la cuenta bancaria del comercio.' },
+      { id: '6', term: 'PCI DSS 4.0', cat: 'legal', acronym: 'PCI DSS', icon: '🔐', def: 'Estándar de Seguridad de Datos para la Industria de Tarjetas de Pago. Normativa global obligatoria para procesar datos de tarjetas.', source: 'PCI Security Standards Council' },
+      { id: '7', term: 'PIX', cat: 'tecnico', acronym: 'RTP BR', icon: '🇧🇷', def: 'Sistema de Pagos Instantáneos del Banco Central de Brasil que permite transferencias interbancarias 24/7 en tiempo real vía QR o llaves.', source: 'Banco Central do Brasil' },
+      { id: '8', term: 'SPEI / DiMo', cat: 'tecnico', acronym: 'RTP MX', icon: '🇲🇽', def: 'Sistema de Pagos Electrónicos Interbancarios operado por Banco de México para transferencias 24/7 en tiempo real conectadas a celulares.', source: 'Banco de México' },
+      { id: '9', term: 'Tokenización', cat: 'tecnico', icon: '🔑', def: 'Proceso de seguridad que reemplaza el PAN (número de tarjeta) por un token criptográfico único para compras recurrentes.', source: 'EMVCo' },
+      { id: '10', term: '3D Secure 2.0 (3DS2)', cat: 'tecnico', acronym: '3DS2', icon: '🛡️', def: 'Protocolo de autenticación en compras online no presenciales que analiza datos biométricos y contextuales para reducir fraude.', source: 'EMVCo' },
+      { id: '11', term: 'Bre-B (Colombia)', cat: 'tecnico', acronym: 'RTP CO', icon: '🇨🇴', def: 'Nuevo riel de pagos inmediatos interoperable desarrollado por el Banco de la República de Colombia para unificar transferencias A2A.', source: 'Banco de la República' },
+      { id: '12', term: 'Merchant Discount Rate (MDR)', cat: 'comercial', icon: '💸', def: 'Porcentaje o tasa total que un comercio paga a su proveedor de pagos por cada transacción procesada.' },
+      { id: '13', term: 'KYC / KYB', cat: 'legal', acronym: 'KYC', icon: '🆔', def: 'Proceso obligatorio de verificación de identidad de clientes y entidades jurídicas para prevención de lavado de dinero.' },
+      { id: '14', term: 'Banking as a Service (BaaS)', cat: 'infraestructura', acronym: 'BaaS', icon: '🏛️', def: 'Modelo que permite a fintechs y empresas ofrecer servicios bancarios (cuentas, tarjetas) vía APIs sin necesidad de licencia bancaria propia.' },
+      { id: '15', term: 'Open Banking', cat: 'infraestructura', icon: '🌐', def: 'Modelo que permite el intercambio seguro de datos de clientes y servicios financieros entre instituciones a través de APIs abiertas.' },
+      { id: '16', term: 'Licencia IFPE', cat: 'infraestructura', icon: '📜', def: 'Institución de Fondos de Pago Electrónico. Autorización otorgada por CNBV en México para emitir saldo digital y monederos electrónicos.' }
+    ];
+
+    let activeCat = null;
+
+    function renderTerms() {
+      const query = document.getElementById('search-input').value.toLowerCase().trim();
+      const container = document.getElementById('terms-container');
+      
+      const filtered = terms.filter(t => {
+        const matchCat = !activeCat || t.cat === activeCat;
+        const matchQuery = !query || t.term.toLowerCase().includes(query) || t.def.toLowerCase().includes(query);
+        return matchCat && matchQuery;
+      });
+
+      container.innerHTML = filtered.map(t => `
+        <div class="term-card" onclick="openModal('${t.id}')">
+          <div class="term-header">
+            <div class="term-title-box">
+              <span class="term-icon">${t.icon}</span>
+              <div>
+                <div class="term-title">${t.term}</div>
+                ${t.acronym ? `<span style="font-family: JetBrains Mono; font-size: 10px; color: #6b8a9a;">${t.acronym}</span>` : ''}
+              </div>
+            </div>
+            <span style="color: #00f5d4;">→</span>
+          </div>
+          <div class="term-def">${t.def}</div>
+        </div>
+      `).join('');
+    }
+
+    function selectCat(cat, el) {
+      if (activeCat === cat) {
+        activeCat = null;
+        el.classList.remove('active');
+      } else {
+        document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+        activeCat = cat;
+        el.classList.add('active');
+      }
+      renderTerms();
+    }
+
+    function filterTerms() {
+      renderTerms();
+    }
+
+    function openModal(id) {
+      const t = terms.find(x => x.id === id);
+      if (!t) return;
+      document.getElementById('m-icon').textContent = t.icon;
+      document.getElementById('m-title').textContent = t.term;
+      document.getElementById('m-acronym').textContent = t.acronym ? `(${t.acronym})` : '';
+      document.getElementById('m-def').textContent = t.def;
+      document.getElementById('m-source').textContent = t.source ? `Fuente: ${t.source}` : '';
+      document.getElementById('detail-modal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('detail-modal').classList.remove('active');
+    }
+
+    renderTerms();
+  </script>
+</body>
+</html>

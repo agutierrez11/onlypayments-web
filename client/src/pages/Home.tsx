@@ -1060,6 +1060,7 @@ export default function Home() {
           {newsletterError && (
             <p className="text-xs text-destructive">{newsletterError}</p>
           )}
+        </div>
       </section>
 
       {/* SECCIÓN 5: FINTECH MATCHER (NEGOCIO / LEAD GENERATION) */}
