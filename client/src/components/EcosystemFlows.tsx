@@ -1,40 +1,65 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Building2, Server, Landmark, User, ShieldAlert, ArrowRight, TrendingDown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Building2, Server, Landmark, User, ShieldAlert, ArrowRight, TrendingDown, ArrowLeftRight, RotateCcw, Zap } from "lucide-react";
 import fintechHubData from "../data/fintechHubData.json";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 
+const FLOWS = {
+  autorizacion: [
+    { id: 'tarjetahabiente', label: 'Tarjetahabiente', icon: User, desc: 'Inicia Pago (0ms)' },
+    { id: 'comercio', label: 'Comercio', icon: Server, desc: 'Gateway / POS (45ms)' },
+    { id: 'adquirente', label: 'Adquirente / Agregador', icon: Building2, desc: 'Procesa (120ms)' },
+    { id: 'emisor', label: 'Emisor', icon: Landmark, desc: 'Autoriza (300ms)' }
+  ],
+  contracargo: [
+    { id: 'titular', label: 'Titular', icon: User, desc: 'No reconoce cargo (Día 1)' },
+    { id: 'emisor_c', label: 'Emisor', icon: Landmark, desc: 'Disputa 10.4 (Día 2)' },
+    { id: 'adquirente_c', label: 'Adquirente', icon: Building2, desc: 'Retiene fondos (Día 3)' },
+    { id: 'comercio_c', label: 'Comercio', icon: ShieldAlert, desc: 'Envía pruebas (Día 5)' }
+  ]
+};
+
 export function EcosystemFlows() {
   const [activeCountry, setActiveCountry] = useState<"mexico" | "brasil" | "colombia" | "chile">("mexico");
+  const [activeFlowType, setActiveFlowType] = useState<"autorizacion" | "contracargo">("autorizacion");
+  const [activeStep, setActiveStep] = useState(0);
 
   const countryData = fintechHubData.ecosistema_pagos_4_partes.tasas_por_pais[activeCountry];
   const { diferencias } = fintechHubData.ecosistema_pagos_4_partes;
+  const currentFlow = FLOWS[activeFlowType];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % currentFlow.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [activeFlowType, currentFlow.length]);
 
   return (
     <section className="relative w-full max-w-[1200px] mx-auto px-6 py-24 z-10">
       
       <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold font-mono uppercase tracking-widest mb-6">
-          <ShieldAlert className="w-3.5 h-3.5" />
-          Modelo de 4 Partes
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold font-mono uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(var(--accent),0.2)]">
+          <Zap className="w-3.5 h-3.5" />
+          Modelo Interactivo
         </div>
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">El Ecosistema de Pagos</h2>
-        <p className="text-muted-foreground font-light text-lg max-w-2xl mx-auto">
-          Anatomía de una transacción y arquitectura de orquestación.
+        <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-foreground bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">El Ecosistema de Pagos</h2>
+        <p className="text-muted-foreground font-light text-lg md:text-xl max-w-2xl mx-auto">
+          Anatomía de una transacción y orquestación inteligente.
         </p>
       </div>
 
-      {/* Tabs / Scenarios */}
-      <div className="flex justify-center gap-3 mb-10">
+      {/* Country Tabs */}
+      <div className="flex flex-wrap justify-center gap-3 mb-12">
         {(["mexico", "brasil", "colombia", "chile"] as const).map((country) => (
           <button
             key={country}
             onClick={() => setActiveCountry(country)}
-            className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border capitalize ${
+            className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 border uppercase tracking-wider ${
               activeCountry === country 
-                ? 'bg-accent/10 border-accent text-foreground shadow-[0_0_20px_rgba(var(--accent),0.2)] scale-105' 
-                : 'bg-background/50 border-border text-muted-foreground hover:bg-secondary/50 hover:border-foreground/20 hover:text-foreground'
+                ? 'bg-accent/10 border-accent text-foreground shadow-[0_0_30px_rgba(var(--accent),0.3)] scale-105' 
+                : 'bg-background/50 border-border text-muted-foreground hover:bg-secondary/50 hover:border-foreground/30 hover:text-foreground'
             }`}
           >
             {country}
@@ -42,34 +67,73 @@ export function EcosystemFlows() {
         ))}
       </div>
 
-      {/* 4-Part Diagram */}
-      <div className="w-full bg-card/40 backdrop-blur-2xl rounded-[2.5rem] border border-border shadow-2xl p-10 relative mb-12">
-        <h3 className="text-2xl font-bold mb-8 text-center">Flujo de Autorización y Liquidación</h3>
+      {/* 4-Part Diagram & Simulator */}
+      <div className="w-full bg-background/40 backdrop-blur-3xl rounded-[3rem] border border-border shadow-2xl p-8 md:p-14 relative mb-16 overflow-hidden">
+        {/* Background Glows */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute inset-0 opacity-[0.02] [background-image:linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] [background-size:40px_40px] pointer-events-none" />
+
+        <div className="flex justify-between items-center mb-12 relative z-10">
+          <h3 className="text-3xl font-extrabold flex items-center gap-3">
+            {activeFlowType === "autorizacion" ? (
+              <><ArrowLeftRight className="w-8 h-8 text-accent" /> Flujo de Autorización</>
+            ) : (
+              <><RotateCcw className="w-8 h-8 text-destructive" /> Flujo de Contracargo</>
+            )}
+          </h3>
+          <div className="flex bg-secondary/50 p-1 rounded-lg border border-border">
+            <button 
+              onClick={() => { setActiveFlowType("autorizacion"); setActiveStep(0); }}
+              className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${activeFlowType === "autorizacion" ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+            >
+              Transacción Normal
+            </button>
+            <button 
+              onClick={() => { setActiveFlowType("contracargo"); setActiveStep(0); }}
+              className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${activeFlowType === "contracargo" ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+            >
+              Contracargo
+            </button>
+          </div>
+        </div>
         
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 relative">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 relative z-10 py-10">
           {/* Path line background */}
-          <div className="hidden md:block absolute left-[10%] right-[10%] top-1/2 h-1 bg-border -translate-y-1/2 z-0" />
-          <motion.div 
-            className="hidden md:block absolute left-[10%] right-[10%] top-1/2 h-1 bg-accent -translate-y-1/2 z-0"
-            initial={{ scaleX: 0, originX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop", ease: "linear" }}
+          <div className="hidden md:block absolute left-[12%] right-[12%] top-1/2 h-1 bg-border -translate-y-1/2 z-0 rounded-full" />
+          
+          {/* Animated Progress Line */}
+          <div className="hidden md:block absolute left-[12%] right-[12%] top-1/2 h-1 -translate-y-1/2 z-0 rounded-full overflow-hidden">
+            <motion.div 
+              className={`h-full ${activeFlowType === 'autorizacion' ? 'bg-accent' : 'bg-destructive'}`}
+              initial={{ width: "0%" }}
+              animate={{ width: `${(activeStep / (currentFlow.length - 1)) * 100}%` }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            />
+          </div>
+
+          {/* Particle moving */}
+          <motion.div
+            className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${activeFlowType === 'autorizacion' ? 'bg-accent shadow-[0_0_20px_var(--accent)]' : 'bg-destructive shadow-[0_0_20px_red]'} z-10`}
+            initial={{ left: "12%" }}
+            animate={{ left: `${12 + (activeStep / (currentFlow.length - 1)) * 76}%` }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
           />
           
-          {[
-            { id: 'tarjetahabiente', label: 'Tarjetahabiente', icon: User, desc: 'Inicia Pago' },
-            { id: 'comercio', label: 'Comercio', icon: Server, desc: 'Gateway / POS' },
-            { id: 'adquirente', label: 'Adquirente / Agregador', icon: Building2, desc: 'Procesa Transacción' },
-            { id: 'emisor', label: 'Emisor', icon: Landmark, desc: 'Dueño de Fondos' }
-          ].map((actor, idx) => (
-            <div key={actor.id} className="relative z-10 flex flex-col items-center bg-background border border-border rounded-2xl p-6 w-full md:w-1/4 shadow-lg hover:border-accent transition-all">
-              <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                <actor.icon className="w-8 h-8 text-accent" />
+          {currentFlow.map((actor, idx) => {
+            const isActive = idx === activeStep;
+            const isPast = idx <= activeStep;
+            const highlightColor = activeFlowType === 'autorizacion' ? 'text-accent border-accent bg-accent/10 shadow-[0_0_30px_rgba(var(--accent),0.3)]' : 'text-destructive border-destructive bg-destructive/10 shadow-[0_0_30px_rgba(255,0,0,0.3)]';
+
+            return (
+              <div key={actor.id} className="relative z-20 flex flex-col items-center w-full md:w-1/4 group cursor-default">
+                <div className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 border-2 backdrop-blur-sm ${isActive ? highlightColor + ' scale-110' : isPast ? 'bg-background border-border text-foreground' : 'bg-background/50 border-border/50 text-muted-foreground'}`}>
+                  <actor.icon className={`w-8 h-8 md:w-10 md:h-10 transition-colors ${isActive ? (activeFlowType === 'autorizacion' ? 'text-accent' : 'text-destructive') : isPast ? 'text-foreground' : 'text-muted-foreground/50'}`} />
+                </div>
+                <span className={`font-bold text-center text-sm md:text-base transition-colors ${isActive ? 'text-foreground' : 'text-muted-foreground'}`}>{actor.label}</span>
+                <span className={`text-xs mt-1 text-center font-mono px-2 py-1 rounded transition-colors ${isActive ? 'bg-secondary text-foreground' : 'text-muted-foreground/60'}`}>{actor.desc}</span>
               </div>
-              <span className="font-bold text-foreground text-center">{actor.label}</span>
-              <span className="text-xs text-muted-foreground mt-1 text-center">{actor.desc}</span>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
 
@@ -77,27 +141,30 @@ export function EcosystemFlows() {
       <div className="grid lg:grid-cols-2 gap-8">
         
         {/* Adquirente vs Agregador */}
-        <Card className="bg-card/40 backdrop-blur-md border-border p-8 rounded-3xl">
-          <div className="flex items-center gap-3 mb-6">
-            <Building2 className="w-6 h-6 text-accent" />
-            <h3 className="text-2xl font-bold">Adquirente vs Agregador</h3>
+        <Card className="bg-background/40 backdrop-blur-2xl border-border/50 p-8 md:p-10 rounded-[2.5rem] shadow-xl hover:border-accent/30 transition-all group relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-accent/10 transition-colors" />
+          <div className="flex items-center gap-4 mb-8 relative z-10">
+            <div className="p-3 bg-accent/10 rounded-xl">
+              <Building2 className="w-8 h-8 text-accent" />
+            </div>
+            <h3 className="text-3xl font-extrabold tracking-tight">Adquirente vs Agregador</h3>
           </div>
           
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto relative z-10">
             <table className="w-full text-sm text-left">
               <thead>
-                <tr className="border-b border-border text-muted-foreground">
-                  <th className="pb-3 font-medium">CARACTERÍSTICA</th>
-                  <th className="pb-3 font-medium">ADQUIRENTE</th>
-                  <th className="pb-3 font-medium">AGREGADOR</th>
+                <tr className="border-b border-border/50 text-muted-foreground font-mono text-xs uppercase tracking-wider">
+                  <th className="pb-4 font-semibold">Característica</th>
+                  <th className="pb-4 font-semibold">Adquirente</th>
+                  <th className="pb-4 font-semibold">Agregador</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border">
+              <tbody className="divide-y divide-border/30">
                 {diferencias.map((row, i) => (
-                  <tr key={i} className="hover:bg-accent/5 transition-colors">
-                    <td className="py-4 font-semibold text-foreground">{row.caracteristica}</td>
-                    <td className="py-4 text-muted-foreground">{row.adquirente}</td>
-                    <td className="py-4 text-muted-foreground">{row.agregador}</td>
+                  <tr key={i} className="hover:bg-secondary/40 transition-colors">
+                    <td className="py-5 font-bold text-foreground pr-4">{row.caracteristica}</td>
+                    <td className="py-5 text-muted-foreground pr-4">{row.adquirente}</td>
+                    <td className="py-5 text-muted-foreground">{row.agregador}</td>
                   </tr>
                 ))}
               </tbody>
@@ -106,59 +173,67 @@ export function EcosystemFlows() {
         </Card>
 
         {/* Dynamic Comissions */}
-        <Card className="bg-card/40 backdrop-blur-md border-border p-8 rounded-3xl flex flex-col">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <TrendingDown className="w-6 h-6 text-accent" />
-              <h3 className="text-2xl font-bold">Panorama de Comisiones ({activeCountry.toUpperCase()})</h3>
+        <Card className="bg-background/40 backdrop-blur-2xl border-border/50 p-8 md:p-10 rounded-[2.5rem] shadow-xl hover:border-accent/30 transition-all relative overflow-hidden flex flex-col">
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+          
+          <div className="flex items-center gap-4 mb-10 relative z-10">
+            <div className="p-3 bg-primary/10 rounded-xl">
+              <TrendingDown className="w-8 h-8 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-3xl font-extrabold tracking-tight">Ecosistema {activeCountry}</h3>
+              <p className="text-muted-foreground text-sm font-mono mt-1 uppercase tracking-widest">Tasas & Regulación</p>
             </div>
           </div>
           
-          <div className="space-y-8 flex-1">
+          <div className="space-y-10 flex-1 relative z-10">
             {activeCountry === "mexico" && (
-              <>
-                <div className="p-4 rounded-xl bg-accent/5 border border-accent/10">
-                  <h4 className="text-sm font-bold text-muted-foreground mb-3 uppercase">Propuesta Reducción CI (Banxico 2026)</h4>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex justify-between text-xs mb-1">
-                        <span>Agregadores</span>
-                        <span className="font-bold">1.76% → 1.15%</span>
-                      </div>
-                      <div className="h-2 bg-secondary rounded-full overflow-hidden flex">
-                        <div className="bg-red-500 w-[100%]" />
-                      </div>
+              <div className="p-6 rounded-2xl bg-secondary/30 border border-border/50 hover:border-primary/30 transition-colors">
+                <div className="flex justify-between items-center mb-6">
+                  <h4 className="text-sm font-bold text-foreground flex items-center gap-2"><TrendingDown className="w-4 h-4 text-primary" /> Propuesta Reducción CI (2026)</h4>
+                  <Badge variant="secondary" className="bg-primary/10 text-primary border-none">Banxico</Badge>
+                </div>
+                <div className="space-y-6">
+                  <div>
+                    <div className="flex justify-between text-sm mb-2 font-mono">
+                      <span className="text-muted-foreground">Agregadores</span>
+                      <span className="font-extrabold text-foreground">1.76% → <span className="text-primary">1.15%</span></span>
                     </div>
-                    <div>
-                      <div className="flex justify-between text-xs mb-1">
-                        <span>Retail</span>
-                        <span className="font-bold">1.53% → 1.15%</span>
-                      </div>
-                      <div className="h-2 bg-secondary rounded-full overflow-hidden flex">
-                        <div className="bg-orange-500 w-[85%]" />
-                      </div>
+                    <div className="h-3 bg-background rounded-full overflow-hidden flex border border-border/50">
+                      <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1 }} className="bg-gradient-to-r from-red-500 to-red-400 w-full" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2 font-mono">
+                      <span className="text-muted-foreground">Retail</span>
+                      <span className="font-extrabold text-foreground">1.53% → <span className="text-primary">1.15%</span></span>
+                    </div>
+                    <div className="h-3 bg-background rounded-full overflow-hidden flex border border-border/50">
+                      <motion.div initial={{ width: 0 }} animate={{ width: "85%" }} transition={{ duration: 1, delay: 0.2 }} className="bg-gradient-to-r from-orange-500 to-amber-400 w-full" />
                     </div>
                   </div>
                 </div>
-              </>
+              </div>
             )}
 
-            <div>
-              <h4 className="text-sm font-bold text-muted-foreground mb-4 uppercase">Tasas Promedio Mercado</h4>
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="outline" className="px-4 py-2 border-primary/30 bg-primary/5 text-sm">
-                  Adquirentes Directos: <span className="font-bold ml-1 text-foreground">{countryData.adquirentes}</span>
-                </Badge>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="p-5 rounded-2xl bg-background/50 border border-border/50">
+                <h4 className="text-xs font-bold text-muted-foreground mb-1 uppercase tracking-wider">Tasa Adquirente (Promedio)</h4>
+                <div className="text-2xl font-black text-foreground font-mono">{countryData.adquirentes}</div>
+              </div>
+              <div className="p-5 rounded-2xl bg-background/50 border border-border/50">
+                <h4 className="text-xs font-bold text-muted-foreground mb-1 uppercase tracking-wider">Top Agregador (Tasa)</h4>
+                <div className="text-2xl font-black text-foreground font-mono">{countryData.agregadores[0]?.rate}</div>
               </div>
             </div>
 
             <div>
-              <h4 className="text-sm font-bold text-muted-foreground mb-4 uppercase">Principales Agregadores</h4>
-              <div className="grid grid-cols-2 gap-3">
+              <h4 className="text-sm font-bold text-muted-foreground mb-4 uppercase tracking-wider">Mapa de Agregadores Locales</h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {countryData.agregadores.map((agr: any) => (
-                  <div key={agr.name} className="flex justify-between items-center p-3 rounded-lg bg-background border border-border hover:border-accent transition-colors">
-                    <span className="font-medium">{agr.name}</span>
-                    <span className="font-mono text-accent text-xs font-bold bg-accent/10 px-2 py-1 rounded">{agr.rate}</span>
+                  <div key={agr.name} className="flex flex-col p-4 rounded-xl bg-background/50 border border-border/50 hover:bg-secondary/50 hover:border-accent/40 transition-all group">
+                    <span className="font-bold text-sm text-foreground mb-1">{agr.name}</span>
+                    <span className="font-mono text-accent text-xs font-bold">{agr.rate}</span>
                   </div>
                 ))}
               </div>
