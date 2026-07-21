@@ -192,7 +192,7 @@ export default function Diccionario({ isEmbed }: Props) {
             </span>
 
             <a
-              href="https://onlypayments-web.vercel.app/diccionario"
+              href={`${baseUrl}/diccionario`}
               target="_blank"
               rel="noreferrer"
               className="text-[11px] font-mono text-cyan-400 hover:underline flex items-center gap-1"
