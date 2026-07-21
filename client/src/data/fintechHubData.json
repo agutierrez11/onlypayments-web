@@ -1,0 +1,94 @@
+{
+  "ecosistema_pagos_4_partes": {
+    "actores": {
+      "tarjetahabiente": {
+        "rol": "Cliente que realiza la compra con tarjeta",
+        "costo": "Generalmente no paga comisión directa"
+      },
+      "comercio": {
+        "rol": "Tienda o negocio que recibe el pago",
+        "costo": "Paga la Tasa de Descuento (MDR) al adquirente/agregador"
+      },
+      "adquirente": {
+        "rol": "Procesa pagos para el comercio (bancos, procesadores)",
+        "costo": "Cobra MDR; paga Cuota de Intercambio (CI) al emisor"
+      },
+      "agregador": {
+        "rol": "Intermediario tecnológico (Stripe, Conekta)",
+        "costo": "Cobra MDR; paga tasa al adquirente. Margen = spread"
+      },
+      "emisor": {
+        "rol": "Banco que emitió la tarjeta al cliente",
+        "costo": "Recibe la Cuota de Intercambio (CI) del adquirente"
+      },
+      "marca": {
+        "rol": "Visa, Mastercard, Amex",
+        "costo": "Recibe comisión por red"
+      }
+    },
+    "tasas_por_pais": {
+      "mexico": {
+        "cuota_intercambio": {
+          "agregadores": "1.76% → 1.15%",
+          "retail": "1.53% → 1.15%",
+          "gasolineras": "1.00% → 0.45%"
+        },
+        "agregadores": [
+          {"name": "Xaldo", "rate": "2.64%"},
+          {"name": "Dlocal", "rate": "2.67%"},
+          {"name": "Punto", "rate": "2.94%"},
+          {"name": "Kushki", "rate": "3.26%"},
+          {"name": "Mercado Pago", "rate": "3.33%"},
+          {"name": "Conekta", "rate": "3.39%"},
+          {"name": "Stripe", "rate": "3.56%"},
+          {"name": "Clip", "rate": "3.59%"}
+        ],
+        "adquirentes": "1.5% - 2.5%"
+      },
+      "brasil": {
+        "agregadores": [{"name": "Pix", "rate": "Gratis / Variable"}],
+        "adquirentes": "2.5% - 4.5%"
+      },
+      "colombia": {
+        "agregadores": [{"name": "Redeban", "rate": "2.8% - 4.0%"}],
+        "adquirentes": "1.5% - 2.5%"
+      },
+      "chile": {
+        "agregadores": [{"name": "Transbank", "rate": "2.5% - 3.5%"}],
+        "adquirentes": "1.2% - 2.0%"
+      }
+    },
+    "diferencias": [
+      {
+        "caracteristica": "Definición",
+        "adquirente": "Procesa transacciones directamente",
+        "agregador": "Intermediario tecnológico"
+      },
+      {
+        "caracteristica": "Licencia",
+        "adquirente": "Bancaria / IFPE",
+        "agregador": "No requiere (opera bajo corresponsalía)"
+      },
+      {
+        "caracteristica": "Onboarding",
+        "adquirente": "Lento (semanas)",
+        "agregador": "Rápido (minutos / días)"
+      },
+      {
+        "caracteristica": "API",
+        "adquirente": "Propietaria, legado",
+        "agregador": "Unificada, REST moderna"
+      },
+      {
+        "caracteristica": "Tasa típica MX",
+        "adquirente": "1.5% - 2.5%",
+        "agregador": "2.6% - 3.6%"
+      },
+      {
+        "caracteristica": "Ejemplos",
+        "adquirente": "Banorte, Cielo, Transbank",
+        "agregador": "Stripe, Conekta, Kushki, Clip"
+      }
+    ]
+  }
+}
