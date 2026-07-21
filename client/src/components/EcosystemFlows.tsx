@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Server, Landmark, User, ShieldAlert, ArrowRight, TrendingDown, ArrowLeftRight, RotateCcw, Zap } from "lucide-react";
+import React, { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
+import { Building2, Server, Landmark, User, ShieldAlert, TrendingDown, ArrowLeftRight, RotateCcw, Zap } from "lucide-react";
 import fintechHubData from "../data/fintechHubData.json";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -26,7 +26,8 @@ export function EcosystemFlows() {
   const [activeStep, setActiveStep] = useState(0);
 
   const countryData = fintechHubData.ecosistema_pagos_4_partes.tasas_por_pais[activeCountry];
-  const { diferencias } = fintechHubData.ecosistema_pagos_4_partes;
+  const adquirenteData = fintechHubData.ecosistema_pagos_4_partes.diferencia_adquirente_vs_agregador.adquirente;
+  const agregadorData = fintechHubData.ecosistema_pagos_4_partes.diferencia_adquirente_vs_agregador.agregador;
   const currentFlow = FLOWS[activeFlowType];
 
   useEffect(() => {
@@ -36,8 +37,19 @@ export function EcosystemFlows() {
     return () => clearInterval(interval);
   }, [activeFlowType, currentFlow.length]);
 
+  // Convert the dict of agregadores to an array for Mexico specifically
+  const mexicoAgregadores = useMemo(() => {
+    if (activeCountry === 'mexico' && countryData.tasas_descuento_agregadores_2026) {
+      return Object.entries(countryData.tasas_descuento_agregadores_2026).map(([name, rate]) => ({
+        name: name.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        rate: typeof rate === 'string' ? rate.split('(')[0].trim() : rate
+      }));
+    }
+    return [];
+  }, [activeCountry, countryData]);
+
   return (
-    <section className="relative w-full max-w-[1200px] mx-auto px-6 py-24 z-10">
+    <div className="w-full relative z-10">
       
       <div className="text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold font-mono uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(var(--accent),0.2)]">
@@ -46,7 +58,7 @@ export function EcosystemFlows() {
         </div>
         <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-foreground bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">El Ecosistema de Pagos</h2>
         <p className="text-muted-foreground font-light text-lg md:text-xl max-w-2xl mx-auto">
-          Anatomía de una transacción y orquestación inteligente.
+          Anatomía de una transacción y orquestación inteligente en LATAM.
         </p>
       </div>
 
@@ -98,10 +110,8 @@ export function EcosystemFlows() {
         </div>
         
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 relative z-10 py-10">
-          {/* Path line background */}
           <div className="hidden md:block absolute left-[12%] right-[12%] top-1/2 h-1 bg-border -translate-y-1/2 z-0 rounded-full" />
           
-          {/* Animated Progress Line */}
           <div className="hidden md:block absolute left-[12%] right-[12%] top-1/2 h-1 -translate-y-1/2 z-0 rounded-full overflow-hidden">
             <motion.div 
               className={`h-full ${activeFlowType === 'autorizacion' ? 'bg-accent' : 'bg-destructive'}`}
@@ -111,7 +121,6 @@ export function EcosystemFlows() {
             />
           </div>
 
-          {/* Particle moving */}
           <motion.div
             className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${activeFlowType === 'autorizacion' ? 'bg-accent shadow-[0_0_20px_var(--accent)]' : 'bg-destructive shadow-[0_0_20px_red]'} z-10`}
             initial={{ left: "12%" }}
@@ -160,13 +169,31 @@ export function EcosystemFlows() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/30">
-                {diferencias.map((row, i) => (
-                  <tr key={i} className="hover:bg-secondary/40 transition-colors">
-                    <td className="py-5 font-bold text-foreground pr-4">{row.caracteristica}</td>
-                    <td className="py-5 text-muted-foreground pr-4">{row.adquirente}</td>
-                    <td className="py-5 text-muted-foreground">{row.agregador}</td>
-                  </tr>
-                ))}
+                <tr className="hover:bg-secondary/40 transition-colors">
+                  <td className="py-5 font-bold text-foreground pr-4">Definición</td>
+                  <td className="py-5 text-muted-foreground pr-4">{adquirenteData.definicion}</td>
+                  <td className="py-5 text-muted-foreground">{agregadorData.definicion}</td>
+                </tr>
+                <tr className="hover:bg-secondary/40 transition-colors">
+                  <td className="py-5 font-bold text-foreground pr-4">Licencia</td>
+                  <td className="py-5 text-muted-foreground pr-4">{adquirenteData.requiere}</td>
+                  <td className="py-5 text-muted-foreground">{agregadorData.requiere}</td>
+                </tr>
+                <tr className="hover:bg-secondary/40 transition-colors">
+                  <td className="py-5 font-bold text-foreground pr-4">Tasa Típica</td>
+                  <td className="py-5 text-muted-foreground pr-4 font-mono">{adquirenteData.tasa_tipica}</td>
+                  <td className="py-5 text-muted-foreground font-mono">{agregadorData.tasa_tipica}</td>
+                </tr>
+                <tr className="hover:bg-secondary/40 transition-colors">
+                  <td className="py-5 font-bold text-foreground pr-4">Relación Comercio</td>
+                  <td className="py-5 text-muted-foreground pr-4">{adquirenteData.relacion_comercio}</td>
+                  <td className="py-5 text-muted-foreground">{agregadorData.relacion_comercio}</td>
+                </tr>
+                <tr className="hover:bg-secondary/40 transition-colors">
+                  <td className="py-5 font-bold text-foreground pr-4">Ejemplos</td>
+                  <td className="py-5 text-muted-foreground pr-4">{adquirenteData.ejemplos.join(", ")}</td>
+                  <td className="py-5 text-muted-foreground">{agregadorData.ejemplos.join(", ")}</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -186,8 +213,8 @@ export function EcosystemFlows() {
             </div>
           </div>
           
-          <div className="space-y-10 flex-1 relative z-10">
-            {activeCountry === "mexico" && (
+          <div className="space-y-8 flex-1 relative z-10">
+            {activeCountry === "mexico" && countryData.cuota_intercambio_propuesta_2026 && (
               <div className="p-6 rounded-2xl bg-secondary/30 border border-border/50 hover:border-primary/30 transition-colors">
                 <div className="flex justify-between items-center mb-6">
                   <h4 className="text-sm font-bold text-foreground flex items-center gap-2"><TrendingDown className="w-4 h-4 text-primary" /> Propuesta Reducción CI (2026)</h4>
@@ -197,7 +224,7 @@ export function EcosystemFlows() {
                   <div>
                     <div className="flex justify-between text-sm mb-2 font-mono">
                       <span className="text-muted-foreground">Agregadores</span>
-                      <span className="font-extrabold text-foreground">1.76% → <span className="text-primary">1.15%</span></span>
+                      <span className="font-extrabold text-foreground">{countryData.cuota_intercambio_propuesta_2026.credito.agregadores.split('(')[0]}</span>
                     </div>
                     <div className="h-3 bg-background rounded-full overflow-hidden flex border border-border/50">
                       <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1 }} className="bg-gradient-to-r from-red-500 to-red-400 w-full" />
@@ -206,7 +233,7 @@ export function EcosystemFlows() {
                   <div>
                     <div className="flex justify-between text-sm mb-2 font-mono">
                       <span className="text-muted-foreground">Retail</span>
-                      <span className="font-extrabold text-foreground">1.53% → <span className="text-primary">1.15%</span></span>
+                      <span className="font-extrabold text-foreground">{countryData.cuota_intercambio_propuesta_2026.credito.retail}</span>
                     </div>
                     <div className="h-3 bg-background rounded-full overflow-hidden flex border border-border/50">
                       <motion.div initial={{ width: 0 }} animate={{ width: "85%" }} transition={{ duration: 1, delay: 0.2 }} className="bg-gradient-to-r from-orange-500 to-amber-400 w-full" />
@@ -216,33 +243,42 @@ export function EcosystemFlows() {
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-6">
-              <div className="p-5 rounded-2xl bg-background/50 border border-border/50">
-                <h4 className="text-xs font-bold text-muted-foreground mb-1 uppercase tracking-wider">Tasa Adquirente (Promedio)</h4>
-                <div className="text-2xl font-black text-foreground font-mono">{countryData.adquirentes}</div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-2xl bg-background/50 border border-border/50">
+                <h4 className="text-[10px] font-bold text-muted-foreground mb-1 uppercase tracking-wider">Tasa Adquirente Crédito</h4>
+                <div className="text-xl font-black text-foreground font-mono">{countryData.tasas_tarjeta?.credito || "1.5% - 2.5%"}</div>
               </div>
-              <div className="p-5 rounded-2xl bg-background/50 border border-border/50">
-                <h4 className="text-xs font-bold text-muted-foreground mb-1 uppercase tracking-wider">Top Agregador (Tasa)</h4>
-                <div className="text-2xl font-black text-foreground font-mono">{countryData.agregadores[0]?.rate}</div>
+              <div className="p-4 rounded-2xl bg-background/50 border border-border/50">
+                <h4 className="text-[10px] font-bold text-muted-foreground mb-1 uppercase tracking-wider">Tasa Adquirente Débito</h4>
+                <div className="text-xl font-black text-foreground font-mono">{countryData.tasas_tarjeta?.debito || "0.75% - 1.5%"}</div>
               </div>
             </div>
 
-            <div>
-              <h4 className="text-sm font-bold text-muted-foreground mb-4 uppercase tracking-wider">Mapa de Agregadores Locales</h4>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {countryData.agregadores.map((agr: any) => (
-                  <div key={agr.name} className="flex flex-col p-4 rounded-xl bg-background/50 border border-border/50 hover:bg-secondary/50 hover:border-accent/40 transition-all group">
-                    <span className="font-bold text-sm text-foreground mb-1">{agr.name}</span>
-                    <span className="font-mono text-accent text-xs font-bold">{agr.rate}</span>
-                  </div>
-                ))}
+            {activeCountry === 'mexico' && mexicoAgregadores.length > 0 && (
+              <div>
+                <h4 className="text-sm font-bold text-muted-foreground mb-4 uppercase tracking-wider">Mapa de Agregadores Locales</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {mexicoAgregadores.slice(0, 9).map((agr: any) => (
+                    <div key={agr.name} className="flex flex-col p-3 rounded-xl bg-background/50 border border-border/50 hover:bg-secondary/50 hover:border-accent/40 transition-all group">
+                      <span className="font-bold text-xs text-foreground mb-1">{agr.name}</span>
+                      <span className="font-mono text-accent text-[10px] font-bold">{agr.rate}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+            
+            {activeCountry !== 'mexico' && (
+              <div className="p-4 rounded-xl bg-background/50 border border-border/50 mt-4">
+                <h4 className="text-sm font-bold text-muted-foreground mb-2">Observaciones</h4>
+                <p className="text-sm text-foreground">{countryData.observacion || countryData.open_finance || countryData.sistemas_pago?.[0]}</p>
+              </div>
+            )}
 
           </div>
         </Card>
       </div>
 
-    </section>
+    </div>
   );
 }

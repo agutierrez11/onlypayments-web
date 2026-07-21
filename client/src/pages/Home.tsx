@@ -3,6 +3,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { startLogin } from "@/const";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
 import { 
@@ -413,11 +414,26 @@ export default function Home() {
 
           {/* TAB 1: QUIÉN ES QUIÉN & MODELOS DE FLUJO */}
           {activeLibraryTab === 'ecosistema' && (
-            <div className="space-y-12 max-w-6xl mx-auto">
-              <EcosystemFlows />
-
-              </div>
-
+            <div className="space-y-6 max-w-4xl mx-auto text-center">
+              <Card className="p-12 border-border bg-background/50 backdrop-blur-xl border-accent/20 shadow-[0_0_50px_rgba(var(--accent),0.1)] relative overflow-hidden group cursor-pointer hover:border-accent/50 transition-all" onClick={() => navigate('/latam-dashboard')}>
+                <div className="absolute inset-0 bg-accent/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+                <div className="relative z-10 space-y-6">
+                  <div className="w-20 h-20 mx-auto bg-accent/20 rounded-2xl flex items-center justify-center border border-accent/30 group-hover:scale-110 transition-transform duration-500">
+                    <Globe className="w-10 h-10 text-accent" />
+                  </div>
+                  <div>
+                    <Badge variant="outline" className="mb-4 bg-accent/10 text-accent border-accent/20">NUEVO v3.0</Badge>
+                    <h3 className="text-3xl font-extrabold mb-4 text-foreground">Latam Fintech Dashboard</h3>
+                    <p className="text-muted-foreground max-w-xl mx-auto mb-8">
+                      Explora el modelo interactivo de 4 partes, datos de iGaming, Remesas y Regulación de 20 países en LATAM.
+                    </p>
+                  </div>
+                  <Button className="bg-accent text-accent-foreground font-bold hover:bg-accent/90" size="lg" onClick={(e) => { e.stopPropagation(); navigate('/latam-dashboard'); }}>
+                    Abrir Dashboard Interactivo <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </div>
+              </Card>
+            </div>
           )}
 
           {/* TAB 2: DICCIONARIO DE PAGOS */}

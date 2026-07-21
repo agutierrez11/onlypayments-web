@@ -12,6 +12,7 @@ import PaymentStacks from "./pages/PaymentStacks";
 import Remesas from "./pages/Remesas";
 import HowToGuides from "./pages/HowToGuides";
 import Diccionario from "./pages/Diccionario";
+import LatamFintechDashboard from "./pages/LatamFintechDashboard";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -24,6 +25,7 @@ function Router() {
       <Route path={"/remesas"} component={Remesas} />
       <Route path={"/guides"} component={HowToGuides} />
       <Route path={"/diccionario"} component={Diccionario} />
+      <Route path={"/latam-dashboard"} component={LatamFintechDashboard} />
       <Route path={"/embed/diccionario"}>
         <Diccionario isEmbed />
       </Route>

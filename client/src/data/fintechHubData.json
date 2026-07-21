@@ -1,5 +1,37 @@
 {
+  "meta": {
+    "titulo": "LATAM Fintech Hub — Ecosistema Completo 2026 (20 Países)",
+    "fecha_actualizacion": "2026-07-20",
+    "fuentes": [
+      "Finnovista",
+      "BID",
+      "Bancos Centrales",
+      "Reguladores Nacionales",
+      "Alianza Fintech Iberoamérica",
+      "ASFI Bolivia",
+      "BCU Uruguay",
+      "BCN Nicaragua",
+      "BCP Paraguay",
+      "SBP Panamá",
+      "SUDEBAN Venezuela",
+      "BCE Ecuador",
+      "CNBV México",
+      "BCB Brasil",
+      "SFC Colombia",
+      "CMF Chile",
+      "BCRA Argentina",
+      "SBS Perú",
+      "SIB Guatemala",
+      "Track360 iGaming",
+      "BBVA Research",
+      "Forbes Ecuador",
+      "Bloomberg Línea"
+    ],
+    "paises_mapeados": 20,
+    "version": "3.0"
+  },
   "ecosistema_pagos_4_partes": {
+    "descripcion": "El ecosistema de pagos con tarjeta involucra 4 actores principales: Tarjetahabiente, Comercio, Adquirente/Aggregador, y Emisor. Cada uno cobra comisiones en la cadena.",
     "actores": {
       "tarjetahabiente": {
         "rol": "Cliente que realiza la compra con tarjeta",
@@ -10,85 +42,852 @@
         "costo": "Paga la Tasa de Descuento (MDR) al adquirente/agregador"
       },
       "adquirente": {
-        "rol": "Procesa pagos para el comercio (bancos, procesadores)",
-        "costo": "Cobra MDR; paga Cuota de Intercambio (CI) al emisor"
+        "rol": "Entidad que procesa pagos para el comercio (bancos, procesadores)",
+        "costo": "Cobra tasa de descuento al comercio; paga Cuota de Intercambio (CI) al emisor"
       },
       "agregador": {
-        "rol": "Intermediario tecnológico (Stripe, Conekta)",
-        "costo": "Cobra MDR; paga tasa al adquirente. Margen = spread"
+        "rol": "Intermediario tecnológico que conecta comercios con adquirentes (Stripe, Conekta, etc.)",
+        "costo": "Cobra tasa de descuento al comercio; paga tasa más baja al adquirente. Margen = spread"
       },
       "emisor": {
-        "rol": "Banco que emitió la tarjeta al cliente",
+        "rol": "Banco que emitió la tarjeta al tarjetahabiente",
         "costo": "Recibe la Cuota de Intercambio (CI) del adquirente"
       },
       "marca": {
         "rol": "Visa, Mastercard, Amex",
-        "costo": "Recibe comisión por red"
+        "costo": "Recibe comisión por transacción procesada"
       }
     },
     "tasas_por_pais": {
       "mexico": {
-        "cuota_intercambio": {
-          "agregadores": "1.76% → 1.15%",
-          "retail": "1.53% → 1.15%",
-          "gasolineras": "1.00% → 0.45%"
+        "cuota_intercambio_propuesta_2026": {
+          "credito": {
+            "agregadores": "1.76% → 1.15% (propuesta Banxico 2025)",
+            "retail": "1.53% → 1.15%",
+            "restaurantes": "1.76% → 1.15%",
+            "supermercados": "1.53% → 1.10%",
+            "gasolineras": "1.00% → 0.45%",
+            "educacion": "0.00% → 0.75%",
+            "beneficencia": "0.00%"
+          },
+          "debito": {
+            "general": "0.75% - 1.15%"
+          }
         },
-        "agregadores": [
-          {"name": "Xaldo", "rate": "2.64%"},
-          {"name": "Dlocal", "rate": "2.67%"},
-          {"name": "Punto", "rate": "2.94%"},
-          {"name": "Kushki", "rate": "3.26%"},
-          {"name": "Mercado Pago", "rate": "3.33%"},
-          {"name": "Conekta", "rate": "3.39%"},
-          {"name": "Stripe", "rate": "3.56%"},
-          {"name": "Clip", "rate": "3.59%"}
-        ],
-        "adquirentes": "1.5% - 2.5%"
+        "tasas_descuento_agregadores_2026": {
+          "xaldo": "2.64%",
+          "dlocal": "2.67% (min 2.00%, max 3.40%)",
+          "memphis": "2.69%",
+          "efevoo_pay": "2.80%",
+          "punto": "2.94%",
+          "adquira": "2.97%",
+          "merit": "2.99%",
+          "pago_facil": "3.16%",
+          "sr_pago": "3.22%",
+          "kushki": "3.26%",
+          "netpay": "3.29%",
+          "mercado_pago": "3.33%",
+          "conekta": "3.39%",
+          "payu": "3.46%",
+          "paypal": "3.49%",
+          "qiubo": "3.50%",
+          "stripe": "3.56%",
+          "clip": "3.59%"
+        },
+        "pymes_sin_tarjeta": "3.2 millones",
+        "observacion": "Agregadores en MX: 2.64% - 3.59%. El usuario confirma 3.2% máximo 3.6%"
       },
       "brasil": {
-        "agregadores": [{"name": "Pix", "rate": "Gratis / Variable"}],
-        "adquirentes": "2.5% - 4.5%"
+        "pix": {
+          "costo_comercio": "Gratuito PF; comisiones variables PJ",
+          "volumen_2024": "102B llamadas API",
+          "consentimientos_activos": "128+ millones"
+        },
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.5%",
+          "debito": "1.5% - 2.5%"
+        },
+        "observacion": "Ecosistema más maduro de LATAM"
       },
       "colombia": {
-        "agregadores": [{"name": "Redeban", "rate": "2.8% - 4.0%"}],
-        "adquirentes": "1.5% - 2.5%"
+        "sistemas_pago": [
+          "Botón PSE",
+          "Transfiya",
+          "Redeban Entre-Cuentas"
+        ],
+        "tasas_tarjeta": {
+          "credito": "2.8% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "open_finance": "Obligatorio desde abril 2026 (Decreto 0368)"
       },
       "chile": {
-        "agregadores": [{"name": "Transbank", "rate": "2.5% - 3.5%"}],
-        "adquirentes": "1.2% - 2.0%"
+        "tasas_tarjeta": {
+          "credito": "2.5% - 3.5%",
+          "debito": "1.2% - 2.0%"
+        },
+        "open_finance": "Ley Fintech 21.521 (2023), vigencia junio 2026"
+      },
+      "argentina": {
+        "tasas_tarjeta": {
+          "credito": "3.0% - 5.0% (alta inflación)",
+          "debito": "1.5% - 2.5%"
+        },
+        "transferencias_3_0": "Sistema de pagos interoperables del BCRA"
+      },
+      "peru": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "open_finance": "En planificación por la SBS"
+      },
+      "ecuador": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 3.5%",
+          "debito": "1.2% - 2.0%"
+        },
+        "sistema_pago": "SIP (Sistema Integrador de Pagos) — interoperabilidad obligatoria desde 2024",
+        "observacion": "60% tiene tarjeta débito, solo 32% la usa. 37% hace transferencias bancarizadas"
+      },
+      "uruguay": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 3.5%",
+          "debito": "1.5% - 2.5%"
+        },
+        "sistema_pago": "ACH monopolizado por un solo jugador; BCU busca interoperabilidad",
+        "observacion": "Ecosistema fintech emplea ~1,000 personas, $60M al PIB. Proyección 2035: $1B anual"
+      },
+      "paraguay": {
+        "tasas_tarjeta": {
+          "credito": "2.8% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "ley_pagos_2025": "Ley N° 7.503 (junio 2025) — Sistema Nacional de Pagos modernizado",
+        "observacion": "Interoperabilidad obligatoria, BCP con poderes ampliados de supervisión"
+      },
+      "bolivia": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "crypto": "Prohibido hasta junio 2024; ahora permitido con regulación ASFI",
+        "observacion": "Circular ASFI/945/2026 regula ETFs, sandbox, activos virtuales"
+      },
+      "panama": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "ley_fintech_2026": "Anteproyecto Ley N° 314 (enero 2026) — PSP, VASP, EMI, sandbox",
+        "observacion": "Salió de lista de alto riesgo UE (julio 2025). Firmó CARF-MCAA (diciembre 2025)"
+      },
+      "costa_rica": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "regulacion": "Sin regulación fintech específica ni sandbox. Enfoque de mercado"
+      },
+      "guatemala": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "regulacion": "SIB Innovation Hub creado. Sin ley fintech específica. Bill 6538 (mayo 2025) propone Ley de Criptomonedas",
+        "remesas_2025": "$25,857 millones (2do receptor de LATAM)",
+        "observacion": "SIB enfoque no intrusivo. Remesas = 92.9% desde USA"
+      },
+      "honduras": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "regulacion": "Decreto 83-2021 + Reglamentos BCH (agosto 2022). PSPs y dinero electrónico regulados",
+        "remesas_2025": "$11,983 millones",
+        "observacion": "Remesas = 30.4% del PIB. Mayor crecimiento regional 2025: +27.1%"
+      },
+      "nicaragua": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "regulacion": "Resolución BCN GG-08-MAYO-2025-LASMF-DO (abril 2025). PSPs y VASPs con licencia obligatoria",
+        "capital_minimo_psp": "$110,000 - $300,000 USD",
+        "remesas_2025": "Crecimiento +18.2%",
+        "observacion": "BCN emite licencias en 90 días hábiles. KYC biométrico obligatorio"
+      },
+      "el_salvador": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "regulacion": "Ley Bitcoin (2021) + Ley de Activos Digitales. Bitcoin ya no obligatorio (reforma IMF 2025)",
+        "transfer365": "Sistema de pagos instantáneos 24/7. 95.3% de transacciones financieras",
+        "remesas_2025": "$10,001 millones",
+        "observacion": "Chivo Wallet en proceso de venta/discontinuación (acuerdo IMF)"
+      },
+      "republica_dominicana": {
+        "tasas_tarjeta": {
+          "credito": "2.5% - 4.0%",
+          "debito": "1.5% - 2.5%"
+        },
+        "regulacion": "Circular Onboarding Digital (SIB). Open Banking en desarrollo (S2 2026)",
+        "remesas_2025": "$11,973 millones (líder Caribe)",
+        "observacion": "SIB parte de Red Ecosistema Fintech de ALC. Sandbox en evaluación"
+      },
+      "venezuela": {
+        "tasas_tarjeta": {
+          "credito": "3.0% - 5.0% (hiperinflación)",
+          "debito": "1.5% - 2.5%"
+        },
+        "regulacion": "Resolución SUDEBAN para ITFBs (2021). Requiere autorización, mínimo 5 accionistas, capital mínimo por SUDEBAN",
+        "observacion": "Contexto de hiperinflación y crisis cambiaria. Uso de dólares y cripto predominante"
       }
     },
-    "diferencias": [
-      {
-        "caracteristica": "Definición",
-        "adquirente": "Procesa transacciones directamente",
-        "agregador": "Intermediario tecnológico"
+    "diferencia_adquirente_vs_agregador": {
+      "adquirente": {
+        "definicion": "Entidad autorizada por el banco central para capturar y procesar transacciones con tarjeta",
+        "ejemplos": [
+          "Banorte (México)",
+          "Cielo (Brasil)",
+          "Redeban (Colombia)",
+          "Transbank (Chile)"
+        ],
+        "tasa_tipica": "1.5% - 2.5%",
+        "requiere": "Licencia bancaria o de institución de pago",
+        "relacion_comercio": "Directa"
       },
-      {
-        "caracteristica": "Licencia",
-        "adquirente": "Bancaria / IFPE",
-        "agregador": "No requiere (opera bajo corresponsalía)"
-      },
-      {
-        "caracteristica": "Onboarding",
-        "adquirente": "Lento (semanas)",
-        "agregador": "Rápido (minutos / días)"
-      },
-      {
-        "caracteristica": "API",
-        "adquirente": "Propietaria, legado",
-        "agregador": "Unificada, REST moderna"
-      },
-      {
-        "caracteristica": "Tasa típica MX",
-        "adquirente": "1.5% - 2.5%",
-        "agregador": "2.6% - 3.6%"
-      },
-      {
-        "caracteristica": "Ejemplos",
-        "adquirente": "Banorte, Cielo, Transbank",
-        "agregador": "Stripe, Conekta, Kushki, Clip"
+      "agregador": {
+        "definicion": "Empresa tecnológica que agrupa múltiples adquirentes y ofrece una API unificada",
+        "ejemplos": [
+          "Stripe",
+          "Conekta",
+          "Kushki",
+          "Mercado Pago",
+          "Clip",
+          "Dlocal"
+        ],
+        "tasa_tipica": "2.6% - 3.6% (México), 2.5% - 4.0% (regional)",
+        "requiere": "Generalmente no requiere licencia bancaria",
+        "relacion_comercio": "Indirecta"
       }
+    }
+  },
+  "radar_finnovista": {
+    "mexico_2026": {
+      "fintech_activas": 795,
+      "adopcion_ia": "77%",
+      "tendencias": [
+        "Embedded finance",
+        "Open banking",
+        "Crédito alternativo"
+      ]
+    },
+    "colombia_2025": {
+      "estado": "3er ecosistema LATAM",
+      "tendencias": [
+        "Open Finance obligatorio",
+        "Pagos instantáneos"
+      ]
+    },
+    "chile_2026": {
+      "estado": "Pequeño pero ágil",
+      "tendencias": [
+        "Ley Fintech implementación"
+      ]
+    },
+    "brasil": {
+      "estado": "Líder regional",
+      "fintechs": "1,000+",
+      "pix": "Dominante"
+    }
+  },
+  "camaras_asociaciones": {
+    "alianza_fintech_iberoamerica": {
+      "miembros": [
+        "Argentina",
+        "Brasil",
+        "Chile",
+        "Colombia",
+        "México",
+        "Perú",
+        "Ecuador",
+        "Uruguay",
+        "Paraguay",
+        "Bolivia",
+        "Costa Rica",
+        "Panamá",
+        "Rep. Dominicana",
+        "El Salvador",
+        "Guatemala",
+        "Honduras",
+        "Nicaragua",
+        "España"
+      ],
+      "presidencia_rotativa": {
+        "2015": "Argentina",
+        "2017": "Chile",
+        "2021": "El Salvador",
+        "2023": "Perú",
+        "2024": "El Salvador"
+      }
+    }
+  },
+  "regulacion_fintech": {
+    "mexico": {
+      "ley": "Ley Fintech 2018",
+      "regulador": "CNBV + Banxico",
+      "open_finance": "🔄 Ley 2018, técnica pendiente. 800+ fintechs.",
+      "sandbox": "Modelos Novedosos (6 aprobados, crítica: transición difícil)",
+      "crypto": "No regulado específicamente",
+      "pagos_instantaneos": "CoDi / DiMo"
+    },
+    "brasil": {
+      "ley": "Res. BCB 400 + Ley 14.478/2022",
+      "regulador": "BCB + CVM + SUSEP",
+      "open_finance": "✅ Más maduro del mundo. 128M+ consentimientos. 200+ instituciones.",
+      "sandbox": "3 sandboxes (bancario, capitales, seguros)",
+      "crypto": "✅ Regulado (VASPs, Res. 519-521). Feb 2026: activos digitales en secreto bancario",
+      "pagos_instantaneos": "Pix (102B API calls 2024)",
+      "milestones_2026": [
+        "Portabilidad de crédito (feb)",
+        "Portabilidad nómina (nov)"
+      ]
+    },
+    "colombia": {
+      "ley": "Decreto 0368/2026 OBLIGATORIO",
+      "regulador": "SFC + URF",
+      "open_finance": "✅ Obligatorio desde abril 2026. Dual-consent.",
+      "sandbox": "En desarrollo",
+      "crypto": "En desarrollo",
+      "pagos_instantaneos": "Bre-B + Transfiya + Redeban"
+    },
+    "chile": {
+      "ley": "Ley Fintech 21.521 (2023)",
+      "regulador": "CMF",
+      "open_finance": "🔄 Vigencia: 3 junio 2026. Extensión posible 36 meses.",
+      "sandbox": "Marco en Ley Fintech",
+      "crypto": "En desarrollo",
+      "pagos_instantaneos": "Sin equivalente Pix consolidado"
+    },
+    "argentina": {
+      "ley": "Transferencias 3.0 BCRA",
+      "regulador": "BCRA + CNV",
+      "open_finance": "🔄 Impulsado por mercado",
+      "sandbox": "En evaluación",
+      "crypto": "En evolución",
+      "pagos_instantaneos": "Transferencias 3.0"
+    },
+    "peru": {
+      "ley": "Ley 31814 (IA) + DS 115-2025",
+      "regulador": "SBS",
+      "open_finance": "📋 En planificación",
+      "sandbox": "En planificación",
+      "crypto": "Regulado indirectamente (Ley IA alto riesgo)",
+      "pagos_instantaneos": "En desarrollo"
+    },
+    "ecuador": {
+      "ley": "Ley Orgánica Fintech (diciembre 2022) + Res. JPRM-2024-029-M",
+      "regulador": "JPRM + BCE + Superintendencia de Bancos + Superintendencia de Economía Popular y Solidaria",
+      "open_finance": "📋 En desarrollo. SIP (Sistema Integrador de Pagos) obligatorio.",
+      "sandbox": "Habilitado en Ley Fintech 2022",
+      "crypto": "En desarrollo (bajo marco de servicios financieros)",
+      "pagos_instantaneos": "SIP / RPI (Red de Pagos Instantáneos) — 18 meses implementación",
+      "observacion": "Prohibición de que entidades financieras privadas participen en capital de fintechs. 60% tiene tarjeta débito, solo 32% la usa"
+    },
+    "uruguay": {
+      "ley": "Ley 20,345 (septiembre 2024) — BCU regula VASPs",
+      "regulador": "BCU (Banco Central del Uruguay)",
+      "open_finance": "📋 BCU publicó 'Hacia un Ecosistema Open Finance en Uruguay' (agosto 2024). Sin marco legal aún.",
+      "sandbox": "En desarrollo. BCU amplió perímetro regulatorio para PSPs",
+      "crypto": "🔄 BCU emitió borrador regulación PSAV (marzo 2026) en consulta pública. Capital, gobernanza, AML/CFT.",
+      "pagos_instantaneos": "ACH monopolizado; BCU busca interoperabilidad",
+      "observacion": "Proyección CUF: $1B anual al PIB para 2035, 5,000+ empleos directos"
+    },
+    "paraguay": {
+      "ley": "Ley N° 7.503 (junio 2025) — Sistema Nacional de Pagos",
+      "regulador": "BCP (Banco Central del Paraguay)",
+      "open_finance": "📋 No existe marco específico",
+      "sandbox": "No formalizado",
+      "crypto": "🔄 EMPEs reguladas. UIF designó PSAVs (dic 2024, suspendido dic 2024 para clarificación)",
+      "pagos_instantaneos": "Nueva ley de pagos: QR, truncamiento cheques, CDA-e",
+      "observacion": "BCP puede exigir separación estructural de empresas con múltiples roles. Bancard (líder procesamiento) preocupada"
+    },
+    "bolivia": {
+      "ley": "Decreto Supremo 5384 (mayo 2025) + Circular ASFI/945/2026",
+      "regulador": "ASFI + BCB",
+      "open_finance": "📋 No existe marco específico",
+      "sandbox": "✅ Entorno Controlado de Pruebas (sandbox) operativo",
+      "crypto": "✅ Permitido desde junio 2024. BCB publica tabla de precios USDT/BTC/ETH. Banco Bisa ofrece custodia USDT (límite 10,000 USDT/día).",
+      "pagos_instantaneos": "SNP (Sistema Nacional de Pagos) — QR, mobile banking",
+      "observacion": "ASFI incorporó tratamiento contable de activos virtuales (Circular 901/2025). UIF Res. 58/2024 designó PSAVs (suspendida). Plazo adaptación: 30 junio 2026"
+    },
+    "panama": {
+      "ley": "Anteproyecto Ley N° 314 (enero 2026) — Ley Marco Integral de Tecnologías Financieras",
+      "regulador": "SBP (Superintendencia de Bancos de Panamá) + UAF",
+      "open_finance": "📋 No existe marco específico",
+      "sandbox": "🔄 En Ley 314 (propuesta)",
+      "crypto": "🔄 UAF registro obligatorio (Ley 23/2015). Ley 314 propone licencia VASP obligatoria. Firmó CARF-MCAA (dic 2025).",
+      "pagos_instantaneos": "En desarrollo de mercado",
+      "observacion": "Salió de lista de alto riesgo UE (julio 2025). 3 categorías: PSP, VASP, EMI. SBP Rule 1-2026: AML/CFT reforzado"
+    },
+    "costa_rica": {
+      "ley": "Sin ley fintech específica",
+      "regulador": "SUGEF (Superintendencia General de Entidades Financieras)",
+      "open_finance": "📋 No existe marco específico",
+      "sandbox": "❌ No existe",
+      "crypto": "Sin regulación específica",
+      "pagos_instantaneos": "En desarrollo de mercado",
+      "observacion": "SUGEF enfoque no intrusivo. Fintechs operan bajo marco financiero tradicional o como auxiliares"
+    },
+    "guatemala": {
+      "ley": "Sin ley fintech específica. Bill 6538 (mayo 2025) propone Ley de Criptomonedas",
+      "regulador": "SIB (Superintendencia de Bancos) + Junta Monetaria",
+      "open_finance": "📋 No existe marco específico. SIB Innovation Hub creado.",
+      "sandbox": "❌ No existe",
+      "crypto": "🔄 Bill 6538 propone registro obligatorio con SIB, KYC, reportes IVE. Aún en debate legislativo.",
+      "pagos_instantaneos": "En desarrollo de mercado",
+      "observacion": "Ley Integral AML (Bill 6593, abril 2026) incluye fintechs como sujetos obligados. Remesas = $25,857M (2025)"
+    },
+    "honduras": {
+      "ley": "Decreto 83-2021 + Reglamentos BCH (agosto 2022)",
+      "regulador": "BCH (Banco Central de Honduras) + CNBS",
+      "open_finance": "📋 No existe marco específico",
+      "sandbox": "❌ No existe formalmente",
+      "crypto": "❌ No reconocidas como moneda de curso legal. BCH advierte riesgos.",
+      "pagos_instantaneos": "Dinero electrónico regulado desde 2016",
+      "observacion": "Remesas = $11,983M (2025), +27.1% crecimiento. 30.4% del PIB"
+    },
+    "nicaragua": {
+      "ley": "Resolución BCN GG-08-MAYO-2025-LASMF-DO (abril 2025)",
+      "regulador": "BCN (Banco Central de Nicaragua)",
+      "open_finance": "📋 No existe marco específico",
+      "sandbox": "❌ No existe",
+      "crypto": "✅ VASPs regulados con licencia obligatoria desde 2025",
+      "pagos_instantaneos": "PSPs regulados: wallets, mPOS, e-money, transferencias",
+      "observacion": "Capital mínimo PSP: $110K-$300K. Licencia en 90 días hábiles. KYC biométrico obligatorio. Cloud con ISO 27001/SOC 2"
+    },
+    "el_salvador": {
+      "ley": "Ley Bitcoin (2021) + Ley de Activos Digitales + Ley de Inclusión Financiera",
+      "regulador": "BCR (Banco Central de Reserva) + SSF (Superintendencia del Sistema Financiero)",
+      "open_finance": "📋 No existe marco específico",
+      "sandbox": "❌ No existe formalmente",
+      "crypto": "✅ Bitcoin fue moneda de curso legal (2021). Reforma IMF 2025: uso voluntario. Chivo Wallet en venta/discontinuación.",
+      "pagos_instantaneos": "Transfer365 (24/7 interbancario). 95.3% de transacciones.",
+      "observacion": "Inclusión financiera ~50%. Remesas = $10,001M (2025)"
+    },
+    "republica_dominicana": {
+      "ley": "Circular Onboarding Digital (SIB). Open Banking en desarrollo",
+      "regulador": "SIB (Superintendencia de Bancos)",
+      "open_finance": "🔄 Open Banking: S2 2026 (proyecto en curso)",
+      "sandbox": "🔄 En evaluación (SIB Innovation Hub)",
+      "crypto": "Sin regulación específica",
+      "pagos_instantaneos": "En desarrollo",
+      "observacion": "SIB parte de Red Ecosistema Fintech ALC. Remesas = $11,973M (2025). Líder Caribe"
+    },
+    "venezuela": {
+      "ley": "Resolución SUDEBAN para ITFBs (2021)",
+      "regulador": "SUDEBAN + BCV",
+      "open_finance": "📋 No existe marco específico",
+      "sandbox": "❌ No existe",
+      "crypto": "🔄 Uso predominante informal (Petro fallido). Dólar y cripto dominan pagos.",
+      "pagos_instantaneos": "Biopago, PagoMóvil (dentro del mismo banco)",
+      "observacion": "ITFBs requieren: 5+ accionistas, domicilio en Venezuela, capital mínimo por SUDEBAN, fianza ≥ EUR 20,000. Contexto de hiperinflación"
+    }
+  },
+  "gaming_igaming": {
+    "mercado_total_latam_2026": "$9.3B GGR (+38% YoY, crecimiento más alto del mundo)",
+    "mercado_global_2026": "$115B GGR",
+    "regulado_vs_gris_latam": "52% regulado ($4.8B) / 48% gris ($4.5B)",
+    "por_pais": {
+      "brasil": {
+        "estado": "✅ Regulado Federal",
+        "ley": "Ley 14.790/2023 (ANGB)",
+        "regulador": "SPA",
+        "licencia": "Obligatoria federal",
+        "ggr_2026": "$4.5B (año 1, récord mundial)",
+        "operadores_licenciados": "165+",
+        "tax": "12% GGR + 2% premios + fondo deportes",
+        "mobile": "87% de cuentas móviles",
+        "futbol": "60% del handle de sportsbook"
+      },
+      "mexico": {
+        "estado": "⚠️ Marco antiguo (1947) + AML estricto",
+        "regulador": "SHCP",
+        "ggr_2028": "€1.5B proyectado",
+        "aml": "Muy estricto. 13 casinos suspendidos 2025",
+        "clasificacion_riesgo": "Juego = actividad de alto riesgo",
+        "reforma": "En proceso legislativo"
+      },
+      "colombia": {
+        "estado": "✅ Mercado maduro (2017)",
+        "regulador": "Coljuegos",
+        "ggr_2026": "$0.9B",
+        "modelo": "Concesiones abiertas",
+        "tax": "IVA sobre GGR",
+        "juego_responsable": "Resolución 20244000021144"
+      },
+      "peru": {
+        "estado": "✅ Marco moderno avanzado",
+        "regulador": "MINCETUR",
+        "ley": "Ley 31557 / 31806 + DS 005-2023-MINCETUR",
+        "licencias_emitidas": "63+",
+        "tax": "3% licencia + 12% NGR + 1% consumo",
+        "crypto": "🚫 Prohibido para transacciones de juego",
+        "kyc": "Estricto, datos 5+ años"
+      },
+      "argentina": {
+        "estado": "⚠️ Regulación provincial fragmentada",
+        "regulador": "Provincial (23 provincias + CABA)",
+        "ley_caba": "Ley 6.330",
+        "tax": "Altos impuestos, estructura fragmentada"
+      },
+      "chile": {
+        "estado": "🔄 En transición",
+        "regulador": "Senado (Boletín 14.838-03)",
+        "actual": "Monopolio estatal de loterías; apuestas online bloqueadas por ISPs",
+        "tax_propuesto": "20%"
+      },
+      "ecuador": {
+        "estado": "❌ Prohibido",
+        "regulador": "No aplica",
+        "observacion": "Juego de azar prohibido en Ecuador"
+      },
+      "uruguay": {
+        "estado": "✅ Regulado",
+        "regulador": "Dirección General de Casinos",
+        "observacion": "Mercado regulado, casinos online permitidos"
+      },
+      "panama": {
+        "estado": "🔄 En desarrollo",
+        "regulador": "Junta de Control de Juegos",
+        "observacion": "Zona libre de juegos, regulación en evolución"
+      },
+      "costa_rica": {
+        "estado": "🔄 Gris",
+        "regulador": "No regulado específicamente",
+        "observacion": "Muchos operadores internacionales basados en CR sin licencia local"
+      },
+      "guatemala": {
+        "estado": "❌ No regulado online",
+        "regulador": "No aplica",
+        "observacion": "Solo loterías estatales permitidas"
+      },
+      "honduras": {
+        "estado": "❌ No regulado online",
+        "regulador": "No aplica",
+        "observacion": "Sin marco para iGaming"
+      },
+      "nicaragua": {
+        "estado": "❌ No regulado online",
+        "regulador": "No aplica",
+        "observacion": "Sin marco para iGaming"
+      },
+      "el_salvador": {
+        "estado": "❌ No regulado online",
+        "regulador": "No aplica",
+        "observacion": "Sin marco para iGaming"
+      },
+      "republica_dominicana": {
+        "estado": "🔄 En desarrollo",
+        "regulador": "Ministerio de Hacienda",
+        "observacion": "Casinos físicos regulados; online en gris"
+      },
+      "venezuela": {
+        "estado": "❌ No regulado",
+        "regulador": "No aplica",
+        "observacion": "Crisis económica impide regulación efectiva"
+      },
+      "paraguay": {
+        "estado": "🔄 En desarrollo",
+        "regulador": "CONAJZAR",
+        "observacion": "Regulación de juegos en evolución"
+      },
+      "bolivia": {
+        "estado": "❌ Prohibido",
+        "regulador": "No aplica",
+        "observacion": "Juego de azar restringido"
+      }
+    }
+  },
+  "remesas": {
+    "volumen_total_2025": "$173,733 millones (récord histórico, +7.3% YoY)",
+    "proyeccion_2026": "Crecimiento moderado, impuesto 1% remesas USA (Ley Trump julio 2026)",
+    "por_subregion_2025": {
+      "centroamerica": {
+        "monto": "$55,546M",
+        "crecimiento": "+20.1%",
+        "porcentaje_pib": "13.3%"
+      },
+      "sudamerica": {
+        "monto": "$35,322M",
+        "crecimiento": "+9.7%",
+        "porcentaje_pib": "0.8%"
+      },
+      "caribe": {
+        "monto": "$20,883M",
+        "crecimiento": "+10.8%",
+        "porcentaje_pib": "10.0%"
+      },
+      "mexico": {
+        "monto": "$62,472M",
+        "crecimiento": "-3.9%",
+        "porcentaje_pib": "3.5%"
+      }
+    },
+    "top_receptores_2025": {
+      "mexico": {
+        "monto": "$62,472M",
+        "origen_principal": "USA 96%",
+        "observacion": "Mayor receptor del mundo (después de India)"
+      },
+      "guatemala": {
+        "monto": "$25,857M",
+        "origen_principal": "USA 92.9%",
+        "pib": "Alto impacto"
+      },
+      "colombia": {
+        "monto": "$13,379M",
+        "origen_principal": "USA 53%, España significativo",
+        "crecimiento": "+12.9%"
+      },
+      "honduras": {
+        "monto": "$11,983M",
+        "origen_principal": "USA 90.1%",
+        "pib": "30.4% del PIB"
+      },
+      "republica_dominicana": {
+        "monto": "$11,973M",
+        "origen_principal": "USA 84.5%",
+        "liderazgo": "Líder Caribe"
+      },
+      "el_salvador": {
+        "monto": "$10,001M",
+        "origen_principal": "USA 95.8%",
+        "pib": "~30% del PIB"
+      },
+      "ecuador": {
+        "monto": "$7,916M",
+        "origen_principal": "USA 67.8%, España",
+        "crecimiento": "+21%",
+        "pib": "6.1% del PIB"
+      }
+    },
+    "fintechs_remesas_destacadas": [
+      "Wise",
+      "Remitly",
+      "WorldRemit",
+      "Dlocal",
+      "Ebanx",
+      "Pomelo",
+      "Kushki",
+      "Nium"
+    ],
+    "tendencias": [
+      "Remesas vía wallets digitales (Mercado Pago, Nequi, Yape, Tpaga)",
+      "Crypto-remesas en crecimiento (El Salvador pionero, ahora moderado)",
+      "Tarifas en descenso gracias a competencia fintech",
+      "Earned Wage Access integrado con payroll",
+      "Impuesto 1% remesas USA desde 2026 (impacto por evaluar)"
     ]
+  },
+  "open_finance_comparativa": {
+    "brasil": {
+      "estado": "✅ Operativo y maduro",
+      "desde": "Febrero 2021",
+      "fases": 4,
+      "consentimientos": "128M+",
+      "instituciones": "200+"
+    },
+    "colombia": {
+      "estado": "✅ OBLIGATORIO",
+      "desde": "Abril 2026",
+      "arquitectura": "Dual-consent"
+    },
+    "mexico": {
+      "estado": "🔄 Ley 2018, técnica pendiente",
+      "fintechs": "800+"
+    },
+    "chile": {
+      "estado": "🔄 Implementación por fases",
+      "vigencia": "Junio 2026"
+    },
+    "argentina": {
+      "estado": "🔄 Impulsado por mercado"
+    },
+    "peru": {
+      "estado": "📋 Planificación"
+    },
+    "ecuador": {
+      "estado": "📋 En desarrollo (SIP como precursor)"
+    },
+    "uruguay": {
+      "estado": "📋 BCU publicó documento base (ago 2024), sin ley aún"
+    },
+    "paraguay": {
+      "estado": "📋 No existe marco"
+    },
+    "bolivia": {
+      "estado": "📋 No existe marco"
+    },
+    "panama": {
+      "estado": "📋 No existe marco"
+    },
+    "costa_rica": {
+      "estado": "📋 No existe marco"
+    },
+    "guatemala": {
+      "estado": "📋 No existe marco"
+    },
+    "honduras": {
+      "estado": "📋 No existe marco"
+    },
+    "nicaragua": {
+      "estado": "📋 No existe marco"
+    },
+    "el_salvador": {
+      "estado": "📋 No existe marco"
+    },
+    "republica_dominicana": {
+      "estado": "🔄 En desarrollo (S2 2026)"
+    },
+    "venezuela": {
+      "estado": "📋 No existe marco"
+    }
+  },
+  "bancos_centrales_sandboxes": {
+    "mexico": {
+      "bc": "Banxico",
+      "sandbox": "Modelos Novedosos (CNBV)",
+      "estado": "🔄 6 aprobados, crítica por transición"
+    },
+    "brasil": {
+      "bc": "BCB",
+      "sandbox": "3 sandboxes (bancario, capitales, seguros)",
+      "estado": "✅ Más avanzado"
+    },
+    "colombia": {
+      "bc": "Banco de la República",
+      "sandbox": "En desarrollo",
+      "estado": "🔄"
+    },
+    "chile": {
+      "bc": "Banco Central de Chile",
+      "sandbox": "Marco en Ley Fintech",
+      "estado": "🔄"
+    },
+    "argentina": {
+      "bc": "BCRA",
+      "sandbox": "En evaluación",
+      "estado": "📋"
+    },
+    "peru": {
+      "bc": "BCRP",
+      "sandbox": "En planificación",
+      "estado": "📋"
+    },
+    "ecuador": {
+      "bc": "BCE",
+      "sandbox": "Habilitado en Ley Fintech 2022",
+      "estado": "🔄"
+    },
+    "uruguay": {
+      "bc": "BCU",
+      "sandbox": "En desarrollo",
+      "estado": "🔄 BCU amplió perímetro PSP"
+    },
+    "paraguay": {
+      "bc": "BCP",
+      "sandbox": "No formalizado",
+      "estado": "📋"
+    },
+    "bolivia": {
+      "bc": "BCB",
+      "sandbox": "✅ Entorno Controlado de Pruebas (ASFI)",
+      "estado": "✅ Operativo"
+    },
+    "panama": {
+      "bc": "Banco Nacional de Panamá (para PSPs)",
+      "sandbox": "🔄 Propuesto en Ley 314",
+      "estado": "🔄"
+    },
+    "costa_rica": {
+      "bc": "BCCR",
+      "sandbox": "❌ No existe",
+      "estado": "❌"
+    },
+    "guatemala": {
+      "bc": "Banguat",
+      "sandbox": "❌ No existe",
+      "estado": "❌"
+    },
+    "honduras": {
+      "bc": "BCH",
+      "sandbox": "❌ No existe formalmente",
+      "estado": "❌"
+    },
+    "nicaragua": {
+      "bc": "BCN",
+      "sandbox": "❌ No existe",
+      "estado": "❌"
+    },
+    "el_salvador": {
+      "bc": "BCR",
+      "sandbox": "❌ No existe",
+      "estado": "❌"
+    },
+    "republica_dominicana": {
+      "bc": "Banco Central RD",
+      "sandbox": "🔄 En evaluación",
+      "estado": "🔄"
+    },
+    "venezuela": {
+      "bc": "BCV",
+      "sandbox": "❌ No existe",
+      "estado": "❌"
+    }
+  },
+  "oportunidades_onlypayments": {
+    "mercados_prioritarios": {
+      "tier_1": [
+        "Brasil (Pix + Open Finance + Gaming $4.5B)",
+        "Colombia (Open Finance obligatorio + Gaming maduro)",
+        "México (PYMES 3.2M sin tarjeta + CoDi)"
+      ],
+      "tier_2": [
+        "Perú (Gaming nuevo $400M + planificación Open Finance)",
+        "Chile (Ley Fintech vigente junio 2026)",
+        "Ecuador (SIP obligatorio + Ley Fintech 2022)"
+      ],
+      "tier_3": [
+        "Uruguay (BCU avanzando en VASP + Open Finance)",
+        "Panamá (Ley 314 2026 + hub regional)",
+        "Paraguay (Ley Pagos 2025 + mercado emergente)"
+      ],
+      "gaming_especifico": [
+        "Brasil ($4.5B GGR)",
+        "Colombia ($0.9B)",
+        "Perú ($400M)",
+        "México (€1.5B proyectado 2028)"
+      ],
+      "remesas_especifico": [
+        "México ($62.5B)",
+        "Guatemala ($25.9B)",
+        "Colombia ($13.4B)",
+        "Honduras ($12B)",
+        "Rep. Dominicana ($12B)",
+        "El Salvador ($10B)",
+        "Ecuador ($7.9B)"
+      ]
+    },
+    "roadmap": {
+      "q3_2026": "México: Consolidar agregador 3.2% max. Integrar CoDi. Partnership IFPEs.",
+      "q4_2026": "Brasil: Pix + Open Finance. Licencia VASP si crypto. Gaming compliance.",
+      "q1_2027": "Colombia: Open Finance obligatorio. Bre-B/Transfiya. Gaming Coljuegos.",
+      "q2_2027": "Regional: Hub remesas USA→LATAM. Chile, Perú, Ecuador. Gaming licenciados.",
+      "q3_2027": "Centroamérica: Guatemala, Honduras, El Salvador (remesas masivas). Panamá Ley 314.",
+      "q4_2027": "Cono Sur: Uruguay (BCU VASP), Paraguay (Ley Pagos), Bolivia (sandbox ASFI)"
+    }
   }
 }
