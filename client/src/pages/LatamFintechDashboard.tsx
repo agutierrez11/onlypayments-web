@@ -8,7 +8,8 @@ import {
   Network,
   Banknote,
   Search,
-  Zap
+  Zap,
+  Radio
 } from "lucide-react";
 import fintechHubData from "../data/fintechHubData.json";
 import { EcosystemFlows } from "../components/EcosystemFlows";
@@ -16,15 +17,16 @@ import { FintechDirectory } from "../components/FintechDirectory";
 import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 
-type Tab = "pagos" | "igaming" | "openfinance" | "remesas" | "directorio";
+type Tab = "satellite" | "pagos" | "igaming" | "openfinance" | "remesas" | "directorio";
 
 export default function LatamFintechDashboard() {
-  const [activeTab, setActiveTab] = useState<Tab>("pagos");
+  const [activeTab, setActiveTab] = useState<Tab>("satellite");
 
   return (
     <div className="flex h-screen bg-background overflow-hidden relative">
       {/* Dynamic Background Glows based on active tab */}
       <div className={`absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none transition-colors duration-1000 ${
+        activeTab === 'satellite' ? 'bg-cyan-500/10' :
         activeTab === 'pagos' ? 'bg-accent/10' : 
         activeTab === 'igaming' ? 'bg-purple-500/10' : 
         activeTab === 'openfinance' ? 'bg-emerald-500/10' : 
@@ -45,6 +47,12 @@ export default function LatamFintechDashboard() {
           </div>
 
           <div className="space-y-2">
+            <NavItem 
+              icon={Radio} 
+              label="Radar Satelital 3D" 
+              active={activeTab === "satellite"} 
+              onClick={() => setActiveTab("satellite")} 
+            />
             <NavItem 
               icon={ArrowLeftRight} 
               label="Pagos y Adquirencia" 
@@ -87,6 +95,16 @@ export default function LatamFintechDashboard() {
       {/* Main Content Area */}
       <main className="flex-1 h-full overflow-y-auto overflow-x-hidden relative z-10 scroll-smooth">
         <AnimatePresence mode="wait">
+          {activeTab === "satellite" && (
+            <motion.div key="satellite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="w-full h-full relative">
+              <iframe
+                src="/latam-fintech-satellite.html"
+                title="LATAM Fintech Satellite 3D"
+                className="w-full h-full border-0 block"
+              />
+            </motion.div>
+          )}
+
           {activeTab === "pagos" && (
             <motion.div key="pagos" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
               <EcosystemFlows />
@@ -232,7 +250,7 @@ export default function LatamFintechDashboard() {
   );
 }
 
-// ArrowLeftRight icon was missing from lucide-react import in this file scope, so I add a simple component
+// ArrowLeftRight icon component
 const ArrowLeftRight = (props: any) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
 );
