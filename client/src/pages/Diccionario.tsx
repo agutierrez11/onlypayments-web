@@ -264,31 +264,31 @@ export default function Diccionario({ isEmbed }: Props) {
   // Clases según el tema seleccionado
   const themeClasses = {
     light: {
-      bg: 'bg-slate-50 text-slate-900',
-      headerBg: 'bg-white/90 border-slate-200 text-slate-800 shadow-sm',
-      cardBg: 'bg-white border-slate-200/80 hover:border-cyan-500/50 hover:shadow-md text-slate-900',
-      title: 'text-slate-900',
-      sub: 'text-slate-600',
+      bg: 'bg-[#f8fafc] text-slate-900',
+      headerBg: 'bg-white/95 border-slate-200 text-slate-800 shadow-sm',
+      cardBg: 'bg-white border-slate-200/90 hover:border-cyan-500/50 hover:shadow-md text-slate-900',
+      title: 'text-slate-900 font-bold',
+      sub: 'text-slate-600 font-medium',
       input: 'bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 hover:border-slate-400 shadow-sm',
-      badge: 'bg-slate-100 text-slate-700 border-slate-300',
+      badge: 'bg-slate-100 text-slate-800 border-slate-300 font-semibold',
     },
     slate: {
-      bg: 'bg-[#0b101d] text-slate-100',
-      headerBg: 'bg-[#0f172a]/80 border-slate-800/80 text-slate-200 backdrop-blur-md',
-      cardBg: 'bg-[#131c2e]/70 border-slate-700/50 hover:border-cyan-500/40 hover:bg-[#162238] text-slate-100 shadow-lg',
-      title: 'text-white',
-      sub: 'text-slate-300',
-      input: 'bg-[#131c2e]/90 border-slate-700 text-slate-100 placeholder:text-slate-400 hover:border-slate-600 shadow-inner',
-      badge: 'bg-slate-800/80 text-slate-300 border-slate-700',
+      bg: 'bg-[#0f172a] text-slate-100',
+      headerBg: 'bg-[#1e293b]/90 border-slate-700/80 text-slate-200 backdrop-blur-md shadow-md',
+      cardBg: 'bg-[#1e293b]/80 border-slate-700/80 hover:border-cyan-400/60 hover:bg-[#334155]/60 text-slate-100 shadow-xl',
+      title: 'text-white font-bold',
+      sub: 'text-slate-300 font-medium',
+      input: 'bg-[#1e293b] border-slate-700 text-slate-100 placeholder:text-slate-400 hover:border-slate-500 shadow-md',
+      badge: 'bg-cyan-950/80 text-cyan-300 border-cyan-700/60 font-semibold',
     },
     dark: {
-      bg: 'bg-[#020408] text-slate-100',
-      headerBg: 'bg-[#0a0e17]/80 border-cyan-500/10 text-slate-200',
-      cardBg: 'bg-[#0a0e17]/80 border-cyan-500/20 hover:border-cyan-500/50 text-slate-100 shadow-xl',
-      title: 'text-white',
-      sub: 'text-slate-400',
-      input: 'bg-[#0a0e17] border-cyan-500/20 text-slate-100 placeholder:text-slate-500 hover:border-cyan-500/40',
-      badge: 'bg-cyan-950 text-cyan-400 border-cyan-800',
+      bg: 'bg-[#0f172a] text-slate-100',
+      headerBg: 'bg-[#1e293b]/90 border-cyan-500/20 text-slate-200',
+      cardBg: 'bg-[#1e293b]/90 border-cyan-500/30 hover:border-cyan-400/60 text-slate-100 shadow-xl',
+      title: 'text-white font-bold',
+      sub: 'text-slate-300 font-medium',
+      input: 'bg-[#1e293b] border-cyan-500/30 text-slate-100 placeholder:text-slate-400 hover:border-cyan-500/50',
+      badge: 'bg-cyan-950 text-cyan-400 border-cyan-800 font-semibold',
     }
   }[theme];
 
@@ -316,15 +316,9 @@ export default function Diccionario({ isEmbed }: Props) {
                 </button>
                 <button
                   onClick={() => setTheme('slate')}
-                  className={`px-2.5 py-1 rounded-md transition-all ${theme === 'slate' ? 'bg-slate-700 text-cyan-300 font-bold shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                  className={`px-2.5 py-1 rounded-md transition-all ${theme === 'slate' ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
                 >
                   🌊 Slate
-                </button>
-                <button
-                  onClick={() => setTheme('dark')}
-                  className={`px-2.5 py-1 rounded-md transition-all ${theme === 'dark' ? 'bg-cyan-950 text-cyan-400 font-bold shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
-                >
-                  🌙 Neón
                 </button>
               </div>
 
@@ -342,7 +336,7 @@ export default function Diccionario({ isEmbed }: Props) {
         </div>
       ) : (
         <div className={`border-b ${themeClasses.headerBg} sticky top-0 z-50`}>
-          <div className="container py-2.5 flex justify-between items-center px-4">
+          <div className="container py-3 flex justify-between items-center px-4">
             <span className="text-xs font-semibold text-cyan-400 flex items-center gap-2 font-mono">
               📖 Diccionario de Medios de Pago v6.0
               <span className={`px-2 py-0.5 rounded text-[10px] ${themeClasses.badge}`}>
@@ -350,15 +344,9 @@ export default function Diccionario({ isEmbed }: Props) {
               </span>
             </span>
 
-            {/* Selector de Tema en Embed */}
-            <div className="flex items-center gap-1.5 text-[11px] font-mono">
-              <button
-                onClick={() => setTheme(theme === 'light' ? 'slate' : theme === 'slate' ? 'dark' : 'light')}
-                className="px-2 py-1 rounded border border-slate-700/60 bg-slate-800/40 text-cyan-300 hover:border-cyan-500/50 transition-all flex items-center gap-1"
-              >
-                {theme === 'light' ? '☀️ Modo Claro' : theme === 'slate' ? '🌊 Modo Slate' : '🌙 Modo Oscuro'}
-              </button>
-            </div>
+            <span className="text-[11px] font-mono text-slate-300">
+              Powered by OnlyPayments
+            </span>
           </div>
         </div>
       )}
