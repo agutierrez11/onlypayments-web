@@ -23,7 +23,7 @@ const glossaryData: GlossaryTerm[] = [
   { 
     id: '1', 
     term: 'Adquirente', 
-    definition: 'Entidad financiera que procesa pagos con tarjeta en nombre del comercio y asume el riesgo de crédito inicial de las transacciones.', 
+    definition: 'Entidad financiera regulada que procesa pagos con tarjeta en nombre del comercio y asume el riesgo de crédito inicial de las transacciones.', 
     category: 'comercial', 
     acronym: 'AQ',
     source: { name: 'Banco de México (Banxico)', url: 'https://www.banxico.org.mx/' }
@@ -31,33 +31,33 @@ const glossaryData: GlossaryTerm[] = [
   { 
     id: '2', 
     term: 'Contracargo (Chargeback)', 
-    definition: 'Mecanismo de disputa donde el titular de la tarjeta solicita a su banco emisor la devolución de un cargo, revirtiendo los fondos del comercio.', 
+    definition: 'Mecanismo de disputa donde el titular de la tarjeta solicita a su banco emisor la devolución de un cargo, revirtiendo los fondos de la cuenta del comercio.', 
     category: 'legal',
     source: { name: 'Regulación Visa Core Rules' }
   },
   { 
     id: '3', 
-    term: 'Pasarela de Pagos (Gateway)', 
-    definition: 'Infraestructura tecnológica que encripta y transmite de forma segura los datos de pago desde el sitio del comercio hacia el procesador o adquirente.', 
+    term: 'Pasarela de Pagos (Payment Gateway)', 
+    definition: 'Infraestructura tecnológica que encripta y transmite de forma segura los datos de pago desde el checkout del comercio hacia el procesador o adquirente.', 
     category: 'tecnico' 
   },
   { 
     id: '4', 
     term: 'Cuota de Intercambio (Interchange Fee)', 
-    definition: 'Comisión que el banco adquirente paga al banco emisor por cada transacción con tarjeta, determinada por las marcas (Visa/Mastercard).', 
+    definition: 'Comisión que el banco adquirente paga al banco emisor por cada transacción con tarjeta, regulada o determinada por las marcas (Visa / Mastercard).', 
     category: 'comercial',
     source: { name: 'Comisión Nacional Bancaria y de Valores (CNBV)' }
   },
   { 
     id: '5', 
     term: 'Liquidación (Settlement)', 
-    definition: 'Proceso final donde el adquirente transfiere los fondos correspondientes a las ventas aprobadas hacia la cuenta bancaria del comercio.', 
+    definition: 'Proceso final donde el adquirente o agregador transfiere los fondos correspondientes a las ventas aprobadas hacia la cuenta bancaria del comercio.', 
     category: 'comercial' 
   },
   { 
     id: '6', 
-    term: 'PCI DSS', 
-    definition: 'Estándar de Seguridad de Datos para la Industria de Tarjeta de Pago. Requisito global para cualquier entidad que procese, almacene o transmita datos de tarjetas.', 
+    term: 'PCI DSS 4.0', 
+    definition: 'Estándar de Seguridad de Datos para la Industria de Tarjetas de Pago. Normativa global obligatoria para cualquier entidad que procese, almacene o transmita datos de tarjetas.', 
     category: 'legal', 
     acronym: 'PCI DSS',
     source: { name: 'PCI Security Standards Council', url: 'https://www.pcisecuritystandards.org/' }
@@ -65,38 +65,130 @@ const glossaryData: GlossaryTerm[] = [
   { 
     id: '7', 
     term: 'PIX', 
-    definition: 'Sistema de Pagos Instantáneos creado por el Banco Central de Brasil que permite transferencias 24/7 en tiempo real.', 
+    definition: 'Sistema de Pagos Instantáneos creado por el Banco Central de Brasil que permite transferencias interbancarias 24/7 en tiempo real vía código QR o llaves.', 
     category: 'tecnico',
-    source: { name: 'Banco Central do Brasil (BCB)', url: 'https://www.bcb.gov.br/estabilidadefinanceira/pix' }
+    source: { name: 'Banco Central do Brasil (BCB)', url: 'https://www.bcb.gov.br/' }
   },
   { 
     id: '8', 
-    term: 'SPEI', 
-    definition: 'Sistema de Pagos Electrónicos Interbancarios, operado por Banco de México, para pagos en tiempo real entre cuentas bancarias.', 
+    term: 'SPEI / DiMo', 
+    definition: 'Sistema de Pagos Electrónicos Interbancarios operado por Banco de México para transferencias 24/7 en tiempo real conectadas a números celulares.', 
     category: 'tecnico',
     source: { name: 'Banco de México (Banxico)', url: 'https://www.banxico.org.mx/' }
   },
   { 
     id: '9', 
     term: 'Tokenización', 
-    definition: 'Proceso de seguridad que reemplaza el PAN (Primary Account Number) de una tarjeta por un identificador digital único (Token) para evitar exponer datos sensibles.', 
+    definition: 'Proceso de seguridad que reemplaza el PAN (Primary Account Number) de una tarjeta por un token criptográfico único para compras recurrentes e in-app.', 
     category: 'tecnico',
     source: { name: 'EMVCo Tokenisation Specification' }
   },
   { 
     id: '10', 
-    term: '3D Secure', 
-    definition: 'Protocolo de mensajería XML desarrollado para permitir la autenticación de titulares de tarjetas durante compras online no presenciales.', 
+    term: '3D Secure 2.0 (3DS2)', 
+    definition: 'Protocolo de autenticación en compras online no presenciales que analiza datos biométricos y contextuales para reducir fraude sin fricción.', 
     category: 'tecnico', 
-    acronym: '3DS',
+    acronym: '3DS2',
     source: { name: 'EMVCo 3-D Secure Protocol' }
   },
+  { 
+    id: '11', 
+    term: 'Bre-B (Colombia)', 
+    definition: 'Nuevo riel de pagos inmediatos interoperable desarrollado por el Banco de la República de Colombia para unificar transferencias A2A.', 
+    category: 'tecnico',
+    source: { name: 'Banco de la República de Colombia' }
+  },
+  { 
+    id: '12', 
+    term: 'Merchant Discount Rate (MDR)', 
+    definition: 'Porcentaje o tasa total que un comercio paga a su proveedor de pagos por cada transacción procesada.', 
+    category: 'comercial' 
+  },
+  { 
+    id: '13', 
+    term: 'KYC / KYB (Know Your Customer / Business)', 
+    definition: 'Proceso obligatorio de verificación de identidad de clientes y entidades jurídicas para prevención de lavado de dinero.', 
+    category: 'legal',
+    acronym: 'KYC'
+  },
+  { 
+    id: '14', 
+    term: 'PLD / FT', 
+    definition: 'Prevención de Lavado de Dinero y Financiamiento al Terrorismo. Marco regulatorio internacional aplicado a entidades financieras y fintechs.', 
+    category: 'legal' 
+  },
+  { 
+    id: '15', 
+    term: 'Rolling Reserve', 
+    definition: 'Fondo de reserva retenido temporalmente por el procesador (ej. 10% por 180 días) para cubrir posibles contracargos o reembolsos en comercios de alto riesgo.', 
+    category: 'comercial' 
+  },
+  { 
+    id: '16', 
+    term: 'Split Payments', 
+    definition: 'Funcionalidad tecnológica que permite dividir automáticamente un único pago entre múltiples cuentas de vendedores en un Marketplace.', 
+    category: 'tecnico' 
+  },
+  { 
+    id: '17', 
+    term: 'ISO 20022', 
+    definition: 'Estándar internacional de mensajería financiera para el intercambio electrónico de datos entre instituciones bancarias a nivel global.', 
+    category: 'tecnico' 
+  },
+  { 
+    id: '18', 
+    term: 'Agregador de Pagos', 
+    definition: 'Entidad que agrupa a múltiples comercios bajo una sola cuenta adquirente propia para simplificar el cobro sin requerir cuenta directa en cada banco.', 
+    category: 'comercial' 
+  },
+  { 
+    id: '19', 
+    term: 'Open Banking / Open Finance', 
+    definition: 'Modelo que permite el intercambio seguro de datos de clientes y servicios financieros entre instituciones a través de APIs abiertas previa autorización.', 
+    category: 'tecnico' 
+  },
+  { 
+    id: '20', 
+    term: 'Ley Fintech México (N° 2018)', 
+    definition: 'Marco regulatorio que legisla las Instituciones de Tecnología Financiera (ITF), fondos de pago electrónico (IFPE) y financiamiento colectivo.', 
+    category: 'legal' 
+  },
+  { 
+    id: '21', 
+    term: 'Ley Fintech Chile (N° 21.521)', 
+    definition: 'Normativa de 2023 que regula la prestación de servicios financieros basados en tecnología, Open Banking y plataformas de crowdfunding en Chile.', 
+    category: 'legal' 
+  },
+  { 
+    id: '22', 
+    term: 'Smart Routing (Enrutamiento Inteligente)', 
+    definition: 'Algoritmo que selecciona automáticamente la mejor pasarela o adquirente para cada transacción en tiempo real según tasa de aprobación y costo.', 
+    category: 'tecnico' 
+  },
+  { 
+    id: '23', 
+    term: 'Yape / Plin (Perú)', 
+    definition: 'Ecosistema de billeteras digitales interoperables en Perú regulado por el Banco Central de Reserva del Perú (BCRP).', 
+    category: 'tecnico' 
+  },
+  { 
+    id: '24', 
+    term: 'SINPE Móvil (Costa Rica)', 
+    definition: 'Riel de pagos electrónicos inmediatos del Banco Central de Costa Rica (BCCR) ligado a números celulares.', 
+    category: 'tecnico' 
+  },
+  { 
+    id: '25', 
+    term: 'Licencia IFPE', 
+    definition: 'Institución de Fondos de Pago Electrónico. Autorización otorgada por CNBV en México para emitir saldo digital y monederos electrónicos.', 
+    category: 'legal' 
+  }
 ];
 
 const categoryConfig = {
-  legal: { label: 'Legal y Compliance', color: 'bg-amber-500/15 text-amber-500 border-amber-500/20', icon: Scale },
-  tecnico: { label: 'Técnico y Core', color: 'bg-blue-500/15 text-blue-500 border-blue-500/20', icon: Cpu },
-  comercial: { label: 'Comercial y Finanzas', color: 'bg-emerald-500/15 text-emerald-500 border-emerald-500/20', icon: DollarSign },
+  legal: { label: 'Legal y Compliance', color: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/30', icon: Scale },
+  tecnico: { label: 'Técnico y Core', color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30', icon: Cpu },
+  comercial: { label: 'Comercial y Finanzas', color: 'bg-purple-500/15 text-purple-400 border-purple-500/30', icon: DollarSign },
 };
 
 interface Props {
