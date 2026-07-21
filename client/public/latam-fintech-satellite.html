@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LATAM Fintech Hub 2026 — Satellite Tracking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    :root {
+      --bg: #020408;
+      --panel: rgba(4,8,20,0.92);
+      --panel-border: rgba(0,245,212,0.15);
+      --accent: #00f5d4;
+      --accent-dim: rgba(0,245,212,0.3);
+      --accent2: #7b61ff;
+      --accent3: #ff9f1c;
+      --accent4: #ff3864;
+      --text: #e8f4f8;
+      --text-dim: #6b8a9a;
+      --hud-line: rgba(0,245,212,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--text);
+    }
+
+    #globe-container {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+    /* ===== HUD OVERLAYS ===== */
+    .hud-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .hud-corner-tl {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      pointer-events: auto;
+    }
+
+    .hud-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #00f5d4, #7b61ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+
+    .hud-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: #00f5d4;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00f5d4;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.3; transform: scale(0.8); }
+    }
+
+    .hud-stats-grid {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      gap: 16px;
+      pointer-events: auto;
+    }
+
+    .hud-stat-box {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      padding: 10px 16px;
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      text-align: right;
+    }
+
+    .hud-stat-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hud-stat-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===== SIDEBAR PANEL ===== */
+    .side-drawer {
+      position: absolute;
+      right: -420px;
+      top: 0;
+      width: 400px;
+      height: 100vh;
+      background: var(--panel);
+      border-left: 1px solid var(--panel-border);
+      backdrop-filter: blur(20px);
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 20;
+      padding: 24px;
+      overflow-y: auto;
+      pointer-events: auto;
+    }
+
+    .side-drawer.open {
+      right: 0;
+    }
+
+    .drawer-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--panel-border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .drawer-flag {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    .drawer-country {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .drawer-section {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--hud-line);
+    }
+
+    .drawer-section-title {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+
+    .info-pair {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.85rem;
+    }
+
+    .info-pair .label { color: var(--text-dim); }
+    .info-pair .val { font-weight: 600; color: #fff; }
+
+    /* LOADING SCREEN */
+    #loading-screen {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader-ring {
+      width: 60px;
+      height: 60px;
+      border: 3px solid var(--hud-line);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-screen">
+    <div class="loader-ring"></div>
+    <p style="margin-top:16px; font-family:'Orbitron'; font-size:0.85rem; color:var(--accent); letter-spacing:2px;">INICIALIZANDO RADARES LATAM 2026...</p>
+  </div>
+
+  <div id="globe-container">
+    <div class="hud-overlay">
+      <div class="hud-corner-tl">
+        <h1 class="hud-title">LATAM Fintech Hub</h1>
+        <div class="hud-subtitle">
+          <div class="live-dot"></div>
+          SATELLITE TRACKING — 20 PAÍSES
+        </div>
+      </div>
+
+      <div class="hud-stats-grid">
+        <div class="hud-stat-box">
+          <div class="hud-stat-value">20</div>
+          <div class="hud-stat-label">Países Mapeados</div>
+        </div>
+        <div class="hud-stat-box">
+          <div class="hud-stat-value">$118.5B</div>
+          <div class="hud-stat-label">Volumen Remesas</div>
+        </div>
+        <div class="hud-stat-box">
+          <div class="hud-stat-value">PIX + SPEI</div>
+          <div class="hud-stat-label">Rieles A2A Core</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDE DRAWER DE DETALLE -->
+    <div id="side-drawer" class="side-drawer">
+      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+      <div id="drawer-flag" class="drawer-flag">🇲🇽</div>
+      <h2 id="drawer-country" class="drawer-country">MÉXICO</h2>
+      
+      <div class="drawer-section">
+        <div class="drawer-section-title">Infraestructura A2A Core</div>
+        <div class="info-pair"><span class="label">Riel Principal:</span><span id="d-riel" class="val">SPEI / DiMo</span></div>
+        <div class="info-pair"><span class="label">Adopción A2A:</span><span id="d-adopcion" class="val">68%</span></div>
+        <div class="info-pair"><span class="label">Comisión Promedio:</span><span id="d-fee" class="val">0.0% - 0.5%</span></div>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-title">Mercado iGaming & Regulación</div>
+        <div class="info-pair"><span class="label">Estado Legal:</span><span id="d-igaming-status" class="val">Regulado (SEGOB)</span></div>
+        <div class="info-pair"><span class="label">GGR Proyectado 2026:</span><span id="d-ggr" class="val">$3.2B USD</span></div>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-title">Open Finance & Crypto</div>
+        <div class="info-pair"><span class="label">Ley Fintech:</span><span id="d-ley" class="val">Ley Fintech (2018/2026)</span></div>
+        <div class="info-pair"><span class="label">Estatus Crypto:</span><span id="d-crypto" class="val">Permitido / VASP Regulado</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // DATOS DE LOS 20 PAÍSES DE LATAM
+    const LATAM_COUNTRIES = [
+      { name: "México", flag: "🇲🇽", lat: 23.6345, lng: -102.5528, riel: "SPEI / DiMo", adopcion: "72%", fee: "0.0%", igaming: "Regulado (SEGOB)", ggr: "$3.4B USD", ley: "Ley Fintech 2018/2026", crypto: "Permitido / VASP" },
+      { name: "Brasil", flag: "🇧🇷", lat: -14.2350, lng: -51.9253, riel: "PIX Automático", adopcion: "94%", fee: "0.2%", igaming: "Regulado (SPA/MF)", ggr: "$4.8B USD", ley: "Open Finance Fase 4", crypto: "Regulación Banco Central" },
+      { name: "Colombia", flag: "🇨🇴", lat: 4.5709, lng: -74.2973, riel: "Bre-B / PSE", adopcion: "65%", fee: "0.4%", igaming: "Regulado (Coljuegos)", ggr: "$1.8B USD", ley: "Decreto Open Banking 2022", crypto: "Sandbox Superfinanciera" },
+      { name: "Argentina", flag: "🇦🇷", lat: -38.4161, lng: -63.6167, riel: "Transferencias 3.0", adopcion: "81%", fee: "0.3%", igaming: "Regulado por Provincias", ggr: "$1.2B USD", ley: "BCRA Interoperable", crypto: "Adopción Masiva USDT" },
+      { name: "Chile", flag: "🇨🇱", lat: -35.6751, lng: -71.5430, riel: "TEF / CMF Instant", adopcion: "78%", fee: "0.5%", igaming: "En Tramitación Ley", ggr: "$850M USD", ley: "Ley Fintech N° 21.521", crypto: "Regulado CMF" },
+      { name: "Perú", flag: "🇵🇪", lat: -9.1900, lng: -75.0152, riel: "Yape / Plin Interoperable", adopcion: "74%", fee: "0.0%", igaming: "Regulado (MINCETUR)", ggr: "$1.1B USD", ley: "Interoperabilidad SBS", crypto: "Uso Creciente" },
+      { name: "Uruguay", flag: "🇺🇾", lat: -32.5228, lng: -55.7658, riel: "SPI / BCU Direct", adopcion: "60%", fee: "0.4%", igaming: "Monopolio Estatal / Ley", ggr: "$220M USD", ley: "Marco BCU 2024", crypto: "Marco Regulatorio BCU" },
+      { name: "Ecuador", flag: "🇪🇨", lat: -1.8312, lng: -78.1834, riel: "BCE Pago Inmediato", adopcion: "52%", fee: "0.5%", igaming: "Prohibido / Transición", ggr: "$150M USD", ley: "Ley Fintech 2022", crypto: "Dolarización / USDT" },
+      { name: "Guatemala", flag: "🇬🇹", lat: 15.7835, lng: -90.2308, riel: "ACH Pronto", adopcion: "45%", fee: "0.8%", igaming: "Gris / Sin Ley", ggr: "$380M USD", ley: "En Agenda SIB", crypto: "Remesas Crypto" },
+      { name: "Costa Rica", flag: "🇨🇷", lat: 9.7489, lng: -83.7534, riel: "SINPE Móvil", adopcion: "88%", fee: "0.0%", igaming: "Permitido Offshore", ggr: "$290M USD", ley: "Regulación BCCR", crypto: "Libre Circulación" },
+      { name: "Panamá", flag: "🇵🇦", lat: 8.5380, lng: -80.7821, riel: "Yappy / ACH Xpress", adopcion: "79%", fee: "0.0%", igaming: "Regulado (JCJ)", ggr: "$450M USD", ley: "Hub Financiero Digital", crypto: "Hub Crypto / Dólar" },
+      { name: "República Dominicana", flag: "🇩🇴", lat: 18.7357, lng: -70.1627, riel: "LBTR Inmediato", adopcion: "58%", fee: "0.6%", igaming: "Regulado (Casino Ley)", ggr: "$510M USD", ley: "Estrategia EBRD", crypto: "En Desarrollo" },
+      { name: "Bolivia", flag: "🇧🇴", lat: -16.2902, lng: -63.5887, riel: "QR Simple ASFI", adopcion: "62%", fee: "0.0%", igaming: "Restringido (AJ)", ggr: "$110M USD", ley: "Normativa ASFI", crypto: "Levantamiento Prohibición BCB" },
+      { name: "Paraguay", flag: "🇵🇾", lat: -23.4425, lng: -58.4438, riel: "SIPAP 24/7", adopcion: "66%", fee: "0.0%", igaming: "Conajzar Licencias", ggr: "$190M USD", ley: "SIPAP BCP", crypto: "Minería / Ley Crypto" },
+      { name: "Honduras", flag: "🇭🇳", lat: 15.2000, lng: -86.2419, riel: "ACH Banhprovi", adopcion: "38%", fee: "0.8%", igaming: "Gris", ggr: "$140M USD", ley: "CNBS Sandbox", crypto: "Próspera ZEDE Crypto" },
+      { name: "El Salvador", flag: "🇸🇻", lat: 13.7942, lng: -88.8965, riel: "Transfer365 / Chivo", adopcion: "70%", fee: "0.0%", igaming: "Sin Regulación Específica", ggr: "$160M USD", ley: "Ley Bitcoin / Moneda Legal", crypto: "Legal Tender Bitcoin" },
+      { name: "Nicaragua", flag: "🇳🇮", lat: 12.8654, lng: -85.2072, riel: "ACH UniRed", adopcion: "32%", fee: "1.0%", igaming: "Restringido", ggr: "$80M USD", ley: "Normativa SIBOIF", crypto: "Uso Limitado" },
+      { name: "Puerto Rico", flag: "🇵🇷", lat: 18.2208, lng: -66.5901, riel: "ATH Móvil", adopcion: "92%", fee: "0.0%", igaming: "Regulado (Gaming Commission)", ggr: "$620M USD", ley: "US Fedwire / Act 60", crypto: "Exención Fiscal US" },
+      { name: "Venezuela", flag: "🇻🇪", lat: 6.4238, lng: -66.5897, riel: "Pago Móvil Interbancario", adopcion: "89%", fee: "0.3%", igaming: "Licencias SUNAHIP", ggr: "$240M USD", ley: "Sudeban PagoMóvil", crypto: "Adopción Masiva P2P" },
+      { name: "Jamaica", flag: "🇯🇲", lat: 18.1096, lng: -77.2975, riel: "JAM-DEX CBDC", adopcion: "41%", fee: "0.0%", igaming: "Regulado (BGC)", ggr: "$310M USD", ley: "BOJ CBDC Pioneer", crypto: "CBDC Oficial Bank of Jamaica" }
+    ];
+
+    // THREE.JS SCENE SETUP
+    let scene, camera, renderer, globe, raysGroup, pointsGroup;
+    let hoveredCountry = null;
+
+    function initThree() {
+      const container = document.getElementById('globe-container');
+      
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 0, 260);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      // LIGHTING
+      const ambientLight = new THREE.AmbientLight(0x00f5d4, 0.4);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+      dirLight.position.set(150, 100, 200);
+      scene.add(dirLight);
+
+      // GLOBE SPHERE
+      const geometry = new THREE.SphereGeometry(80, 64, 64);
+      const material = new THREE.MeshPhongMaterial({
+        color: 0x040814,
+        emissive: 0x020408,
+        specular: 0x00f5d4,
+        shininess: 25,
+        wireframe: false,
+        transparent: true,
+        opacity: 0.95
+      });
+      globe = new THREE.Mesh(geometry, material);
+      scene.add(globe);
+
+      // WIREFRAME OUTER GLOW SPHERE
+      const wireGeo = new THREE.SphereGeometry(80.5, 32, 32);
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: 0x00f5d4,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.08
+      });
+      const wireMesh = new THREE.Mesh(wireGeo, wireMat);
+      globe.add(wireMesh);
+
+      // GROUPS FOR SATELLITE RAYS AND COUNTRY POINTS
+      pointsGroup = new THREE.Group();
+      raysGroup = new THREE.Group();
+      globe.add(pointsGroup);
+      globe.add(raysGroup);
+
+      // SPAWN COUNTRY NODES & BEAMS
+      LATAM_COUNTRIES.forEach((c) => {
+        const coords = latLngToVector3(c.lat, c.lng, 80.8);
+
+        // Marker Point
+        const pGeo = new THREE.SphereGeometry(1.4, 16, 16);
+        const pMat = new THREE.MeshBasicMaterial({ color: 0x00f5d4 });
+        const pMesh = new THREE.Mesh(pGeo, pMat);
+        pMesh.position.copy(coords);
+        pMesh.userData = c;
+        pointsGroup.add(pMesh);
+
+        // Vertical Laser Beam
+        const beamGeo = new THREE.CylinderGeometry(0.2, 0.2, 12, 8);
+        beamGeo.translate(0, 6, 0);
+        beamGeo.rotateX(Math.PI / 2);
+        const beamMat = new THREE.MeshBasicMaterial({
+          color: 0x00f5d4,
+          transparent: true,
+          opacity: 0.6
+        });
+        const beamMesh = new THREE.Mesh(beamGeo, beamMat);
+        beamMesh.position.copy(coords);
+        beamMesh.lookAt(new THREE.Vector3(0,0,0));
+        raysGroup.add(beamMesh);
+      });
+
+      // REMOVE LOADING SCREEN
+      setTimeout(() => {
+        const loader = document.getElementById('loading-screen');
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 600);
+      }, 800);
+
+      animate();
+    }
+
+    function latLngToVector3(lat, lng, radius) {
+      const phi = (90 - lat) * (Math.PI / 180);
+      const theta = (lng + 180) * (Math.PI / 180);
+      const x = -(radius * Math.sin(phi) * Math.cos(theta));
+      const z = radius * Math.sin(phi) * Math.sin(theta);
+      const y = radius * Math.cos(phi);
+      return new THREE.Vector3(x, y, z);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (globe) {
+        globe.rotation.y += 0.0015;
+      }
+      renderer.render(scene, camera);
+    }
+
+    // RAYCASTING FOR INTERACTING WITH COUNTRY NODES
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    window.addEventListener('click', (e) => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+
+      const intersects = raycaster.intersectObjects(pointsGroup.children);
+      if (intersects.length > 0) {
+        const data = intersects[0].object.userData;
+        openDrawer(data);
+      }
+    });
+
+    function openDrawer(data) {
+      document.getElementById('drawer-flag').innerText = data.flag;
+      document.getElementById('drawer-country').innerText = data.name.toUpperCase();
+      document.getElementById('d-riel').innerText = data.riel;
+      document.getElementById('d-adopcion').innerText = data.adopcion;
+      document.getElementById('d-fee').innerText = data.fee;
+      document.getElementById('d-igaming-status').innerText = data.igaming;
+      document.getElementById('d-ggr').innerText = data.ggr;
+      document.getElementById('d-ley').innerText = data.ley;
+      document.getElementById('d-crypto').innerText = data.crypto;
+      document.getElementById('side-drawer').classList.add('open');
+    }
+
+    function closeDrawer() {
+      document.getElementById('side-drawer').classList.remove('open');
+    }
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    window.onload = initThree;
+  </script>
+</body>
+</html>
