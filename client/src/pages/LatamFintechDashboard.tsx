@@ -12,10 +12,11 @@ import {
 } from "lucide-react";
 import fintechHubData from "../data/fintechHubData.json";
 import { EcosystemFlows } from "../components/EcosystemFlows";
+import { FintechDirectory } from "../components/FintechDirectory";
 import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 
-type Tab = "pagos" | "igaming" | "openfinance" | "remesas";
+type Tab = "pagos" | "igaming" | "openfinance" | "remesas" | "directorio";
 
 export default function LatamFintechDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>("pagos");
@@ -26,7 +27,8 @@ export default function LatamFintechDashboard() {
       <div className={`absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none transition-colors duration-1000 ${
         activeTab === 'pagos' ? 'bg-accent/10' : 
         activeTab === 'igaming' ? 'bg-purple-500/10' : 
-        activeTab === 'openfinance' ? 'bg-emerald-500/10' : 'bg-blue-500/10'
+        activeTab === 'openfinance' ? 'bg-emerald-500/10' : 
+        activeTab === 'directorio' ? 'bg-amber-500/10' : 'bg-blue-500/10'
       }`} />
       
       {/* Sidebar Navigation */}
@@ -66,6 +68,12 @@ export default function LatamFintechDashboard() {
               label="Remesas" 
               active={activeTab === "remesas"} 
               onClick={() => setActiveTab("remesas")} 
+            />
+            <NavItem 
+              icon={Search} 
+              label="Radares & Empresas" 
+              active={activeTab === "directorio"} 
+              onClick={() => setActiveTab("directorio")} 
             />
           </div>
         </div>
@@ -209,6 +217,12 @@ export default function LatamFintechDashboard() {
                 </div>
               </div>
 
+            </motion.div>
+          )}
+
+          {activeTab === "directorio" && (
+            <motion.div key="directorio" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="w-full">
+              <FintechDirectory />
             </motion.div>
           )}
 

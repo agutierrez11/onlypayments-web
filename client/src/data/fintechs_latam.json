@@ -1,0 +1,5022 @@
+[
+  {
+    "Nombre": "BanQi",
+    "DescripciÃ³n": "A free and flexible digital challenger bank designed specifically for the Brazilian market.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Brubank",
+    "DescripciÃ³n": "Brubank is the largest and fastest growing challenger bank in Argentina.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "/bdigital",
+    "DescripciÃ³n": "Plataforma digital para la gestiÃ³n de crÃ©ditos de forma Ã¡gil y segura.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "100 Ladrillos",
+    "DescripciÃ³n": "Invierte de forma segura en bienes raÃ­ces y cobra rentas y gana plusvalÃ­a.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "123Seguro",
+    "DescripciÃ³n": "La plataforma digital de distribuciÃ³n de seguros mÃ¡s importante de AmÃ©rica Latina.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "180Â° Seguros",
+    "DescripciÃ³n": "Simplesmente seguro.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "2TM",
+    "DescripciÃ³n": "We make cryptoassets accessible and create infrastructure for the new digital economy.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "88i",
+    "DescripciÃ³n": "Aseguradora digital enfocada en proteger los mercados de Movilidad, Delivery, Fintech y eCommerce.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "99Pay",
+    "DescripciÃ³n": "Tu Wallet Digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "AAvance",
+    "DescripciÃ³n": "FinTech de inclusiÃ³n financiera con e-wallet, DepÃ³sito digital, tarjeta dÃ©bito, virtual y fÃ­sica.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "ARCA",
+    "DescripciÃ³n": "Marketplace for vehicle insurance.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Aarin Tech-fin",
+    "DescripciÃ³n": "In a technology boutique it's always possible.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "AbacatePay",
+    "DescripciÃ³n": "Pasarela de pagos simple para SaaS.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Abaqus",
+    "DescripciÃ³n": "Soluciones para el futuro de las inversiones.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Abroad",
+    "DescripciÃ³n": "The payment network infrastructure for local spending.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Accesstage",
+    "DescripciÃ³n": "Empresa especializada en pagos B2B y gestiÃ³n financiera.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Accountfy",
+    "DescripciÃ³n": "A SaaS platform that provides several tools for financial management.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Addi",
+    "DescripciÃ³n": "Technology company that provides credit and banking solutions.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Adiante RecebÃ­veis",
+    "DescripciÃ³n": "Fintech que ayuda a anticipar el valor de facturas electrÃ³nicas al dÃ­a de hoy.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "AdmiralONE",
+    "DescripciÃ³n": "Plataformas de inteligencia empresarial.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Advance - Adelanta Tu Pago",
+    "DescripciÃ³n": "Primera plataforma de bienestar financiero en Colombia que mejora la vida de empleados.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Aflore",
+    "DescripciÃ³n": "Provides financial services through a tech-enabled direct sales channel.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Afluenta",
+    "DescripciÃ³n": "Red lÃ­der de finanzas colaborativas en AmÃ©rica Latina.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "AgenteMotor",
+    "DescripciÃ³n": "Apoyamos a los Intermediarios de Seguros haciendo sus procesos mÃ¡s rÃ¡pidos y econÃ³micos.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Agi",
+    "DescripciÃ³n": "One of the first groups in Brazil to develop the omnichannel business model.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Agibank",
+    "DescripciÃ³n": "Neobanco centrado en las relaciones y la inclusiÃ³n financiera de personas con rentas mÃ¡s bajas.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Agilize",
+    "DescripciÃ³n": "Primera empresa de contabilidad online de Brasil.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Agrapp",
+    "DescripciÃ³n": "Propuesta para generar impacto productivo y solucionar el acceso a financiamiento.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Agree",
+    "DescripciÃ³n": "Fintech del agro. Financiamiento 100% digital para el campo.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "AgriCapital",
+    "DescripciÃ³n": "Agrifintech colombiana especializada en servicios financieros para el sector rural.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Agrolend",
+    "DescripciÃ³n": "Disrupting the way farmers obtain credit in Brazil with a fast digital process.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Agrotoken",
+    "DescripciÃ³n": "TokenizaciÃ³n de commodities agropecuarios.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Aicoll",
+    "DescripciÃ³n": "Plataforma para automatizar los flujos de trabajo bancarios y financieros por medio de un CRM.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Airtm",
+    "DescripciÃ³n": "Connecting Latin America to the global economy of the future.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Akiba",
+    "DescripciÃ³n": "Business financial management platform.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Akropoli",
+    "DescripciÃ³n": "Fintech enfocada en ofrecer soluciones integrales para Open Finance.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Akua",
+    "DescripciÃ³n": "Plataforma nativa en la nube habilitando pagos fluidos y sostenibles mediante una Ãºnica API.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Albo",
+    "DescripciÃ³n": "Digital payment and banking solution.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Alefi",
+    "DescripciÃ³n": "Connecting retail investors and their portfolios.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Alegra.com",
+    "DescripciÃ³n": "TecnologÃ­a, informaciÃ³n e internet para gestiÃ³n financiera empresarial.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Alfi",
+    "DescripciÃ³n": "Elevamos la alfabetizaciÃ³n financiera en el mundo.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Alfred",
+    "DescripciÃ³n": "Powering LATAM's Digital Economy.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Ali",
+    "DescripciÃ³n": "A financial ally who guides decisions so that people have more power over their own money.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Almi Financiera",
+    "DescripciÃ³n": "Soluciones Financieras digitales.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Alprestamo",
+    "DescripciÃ³n": "Principal marketplace de productos financieros de LatinoamÃ©rica.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Alps",
+    "DescripciÃ³n": "Soluciones tecnolÃ³gicas regionales con conocimiento de las necesidades locales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "AltScore",
+    "DescripciÃ³n": "Lending-as-a-Service toolbox that allows any company in LATAM to embed and deploy credit products.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Altis",
+    "DescripciÃ³n": "Servicios financieros digitales.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "AmFi",
+    "DescripciÃ³n": "Aposta en tokenizaciÃ³n blockchain para navegar por el mercado de capitales.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Amigo PAQ",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Anbetec",
+    "DescripciÃ³n": "Soluciones financieras inteligentes para automatizar la gestiÃ³n de cuentas por cobrar y crÃ©dito.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Andro",
+    "DescripciÃ³n": "Infraestructura de protecciÃ³n financiera para dÃ³lares digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Antecipa",
+    "DescripciÃ³n": "Reduce el diferencial de interÃ©s neto en el mercado brasileÃ±o para las PYME.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Anticipo",
+    "DescripciÃ³n": "Anticipo de crÃ©dito sin papeleo ni vueltas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Anzi",
+    "DescripciÃ³n": "Fintech que redefine el concepto de aval mediante embedded finance y blockchain.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Aplazo",
+    "DescripciÃ³n": "Pagos quincenales sin tarjeta de crÃ©dito.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Appmax",
+    "DescripciÃ³n": "Soluciones de pago que maximizan las ventas de su negocio en lÃ­nea.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Apprecio",
+    "DescripciÃ³n": "Digital infrastructure for mom and pop shops in Latam.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Approbe",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Arbi",
+    "DescripciÃ³n": "SoluÃ§Ãµes para todo o mercado, simples e rÃ¡pido.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Arces",
+    "DescripciÃ³n": "Financiamiento Colectivo para proyectos.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Arch",
+    "DescripciÃ³n": "Crea un portafolio de criptomonedas bien diversificado en minutos.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Arcus",
+    "DescripciÃ³n": "Making payments possible for everyone.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Arkangeles",
+    "DescripciÃ³n": "Plataforma de crowdfunding para inversiÃ³n en startups.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Arrenda",
+    "DescripciÃ³n": "Confianza y liquidez para el mercado de arrendamiento en AmÃ©rica Latina.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Asaas",
+    "DescripciÃ³n": "Conta digital completa para empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Aston",
+    "DescripciÃ³n": "Servicios financieros digitales para empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Atar",
+    "DescripciÃ³n": "Automatiza y gestiona pagos con API automations y operaciones batch.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Atrato",
+    "DescripciÃ³n": "Empresa lÃ­der de compra ahora paga despuÃ©s (BNPL) en MÃ©xico, respaldada por Accel e Y Combinator.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Avanzo",
+    "DescripciÃ³n": "FinTech que ofrece soluciones de bienestar financiero a organizaciones.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Avenia",
+    "DescripciÃ³n": "Infraestructura para el movimiento de dinero que conecta a AmÃ©rica Latina con el mundo.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Avenue",
+    "DescripciÃ³n": "Plataforma de inversiones internacionales con dÃ©cadas de experiencia en el mercado.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Avista",
+    "DescripciÃ³n": "Colombian tech-enabled payroll lender.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Aviva",
+    "DescripciÃ³n": "Financiera digital que combina IA con quioscos fÃ­sicos para hacer mÃ¡s accesibles productos financieros.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Axify",
+    "DescripciÃ³n": "Providing retailers with a debt free payment instalment solution at point of sale.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Azos",
+    "DescripciÃ³n": "Life insurance without bureaucracy at a fair price.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "B2Gether",
+    "DescripciÃ³n": "Empresa especializada en la intermediaciÃ³n de operaciones de cambio de divisas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "B3",
+    "DescripciÃ³n": "Viabilizar, conectar y desarrollar los mercados financiero y de capitales de Brasil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "BHub",
+    "DescripciÃ³n": "Pioneros latinoamericanos en gestiÃ³n de backoffice por suscripciÃ³n.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "BMP",
+    "DescripciÃ³n": "O banco das fintechs - soluciones de crÃ©dito.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "BRLA Digital",
+    "DescripciÃ³n": "Fintech de pagos transfronterizos y criptoinfraestructura.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "BS2",
+    "DescripciÃ³n": "Banco digital con soluciones financieras completas para personas y empresas.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "BYX",
+    "DescripciÃ³n": "Plataforma de crÃ©dito con macroactividades fundamentales de financiamiento.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Baaskit",
+    "DescripciÃ³n": "Plataforma Banking as a Service para aliados financieros de clientes.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Bamba",
+    "DescripciÃ³n": "Tu Aliado Financiero en el Campo - pagos agro.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Bamboo",
+    "DescripciÃ³n": "Powering growth with credit for businesses.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Banca.Me",
+    "DescripciÃ³n": "Soluciones financieras para personas y trabajadores mediante alianza con empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Banco BMG",
+    "DescripciÃ³n": "Neobanco digital para productos financieros personales.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Banco Inter",
+    "DescripciÃ³n": "Provides digital banking services in Brazil - super app completo.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Banco Next",
+    "DescripciÃ³n": "Banco digital para alcanzar objetivos financieros personales.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Banco Original",
+    "DescripciÃ³n": "Banco digital fusionado con PicPay para potenciar el dinero de los usuarios.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Bancompara",
+    "DescripciÃ³n": "Servicios end-to-end desde selecciÃ³n de crÃ©dito hasta firma de escrituras de vivienda.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Bankame",
+    "DescripciÃ³n": "Empresa de TecnologÃ­a que democratiza el acceso a Servicios Financieros en LatinoamÃ©rica.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Bankaya",
+    "DescripciÃ³n": "Soluciones de pago digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Bankly - Banking as a Service",
+    "DescripciÃ³n": "Plataforma BaaS para crear y escalar productos financieros propios.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Bankme",
+    "DescripciÃ³n": "Mayor gestora de securitizadoras del paÃ­s, especializada en crÃ©dito.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Banza",
+    "DescripciÃ³n": "Democratizamos la forma de ahorrar e invertir en LatinoamÃ©rica.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Bart Digital",
+    "DescripciÃ³n": "Soluciones de garantÃ­a y crÃ©dito para el futuro.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Barte",
+    "DescripciÃ³n": "FacturaciÃ³n flexible: cobra incluso antes de que tu cliente pague.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Baubap",
+    "DescripciÃ³n": "MicrocrÃ©dito inteligente para todos los perfiles financieros.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Bayport",
+    "DescripciÃ³n": "Empresa de crÃ©dito con reconocimiento Great Place To Work.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Beetransfer",
+    "DescripciÃ³n": "Servicios financieros de transferencias y pagos digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Belo",
+    "DescripciÃ³n": "Billetera crypto que da control del futuro financiero a las personas.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Belozfi",
+    "DescripciÃ³n": "LÃ­nea de crÃ©dito digital en MÃ©xico para personas y empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Belvo",
+    "DescripciÃ³n": "Leading Open Banking API platform in Latin America para conectar cuentas a apps.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Bemmbo",
+    "DescripciÃ³n": "Software de gestiÃ³n de pagos y cobros para empresas medianas y grandes.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Bemobi",
+    "DescripciÃ³n": "Empresa tecnolÃ³gica pionera en distribuciÃ³n y monetizaciÃ³n de soluciones mÃ³viles.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Bemus",
+    "DescripciÃ³n": "CrÃ©dito rotativo 100% en lÃ­nea sin burocracia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Betterfly",
+    "DescripciÃ³n": "Plataforma de beneficios de bienestar para empleados con impacto social.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Betterplan",
+    "DescripciÃ³n": "Servicio premium de ahorro e inversiÃ³n regulado por la CMF de Chile.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "BillÃº Bank",
+    "DescripciÃ³n": "Neobanco digital sin lÃ­mites para personas y empresas.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Binance",
+    "DescripciÃ³n": "The World's Leading Blockchain Ecosystem and Digital Asset Exchange.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Bineo",
+    "DescripciÃ³n": "Primer banco 100% digital en MÃ©xico del Grupo Banorte.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Bink",
+    "DescripciÃ³n": "Transformando los beneficios a empleados en herramientas de bienestar.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "BioCredit",
+    "DescripciÃ³n": "Primera plataforma que conecta personas para servicios financieros personalizados.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Bitso",
+    "DescripciÃ³n": "Make crypto useful - plataforma de activos digitales en LATAM.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Bitybank",
+    "DescripciÃ³n": "O seu criptobanco digital para compra y venta de criptomonedas.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Bitz",
+    "DescripciÃ³n": "Cuenta digital completa y gratuita para todos en Brasil.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Biz",
+    "DescripciÃ³n": "Plataforma para que seas tu propio banco con servicios financieros digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "BizCapital",
+    "DescripciÃ³n": "Online provider of working capital loans to micro and small businesses.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Blipay",
+    "DescripciÃ³n": "Catalyzing experiences through better financial services in LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Blips",
+    "DescripciÃ³n": "FinanciaciÃ³n y alquiler de equipos para micro y pequeÃ±os empresarios.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Bliss",
+    "DescripciÃ³n": "Plataforma de IA que conecta a las PYMES con el seguro adecuado.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Blitz",
+    "DescripciÃ³n": "AI agent system that automates cross-border compliance in free trade zones and fintechs.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Bloom",
+    "DescripciÃ³n": "Plataforma de crowdfunding que apoya ideas que cambiarÃ¡n el mundo.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Blooms",
+    "DescripciÃ³n": "Empresa de tecnologÃ­a financiera dedicada a apoyar a exportadores de frutas y hortalizas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Bloque",
+    "DescripciÃ³n": "Stablecoin banking solution for SMBs in Latam.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Blu",
+    "DescripciÃ³n": "Empresa brasileÃ±a con mÃ¡s de 10 aÃ±os de experiencia en gestiÃ³n financiera.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Bluecyber Seguros",
+    "DescripciÃ³n": "Seguradora operando en toda AmÃ©rica Latina con enfoque en pymes y familias.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Bnext",
+    "DescripciÃ³n": "Neobanco digital para la nueva generaciÃ³n financiera.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Bold",
+    "DescripciÃ³n": "Soluciones de pago para comercios y emprendedores.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Bolsiyo",
+    "DescripciÃ³n": "Aliados de los pequeÃ±os negocios con soluciones de pago accesibles.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Brasil Cash",
+    "DescripciÃ³n": "Fintech especializada en soluciones de pago en Brasil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Brick Seguros",
+    "DescripciÃ³n": "Building the future of insurance, brick by brick.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Briq.mx",
+    "DescripciÃ³n": "Inversiones inmobiliarias con montos mÃ­nimos y altos rendimientos.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Broad",
+    "DescripciÃ³n": "Account and card that connects you to the world.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Broxel",
+    "DescripciÃ³n": "Transformamos el dinero en algo mÃ¡s valioso mediante pagos digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "BrÃ¼cke",
+    "DescripciÃ³n": "We boost e-commerce sales by recovering abandoned carts.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Bucks",
+    "DescripciÃ³n": "Desarrollo de software para gestiÃ³n financiera empresarial.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Buda.com",
+    "DescripciÃ³n": "Compra y venta de Bitcoin, Ether, USDC y otras criptos de forma segura.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Buenbit",
+    "DescripciÃ³n": "Compra y venta de criptos en Argentina de forma segura y sencilla.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Buk",
+    "DescripciÃ³n": "Software de GestiÃ³n de Personas (RRHH) para todas las necesidades de colaboradores.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Bull",
+    "DescripciÃ³n": "Fintech de crÃ©dito consignado privado para trabajadores.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Bullground",
+    "DescripciÃ³n": "AI-powered financial advisor that helps underserved investors build wealth.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Bullla",
+    "DescripciÃ³n": "Fintech de crÃ©dito y beneficios para funcionarios de empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Bunker",
+    "DescripciÃ³n": "El camino mÃ¡s simple hacia la inversiÃ³n de largo plazo.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Bursanet",
+    "DescripciÃ³n": "Servicios financieros de inversiÃ³n bursÃ¡til.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Busqo",
+    "DescripciÃ³n": "Cotiza, compara y compra seguros todo riesgo para autos y hogar.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "CAVCA",
+    "DescripciÃ³n": "TransformaciÃ³n digital en la asesorÃ­a de seguros para corredores.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "CLAI PAYMENTS",
+    "DescripciÃ³n": "Plataforma completa de ecosistemas de pagos, autorizaciÃ³n y procesos back office.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Cacao Paycard",
+    "DescripciÃ³n": "Soluciones de tarjeta de pago digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Caccao",
+    "DescripciÃ³n": "La plataforma para quienes quieren influir en el mundo de las finanzas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Caju",
+    "DescripciÃ³n": "Empresa de tecnologÃ­a de beneficios para empleados con gestiÃ³n humanizada.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Caliza",
+    "DescripciÃ³n": "Fintech brasileÃ±a de pagos instantÃ¡neos vÃ­a Pix y stablecoins.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Callao",
+    "DescripciÃ³n": "Dinero electrÃ³nico de punta a punta para empresas y personas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Capim",
+    "DescripciÃ³n": "Ayudamos a los dentistas de todo Brasil con financiamiento y pagos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Capitalizarme.com",
+    "DescripciÃ³n": "Simplificamos la inversiÃ³n inmobiliaria para que el dinero valga mÃ¡s.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Capitaria",
+    "DescripciÃ³n": "Acuerdos de capital de riesgo e inversiÃ³n en activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Captable",
+    "DescripciÃ³n": "Plataforma de crowdfunding para inversiÃ³n en empresas.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Cardda",
+    "DescripciÃ³n": "Tarjetas de crÃ©dito empresariales sin lÃ­mites con pagos y transferencias automÃ¡ticas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "CargaYa",
+    "DescripciÃ³n": "Fintech de triple impacto para la transformaciÃ³n digital del ecosistema de transporte de carga.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "CashPak",
+    "DescripciÃ³n": "Soluciones de pago y envÃ­o de dinero desde cualquier lugar.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "CashU",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital accesible.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Cashi",
+    "DescripciÃ³n": "Servicios financieros de pago digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Cashin",
+    "DescripciÃ³n": "Startup especializada en soluciones de incentivos de ventas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Castor",
+    "DescripciÃ³n": "GestiÃ³n financiera empresarial integrada.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Celcoin",
+    "DescripciÃ³n": "Infraestructura financiera para impulsar los negocios digitales.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Celero",
+    "DescripciÃ³n": "Primera infraestructura de datos centrada en las PYME de AmÃ©rica Latina.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Cenit",
+    "DescripciÃ³n": "Automatiza la gestiÃ³n de impuestos para trabajadores independientes y PyMEs en LATAM.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Cerc",
+    "DescripciÃ³n": "Infraestructura del mercado financiero para crÃ©dito.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Chek",
+    "DescripciÃ³n": "Nueva forma de vender, pagar y transferir sin comisiÃ³n en Chile.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Chipax",
+    "DescripciÃ³n": "Software financiero para Pymes para control de finanzas en Chile y MÃ©xico.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Chubb",
+    "DescripciÃ³n": "The world's largest publicly traded property and casualty insurance company.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "CiNKO",
+    "DescripciÃ³n": "Billetera digital global impulsada por Island Pay.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Cicada",
+    "DescripciÃ³n": "Building Financial Infrastructure for Capital Markets.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Cifrato",
+    "DescripciÃ³n": "Automatiza la causaciÃ³n de facturas y procesos contables.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Clara",
+    "DescripciÃ³n": "Soluciones de pago y tarjetas corporativas para empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Claro Pay",
+    "DescripciÃ³n": "Control digital del dinero con transferencias y pagos mÃ³viles.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Clave",
+    "DescripciÃ³n": "Billetera digital de activos digitales del futuro.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Cleo",
+    "DescripciÃ³n": "Primera empresa BNPL en Chile para comprar ahora y pagar despuÃ©s sin tarjeta.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Clinng Payments",
+    "DescripciÃ³n": "Servicios financieros de pagos digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Clip",
+    "DescripciÃ³n": "Terminal que permite a negocios aceptar todos los mÃ©todos de pago electrÃ³nico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "CloudWalk",
+    "DescripciÃ³n": "Soluciones de pago para comercios y plataformas digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Clupp",
+    "DescripciÃ³n": "Seguro accesible y telemÃ¡tico para conductores de bajo riesgo.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Coba",
+    "DescripciÃ³n": "Acceso a la banca transfronteriza para AmÃ©rica Latina.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Cobre",
+    "DescripciÃ³n": "Building a future where bank is a verb and not a noun.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Cobre FÃ¡cil",
+    "DescripciÃ³n": "GestiÃ³n de cobros y facturaciÃ³n para pequeÃ±os negocios.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Coink",
+    "DescripciÃ³n": "Soluciones de pago y ahorro digital inclusivo.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Colaboramed",
+    "DescripciÃ³n": "Tarjeta Prepago para transacciones mÃ©dicas fÃ¡ciles y seguras.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Colektia",
+    "DescripciÃ³n": "Primera agencia de cobranza basada en inteligencia artificial de AmÃ©rica Latina.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Colibri",
+    "DescripciÃ³n": "Soluciones tecnolÃ³gicas para pagos y transferencias digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Coloca Payments",
+    "DescripciÃ³n": "Building the banking layer for e-commerce in LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Colors",
+    "DescripciÃ³n": "Fintech que brinda acceso a crÃ©ditos y construcciÃ³n de historiales a la comunidad LGBTIQ+.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Coltomoney",
+    "DescripciÃ³n": "InclusiÃ³n financiera social econÃ³mica y tecnolÃ³gica para poblaciones desatendidas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Cometa",
+    "DescripciÃ³n": "Cobranzas y pagos fÃ¡ciles para colegios y padres de familia.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "ComparaOnline",
+    "DescripciÃ³n": "Comparador de seguros y productos financieros para consumidores en LATAM.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Compropago",
+    "DescripciÃ³n": "Plataforma de pagos en efectivo para comercios digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Comun",
+    "DescripciÃ³n": "Helping Latinos living in the US have a better shot at financial freedom.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "CondoConta",
+    "DescripciÃ³n": "O banco oficial dos condomÃ­nios brasileiros para gestiÃ³n de pagos.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Conduit",
+    "DescripciÃ³n": "Empowering businesses to engage their customers through activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Conectados",
+    "DescripciÃ³n": "Billetera digital para entrega de ayudas sociales y bonos corporativos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Conekta",
+    "DescripciÃ³n": "Online payment platform that helps businesses secure and optimize their processes.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Conta Azul",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera y crÃ©dito para pequeÃ±as empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Conta Simples",
+    "DescripciÃ³n": "Digital banking account for SMEs, Startups and Freelancers in Brazil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "ContaFuturo",
+    "DescripciÃ³n": "Innovative products for a happier financial life in Brazil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Contaayuda",
+    "DescripciÃ³n": "GestiÃ³n financiera y contabilidad para pequeÃ±os negocios.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Contabilizei",
+    "DescripciÃ³n": "Plataforma de contabilidad online para pequeÃ±os negocios en Brasil.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Contalink",
+    "DescripciÃ³n": "Soluciones de contabilidad y gestiÃ³n financiera digital.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "ContaÃgil",
+    "DescripciÃ³n": "Desburocratiza las rutinas contables de los emprendedores brasileÃ±os.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Contbank",
+    "DescripciÃ³n": "Banco digital contable para empresas de todo Brasil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Cora",
+    "DescripciÃ³n": "Brazilian fin-tech startup for business banking and payments.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Covalto",
+    "DescripciÃ³n": "Banco digital enfocado en empresas que entiende los negocios modernos.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Coztyc",
+    "DescripciÃ³n": "Servicios financieros de pago digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Crabi",
+    "DescripciÃ³n": "Insurtech de seguros de automÃ³vil digital para MÃ©xico.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Crecy",
+    "DescripciÃ³n": "First crypto-backed credit card in LATAM.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Crediclub",
+    "DescripciÃ³n": "Servicios financieros tecnolÃ³gicos con impacto social para crÃ©dito personal.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Credicorp Capital",
+    "DescripciÃ³n": "Plataforma regional de asesorÃ­a financiera en Finanzas Corporativas y Asset Management.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Credicuotas",
+    "DescripciÃ³n": "Fintech especializada en prÃ©stamos personales online para los clientes.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Credihome by Loft",
+    "DescripciÃ³n": "Ofrece acceso a la vivienda de forma inteligente e integradora.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Credijusto",
+    "DescripciÃ³n": "Online lending platform for easy, reliable and transparent credit for SMEs.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Crediko",
+    "DescripciÃ³n": "Fintech especializada en crÃ©ditos educativos para padres de familia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Credilikeme",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital para personas en MÃ©xico.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Creditares",
+    "DescripciÃ³n": "Agfintech que conecta productores agrÃ­colas con financiamiento accesible.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Creditas",
+    "DescripciÃ³n": "Financial technology company with a digital platform for secured consumer loans.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Creditea",
+    "DescripciÃ³n": "Socio financiero de confianza para crÃ©ditos personales en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Creditop",
+    "DescripciÃ³n": "FinanciaciÃ³n fÃ¡cil y rÃ¡pida para que negocios ofrezcan crÃ©dito a clientes.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Credituz",
+    "DescripciÃ³n": "Servicios financieros de crÃ©dito digital accesible.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "CreditÃº",
+    "DescripciÃ³n": "Democratizando el acceso al financiamiento en LatAm para personas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Credix",
+    "DescripciÃ³n": "New portals to credit investing via activos digitales y blockchain.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Credmei",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera empresarial integrada.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Credoro",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital para personas y pequeÃ±as empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Credpago",
+    "DescripciÃ³n": "Uses technology to revolutionize the rental market with credit solutions.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Credz",
+    "DescripciÃ³n": "Soluciones tecnolÃ³gicas y de marketing financiero para retail y finanzas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Creizer",
+    "DescripciÃ³n": "Fintech de crÃ©ditos a vendedores en lÃ­nea basada en mÃ©tricas de sus tiendas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Cresium",
+    "DescripciÃ³n": "Easy finance management, investment, and loans for LATAM SMEs.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Creze",
+    "DescripciÃ³n": "Financial services company focused on SME credit in Mexico.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Crowdlink",
+    "DescripciÃ³n": "Plataforma de crowdfunding para financiamiento colectivo de proyectos.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "CryptoMarket",
+    "DescripciÃ³n": "Una de las mayores Exchanges de criptomonedas de la zona LatAm.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Cubo",
+    "DescripciÃ³n": "Empresa salvadoreÃ±a que ayuda a emprendedores a aceptar pagos con tarjeta.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Cuenca",
+    "DescripciÃ³n": "Neobanco digital para mexicanos con cuenta y pagos sin comisiones.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Cumbuca",
+    "DescripciÃ³n": "App innovadora para gerenciar pagos y gastos compartidos vÃ­a Open Finance.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Cumplo",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital entre personas y empresas en Chile.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Cura Deuda",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n y reparaciÃ³n de deudas personales.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "D3 Pagamentos",
+    "DescripciÃ³n": "Soluciones de gestiÃ³n y pagos digitales para empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "DM10",
+    "DescripciÃ³n": "Inteligencia sobre seguros para brokers y aseguradoras.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Dale Coopeuch",
+    "DescripciÃ³n": "App cooperativa para pagos y transferencias digitales en Chile.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Dando",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital para personas y empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Dapp",
+    "DescripciÃ³n": "Red que conecta comercios con varios mÃ©todos de pago digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Darwin Seguros",
+    "DescripciÃ³n": "Aseguradora digital innovadora que inspira nuevas formas de asegurar en Brasil.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Datafast",
+    "DescripciÃ³n": "Principal empresa de Pagos ElectrÃ³nicos en Ecuador.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Datamart",
+    "DescripciÃ³n": "Transformando empresas financieras en fintechs mediante Open Finance.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "DaviPlata",
+    "DescripciÃ³n": "Billetera digital del Banco Davivienda para Colombia.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Delt.ai",
+    "DescripciÃ³n": "Tarjetas corporativas y gestiÃ³n de gastos para empresas en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Depay",
+    "DescripciÃ³n": "Cobra en cripto con QR en pasos simples para negocios.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "DestÃ¡came",
+    "DescripciÃ³n": "Plataforma gratuita orientada a brindar soluciones financieras accesibles.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "DetÃ¡came",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital con anÃ¡lisis de datos alternativos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Deuna! app",
+    "DescripciÃ³n": "Tu dinero contigo sin necesidad de efectivo con pagos instantÃ¡neos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "DiDi Card",
+    "DescripciÃ³n": "Tarjeta de crÃ©dito con cashback diario sin anualidad y aprobaciÃ³n rÃ¡pida.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "DieselBank",
+    "DescripciÃ³n": "The official trucker account - neobanco para transportistas.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Digio",
+    "DescripciÃ³n": "Digital financial services platform with the strength of a bank and the agility of a fintech.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Digitra.com",
+    "DescripciÃ³n": "Ultimate digital asset exchange para LATAM.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Digitt",
+    "DescripciÃ³n": "Fintech mexicana que ayuda a prestatarios privilegiados a refinanciar deuda.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "DiiMO",
+    "DescripciÃ³n": "Transforming the financial services with breakthrough innovation and technology.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Dimensa Tecnologia",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital y tecnologÃ­a para sector financiero.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Ding",
+    "DescripciÃ³n": "Soluciones de pago y recarga digital internacional.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Dinie",
+    "DescripciÃ³n": "Embedded lending infrastructure for platforms en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "DitoBanx",
+    "DescripciÃ³n": "Servicios financieros innovadores para nuevas generaciones de LatinoamÃ©rica.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Divibank",
+    "DescripciÃ³n": "Simplificar los pagos para acelerar el crecimiento de nuevas empresas y e-commerce.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Dividenz",
+    "DescripciÃ³n": "Plataforma de inversiones en Real Estate en Estados Unidos para latinoamericanos.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Dock",
+    "DescripciÃ³n": "Tech your business free - infraestructura de pagos y banking.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "DolarApp",
+    "DescripciÃ³n": "Frictionless finance for a borderless world con cuenta global en USDc.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Doopla",
+    "DescripciÃ³n": "Plataforma de prÃ©stamos e inversiones directas entre personas sin intermediarios.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Dora",
+    "DescripciÃ³n": "Alquila sin fiador por whatsapp con renta garantizada.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Drip",
+    "DescripciÃ³n": "La manera mÃ¡s inteligente de hacer compras online con crÃ©dito.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Druo",
+    "DescripciÃ³n": "Conectando al mundo una cuenta bancaria a la vez.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Due",
+    "DescripciÃ³n": "Pagos sin fronteras para empresas del futuro en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Duemint",
+    "DescripciÃ³n": "Software que automatiza el proceso de cobranza con plataforma simple y efectiva.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "EBANX",
+    "DescripciÃ³n": "Fintech que ofrece soluciones de pago internacionales para empresas globales en LaTam.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "EFEX",
+    "DescripciÃ³n": "Plataforma y API para escalar globalmente: cobra local en 31 paÃ­ses y procesa en 140+.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "EasyCrÃ©dito",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital rÃ¡pido y sin burocracia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Ebury",
+    "DescripciÃ³n": "Fintech especializada en pagos y cobros internacionales e intercambio de divisas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Ecopaynet",
+    "DescripciÃ³n": "Especialista en desarrollo de nuevas soluciones de pasarela de pago.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Ecsa",
+    "DescripciÃ³n": "Empresa tecnolÃ³gica especializada en la automatizaciÃ³n del comercio exterior.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "EducaciÃ³n estrella",
+    "DescripciÃ³n": "Construimos nuevas formas de acceso a la educaciÃ³n superior con financiamiento.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Educbank",
+    "DescripciÃ³n": "Principal ecosistema financiero de educaciÃ³n bÃ¡sica de AmÃ©rica Latina.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Efektiva",
+    "DescripciÃ³n": "Plataforma de verificaciÃ³n de clientes empresariales para cumplimiento.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Efinti",
+    "DescripciÃ³n": "Plataforma Fintech que aporta liquidez eliminando fronteras geogrÃ¡ficas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "El Dorado",
+    "DescripciÃ³n": "Billetera de criptomonedas para pagos y transferencias internacionales con criptos estables.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Eluter",
+    "DescripciÃ³n": "Redefiniendo cÃ³mo movemos el dinero a nivel global con activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "EmbedX",
+    "DescripciÃ³n": "Embedded Insurance Made Easy para cualquier plataforma digital.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Entrepay",
+    "DescripciÃ³n": "Fintech de pagos que amplÃ­a soluciones de acreditaciÃ³n en el mercado brasileÃ±o.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "EqSeed",
+    "DescripciÃ³n": "Fintech de inversiones online en startups vÃ­a equity crowdfunding.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Ergoncredit",
+    "DescripciÃ³n": "100% digital, no bureaucracy, simple and agile resources for your company.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Escarlata",
+    "DescripciÃ³n": "Fintech con Alianzas Corporativas que desarrolla plataformas de FinanciaciÃ³n Alternativa para Pymes.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "ExcelCredit",
+    "DescripciÃ³n": "Apoyo a colombianos para recuperar su vida crediticia con segundas oportunidades.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Exponencial Confirming",
+    "DescripciÃ³n": "Entrega liquidez a empresas en menos de 12 horas mediante Factoring y Confirming.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "FINN",
+    "DescripciÃ³n": "Pionera en soluciones innovadoras para el seguro de empresas en LATAM.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "FITIX",
+    "DescripciÃ³n": "Insurtech colombiana que amplÃ­a el acceso al bienestar fuera del sistema tradicional.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "FacilPass",
+    "DescripciÃ³n": "SoluciÃ³n tecnolÃ³gica para el pago electrÃ³nico de peajes en vÃ­as.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Facio",
+    "DescripciÃ³n": "Anticipo de salario a empleados en Brasil de forma digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "FairPlay",
+    "DescripciÃ³n": "Revenue based financing platform for entrepreneurs with a flexible and fast product.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Fanki",
+    "DescripciÃ³n": "Llave de acceso oficial del fan para vivir la nueva era del deporte digital.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Fapro",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera para empresas en Vitacura Chile.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Festpay",
+    "DescripciÃ³n": "Fintech de gestiÃ³n y experiencia de pago que conecta comedores corporativos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fiado",
+    "DescripciÃ³n": "Essential financial services for Mexican Immigrants in the US and their families in Mexico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fidu",
+    "DescripciÃ³n": "App y plataforma escolar con servicios financieros #1 de Latam.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Fiduz",
+    "DescripciÃ³n": "AsesorÃ­a en inversiones redefinida por Inteligencia Artificial.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Fie",
+    "DescripciÃ³n": "Financiera Educativa para crÃ©dito educativo accesible.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Figuro",
+    "DescripciÃ³n": "Da a intermediarios de seguros la tecnologÃ­a de las insurtechs para revolucionar la experiencia.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "FinMaq",
+    "DescripciÃ³n": "FinanciaciÃ³n para adquisiciÃ³n de activos productivos para PYMES.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Finaktiva",
+    "DescripciÃ³n": "Online lending platform for high impact SMEs in Colombia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Finansystech",
+    "DescripciÃ³n": "InovaÃ§Ã£o para o mundo finance mediante Open Finance solutions.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Finbase",
+    "DescripciÃ³n": "Servicios financieros de gestiÃ³n para empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Finbra",
+    "DescripciÃ³n": "Otorga crÃ©dito PYME con garantÃ­a automotriz de forma digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Finco Pay",
+    "DescripciÃ³n": "InstituciÃ³n de Fondos de Pago ElectrÃ³nico en MÃ©xico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "FincomÃºn",
+    "DescripciÃ³n": "Neosofipo regulada por la CNBV para inclusiÃ³n financiera en MÃ©xico.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Finerio",
+    "DescripciÃ³n": "Proveedor de la Ãºnica API full stack de open banking y finanzas personales en AmÃ©rica Latina.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Finesa",
+    "DescripciÃ³n": "Plataforma de bienestar financiero y seguros con enfoque en la salud.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Finity",
+    "DescripciÃ³n": "Fintech de gestiÃ³n de tesorerÃ­a internacional para empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Finkargo",
+    "DescripciÃ³n": "Plataforma de servicios de comercio exterior para importadores latinoamericanos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Finky",
+    "DescripciÃ³n": "Plataforma 100% virtual de cupo de crÃ©dito educativo.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Finnecto",
+    "DescripciÃ³n": "Software para equipos de finanzas y compras para gestiÃ³n de gastos y pagos a proveedores.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Finnet",
+    "DescripciÃ³n": "Referente en desarrollo y gestiÃ³n de software en la nube para gestiÃ³n financiera.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Finnu",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital para personas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Finppi",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera empresarial.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Finsocial",
+    "DescripciÃ³n": "Provides credit solutions including payroll loan for teachers and pensioners.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Finsu",
+    "DescripciÃ³n": "Financia tu seguro de forma digital y accesible.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Finsus",
+    "DescripciÃ³n": "Finanzas Transparentes - neobanco con enfoque en inclusiÃ³n financiera.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Fintech Magalu",
+    "DescripciÃ³n": "Vertical de productos y servicios financieros del grupo Magazine Luiza.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fintigo",
+    "DescripciÃ³n": "Plataforma de crowdfunding para lograr sueÃ±os de inversiÃ³n.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Fintoc",
+    "DescripciÃ³n": "Conecta las instituciones financieras de los usuarios con aplicaciones vÃ­a API.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fintual",
+    "DescripciÃ³n": "Manages the investments of young professionals who want to invest well.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Finturu",
+    "DescripciÃ³n": "Plataforma de pagos y comercio por internet para LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Finzi",
+    "DescripciÃ³n": "The banking and learning platform for Gen Z in Latin America.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fisapay",
+    "DescripciÃ³n": "Servicios financieros de pago digitales para el mercado.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fiserv",
+    "DescripciÃ³n": "LÃ­der tecnolÃ³gico mundial comprometido con servicios financieros innovadores.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fitbank",
+    "DescripciÃ³n": "Multi-tiered platform for management, reconciliation, monitoring and settlement of payments.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Fivana",
+    "DescripciÃ³n": "Factoring y financiamiento para PYMES mediante Open Finance.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Fivvy",
+    "DescripciÃ³n": "Personalization & Data Monetization Engine for Banks que quieren ser data driven.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Flash",
+    "DescripciÃ³n": "SoluÃ§Ãµes de gestÃ£o para simplificar y embellecer la jornada de trabajo.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Flash BenefÃ­cios",
+    "DescripciÃ³n": "Plataforma de beneficios para empleados con gestiÃ³n de gastos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Flexio",
+    "DescripciÃ³n": "Soluciones de crÃ©dito flexible para empresas y personas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Flexpag",
+    "DescripciÃ³n": "Empresa de tecnologÃ­a especializada en soluciones de recaudaciÃ³n para utilities y Detrans.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Flink",
+    "DescripciÃ³n": "App de inversiÃ³n en bolsa accesible para todos los mexicanos.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Fliper",
+    "DescripciÃ³n": "Financial self-management app that allows users to track investments automatically.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Floid",
+    "DescripciÃ³n": "Plataforma de Open Banking en AmÃ©rica para conexiÃ³n financiera.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Flourish Fi",
+    "DescripciÃ³n": "Financial wellness & customer engagement platform for financial institutions.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Flow",
+    "DescripciÃ³n": "Plataforma de pagos mÃ¡s rÃ¡pida sencilla y segura de Chile y AmÃ©rica Latina.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Flux",
+    "DescripciÃ³n": "Plataforma de pagos mÃ³viles para comercios sin contacto.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Flypass",
+    "DescripciÃ³n": "Pago ElectrÃ³nico de Peajes en Colombia.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fondeadora",
+    "DescripciÃ³n": "Digital alternative to the traditional Mexican banking system.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fonder",
+    "DescripciÃ³n": "AI-Native Treasury and Cashflow Management System for Latam SMBs.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Foriu",
+    "DescripciÃ³n": "Plataforma de seguros disfrutable y accesible para el presente.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Foxbit",
+    "DescripciÃ³n": "Exchange de criptomonedas para el mercado brasileÃ±o.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Fpay",
+    "DescripciÃ³n": "App indispensable para pagar, cobrar y transferir de forma simple.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Frente",
+    "DescripciÃ³n": "Plataforma brasileÃ±a de pagos para comercios y empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Friday",
+    "DescripciÃ³n": "AplicaciÃ³n que quita la tarea de gestionar y pagar facturas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Friss",
+    "DescripciÃ³n": "AI-powered risk, fraud & compliance software for P&C insurers.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Fudo",
+    "DescripciÃ³n": "Transforma la industria gastronÃ³mica latinoamericana con herramientas digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Fundary",
+    "DescripciÃ³n": "Fintech que une empresas que necesitan dinero con inversionistas.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "FÃ©lix",
+    "DescripciÃ³n": "Servicios financieros de pago para empresas y personas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "GBM",
+    "DescripciÃ³n": "Banca de inversiÃ³n lÃ­der en MÃ©xico con plataforma digital de inversiÃ³n.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "GMattos",
+    "DescripciÃ³n": "Consultora boutique centrada en el negocio digital y los pagos en LATAM.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "GOU Payments",
+    "DescripciÃ³n": "Fintech de Grupo Aval para soluciones tecnolÃ³gicas de pagos y servicios financieros digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "GYRA+",
+    "DescripciÃ³n": "Simplifica el crÃ©dito para el emprendedor brasileÃ±o apoyando sus sueÃ±os.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Galgo",
+    "DescripciÃ³n": "InnovaciÃ³n al servicio de la inclusiÃ³n financiera en AmÃ©rica Latina con movilidad.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Galilea",
+    "DescripciÃ³n": "Recibe tu dinero en 1 dÃ­a hÃ¡bil o menos - soluciones de crÃ©dito Ã¡gil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Galileo",
+    "DescripciÃ³n": "The API Standard for Card Issuing and Digital Banking.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Game Hub Arena",
+    "DescripciÃ³n": "Where Gamers Earn, Not Just Play - payments for gaming economy.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "GatekeeperX",
+    "DescripciÃ³n": "Software de protecciÃ³n antifraude para plataformas financieras.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "GeoPagos",
+    "DescripciÃ³n": "Potencia los pagos digitales para transformar la experiencia de compra y venta.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Gerty",
+    "DescripciÃ³n": "Conecta centros de salud con aseguradoras para mejorar beneficios de salud de pacientes.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Geru",
+    "DescripciÃ³n": "CrÃ©dito para quienes hacen buenas elecciones - empresa de Open.co.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Getnet",
+    "DescripciÃ³n": "Plataforma de pagos completa para comercios en Brasil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Getxerpa",
+    "DescripciÃ³n": "Ayuda a bancos e instituciones a mejorar su propuesta digital y fortalecer relaciÃ³n con clientes.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Gibb",
+    "DescripciÃ³n": "SoluciÃ³n tecnolÃ³gica de salarios a la carta para empresas.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Girasol",
+    "DescripciÃ³n": "Fintech de soluciones tecnolÃ³gicas confiables e innovadoras para sus clientes.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Glim",
+    "DescripciÃ³n": "Servicios financieros para las empresas con gestiÃ³n integrada.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Global 66",
+    "DescripciÃ³n": "International online payment platform para transferencias globales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Go Bravo",
+    "DescripciÃ³n": "Mayor reparadora de crÃ©dito de Latam y Europa que cambia vidas financieras.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "GoCuotas",
+    "DescripciÃ³n": "Compra en cuotas con dÃ©bito sin necesidad de tarjeta de crÃ©dito.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "GoPass",
+    "DescripciÃ³n": "Transacciones sin efectivo ni tarjetas evitando clonaciones y fraudes.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Gorila",
+    "DescripciÃ³n": "Fintech that helps users take control of their investments.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Grab & Go",
+    "DescripciÃ³n": "Plataforma marca blanca para operaciones bancarias propias de cualquier organizaciÃ³n.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Grafeno Pagamentos",
+    "DescripciÃ³n": "Servicios financieros de inversiÃ³n y pagos para el mercado.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Grateful",
+    "DescripciÃ³n": "Pagos con monedas estables para el comercio digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Green Seguros",
+    "DescripciÃ³n": "Insurtech que protege a los productores Agropecuarios con seguros innovadores.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Gringo",
+    "DescripciÃ³n": "App para conductores con documentaciÃ³n y servicios de vehÃ­culos digitalizados.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "GrÃ£o",
+    "DescripciÃ³n": "Plataforma de inversiÃ³n y ahorro digital para brasileÃ±os.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "GrÃ£o Direto",
+    "DescripciÃ³n": "Conecta mÃ¡s eficazmente a agricultores y compradores de grano.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Guamacard",
+    "DescripciÃ³n": "App de control de finanzas personales con tarjeta prepago.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Guarda",
+    "DescripciÃ³n": "Startup de seguros paramÃ©tricos contra eventos climÃ¡ticos extremos.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Guru Spoc",
+    "DescripciÃ³n": "Primer SPOC B2B que conecta corredores y clientes con el ecosistema Open Insurance.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Habi Credit",
+    "DescripciÃ³n": "Soluciones integrales de vivienda mediante tecnologÃ­a e inteligencia artificial.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Hackmetrix",
+    "DescripciÃ³n": "Ayuda a construir confianza con clientes y cumplir regulaciones de ciberseguridad.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Hashdex",
+    "DescripciÃ³n": "Your global partner for crypto investing.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Heru",
+    "DescripciÃ³n": "App para declarar impuestos de conductores y repartidores de aplicaciones ante el SAT.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Hey",
+    "DescripciÃ³n": "Neobanco digital con cuenta y tarjeta para el mercado mexicano.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Hey Banco",
+    "DescripciÃ³n": "Neobanco de Banorte con servicios financieros digitales completos.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Higo",
+    "DescripciÃ³n": "Plataforma de pagos y gestiÃ³n financiera para empresas B2B.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Holacasa.mx",
+    "DescripciÃ³n": "Ayuda a comparar y precalificar crÃ©dito hipotecario con mÃ¡s de 10 bancos en MÃ©xico.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Homelend Tecnologia",
+    "DescripciÃ³n": "Fintech brasileÃ±a que facilita la compra de propiedad con crÃ©dito digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Hooli",
+    "DescripciÃ³n": "Plataforma sin claves ni usuarios, segura y personal para servicios financieros.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Horizon Pay",
+    "DescripciÃ³n": "Especialista en integraciÃ³n y gerenciamiento de APIs para la industria de pagos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Hula",
+    "DescripciÃ³n": "Infraestructura de pagos con IA para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "ICred",
+    "DescripciÃ³n": "Facilita a los clientes el acceso a prÃ©stamos personales y prÃ©stamos nÃ³mina.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "IMIX LATAM",
+    "DescripciÃ³n": "Ayuda a entidades financieras a construir y expandir canales inclusivos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "IMPESA",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera empresarial para LATAM.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "INI",
+    "DescripciÃ³n": "SaaS y white label fintech platform para pagos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "IOUU",
+    "DescripciÃ³n": "P2P lending platform for small businesses.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "IncluirTec",
+    "DescripciÃ³n": "Hace posible la entrega de prÃ©stamos a pequeÃ±os productores y microempresarios.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "InfinityPay",
+    "DescripciÃ³n": "Payment Gateway para el mercado brasileÃ±o.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Infocheck",
+    "DescripciÃ³n": "Facilita la evaluaciÃ³n de riesgo crediticio y de clientes.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Iniciador",
+    "DescripciÃ³n": "Plataforma de IniciaÃ§Ã£o de Pagamento & Dados Open Finance en Brasil.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Inklo",
+    "DescripciÃ³n": "Conecta a personas con cirugÃ­as y procedimientos estÃ©ticos mediante crÃ©dito fÃ¡cil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Inkoms",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n de inversiones para personas y empresas.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Insights",
+    "DescripciÃ³n": "Forma parte de los mercados financieros mÃ¡s importantes del mundo digitalmente.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Inter",
+    "DescripciÃ³n": "Banco digital completo que simplifica la vida como Super App en Brasil.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Inverspot",
+    "DescripciÃ³n": "Plataforma de crÃ©dito e inversiÃ³n inmobiliaria digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "InvestPlay",
+    "DescripciÃ³n": "SoluÃ§Ãµes em InteligÃªncia de dados e PFM en el ecosistema Open Finance.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Inviu",
+    "DescripciÃ³n": "Plataforma que transforma la manera de invertir en activos financieros.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Iris Neofinanciera",
+    "DescripciÃ³n": "Servicios financieros de nueva generaciÃ³n para personas y empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "IrisBank",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera empresarial integrada.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Jeeves",
+    "DescripciÃ³n": "Plataforma financiera global todo-en-uno para gastos, financiamiento y beneficios.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Jefa",
+    "DescripciÃ³n": "Neobanco digital enfocado en mujeres con cuenta y servicios financieros.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Jeitto",
+    "DescripciÃ³n": "CrÃ©dito de gente para gente de forma digital y accesible.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Jelou AI",
+    "DescripciÃ³n": "Agentes de IA para pagos, identidad y ejecuciÃ³n en WhatsApp.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Joinkey",
+    "DescripciÃ³n": "Empresa centrada en centralizar procesos, oportunidades y demandas de pago.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Jooycar",
+    "DescripciÃ³n": "Smart technology drivers for more secure and informed mobility con seguros.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Jota",
+    "DescripciÃ³n": "Simplifica las finanzas de los emprendedores con IA, todo en WhatsApp.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Juancho te presta",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital rÃ¡pido para personas en Colombia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Jumpstart",
+    "DescripciÃ³n": "Plataforma de crÃ©dito tecnolÃ³gico para empresas en crecimiento.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Juno",
+    "DescripciÃ³n": "Plataforma de pagos para individuos y empresas en Brasil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Juros Baixos",
+    "DescripciÃ³n": "EducaciÃ³n financiera y acceso fÃ¡cil a productos financieros para brasileÃ±os.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Justa",
+    "DescripciÃ³n": "Pagos para Pymes con gestiÃ³n financiera integrada.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Justos",
+    "DescripciÃ³n": "Building a safer and fairer world through insurtech solutions.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Juvo",
+    "DescripciÃ³n": "Neobanco digital para inclusiÃ³n financiera de no bancarizados.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "KIIEX",
+    "DescripciÃ³n": "Exchange latinoamericano que compite a categorÃ­a mundial en activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "KIRA",
+    "DescripciÃ³n": "Fintech impulsada por IA y Stablecoins para el mercado latinoamericano.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "KLYM",
+    "DescripciÃ³n": "Sistema de financiamiento diseÃ±ado para propulsar negocios en LATAM.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "KOA",
+    "DescripciÃ³n": "CompaÃ±Ã­a de financiamiento colombiana de nueva generaciÃ³n.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Kakau Seguros",
+    "DescripciÃ³n": "Insurtech para la prÃ³xima generaciÃ³n de asegurados en Brasil.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Kala",
+    "DescripciÃ³n": "Fintech-as-a-service startup focused on embedded lending in LatAm.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kalden Bridge",
+    "DescripciÃ³n": "Your Money Global Bridge para transferencias internacionales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Kalea",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera empresarial integrada.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Kamin",
+    "DescripciÃ³n": "Soluciones para que el dinero fluya de forma simple y segura.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Kamina",
+    "DescripciÃ³n": "Plataforma de prevenciÃ³n financiera para personas.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Kamino",
+    "DescripciÃ³n": "Plataforma financiera todo en uno para startups y empresas de alto crecimiento.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Kanastra",
+    "DescripciÃ³n": "Backoffice tecnolÃ³gico para fondos estructurados y titulizaciones.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kapital",
+    "DescripciÃ³n": "Plataforma all-in-one que automatiza finanzas para ahorrar tiempo y dinero.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kapstar",
+    "DescripciÃ³n": "Cross-Border Payments neobanco para el mercado LATAM.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Kashlatam",
+    "DescripciÃ³n": "Soluciones de movimiento de dinero fÃ¡cil rÃ¡pido y seguro en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Kaskek",
+    "DescripciÃ³n": "Hash white-label payments platform for B2B companies.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Keo World",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital para el comercio electrÃ³nico.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Khipu",
+    "DescripciÃ³n": "Empresa tecnolÃ³gica de pagos digitales y Webscraping as a Service.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Kiire",
+    "DescripciÃ³n": "Plataforma de aceptaciÃ³n de medios de pago para comercios.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Kiwi",
+    "DescripciÃ³n": "Ayuda a Latinos a construir historial crediticio en Estados Unidos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Klap",
+    "DescripciÃ³n": "El retador de la industria de medios de pago en Chile.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Klar",
+    "DescripciÃ³n": "Leading digital bank in Mexico con tarjeta y cuenta sin comisiones.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Klavi",
+    "DescripciÃ³n": "The most complete Open Finance platform in Brazil.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Klimber",
+    "DescripciÃ³n": "Acorta la brecha de acceso a los seguros digitales en LatinoamÃ©rica.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Klu",
+    "DescripciÃ³n": "Plataforma con herramientas para gestionar y crecer el negocio digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Klubi",
+    "DescripciÃ³n": "Nueva forma de hacer consorcio con ahorro programado.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Koban",
+    "DescripciÃ³n": "Finanzas simples para personas con cuenta digital integrada.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Koibanx",
+    "DescripciÃ³n": "Building the next generation financial infrastructure con blockchain.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Koin",
+    "DescripciÃ³n": "Buy Now Pay Later con antifraude y gateway de pagos integrado.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Koltin",
+    "DescripciÃ³n": "RediseÃ±a la manera de cuidar a quienes cuidaron de nosotros con seguros.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Koncilia",
+    "DescripciÃ³n": "SoluciÃ³n tecnolÃ³gica de conciliaciÃ³n, cuadre y compensaciÃ³n de operaciones financieras.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Konfio",
+    "DescripciÃ³n": "Mexico-based online financial services platform for small and medium businesses.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Konsi",
+    "DescripciÃ³n": "Plataforma de crÃ©dito consignado digital prÃ¡ctica y segura.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kontempo",
+    "DescripciÃ³n": "Embedded payment and financing solutions for B2B commerce in Latam.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Konvex",
+    "DescripciÃ³n": "Plataforma API unificada para Open Finance y servicios financieros.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Koywe",
+    "DescripciÃ³n": "Blurring the layer between crypto and fiat in Latam.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Kravata",
+    "DescripciÃ³n": "Plataforma de infraestructura blockchain para el mercado financiero.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "KredFeed",
+    "DescripciÃ³n": "Plataforma que resuelve las necesidades de capital de trabajo de las PyMEs.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kredi",
+    "DescripciÃ³n": "Hace fÃ¡cil la solicitud de crÃ©dito hipotecario digital en MÃ©xico.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kredit Plus",
+    "DescripciÃ³n": "Genera impacto econÃ³mico y social positivo con soluciones de crÃ©dito.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kredito",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital accesible para personas y empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kuadra",
+    "DescripciÃ³n": "Plataforma de administraciÃ³n crecimiento y servicios financieros para micronegocios.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Kuanto",
+    "DescripciÃ³n": "App de control financiero personal para latinoamericanos.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Kubo.financiero",
+    "DescripciÃ³n": "Regulated digital financing platform for savings personal loans and term deposits.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Kuenta",
+    "DescripciÃ³n": "Plataforma colombiana de Open Finance para datos financieros.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Kueski",
+    "DescripciÃ³n": "Uses big data and advanced analytics to approve and deliver loans in minutes.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Kunzapp",
+    "DescripciÃ³n": "Get visibility savings & control of all your SaaS subscriptions.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Kupi",
+    "DescripciÃ³n": "Plataforma corporativa que revoluciona la forma de dar y redimir beneficios.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Kushki",
+    "DescripciÃ³n": "Plataforma de pagos para el comercio digital en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Kuspit",
+    "DescripciÃ³n": "App que pone el dinero en acciÃ³n con inversiones accesibles.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "LISA Insurtech",
+    "DescripciÃ³n": "Helps insurance carriers deliver better simpler and faster claims experience.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "LQN",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital para personas y empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "La Finteca",
+    "DescripciÃ³n": "Proveedor de servicios de pago para LATAM que integra todos los mÃ©todos populares.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Lana",
+    "DescripciÃ³n": "Plataforma de pagos y beneficios para empleados.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Laqus",
+    "DescripciÃ³n": "Simplificando el mercado de capitales en Brasil.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Lares",
+    "DescripciÃ³n": "Invierte en acciones (mÂ²) de proyectos inmobiliarios con crowdfunding.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "LatÃº Seguros",
+    "DescripciÃ³n": "Business insurance powered by technology to boost LatAm businesses.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Lemon",
+    "DescripciÃ³n": "Tu mundo en crypto - billetera y servicios de activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Lerian",
+    "DescripciÃ³n": "Infraestructura financiera especializada en core banking y tecnologÃ­a open-source.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Let'sBit",
+    "DescripciÃ³n": "Digital banking alternative to payments and investments con crypto.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Levannta",
+    "DescripciÃ³n": "Convierte las suscripciones de clientes en liquidez para el negocio.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "LiSim",
+    "DescripciÃ³n": "Soluciones de analÃ­tica predictiva y automatizaciÃ³n de decisiones financieras.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "LiberTec",
+    "DescripciÃ³n": "CrÃ©ditos de Libranza digitales para empleados pÃºblicos y pensionados.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "LibÃ©lula - Todotix",
+    "DescripciÃ³n": "SoluciÃ³n para gestiÃ³n de cobranza electrÃ³nica y facturaciÃ³n del negocio.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Liftoff",
+    "DescripciÃ³n": "Performance-Driven App Marketing & Retargeting para fintechs.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "LikidÃ©o",
+    "DescripciÃ³n": "Latin American invoice discounting marketplace para financiamiento de facturas.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Lina Open X",
+    "DescripciÃ³n": "Transforma los datos del Open Banking Finance & Insurance en nuevas fuentes de ingresos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Lineru",
+    "DescripciÃ³n": "Plataforma de crÃ©dito en lÃ­nea con solo una conexiÃ³n a internet.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Linker",
+    "DescripciÃ³n": "Neobanco digital para personas y empresas en LATAM.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Linxe",
+    "DescripciÃ³n": "Servicios financieros de crÃ©dito para el mercado.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Liqi",
+    "DescripciÃ³n": "TecnologÃ­a que conecta empresas e inversores a oportunidades con blockchain.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Liquid AI",
+    "DescripciÃ³n": "Plataforma que automatiza el anÃ¡lisis crediticio y reduce el riesgo en el sector inmobiliario.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Liquido",
+    "DescripciÃ³n": "Modernizing digital payments for merchants and democratizing fintech access.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Liquitech",
+    "DescripciÃ³n": "Capital con Sentido para la gestiÃ³n financiera empresarial.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Lisa App",
+    "DescripciÃ³n": "App de dinero siempre a la mano para pagar cobrar y transferir.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Listo",
+    "DescripciÃ³n": "TecnologÃ­a para la gestiÃ³n empresarial con servicios financieros integrados.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Littio",
+    "DescripciÃ³n": "Cuenta Global Multimoneda para escoger la moneda con que ahorrar y gastar.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Loopay",
+    "DescripciÃ³n": "SoluciÃ³n financiera de base tecnolÃ³gica para pagos y gestiÃ³n.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Loovi",
+    "DescripciÃ³n": "Seguro de auto para todos con tecnologÃ­a telemÃ¡tica.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Loping",
+    "DescripciÃ³n": "Renting Inmobiliario como alternativa inteligente para propiedades.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Loto",
+    "DescripciÃ³n": "Fintech de gastos corporativos e incentivos para Pymes.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Loto Punto",
+    "DescripciÃ³n": "Sistema de kioscos para automatizaciÃ³n de micropagos en retail banca y gobierno.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Lounn",
+    "DescripciÃ³n": "Soluciones de financiamiento para pequeÃ±as y medianas empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Luable - MejorCDT",
+    "DescripciÃ³n": "Plataforma para que colombianos inviertan en los mejores CDT sin salir de casa.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Luegopago",
+    "DescripciÃ³n": "BNPL para compras en moda belleza y tecnologÃ­a en 4 cuotas sin interÃ©s.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Lulo Bank",
+    "DescripciÃ³n": "Primer banco 100% digital de Colombia con la mejor tasa de ahorro.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Lulo X",
+    "DescripciÃ³n": "Fintech que permite invertir en USDC (dÃ³lares digitales) eficientemente.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Lumx",
+    "DescripciÃ³n": "Global banking APIs powered by stablecoins para el mercado financiero.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Lyra",
+    "DescripciÃ³n": "Pasarela de pagos gateway para el comercio digital en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Lysto Card",
+    "DescripciÃ³n": "Soluciones tecnolÃ³gicas para el control de tarjetas de crÃ©dito empresariales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "M2CROWD",
+    "DescripciÃ³n": "Crowdfunding inmobiliario de MÃ©xico con inversiones accesibles y seguras.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "MACH",
+    "DescripciÃ³n": "Servicios financieros digitales accesibles para todos en Chile.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "MAG FinanÃ§as",
+    "DescripciÃ³n": "Aseguradora especializada en vida y pensiones del Grupo Mongeral Aegon.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "MO Credit Management Platform",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n de crÃ©dito para entidades financieras.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "MODO",
+    "DescripciÃ³n": "Conecta el dinero de las cuentas bancarias con pagos digitales en Argentina.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "MOVA",
+    "DescripciÃ³n": "CaaS Embedded Finance Platform para financiamiento colectivo.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "MOVii",
+    "DescripciÃ³n": "Billetera digital y fintech colombiana para pagos y transferencias.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "MPF Invest",
+    "DescripciÃ³n": "GuÃ­a en cada paso del camino con educaciÃ³n financiera accesible.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "MT Bank",
+    "DescripciÃ³n": "Servicios financieros digitales para el mercado bancario.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Macondo",
+    "DescripciÃ³n": "Permite a personas en LATAM tener propiedades de inversiÃ³n con propiedad fraccionada.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Magie",
+    "DescripciÃ³n": "Fintech especializada en transacciones financieras a travÃ©s de WhatsApp.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Magnetis",
+    "DescripciÃ³n": "Digital solutions for individuals to build long-term investment plans.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "MakasÃ­",
+    "DescripciÃ³n": "Revoluciona el mercado de financiamiento y construcciÃ³n de casas en Brasil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Malga",
+    "DescripciÃ³n": "Comunidad que potencia los negocios digitales con pagos integrados.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Manta Seguros",
+    "DescripciÃ³n": "Primera neoaseguradora en Colombia para seguros digitales.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Manteca",
+    "DescripciÃ³n": "APIs para que fintechs incorporen servicios de cambio cripto y broker.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Marco",
+    "DescripciÃ³n": "The future of financing for small business with trade finance.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Marvin",
+    "DescripciÃ³n": "Facilita relaciones de pago entre la industria y el comercio minorista.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Matera",
+    "DescripciÃ³n": "Offers a solution for digital transformation in financial risk and retail markets.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Mattilda",
+    "DescripciÃ³n": "Aliado financiero de las instituciones educativas de MÃ©xico y Latino AmÃ©rica.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Maxxa",
+    "DescripciÃ³n": "Fintech de crÃ©ditos para personas y pequeÃ±as empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "MayaPlus",
+    "DescripciÃ³n": "EnvÃ­o de remesas desde EEUU a LatinoamÃ©rica para el sector vivienda.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "MedÃ¡ Fintech",
+    "DescripciÃ³n": "Servicios fintech simples e incluyentes para clientes y empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Meliuz",
+    "DescripciÃ³n": "Fintech brasileÃ±a especializada en cashback para consumidores.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Mendel",
+    "DescripciÃ³n": "Startup que simplifica y optimiza la gestiÃ³n financiera de grandes empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Menta",
+    "DescripciÃ³n": "B2B fintech steroids para plataformas de pago.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Mento",
+    "DescripciÃ³n": "Plataforma de crÃ©dito para la revoluciÃ³n financiera en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Mercado Bitcoin",
+    "DescripciÃ³n": "Maior plataforma de criptomoedas e ativos digitais da AmÃ©rica Latina.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Mercado Credito",
+    "DescripciÃ³n": "Soluciones de crÃ©dito del ecosistema Mercado Libre para vendedores.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Mercado Pago",
+    "DescripciÃ³n": "Plataforma de cobros online lÃ­der en AmÃ©rica Latina.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Mercado en LÃ­nea",
+    "DescripciÃ³n": "La startup para agilizar las inversiones en el mercado.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Meru",
+    "DescripciÃ³n": "Cuenta en dÃ³lares autocustodiada para freelancers y trabajadores remotos de LATAM.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Mesfix",
+    "DescripciÃ³n": "FinanciaciÃ³n inteligente mediante factoring para empresas.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Metropago",
+    "DescripciÃ³n": "Tarjeta de prepago para el Metro de Santiago de Chile.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Meutudo",
+    "DescripciÃ³n": "Plataforma de crÃ©dito eficiente que ha transformado la vida de millones.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Mexipay",
+    "DescripciÃ³n": "Proveedor de redes en medios de pago aliado tecnolÃ³gico para Fintechs y Bancos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Mexpago",
+    "DescripciÃ³n": "Servicio de envÃ­o y recepciÃ³n de dinero digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Mezubo",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital para personas en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Milio",
+    "DescripciÃ³n": "Embedded lending and payments infrastructure for B2B commerce.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Milo Credit",
+    "DescripciÃ³n": "Financial technology company reimagining mortgage credit for global consumers.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Minka",
+    "DescripciÃ³n": "Red abierta para publicar dinero y habilitar pagos instantÃ¡neos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Mobills",
+    "DescripciÃ³n": "Empresa tecnolÃ³gica con soluciones para las finanzas personales.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Modyo",
+    "DescripciÃ³n": "Construye mejores productos digitales para mejorar experiencia con tu negocio.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Momento",
+    "DescripciÃ³n": "Seguro de auto sin complicaciones completamente digital.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "MonaBit",
+    "DescripciÃ³n": "El poder de la tecnologÃ­a Blockchain al alcance de todos.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Monato",
+    "DescripciÃ³n": "Infrastructure for companies to create financial solutions of the future.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Monet",
+    "DescripciÃ³n": "CrÃ©dito para todos hasta el 30% de los ingresos mensuales digitalmente.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Monetae",
+    "DescripciÃ³n": "Mercados financieros de nueva generaciÃ³n impulsados por activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Monetta",
+    "DescripciÃ³n": "SuperApp con billetera digital multimoneda integrada.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Monetto",
+    "DescripciÃ³n": "Buy, pay, trade and exchange without limits digitally.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Money Money Invest",
+    "DescripciÃ³n": "Conecta empresarios e inversores para prÃ©stamos e inversiones peer-to-peer.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "MoneyGiver",
+    "DescripciÃ³n": "Fintech que revoluciona el acceso a crÃ©dito para los mexicanos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Moni",
+    "DescripciÃ³n": "PrÃ©stamos online y adelantos en efectivo de forma digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Monibyte CriptoWallet",
+    "DescripciÃ³n": "App para envÃ­os y solicitudes de dinero con tarjeta VISA en Costa Rica.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Monific",
+    "DescripciÃ³n": "Plataforma para ser socio de un hotel invirtiendo desde 1000 MXN.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Mono",
+    "DescripciÃ³n": "Plataforma tecnolÃ³gica para lanzar productos fintech y mover dinero rÃ¡pido en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Monokera",
+    "DescripciÃ³n": "Permite a compaÃ±Ã­as de cualquier industria ofrecer seguros digitales.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Monto",
+    "DescripciÃ³n": "App que permite a las empresas ofrecer beneficios a sus colaboradores.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Moonflow",
+    "DescripciÃ³n": "GestiÃ³n de cobros en piloto automÃ¡tico impulsado por inteligencia artificial.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Moss.Earth",
+    "DescripciÃ³n": "Plataforma de activos digitales con enfoque en sostenibilidad.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Mozper",
+    "DescripciÃ³n": "La forma mÃ¡s fÃ¡cil de administrar los gastos de los hijos con tarjeta.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Mueve Seguro",
+    "DescripciÃ³n": "Plataforma que ayuda a portar seguros asociados a crÃ©ditos de consumo y automotriz.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Muevy",
+    "DescripciÃ³n": "Fintech de Pagos Transfronterizos & Open Finance para el mercado LATAM.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "MultiprÃ©stamo",
+    "DescripciÃ³n": "Fintech que otorga microcrÃ©ditos en lÃ­nea para personas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Mundi",
+    "DescripciÃ³n": "Primera plataforma de servicios financieros para exportadores y agentes de carga.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Muney App",
+    "DescripciÃ³n": "DÃ³lares en efectivo enviados con USDT para venezolanos en el exterior.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Muxi",
+    "DescripciÃ³n": "Develops technology solutions for the capture and authorization of electronic transactions.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "N1co",
+    "DescripciÃ³n": "Neobanco que transforma el efectivo en CentroamÃ©rica hacia lo digital.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "N5",
+    "DescripciÃ³n": "Plataforma diseÃ±ada exclusivamente para la industria financiera y el Openfinance.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "NG.CASH",
+    "DescripciÃ³n": "Independence with your money regardless of your age - Gen Z neobank.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Nagro",
+    "DescripciÃ³n": "A nova geraÃ§Ã£o do crÃ©dito rural para o agro brasileiro.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Napsix Pay",
+    "DescripciÃ³n": "Intermediarios financieros con soluciones de crÃ©dito digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Naranja X",
+    "DescripciÃ³n": "AcompaÃ±a a las personas en el uso cotidiano de su dinero en Argentina.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Neat Pagos",
+    "DescripciÃ³n": "Paga cuentas mensuales arriendo y mÃ¡s con tarjeta de crÃ©dito y dÃ©bito.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Nelo",
+    "DescripciÃ³n": "Plataforma de pagos y crÃ©dito digital para el mercado mexicano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Neofin",
+    "DescripciÃ³n": "Facturar y cobrar a los clientes nunca ha sido tan fÃ¡cil con tecnologÃ­a.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Neon",
+    "DescripciÃ³n": "Brazilian fintech whose mission is to redesign and simplify people's financial experience.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Nequi",
+    "DescripciÃ³n": "App que provee servicios financieros digitales para colombianos.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Nera",
+    "DescripciÃ³n": "Nueva perspectiva para decisiones Ã¡giles en la gestiÃ³n agrofinanciera.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Nexa",
+    "DescripciÃ³n": "Primer neobanco de Guatemala para hacer la vida mÃ¡s fÃ¡cil financieramente.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Nexu",
+    "DescripciÃ³n": "Plataforma de crÃ©dito automotriz digital en MÃ©xico.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Niu",
+    "DescripciÃ³n": "App donde adquieres y manejas productos financieros digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Noh",
+    "DescripciÃ³n": "La forma mÃ¡s fÃ¡cil de dividir compras y facturas con la pareja.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Nomad",
+    "DescripciÃ³n": "Global Account para romper barreras territoriales de la vida financiera.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Noodle",
+    "DescripciÃ³n": "Plataforma financiera para empresas de la economÃ­a creativa para crecer.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "NovaDax",
+    "DescripciÃ³n": "Tech company with innovation mindset and customer-driven soul en cripto.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "NovoPayment",
+    "DescripciÃ³n": "Next Level Digital Financial Services Simplified para el mercado LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Now Invex",
+    "DescripciÃ³n": "Primer neobanco seguro y accesible para libertad financiera en MÃ©xico.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Now Seguros",
+    "DescripciÃ³n": "CompaÃ±Ã­a de seguros 100% digital con canales de distribuciÃ³n no convencionales.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Nu Invest",
+    "DescripciÃ³n": "Investment platform with Easynvest's 50 years of market expertise.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Nubank",
+    "DescripciÃ³n": "Issues, administrates, processes, and transfers payments related to credit cards and equity.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Nubi",
+    "DescripciÃ³n": "Startup to buy or sell anywhere in the world without a credit card.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Nubloq",
+    "DescripciÃ³n": "Te ayudamos a vender seguros en tu plataforma con integraciÃ³n sencilla.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Num Finance",
+    "DescripciÃ³n": "Rendimientos, PrÃ©stamos y Activos Digitales a un solo click.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Nuvemshop",
+    "DescripciÃ³n": "Plataforma de comercio electrÃ³nico con soluciones de pago integradas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "ONE",
+    "DescripciÃ³n": "Plataforma de orquestaciÃ³n de pagos para el mercado financiero.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Olist",
+    "DescripciÃ³n": "Soluciones para potenciar el comercio minorista digital en Brasil.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Omie",
+    "DescripciÃ³n": "Software de gestiÃ³n empresarial para impulsar la economÃ­a de Brasil.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "One2credit",
+    "DescripciÃ³n": "Fintech de crÃ©dito educativo digital para acceso a educaciÃ³n superior.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "OneBlinc",
+    "DescripciÃ³n": "Challenging the status quo in Consumer Finance for underserved communities.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "OneCarNow",
+    "DescripciÃ³n": "Ofrece un auto nuevo a la medida 100% online rÃ¡pido y seguro.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "OnePay",
+    "DescripciÃ³n": "Pagos sin fricciÃ³n a travÃ©s de WhatsApp para personas y empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "OnlyPay",
+    "DescripciÃ³n": "Plataforma de pagos simple y accesible para comercios.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Ontop",
+    "DescripciÃ³n": "Automates international hiring and payments for global companies.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Onze",
+    "DescripciÃ³n": "Plataforma de pensiones privadas para empleados en Brasil.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Open co",
+    "DescripciÃ³n": "MÃ¡s brasileÃ±os con acceso a crÃ©dito justo flexible y evolutivo.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "OpenPay BBVA",
+    "DescripciÃ³n": "Plataforma de pagos digitales para comercios con posibilidades infinitas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Openbank",
+    "DescripciÃ³n": "El banco del futuro hoy - neobanco digital del Santander.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Openpay",
+    "DescripciÃ³n": "Payment platform for fast and easy acceptance of payments on websites and apps.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Oplay",
+    "DescripciÃ³n": "InnovaciÃ³n en el mercado de LATAM con los mejores servicios financieros en MÃ©xico.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Orangepill",
+    "DescripciÃ³n": "Digital Assets Management Crypto Payments DeFi Accounting Core.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Orionx.com",
+    "DescripciÃ³n": "Plataforma de trading de Bitcoin Ether y otras criptos en Chile.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Osigu",
+    "DescripciÃ³n": "Brinda una experiencia de atenciÃ³n mÃ©dica sencilla y eficiente para clientes.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Osmo",
+    "DescripciÃ³n": "Servicios financieros de activos digitales para empresas.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "OxPay",
+    "DescripciÃ³n": "Ecosistema para automatizar pagos con beneficios exclusivos para motoristas.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Oxus Finance",
+    "DescripciÃ³n": "Pagos y remesas globales para empresas con navegaciÃ³n financiera inteligente.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Oyster",
+    "DescripciÃ³n": "Digital financial service for freelancers startups and SMEs.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PAGOS360",
+    "DescripciÃ³n": "Infraestructura de pagos en lÃ­nea para el mercado argentino.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PAQ Wallet",
+    "DescripciÃ³n": "Nueva soluciÃ³n digital fiable personalizable y sencilla para gestiÃ³n del dinero.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PESO",
+    "DescripciÃ³n": "Pagos Crossborder EEUU para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Paag",
+    "DescripciÃ³n": "Servicios financieros de pago para personas y empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pacto",
+    "DescripciÃ³n": "All in one POS software and payments platform for restaurants and bars in Mexico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PagBank",
+    "DescripciÃ³n": "Empresa de pagos con mayor nÃºmero de clientes en Brasil y banco digital.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "PagBrasil",
+    "DescripciÃ³n": "Empresa lÃ­der en tecnologÃ­a financiera que procesa pagos de e-commerce mundialmente.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PagCorp",
+    "DescripciÃ³n": "Management system for corporate prepaid cards.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "PagHiper",
+    "DescripciÃ³n": "Fintech especializada en Pix y recibos bancarios para el comercio electrÃ³nico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PagSeguro",
+    "DescripciÃ³n": "Soluciones completas para pagos con mÃ¡s de 140 mÃ©todos locales de LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pagaleve",
+    "DescripciÃ³n": "Buy Now Pay Later (BNPL) para el mercado brasileÃ±o.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Pagaloop",
+    "DescripciÃ³n": "Paga, cobra y financia gastos de la empresa con tarjeta de crÃ©dito.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Pagando",
+    "DescripciÃ³n": "Plataforma fintech del norte de MÃ©xico para pagos digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pagaqui",
+    "DescripciÃ³n": "Empresa destacada en MÃ©xico por transacciones electrÃ³nicas y mÃ©todos de pago.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pagare",
+    "DescripciÃ³n": "Plataforma digital Bank as a Service con servicios financieros y crediticios.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Paggo",
+    "DescripciÃ³n": "SoluciÃ³n de Cobros con Tarjeta para pequeÃ±os negocios.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pago FÃ¡cil",
+    "DescripciÃ³n": "Plataforma de pagos digitales accesibles para todos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PagoNxt",
+    "DescripciÃ³n": "Plataforma de pagos digitales del grupo Santander para el mercado global.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pagolivre",
+    "DescripciÃ³n": "Paytech enfocada en recurrencia pagos en lÃ­nea y funciones para vender mÃ¡s.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pagsmile",
+    "DescripciÃ³n": "Empresa especializada en medios de pago para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pagui",
+    "DescripciÃ³n": "BNPL orchestrator que paga a comercios al dÃ­a siguiente desbloqueando inclusiÃ³n.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Paisa",
+    "DescripciÃ³n": "Aumenta la salud financiera a travÃ©s de remesas y servicios integrados.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "PaketÃ¡",
+    "DescripciÃ³n": "Acceso a crÃ©dito sin complicaciones para el trabajador brasileÃ±o.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Pako",
+    "DescripciÃ³n": "Billetera Digital para pagos y transferencias cotidianas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Palenca",
+    "DescripciÃ³n": "Payroll API for LatAm para verificaciÃ³n de ingresos laborales.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Palomma",
+    "DescripciÃ³n": "Frictionless Pay by Bank for LatAm para pagos directos bancarios.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Pantore Pay",
+    "DescripciÃ³n": "CrÃ©dito para restaurantes snack bars bares y tiendas de comestibles.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Parfin",
+    "DescripciÃ³n": "Leading Web3 infrastructure provider in Latam para instituciones financieras.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "PasanaQ",
+    "DescripciÃ³n": "Unlock the financial potential of unbanked people through digitization of ROSCAs.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Patrimore",
+    "DescripciÃ³n": "Ayuda a clientes a incrementar su patrimonio con asesorÃ­a financiera.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Pawer",
+    "DescripciÃ³n": "Insurtech para mascotas con seguros digitales accesibles.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Pay2all",
+    "DescripciÃ³n": "InstituciÃ³n de pagos autorizada en Brasil para transferencias.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PayGoal",
+    "DescripciÃ³n": "Plataforma marca blanca para jugadores que quieren entrar en AceptaciÃ³n y Pagos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PayHop",
+    "DescripciÃ³n": "Plataforma tecnolÃ³gica que une Proveedores y Minoristas para garantizar pagos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "PayJoy",
+    "DescripciÃ³n": "Plataforma que promueve el acceso al crÃ©dito en mercados emergentes.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "PayMon",
+    "DescripciÃ³n": "Plataforma para digitalizar las cafeterÃ­as escolares con billetera digital.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "PayPal",
+    "DescripciÃ³n": "Plataforma global de pagos digitales y activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "PayRetailers",
+    "DescripciÃ³n": "Proveedor lÃ­der de servicios de pago en lÃ­nea para comercios y compradores.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PayU",
+    "DescripciÃ³n": "Global reach local expertise - plataforma de pagos internacionales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Payana",
+    "DescripciÃ³n": "EvoluciÃ³n de los pagos entre empresas para reducir costos y errores.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Paycash",
+    "DescripciÃ³n": "SEDPE colombiana para pagos y transferencias digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Payface",
+    "DescripciÃ³n": "Plataforma de pagos por reconocimiento facial para el punto de venta.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Payku",
+    "DescripciÃ³n": "Plataforma de pago y gestiÃ³n de cobros en lÃ­nea para empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Payments Way",
+    "DescripciÃ³n": "Soluciones de Pagos para todo tipo de negocios en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PaymÃ³vil",
+    "DescripciÃ³n": "Revoluciona el sistema de pagos digitales para empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Paynom",
+    "DescripciÃ³n": "Anticipo de NÃ³mina y Bienestar Financiero en MÃ©xico donde todos los dÃ­as son quincena.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Payoneer",
+    "DescripciÃ³n": "Commerce technology company powering payments and growth for the global economy.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Payphone",
+    "DescripciÃ³n": "Cobra y paga desde el celular con cualquier tarjeta de crÃ©dito o dÃ©bito.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Paysafe",
+    "DescripciÃ³n": "Plataforma de pagos para comerciantes y consumidores en entretenimiento global.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Paytime",
+    "DescripciÃ³n": "Fintech enfocada en soluciones de pago y gestiÃ³n empresarial integrada.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Paytrack",
+    "DescripciÃ³n": "Moderniza la gestiÃ³n de viajes y gastos de la empresa digitalmente.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "PayvÃ¡lida",
+    "DescripciÃ³n": "Abre las puertas del comercio online para todo tipo de usuarios en Latam.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Payway",
+    "DescripciÃ³n": "Plataforma de cobros con kit de soluciones para gestionar y potenciar el negocio.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "PeiGo",
+    "DescripciÃ³n": "Soluciones de pago digital innovadoras para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Personal Pay",
+    "DescripciÃ³n": "Fintech de Telecom para potenciar las finanzas y simplificar operaciones cotidianas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pibank",
+    "DescripciÃ³n": "CercanÃ­a de un banco espaÃ±ol con la solidez de un gran grupo internacional.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "PicPay",
+    "DescripciÃ³n": "Transforma la forma en que se maneja el dinero para una vida mÃ¡s fÃ¡cil.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Pideaky",
+    "DescripciÃ³n": "Acceso a capital para crecer el negocio con crÃ©dito digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Pier",
+    "DescripciÃ³n": "Plataforma de seguros que hace la vida mÃ¡s leve con productos digitales.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Pilla",
+    "DescripciÃ³n": "Ayuda a las empresas a emancipar financieramente a sus empleados.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Pilotin",
+    "DescripciÃ³n": "Control de finanzas vÃ­a WhatsApp con Open Finance integrado.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Pinbank Brasil",
+    "DescripciÃ³n": "Neobanco simple fÃ¡cil y seguro para el mercado brasileÃ±o.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Pismo",
+    "DescripciÃ³n": "Build financial products fast and reliably with cloud-native platform.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Plain",
+    "DescripciÃ³n": "Fintech que usa agentes de IA para democratizar la gestiÃ³n patrimonial.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Plano",
+    "DescripciÃ³n": "Soluciones tecnolÃ³gicas para la educaciÃ³n y el bienestar financiero.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Plata Card",
+    "DescripciÃ³n": "Digital financial services and technology company para crÃ©dito digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Plataform",
+    "DescripciÃ³n": "Alternativa de financiamiento y liquidez para las empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Plenti",
+    "DescripciÃ³n": "Simplifying access to dollar banking in Latam con activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Plerk",
+    "DescripciÃ³n": "El trabajo cambiÃ³ los beneficios tambiÃ©n - plataforma de beneficios laborales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pluggy",
+    "DescripciÃ³n": "Plataforma de Open Finance para conexiÃ³n de datos financieros en Brasil.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Plurall",
+    "DescripciÃ³n": "Soluciones financieras para emprendedores e independientes en LATAM.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "PoloPay",
+    "DescripciÃ³n": "Rethinking how people dine & drink con pagos integrados.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pomelo",
+    "DescripciÃ³n": "API-first para emisiÃ³n procesamiento y gestiÃ³n de tarjetas cloud-native con IA.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Pommi",
+    "DescripciÃ³n": "Servicios financieros de crÃ©dito para personas y pequeÃ±as empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Pontte",
+    "DescripciÃ³n": "Digital lending platform built to solve the painful credit scenario in Brazil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "PortÃ£o 3",
+    "DescripciÃ³n": "Travel Tech que ayuda a empresas a gestionar pagos corporativos y viajes.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Powwi",
+    "DescripciÃ³n": "Plataforma de pagos digitales para el mercado colombiano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Prami",
+    "DescripciÃ³n": "Empresa dedicada a formalizar el crÃ©dito en las regiones de Colombia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Pravaler",
+    "DescripciÃ³n": "Plataforma digital de soluciones financieras para facilitar acceso a educaciÃ³n.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Presta en LÃ­nea",
+    "DescripciÃ³n": "Ofrece prÃ©stamos fÃ¡ciles rÃ¡pidos y seguros sin papeleos ni filas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Prestadero",
+    "DescripciÃ³n": "Cambia las reglas del crÃ©dito con financiamiento peer-to-peer.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Prestapolis",
+    "DescripciÃ³n": "Pasarela de crÃ©dito para pequeÃ±os y medianos comercios de consumo masivo.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Presto",
+    "DescripciÃ³n": "Soluciones de pago y financiamiento para el mercado chileno.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PrimeTime",
+    "DescripciÃ³n": "Tarjeta de pago creada por emprendedores mexicanos para todas las personas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "ProntoPaga",
+    "DescripciÃ³n": "Recaudador y dispersor de pagos diseÃ±ado para todo tipo de negocios.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Propeler",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera empresarial integrada.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Provu",
+    "DescripciÃ³n": "Fintech que vive Brasil y los sueÃ±os de los brasileÃ±os con crÃ©dito personal.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Pulpos",
+    "DescripciÃ³n": "Startup que impulsa a pymes mexicanas para llevarlas a la nube.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Punto Clave",
+    "DescripciÃ³n": "Empresa mexicana lÃ­der en medios de pago electrÃ³nicos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Puntored",
+    "DescripciÃ³n": "Plataforma de medios de pago que promueve la inclusiÃ³n financiera en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "PÃ¡galo",
+    "DescripciÃ³n": "Procesos financieros con facilidad eficiencia y libertad para personas.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "PÃ¡game",
+    "DescripciÃ³n": "CorresponsalÃ­a digital que lleva servicios financieros a cada rincÃ³n de Colombia.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "QI Tech",
+    "DescripciÃ³n": "Transforma empresas en fintechs con infraestructura de crÃ©dito digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "QUASH",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital para personas y empresas en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Qenta",
+    "DescripciÃ³n": "RevoluciÃ³n digital contable para empresas en LATAM.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Qive",
+    "DescripciÃ³n": "VÃ­nculo entre el recaudador de impuestos y el financiero para gestiÃ³n fiscal.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "QueSeguro.co",
+    "DescripciÃ³n": "Marketplace especializado en Medicina Prepagada Seguros de Salud y EPS en Colombia.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "QuickCap",
+    "DescripciÃ³n": "SOFOM mexicana que brinda soluciones financieras digitales con enfoque humanista.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Quipu",
+    "DescripciÃ³n": "Plataforma financiera digital para los negocios de Colombia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Quod",
+    "DescripciÃ³n": "Inteligencia de datos para decisiones inteligentes en el sector financiero.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "R2",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital para empresas en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "R5",
+    "DescripciÃ³n": "Soluciones de crÃ©dito digital para personas en Colombia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Racional",
+    "DescripciÃ³n": "Invierte en acciones y construye portafolios de inversiÃ³n digital.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Radar",
+    "DescripciÃ³n": "SoluciÃ³n tecnolÃ³gica de gestiÃ³n de tesorerÃ­a para LatinoamÃ©rica.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "RapiCredit",
+    "DescripciÃ³n": "Plataforma de crÃ©dito rÃ¡pido digital para personas en Colombia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Rapidoo",
+    "DescripciÃ³n": "Provides financing services for SMBs through invoice factoring.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "RappiCard",
+    "DescripciÃ³n": "Tarjeta de crÃ©dito emitida por Visa con lÃ­nea asignada segÃºn ingresos e historial.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "RappiPay",
+    "DescripciÃ³n": "Cuenta de ahorros con todas las funciones de un banco tradicional digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Rebel",
+    "DescripciÃ³n": "Alternative Online Lending para crÃ©dito digital en Brasil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Rebill",
+    "DescripciÃ³n": "Plataforma de pagos y suscripciones para negocios digitales en AmÃ©rica Latina.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "RecargaPay",
+    "DescripciÃ³n": "Mobile payments enabler and wallet en Brasil para recargas y pagos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "RedCaptial",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital para personas y empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "RedGirasol",
+    "DescripciÃ³n": "Primer crowdfunding solar en MÃ©xico para financiar energÃ­a renovable.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "RedelCom",
+    "DescripciÃ³n": "Soluciones de pago digital para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Refinancia",
+    "DescripciÃ³n": "Servicer experto en recuperaciÃ³n financiera y reestructuraciÃ³n de deudas.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "RefÃ¡cil",
+    "DescripciÃ³n": "TecnologÃ­a al servicio de la transformaciÃ³n financiera de negocios.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Relif",
+    "DescripciÃ³n": "Plataforma para mejorar crÃ©ditos y ordenar finanzas personales.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Remessa Online",
+    "DescripciÃ³n": "Platform for international transfers simple fast and cost-effective.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Remitee",
+    "DescripciÃ³n": "Global Payments con Choice & Control para transferencias internacionales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Retorna",
+    "DescripciÃ³n": "Fintech de envÃ­os de remesas entre los migrantes latinoamericanos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "RetryPay",
+    "DescripciÃ³n": "Plataforma de recuperaciÃ³n de pagos fallidos para el comercio digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Revolut",
+    "DescripciÃ³n": "Ayuda a pagar enviar dinero y ahorrar de forma mÃ¡s inteligente globalmente.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Reworth",
+    "DescripciÃ³n": "Plataforma de rewards y beneficios para el ecosistema de pagos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Rexi",
+    "DescripciÃ³n": "Democratizing Access to Operational Excellence en el mercado LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Ridivi",
+    "DescripciÃ³n": "Digitalizando los Servicios Financieros para personas y empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Rio",
+    "DescripciÃ³n": "Empresa de trading de activos digitales y tecnologÃ­a para LatinoamÃ©rica.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "RioDeFi",
+    "DescripciÃ³n": "The Next Frontier Of Finance con activos digitales y DeFi.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Ripio",
+    "DescripciÃ³n": "Descubre el futuro de la economÃ­a digital con criptomonedas en Argentina.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Rivium",
+    "DescripciÃ³n": "AplicaciÃ³n mÃ³vil mexicana de inversiÃ³n en la bolsa de Estados Unidos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Rocketfy",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera y logÃ­stica para e-commerce.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Roddos",
+    "DescripciÃ³n": "Unlocking credit access in the motorcycle economy para motociclistas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Ruvo",
+    "DescripciÃ³n": "Conecta Pix, criptomonedas y Visa para pagos integrados en Brasil.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "SacbÃ© Payments",
+    "DescripciÃ³n": "Borderless P2P Payments para inmigrantes y sus familias con banca digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Sacscloud",
+    "DescripciÃ³n": "Servicios y consultorÃ­a de TI para el sector financiero.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Saf.money",
+    "DescripciÃ³n": "Fintech de activos digitales en EEUU para el mercado LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Sami",
+    "DescripciÃ³n": "Revoluciona la asistencia sanitaria con planes mÃ¡s asequibles y atenciÃ³n humana.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Satoshi Tango",
+    "DescripciÃ³n": "Servicios financieros seguros basados en tecnologÃ­a y enfocados en las personas.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Scanntech",
+    "DescripciÃ³n": "Inteligencia para vender mÃ¡s y mejor con activos digitales y datos.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Seguralia",
+    "DescripciÃ³n": "AsesorÃ­a al momento de escoger el Plan de Salud y Vida adecuado.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Seguro Canguro",
+    "DescripciÃ³n": "La manera simple de estar seguro con seguros digitales accesibles.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Seguro X KilÃ³metro",
+    "DescripciÃ³n": "Innova en la oferta de seguros automovilÃ­sticos por kilÃ³metro en MÃ©xico.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Sekure",
+    "DescripciÃ³n": "Seguros digitales en todas partes para cualquier necesidad.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Sem Parar",
+    "DescripciÃ³n": "Servicios financieros de pago electrÃ³nico de peajes en Brasil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Sempli",
+    "DescripciÃ³n": "Online lending platform for small businesses in Colombia.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "SenseiNode",
+    "DescripciÃ³n": "Building the blockchain backbone in Latin America.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "ServiSenior.com",
+    "DescripciÃ³n": "Despacha buenas experiencias mejorando niveles de servicio con impacto social.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Sette",
+    "DescripciÃ³n": "FusiÃ³n entre Bart Digital y A de Agro para aumentar la seguridad de los acreedores.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Shareflow",
+    "DescripciÃ³n": "Democratizes digital out-of-home advertising para pequeÃ±as y grandes marcas.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Sheriff",
+    "DescripciÃ³n": "Simplifica la forma de conocer con quiÃ©n te relacionas para mÃ¡s negocios.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Shinkansen",
+    "DescripciÃ³n": "Ayuda a fintechs y startups a mover dinero a la velocidad de internet.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Sicredi",
+    "DescripciÃ³n": "Cooperativa de crÃ©dito con soluciones financieras sostenibles y personalizadas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Siembro",
+    "DescripciÃ³n": "AgrocrÃ©ditos Simples y RÃ¡pidos para el sector agropecuario.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Siigo",
+    "DescripciÃ³n": "Impulsa el crecimiento de las pymes democratizando soluciones tecnolÃ³gicas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Simetrik",
+    "DescripciÃ³n": "Fintech que entrega control y visibilidad sobre transacciones financieras con conciliaciÃ³n.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Simple",
+    "DescripciÃ³n": "Billetera digital todo en uno de stablecoins para el mercado cripto.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Simple2u Seguros",
+    "DescripciÃ³n": "Seguros simples fÃ¡ciles y del tu gusto para personas y empresas.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Simplee Seguros",
+    "DescripciÃ³n": "Corredora de Seguros #1 para Empresas PyMes y StartUps en Chile y MÃ©xico.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Simplestate",
+    "DescripciÃ³n": "Fintech de inversiÃ³n en bienes raÃ­ces para personas.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Sinapse",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera empresarial para el mercado LATAM.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "SistecrÃ©dito",
+    "DescripciÃ³n": "Plataforma de crÃ©dito que hace posible el acceso financiero para todos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Sistema de Transferencias y Pagos IFPE",
+    "DescripciÃ³n": "STP - SoluciÃ³n lÃ­der en Transferencias ElectrÃ³nicas en MÃ©xico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Slice",
+    "DescripciÃ³n": "Soluciones de pago digital para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Smart Pyme",
+    "DescripciÃ³n": "Servicios financieros y gestiÃ³n para pequeÃ±as y medianas empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Sofi",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital para personas en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Softseguros",
+    "DescripciÃ³n": "Aliados estratÃ©gicos de productores y agencias de seguros para que vendan mÃ¡s.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "SofÃ­a",
+    "DescripciÃ³n": "Seguros mÃ©dicos para empresas individuos y familias con tecnologÃ­a.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "SolfÃ¡cil",
+    "DescripciÃ³n": "Principal ecosistema de soluciones para la generaciÃ³n de energÃ­a solar en Brasil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Solventa",
+    "DescripciÃ³n": "Plataforma de crÃ©dito online accesible para personas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Solvento",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera empresarial para empresas en crecimiento.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Somapay",
+    "DescripciÃ³n": "Pago de nÃ³mina descomplicado en apenas 3 clics.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Sonect",
+    "DescripciÃ³n": "Reduces today's cost of cash while paving the way to a digital future.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Sostengo",
+    "DescripciÃ³n": "Plataforma de seguros con enfoque en sostenibilidad para el mercado LATAM.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Soy Yo",
+    "DescripciÃ³n": "Ayuda a empresas a disminuir el fraude por suplantaciÃ³n de identidad mejorando la experiencia.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Spin by Oxxo",
+    "DescripciÃ³n": "EnvÃ­a y recibe dinero paga con tarjeta y compra tiempo aire con Spin by OXXO.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Split Risk",
+    "DescripciÃ³n": "CompaÃ±Ã­a de seguros digital con modelos de riesgo compartido.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "SproutFi",
+    "DescripciÃ³n": "Plataforma de inversiÃ³n en activos internacionales para latinoamericanos.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Sr.Pago",
+    "DescripciÃ³n": "Mobile point of sale system for individuals and small businesses for card payments.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Stable",
+    "DescripciÃ³n": "Global remittances P2P payments and card use based on a technology that stabilizes currencies.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Stark Bank",
+    "DescripciÃ³n": "Banca para empresas con API-first y automatizaciÃ³n de pagos.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Stay",
+    "DescripciÃ³n": "Gympass para las pensiones privadas de las empresas en Brasil.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Stere",
+    "DescripciÃ³n": "Unique platform to launch manage and grow insurance programs.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Stone",
+    "DescripciÃ³n": "SoluciÃ³n completa para el comerciante brasileÃ±o con pagos y gestiÃ³n.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Stone Co",
+    "DescripciÃ³n": "SoluciÃ³n completa pro lojista brasileiro con tecnologÃ­a de pagos.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Stori",
+    "DescripciÃ³n": "Empresa financiera mexicana con tarjeta de crÃ©dito sin anualidad.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "SumUp",
+    "DescripciÃ³n": "Plataforma de pagos para pequeÃ±os comercios con lector de tarjetas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "SuperSim",
+    "DescripciÃ³n": "Reinventing the Brazilian Credit Market con crÃ©dito digital accesible.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Superdigital",
+    "DescripciÃ³n": "Neobanco digital para inclusiÃ³n financiera en LATAM.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Supra",
+    "DescripciÃ³n": "Revolutionizing global payments for small and medium-sized businesses.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Sureti",
+    "DescripciÃ³n": "Apasionada en contribuir a la inclusiÃ³n financiera con crÃ©dito digital.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "SutHub",
+    "DescripciÃ³n": "Infratech que descomplicada el mercado de seguros con tecnologÃ­a.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Swap",
+    "DescripciÃ³n": "P2P payment app to send money to anyone on contact list any bank or debit card.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Swap",
+    "DescripciÃ³n": "SWAP fintech partner that empowers merchants to expand markets and boost economies.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Syncfy",
+    "DescripciÃ³n": "Latin America's leading open finance platform para datos financieros.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Syscap",
+    "DescripciÃ³n": "SoluciÃ³n integral en gestiÃ³n de fuentes de fondeo para crÃ©dito.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "TAPP",
+    "DescripciÃ³n": "El acceso que quieres - plataforma de pagos digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "TEx",
+    "DescripciÃ³n": "Insurtech para Corredores de Seguros y Aseguradoras con tecnologÃ­a.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Takenos",
+    "DescripciÃ³n": "Monedero para trabajadores transfronterizos de Latam en dÃ³lares.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tako",
+    "DescripciÃ³n": "Brazilian HR Tech para gestiÃ³n de personas y beneficios.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Tangelo",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital para personas y pequeÃ±as empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Tanner",
+    "DescripciÃ³n": "Banco Digital chileno con productos de crÃ©dito e inversiÃ³n.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Tapi",
+    "DescripciÃ³n": "Pagos recurrentes en toda AmÃ©rica Latina a travÃ©s de una sola integraciÃ³n.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tappaggo",
+    "DescripciÃ³n": "SoluciÃ³n Tap on Phone para pagos con tarjeta PIX y QR en Brasil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Teca",
+    "DescripciÃ³n": "Trabaja con todas las aseguradoras para la mejor alternativa de seguro.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Technisys",
+    "DescripciÃ³n": "Now Galileo - fully integrated financial technology platform.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Techreo",
+    "DescripciÃ³n": "App tecnolÃ³gica de servicios financieros digitales en MÃ©xico y Bolivia.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Teip",
+    "DescripciÃ³n": "Plataforma de pagos digitales para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tengo",
+    "DescripciÃ³n": "Fintech de pagos cobros y remesas para Honduras.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tenpo",
+    "DescripciÃ³n": "Primera cuenta digital independiente de un banco tradicional en Chile.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Tensec",
+    "DescripciÃ³n": "Cambio de divisas y pagos internacionales para empresas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "TentosCap",
+    "DescripciÃ³n": "New financial solution focused on the Brazilian rural producer.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "TerraMagna",
+    "DescripciÃ³n": "Plataforma de crÃ©dito agrÃ­cola digital para productores en Brasil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Terrenta",
+    "DescripciÃ³n": "Crowdfunding para inversiones inmobiliarias en LATAM.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Tienda Pago",
+    "DescripciÃ³n": "TecnologÃ­a simple y fÃ¡cil de usar para apoyar a los clientes de tiendas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "TiloPay",
+    "DescripciÃ³n": "Plataforma de tecnologÃ­a financiera para pagos en lÃ­nea en CentroamÃ©rica.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Todito Cash",
+    "DescripciÃ³n": "Plataforma de pagos prepago y recargas digitales en MÃ©xico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Todito Pay",
+    "DescripciÃ³n": "Servicios financieros de pago digital en MÃ©xico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Toka",
+    "DescripciÃ³n": "EvoluciÃ³n en medios de pago para el comercio digital.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "TokenOne",
+    "DescripciÃ³n": "Plataforma de tokenizaciÃ³n de activos financieros con blockchain.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Toku",
+    "DescripciÃ³n": "Optimiza la recaudaciÃ³n de pagos recurrentes para empresas.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Tower Tech",
+    "DescripciÃ³n": "Plataforma de pagos y tecnologÃ­a financiera para el mercado.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tpaga",
+    "DescripciÃ³n": "Billetera digital para pagos y transferencias en Colombia.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Trace Finance",
+    "DescripciÃ³n": "Plataforma de crÃ©dito y pagos para empresas en crecimiento.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "TraderPal",
+    "DescripciÃ³n": "Democratizing Access to stock markets for Latinos with a simple mobile app.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Trafalgar Fintech",
+    "DescripciÃ³n": "El futuro de los servicios financieros en MÃ©xico con innovaciÃ³n.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Traive",
+    "DescripciÃ³n": "Fintech que conecta toda la cadena de crÃ©dito desde el agro hasta el mercado de capitales.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Tranqui Finanzas",
+    "DescripciÃ³n": "Primera plataforma integral para la gestiÃ³n de todas las deudas.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Transfeera",
+    "DescripciÃ³n": "SoluÃ§Ãµes de GestÃ£o Pagamentos e Recebimentos para Empresas en Brasil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Treinta",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera para pequeÃ±os negocios en LATAM.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Treu.",
+    "DescripciÃ³n": "SoluciÃ³n mÃ¡s rÃ¡pida para adquirir seguros digitales sin complejidad.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Tribal",
+    "DescripciÃ³n": "Plataforma financiera todo en uno para startups y empresas en LATAM.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Tributi",
+    "DescripciÃ³n": "Asesor tributario y financiero para individuos en Colombia.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Trii",
+    "DescripciÃ³n": "Plataforma que permite a latinoamericanos acceder a acciones locales y extranjeras.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Triidy",
+    "DescripciÃ³n": "TecnologÃ­a que impacta la economÃ­a social de los emprendimientos.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Trio",
+    "DescripciÃ³n": "Tap into real-time payments in Brazil from anywhere in the world.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "TruBit",
+    "DescripciÃ³n": "El ecosistema cripto mÃ¡s completo de LATAM para todos.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Tu Dinero Digital",
+    "DescripciÃ³n": "InstituciÃ³n de Fondos de Pago ElectrÃ³nico en MÃ©xico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tuily",
+    "DescripciÃ³n": "Tarjeta de crÃ©dito empresarial para PyMEs con gestiÃ³n de gastos.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Tul",
+    "DescripciÃ³n": "App aliada del sector ferretero y constructor en Latam con pagos integrados.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "TumiPay",
+    "DescripciÃ³n": "Plataforma para manejar transacciones sin restricciones.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tumoni",
+    "DescripciÃ³n": "Borderless financial services for Central Americans con pagos y remesas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tuna",
+    "DescripciÃ³n": "IntegraciÃ³n con mÃºltiples proveedores de pago y orquestaciÃ³n con pruebas A/B.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tutenlabs",
+    "DescripciÃ³n": "Optimiza y simplifica procesos operativos del viaje del cliente en seguros.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Tutum Pay",
+    "DescripciÃ³n": "AI-powered payments platform for LATAM SMEs to sell and get paid online.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Tyba",
+    "DescripciÃ³n": "Plataforma digital de inversiÃ³n que democratiza el acceso en LATAM.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "U-Payments",
+    "DescripciÃ³n": "ConsultorÃ­a implementaciÃ³n y administraciÃ³n de plataformas de medios de pago.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "U4C",
+    "DescripciÃ³n": "Fintech comprometida con la democratizaciÃ³n del sistema financiero.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "UY3",
+    "DescripciÃ³n": "Plataforma Credit as a Service para el mercado financiero.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "UalÃ¡",
+    "DescripciÃ³n": "Personal finance management mobile app based in Argentina con neobanco.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Ubanku",
+    "DescripciÃ³n": "Improving financial and social inclusion for GenZ in LATAM.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Uellbee",
+    "DescripciÃ³n": "Energiza las finanzas con productos financieros ajustados al estilo de vida.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Uils",
+    "DescripciÃ³n": "Wallet que convierte a conductores de apps en propietarios con Open Finance.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "Ume",
+    "DescripciÃ³n": "Conecta consumidores con crÃ©dito para compra de productos y servicios de minoristas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "UnDosTres",
+    "DescripciÃ³n": "Technology company for payments and financial services in Mexico.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "V5Pay",
+    "DescripciÃ³n": "Soluciones de pago globales en el sudeste asiÃ¡tico y LatinoamÃ©rica.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "VAAS",
+    "DescripciÃ³n": "Monitoramento de transaÃ§Ãµes para blockchain e pix contra crimes y problemas regulatorios.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "VCRP bank",
+    "DescripciÃ³n": "Neobanco digital para servicios financieros personales.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "VIIO",
+    "DescripciÃ³n": "Cuenta global en dÃ³lares USDC para dolarizar finanzas cotidianas en LATAM.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "VMetrix",
+    "DescripciÃ³n": "Desarrollo de software para anÃ¡lisis financiero y de inversiÃ³n.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Vaas",
+    "DescripciÃ³n": "Desbloquea el mercado de deuda privada de Latam con tecnologÃ­a.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Vaka",
+    "DescripciÃ³n": "Fintech de micro inversiÃ³n accesible para cualquier persona en ganaderÃ­a.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Vaki",
+    "DescripciÃ³n": "La plataforma de crowdfunding de LatinoamÃ©rica para proyectos sociales.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "Valcredit",
+    "DescripciÃ³n": "Encuentra la soluciÃ³n financiera de crÃ©dito adecuada para ti.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Valuelist",
+    "DescripciÃ³n": "Recopila ordena y respalda resultados continuos del patrimonio local e internacional.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Veci",
+    "DescripciÃ³n": "Soluciones de pago digital para el comercio en LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "VelaFi",
+    "DescripciÃ³n": "Plataforma de infraestructura financiera impulsada por stablecoins para empresas globales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Velara",
+    "DescripciÃ³n": "Plataforma de contenido especializado en salud financiera con enfoque de gÃ©nero.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "VentiPay",
+    "DescripciÃ³n": "Ofrece pago en cuotas con tarjeta de dÃ©bito para comercios.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Verqor",
+    "DescripciÃ³n": "Fintech for Agro - financiamiento para el sector agropecuario.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Vexi",
+    "DescripciÃ³n": "Tarjeta de crÃ©dito digital sin anualidad para MÃ©xico.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Vindi",
+    "DescripciÃ³n": "Online payment platform (PCI certified) for subscription and recurring billing.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Virgo",
+    "DescripciÃ³n": "Plataforma de crÃ©dito digital para personas y empresas en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Vita Wallet",
+    "DescripciÃ³n": "Plataforma de pagos y transferencias internacionales para LATAM.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Vitra Capital",
+    "DescripciÃ³n": "Plataforma de inversiÃ³n y gestiÃ³n de patrimonio en LATAM.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Vitrify",
+    "DescripciÃ³n": "Impulsa el mercado de capitales con mayor eficiencia y transparencia.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Vixtra",
+    "DescripciÃ³n": "Reinventing International Trade in Latin America con crÃ©dito comercial.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Vlipco",
+    "DescripciÃ³n": "Plataforma de pagos digitales para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Vozy",
+    "DescripciÃ³n": "Coloca las conversaciones al centro de la estrategia con IA en seguros.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Vudy",
+    "DescripciÃ³n": "Infraestructura global para pagos con blockchain y activos digitales.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "VÃ³rtx",
+    "DescripciÃ³n": "Plataforma de crÃ©dito y gestiÃ³n de activos para el mercado brasileÃ±o.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "WaaSabi",
+    "DescripciÃ³n": "Elevate your fintech game build a digital wallet business.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Wakeful",
+    "DescripciÃ³n": "Tus ahorros en dÃ³lares pueden hacerte ganar mÃ¡s dinero con inversiones.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Wallbit",
+    "DescripciÃ³n": "Neobank in the US for global remote workers y trabajadores digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Wallib",
+    "DescripciÃ³n": "App mÃ³vil y plataforma web para compra venta e inversiÃ³n en Bitcoin.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Walo",
+    "DescripciÃ³n": "Ensuring the next generation's financial well-being con pagos digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Warren",
+    "DescripciÃ³n": "Investment platform that simplifies finances and transforms the habit of investing.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "WastiCredit",
+    "DescripciÃ³n": "Fintech colombiana de prÃ©stamos personales en lÃ­nea de bajo monto.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "WeSura",
+    "DescripciÃ³n": "Producto de innovaciÃ³n de Sura para asegurar lo que une y conecta a las comunidades.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Welbe Care",
+    "DescripciÃ³n": "Ayuda a empresas a cuidar de sus colaboradores con beneficios de salud.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Welli",
+    "DescripciÃ³n": "FinanciaciÃ³n de procedimientos mÃ©dicos simple confiable y en minutos.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Wenance",
+    "DescripciÃ³n": "Fintech de crÃ©dito personal para personas en Argentina.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Wenia",
+    "DescripciÃ³n": "Plataforma de compra y venta de activos digitales en Argentina.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "WiPay",
+    "DescripciÃ³n": "Do Payments better - plataforma de pagos digitales para el Caribe.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Wibond",
+    "DescripciÃ³n": "Medio de pago digital que brinda lÃ­mite para comprar en cuotas sin tarjeta.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Wiipol",
+    "DescripciÃ³n": "Plataforma digital que agiliza el proceso de financiamiento de pÃ³lizas de seguros.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Will Bank",
+    "DescripciÃ³n": "Neobanco digital para el mercado brasileÃ±o con servicios completos.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Willay",
+    "DescripciÃ³n": "Property subscription insurance platform for Latam.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Wioba",
+    "DescripciÃ³n": "Fintech para control de dinero y gastos en app para personas.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Wise",
+    "DescripciÃ³n": "Fintech de cuenta multidivisa tarjeta y transferencias entre paÃ­ses.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Witty",
+    "DescripciÃ³n": "Invierte guarda transfiere y maneja dinero de forma Ã¡gil y transparente.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "Wompi",
+    "DescripciÃ³n": "Impulsa las ventas de los comercios ofreciendo formas de recibir pagos por internet.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Worldpay",
+    "DescripciÃ³n": "Empresa lÃ­der en tecnologÃ­a y soluciones de pago con capacidades Ãºnicas.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "WÃIA",
+    "DescripciÃ³n": "SoluciÃ³n fintech para que pequeÃ±os y medianos agricultores accedan al capital de trabajo.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "XP inc.",
+    "DescripciÃ³n": "Plataforma de inversiÃ³n y servicios financieros lÃ­der en Brasil.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Xcapit",
+    "DescripciÃ³n": "Fully automated solutions for investing in the cryptocurrency market.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Xepelin",
+    "DescripciÃ³n": "FinTech que democratiza los servicios financieros para todo tipo de empresas.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Ximple",
+    "DescripciÃ³n": "Simplifying the path to your dreams con crÃ©dito digital accesible.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Xisfo",
+    "DescripciÃ³n": "Fintech para PyMEs y freelancers que reciben anticipos de facturas y nÃ³mina.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Yave",
+    "DescripciÃ³n": "Primera hipoteca digital en MÃ©xico con rapidez y servicio.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Yaydoo",
+    "DescripciÃ³n": "LÃ­der en soluciones financieras de automatizaciÃ³n digital para crecimiento acelerado.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "YoCripto",
+    "DescripciÃ³n": "Primera tarjeta de crÃ©dito en LATAM que ofrece Bitcoin Rewards con cada compra.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "YoFio",
+    "DescripciÃ³n": "Empresa de tecnologÃ­a con soluciones financieras para ayudar a negocios a crecer.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Yont",
+    "DescripciÃ³n": "Billetera virtual con herramientas financieras integrales y accesibles.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Yuhu",
+    "DescripciÃ³n": "Plataforma que incrementa el poder adquisitivo de colaboradores y empresa.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Yuno",
+    "DescripciÃ³n": "Permite a empresas gestionar todos los mÃ©todos de pago y fraude en una integraciÃ³n.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Z.ro Bank",
+    "DescripciÃ³n": "Banca empresarial con gestiÃ³n financiera integrada para Brasil.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Z1",
+    "DescripciÃ³n": "Neobanco digital para la generaciÃ³n Z en Brasil.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "Zaswin",
+    "DescripciÃ³n": "EnvÃ­a dinero desde Estados Unidos a Bancolombia y Nequi fÃ¡cilmente.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Zenfi",
+    "DescripciÃ³n": "Personal finance reinvented con gestiÃ³n financiera inteligente.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Zenki",
+    "DescripciÃ³n": "Enables crypto payments for any ecommerce worldwide.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Zeppex",
+    "DescripciÃ³n": "Building the first crypto acquiring network enabling QR payments like Pix.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Zinobe",
+    "DescripciÃ³n": "Leveraging technology and data analysis to provide fast flexible credit solutions.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Zippi",
+    "DescripciÃ³n": "Hace prosperar a los autÃ³nomos con crÃ©dito para sus vidas y sueÃ±os.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Ziro",
+    "DescripciÃ³n": "Ecosistema financiero revolucionario para la cadena de valor del comercio minorista.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Zolvo",
+    "DescripciÃ³n": "Servicio de IA para prestamistas comerciales en el mercado LATAM.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "Zoop",
+    "DescripciÃ³n": "Embedded financial services for the enterprises of the future.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "Zoop",
+    "DescripciÃ³n": "ServiÃ§os financeiros embarcados para as empresas do futuro en Brasil.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Zro Bank",
+    "DescripciÃ³n": "Plataforma de activos digitales y banca cripto en Brasil.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "Zulu",
+    "DescripciÃ³n": "Securing freedom for millions globally with real financial inclusion.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "Zumma",
+    "DescripciÃ³n": "Plataforma de finanzas personales con IA para mejores decisiones financieras.",
+    "Segmento": "PFM"
+  },
+  {
+    "Nombre": "Zunify",
+    "DescripciÃ³n": "Plataforma de pagos digitales para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "a2censo",
+    "DescripciÃ³n": "Une a empresarios que necesitan financiarse con inversionistas en Colombia.",
+    "Segmento": "Crowdfunding"
+  },
+  {
+    "Nombre": "a55",
+    "DescripciÃ³n": "Lending platform for the digital economy in Latin America para startups.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "airbag",
+    "DescripciÃ³n": "Startup que se preocupa por la seguridad en la carretera con seguros telemÃ¡ticos.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "akaunt",
+    "DescripciÃ³n": "Billetera digital para ahorrar y comprar en dÃ³lares con stablecoins.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "alt.bank",
+    "DescripciÃ³n": "SoluciÃ³n de crÃ©dito llave en mano para el mercado brasileÃ±o.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "c6 Bank",
+    "DescripciÃ³n": "Neobanco digital completo para personas y empresas en Brasil.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "dale!",
+    "DescripciÃ³n": "Pasa paga y recibe plata con la app de pagos de Colombia.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "doHub",
+    "DescripciÃ³n": "Conecta empresas al mundo digital con soluciones de seguros integradas.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "eBill",
+    "DescripciÃ³n": "Plataforma de inversiÃ³n y gestiÃ³n financiera digital.",
+    "Segmento": "WealthTech"
+  },
+  {
+    "Nombre": "ePayCo",
+    "DescripciÃ³n": "Plataforma de pagos digitales para el comercio colombiano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "ePesos",
+    "DescripciÃ³n": "Aliado sin costo para apoyar a colaboradores cuando mÃ¡s lo necesitan.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "ePlata",
+    "DescripciÃ³n": "All-in-one e-wallet para todos con servicios financieros integrados.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "fitinsur",
+    "DescripciÃ³n": "Empodera empresas para generaciÃ³n rÃ¡pida de nuevas ofertas de seguros personalizados.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "graviti",
+    "DescripciÃ³n": "Compra hoy paga a meses sin tarjeta sin enganche para el mercado mexicano.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "iP4y",
+    "DescripciÃ³n": "Emisor de moneda electrÃ³nica para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "inDrive Money",
+    "DescripciÃ³n": "DivisiÃ³n financiera con tarjeta de crÃ©dito y prÃ©stamos personales.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "iti ItaÃº",
+    "DescripciÃ³n": "Banco digital de ItaÃº con cuenta y tarjeta gratuita en app.",
+    "Segmento": "Neobancos"
+  },
+  {
+    "Nombre": "itu",
+    "DescripciÃ³n": "Cuenta corriente 100% digital para jÃ³venes chilenos.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "iugu",
+    "DescripciÃ³n": "Plataforma de gestiÃ³n financiera y pagos para empresas en Brasil.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "maat.ai",
+    "DescripciÃ³n": "Blockchain-based secure controlled and organized data exchange platform.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "minu",
+    "DescripciÃ³n": "Revoluciona la salud financiera de empleados mexicanos con acceso al salario ganado.",
+    "Segmento": "BFM"
+  },
+  {
+    "Nombre": "n1u",
+    "DescripciÃ³n": "Billetera digital a otro level para el mercado latinoamericano.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "nvio",
+    "DescripciÃ³n": "Nueva forma de manejar el dinero con pagos y transferencias digitales.",
+    "Segmento": "Paytech"
+  },
+  {
+    "Nombre": "tuGerente",
+    "DescripciÃ³n": "Herramienta para ordenar y controlar el inventario en tiempo real con Open Finance.",
+    "Segmento": "Open Finance"
+  },
+  {
+    "Nombre": "uFlow",
+    "DescripciÃ³n": "Motor de decisiones 100% web cloud y NoCode para el sector financiero.",
+    "Segmento": "Regtech"
+  },
+  {
+    "Nombre": "vurelo",
+    "DescripciÃ³n": "Rampa de entrada y salida accesible para integraciÃ³n de activos digitales en el dÃ­a a dÃ­a.",
+    "Segmento": "Activos Digitales"
+  },
+  {
+    "Nombre": "yotepresto.com",
+    "DescripciÃ³n": "Tasas mÃ¡s bajas en crÃ©ditos y mejores rendimientos en inversiones P2P.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Â¡Seguros para todos!",
+    "DescripciÃ³n": "Seguros por internet accesibles para todas las personas.",
+    "Segmento": "Insurtech"
+  },
+  {
+    "Nombre": "Ãbaco",
+    "DescripciÃ³n": "LÃ­nea de crÃ©dito para empresas con anticipo de facturas en la misma plataforma.",
+    "Segmento": "CrÃ©dito Digital"
+  },
+  {
+    "Nombre": "Ãlaga",
+    "DescripciÃ³n": "El crÃ©dito digital que impulsa tu MiPyme en LATAM.",
+    "Segmento": "CrÃ©dito Digital"
+  }
+]
