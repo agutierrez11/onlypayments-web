@@ -183,51 +183,35 @@ export default function Diccionario({ isEmbed }: Props) {
         </div>
       ) : (
         <div className="border-b border-border/40 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
-          <div className="container py-3 flex justify-between items-center px-4">
-            <span className="text-xs font-medium text-muted-foreground flex items-center gap-2">
-              Diccionario de Pagos
-              <Badge variant="secondary" className="bg-cyan-950 text-cyan-400 border-cyan-800 text-[10px]">
-                OnlyPayments
+          <div className="container py-2.5 flex justify-between items-center px-4">
+            <span className="text-xs font-semibold text-cyan-400 flex items-center gap-2 font-mono">
+              📖 Diccionario de Medios de Pago v6.0
+              <Badge variant="secondary" className="bg-cyan-950 text-cyan-300 border-cyan-800 text-[10px]">
+                Fernando Estévez
               </Badge>
             </span>
 
-            <a
-              href={`${baseUrl}/diccionario`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-[11px] font-mono text-cyan-400 hover:underline flex items-center gap-1"
-            >
-              Ver Diccionario Completo
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            <span className="text-[11px] font-mono text-muted-foreground">
+              Powered by OnlyPayments
+            </span>
           </div>
         </div>
       )}
 
-      <div className="container max-w-3xl pt-12">
-        <div className="text-center mb-10">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="outline" className="text-xs bg-muted/50">
-              <BookOpen className="w-3 h-3 mr-2" />
-              INTELIGENCIA B2B
+      <div className="container max-w-3xl pt-8">
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <Badge variant="outline" className="text-xs bg-muted/50 border-cyan-500/30 text-cyan-400">
+              <BookOpen className="w-3 h-3 mr-1.5" />
+              EDICIÓN DIGITAL OFICIAL — v6.0
             </Badge>
-
-            {!isEmbed && (
-              <Badge 
-                onClick={() => setShowEmbedModal(true)}
-                className="cursor-pointer bg-cyan-950 text-cyan-400 border-cyan-800/80 hover:bg-cyan-900 text-xs gap-1.5"
-              >
-                <Share2 className="w-3 h-3" />
-                Widget Embebible
-              </Badge>
-            )}
           </div>
 
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+          <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-3">
             Diccionario de Pagos
           </h1>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Toda la terminología del ecosistema Fintech. Verificada y estructurada para profesionales.
+          <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto">
+            Toda la terminología del ecosistema Fintech por Fernando Estévez. Verificada y estructurada para profesionales.
           </p>
         </div>
 
