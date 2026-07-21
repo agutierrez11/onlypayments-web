@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
-  Search, Command, ArrowRight, BookOpen, Scale, Cpu, DollarSign, X, ExternalLink, ArrowLeft
+  Search, Command, ArrowRight, BookOpen, Scale, Cpu, DollarSign, X, ExternalLink, ArrowLeft, Code, Copy, Check, Share2
 } from 'lucide-react';
 import { Link } from 'wouter';
 
@@ -108,6 +108,13 @@ export default function Diccionario({ isEmbed }: Props) {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTerm, setSelectedTerm] = useState<GlossaryTerm | null>(null);
+  
+  // Estado para modal de código embebible
+  const [showEmbedModal, setShowEmbedModal] = useState(false);
+  const [copiedSnippet, setCopiedSnippet] = useState(false);
+  const [partnerUrl, setPartnerUrl] = useState('');
+  const [partnerName, setPartnerName] = useState('');
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -119,6 +126,7 @@ export default function Diccionario({ isEmbed }: Props) {
       if (e.key === 'Escape') {
         setIsOpen(false);
         setSelectedTerm(null);
+        setShowEmbedModal(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -140,37 +148,81 @@ export default function Diccionario({ isEmbed }: Props) {
     return matchesSearch && matchesCategory;
   });
 
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://onlypayments-web.vercel.app';
+  const embedCodeSnippet = `<iframe src="${baseUrl}/embed/diccionario${partnerUrl ? `?partner_url=${encodeURIComponent(partnerUrl)}&partner_name=${encodeURIComponent(partnerName || 'Partner')}` : ''}" width="100%" height="650" frameborder="0" style="border:1px solid rgba(255,255,255,0.1); border-radius:16px; overflow:hidden;" allow="clipboard-write"></iframe>`;
+
+  const copyEmbedCode = () => {
+    navigator.clipboard.writeText(embedCodeSnippet);
+    setCopiedSnippet(true);
+    setTimeout(() => setCopiedSnippet(false), 2000);
+  };
+
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header / Navigation */}
       {!isEmbed ? (
         <div className="border-b border-border/40 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
-          <div className="container py-4">
+          <div className="container py-4 flex items-center justify-between">
             <Link href="/">
               <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
                 <ArrowLeft className="w-4 h-4" />
                 Volver al inicio
               </Button>
             </Link>
+
+            <Button
+              onClick={() => setShowEmbedModal(true)}
+              variant="outline"
+              size="sm"
+              className="gap-2 border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 text-xs font-mono"
+            >
+              <Code className="w-3.5 h-3.5" />
+              Embeber Diccionario
+            </Button>
           </div>
         </div>
       ) : (
         <div className="border-b border-border/40 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
-          <div className="container py-4 flex justify-center items-center">
-            <span className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              Diccionario de
-              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">Latam Digital Bridge</Badge>
+          <div className="container py-3 flex justify-between items-center px-4">
+            <span className="text-xs font-medium text-muted-foreground flex items-center gap-2">
+              Diccionario de Pagos
+              <Badge variant="secondary" className="bg-cyan-950 text-cyan-400 border-cyan-800 text-[10px]">
+                OnlyPayments
+              </Badge>
             </span>
+
+            <a
+              href="https://onlypayments-web.vercel.app/diccionario"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[11px] font-mono text-cyan-400 hover:underline flex items-center gap-1"
+            >
+              Ver Diccionario Completo
+              <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
         </div>
       )}
 
-      <div className="container max-w-3xl pt-16">
+      <div className="container max-w-3xl pt-12">
         <div className="text-center mb-10">
-          <Badge variant="outline" className="mb-4 text-xs bg-muted/50">
-            <BookOpen className="w-3 h-3 mr-2" />
-            INTELIGENCIA B2B
-          </Badge>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Badge variant="outline" className="text-xs bg-muted/50">
+              <BookOpen className="w-3 h-3 mr-2" />
+              INTELIGENCIA B2B
+            </Badge>
+
+            {!isEmbed && (
+              <Badge 
+                onClick={() => setShowEmbedModal(true)}
+                className="cursor-pointer bg-cyan-950 text-cyan-400 border-cyan-800/80 hover:bg-cyan-900 text-xs gap-1.5"
+              >
+                <Share2 className="w-3 h-3" />
+                Widget Embebible
+              </Badge>
+            )}
+          </div>
+
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
             Diccionario de Pagos
           </h1>
@@ -182,7 +234,7 @@ export default function Diccionario({ isEmbed }: Props) {
         {/* Search Trigger */}
         <button
           onClick={() => setIsOpen(true)}
-          className="w-full flex items-center gap-3 px-4 py-4 rounded-xl border border-border/60 bg-muted/30 text-muted-foreground hover:bg-muted/50 transition-colors mb-8 group"
+          className="w-full flex items-center gap-3 px-4 py-4 rounded-xl border border-border/60 bg-muted/30 text-muted-foreground hover:bg-muted/50 transition-colors mb-8 group shadow-sm"
         >
           <Search className="w-5 h-5 group-hover:text-foreground transition-colors" />
           <span className="flex-1 text-left text-sm group-hover:text-foreground transition-colors">Buscar término, sigla o tecnología...</span>
@@ -244,6 +296,105 @@ export default function Diccionario({ isEmbed }: Props) {
             </div>
           )}
         </div>
+
+        {/* Modal de Código Embebible */}
+        <AnimatePresence>
+          {showEmbedModal && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[120] flex items-center justify-center bg-background/80 backdrop-blur-md p-4"
+              onClick={() => setShowEmbedModal(false)}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                onClick={(e) => e.stopPropagation()}
+                className="w-full max-w-xl bg-card border border-border/80 rounded-2xl shadow-2xl p-6 relative overflow-hidden"
+              >
+                <button
+                  onClick={() => setShowEmbedModal(false)}
+                  className="absolute top-4 right-4 text-muted-foreground hover:text-foreground p-1"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="flex items-center gap-2 mb-2">
+                  <Code className="w-5 h-5 text-cyan-400" />
+                  <h3 className="text-xl font-bold text-foreground">Código de Inserción (Embed)</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Copia este fragmento HTML para insertar el **Diccionario de Pagos de OnlyPayments** directamente en tu sitio web, blog o documentación B2B.
+                </p>
+
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <label className="text-xs font-mono text-muted-foreground block mb-1">
+                      Nombre de la Marca / Autor (Opcional):
+                    </label>
+                    <input
+                      type="text"
+                      value={partnerName}
+                      onChange={(e) => setPartnerName(e.target.value)}
+                      placeholder="Ej. MiFintech / Blog de Pagos"
+                      className="w-full bg-muted/40 border border-border/60 text-foreground text-xs px-3 py-2 rounded-lg outline-none focus:border-cyan-500 font-mono"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-mono text-muted-foreground block mb-1">
+                      URL del Autor / Partner (Opcional):
+                    </label>
+                    <input
+                      type="text"
+                      value={partnerUrl}
+                      onChange={(e) => setPartnerUrl(e.target.value)}
+                      placeholder="https://mitarget.com"
+                      className="w-full bg-muted/40 border border-border/60 text-foreground text-xs px-3 py-2 rounded-lg outline-none focus:border-cyan-500 font-mono"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-mono text-cyan-400 block mb-1 flex items-center justify-between">
+                      <span>Código iframe generado:</span>
+                      <span className="text-[10px] text-muted-foreground">HTML Iframe</span>
+                    </label>
+                    <div className="relative">
+                      <pre className="bg-slate-950 text-cyan-300 border border-border p-4 rounded-xl text-[11px] font-mono overflow-x-auto whitespace-pre-wrap leading-relaxed max-h-32">
+                        {embedCodeSnippet}
+                      </pre>
+                      <Button
+                        onClick={copyEmbedCode}
+                        className="absolute top-2 right-2 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-xs py-1.5 px-3 rounded-lg flex items-center gap-1.5 shadow-md"
+                      >
+                        {copiedSnippet ? (
+                          <>
+                            <Check className="w-3.5 h-3.5" />
+                            ¡Copiado!
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3.5 h-3.5" />
+                            Copiar Código
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-muted/20 border border-border/40 p-3 rounded-xl text-[11px] text-muted-foreground flex items-center justify-between">
+                  <span>URL Directa: <code className="text-foreground">{baseUrl}/embed/diccionario</code></span>
+                  <a href={`${baseUrl}/embed/diccionario`} target="_blank" rel="noreferrer" className="text-cyan-400 hover:underline flex items-center gap-1 font-mono">
+                    Probar Vista <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Command Palette Modal */}
         <AnimatePresence>
