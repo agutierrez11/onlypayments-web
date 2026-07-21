@@ -14,12 +14,18 @@ import HowToGuides from "./pages/HowToGuides";
 import Diccionario from "./pages/Diccionario";
 import LatamFintechDashboard from "./pages/LatamFintechDashboard";
 import IntroduccionesB2B from "./pages/IntroduccionesB2B";
+import Matcher from "./pages/Matcher";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/matcher"} component={Matcher} />
+      <Route path={"/ecosistema"} component={LatamFintechDashboard} />
+      <Route path={"/insights"} component={NewsFeed} />
+      <Route path={"/rankings"} component={PaymentStacks} />
+      <Route path={"/consultoria"} component={IntroduccionesB2B} />
       <Route path={"/news"} component={NewsFeed} />
       <Route path={"/news/:id"} component={NewsDetail} />
       <Route path={"/stacks"} component={PaymentStacks} />

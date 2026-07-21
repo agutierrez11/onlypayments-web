@@ -348,7 +348,7 @@ export default function Home() {
 
       <HeroParallax 
         onExplore={() => {
-          document.getElementById('explorador')?.scrollIntoView({ behavior: 'smooth' })
+          document.getElementById('matcher-section')?.scrollIntoView({ behavior: 'smooth' })
         }}
         onRemittances={() => navigate('/remesas')}
         onCommunity={() => {
@@ -1060,6 +1060,28 @@ export default function Home() {
           {newsletterError && (
             <p className="text-xs text-destructive">{newsletterError}</p>
           )}
+      </section>
+
+      {/* SECCIÓN 5: FINTECH MATCHER (NEGOCIO / LEAD GENERATION) */}
+      <section id="matcher-section" className="relative z-10 py-20 border-t border-border bg-[#020408]">
+        <div className="container max-w-5xl mx-auto space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              ¿Listo para encontrar tu stack ideal?
+            </h2>
+            <p className="text-muted-foreground font-light text-base max-w-xl mx-auto">
+              4 preguntas. 1 diagnóstico personalizado en tiempo real. 0 costo.
+            </p>
+          </div>
+          
+          <div className="w-full h-[750px] rounded-2xl overflow-hidden border border-cyan-500/20 shadow-2xl shadow-cyan-500/5">
+            <iframe
+              src="/fintech-matcher.html"
+              title="Fintech Matcher — OnlyPayments"
+              className="w-full h-full border-0 block"
+              allow="clipboard-write"
+            />
+          </div>
         </div>
       </section>
 
