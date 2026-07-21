@@ -158,9 +158,8 @@ export default function Diccionario({ isEmbed }: Props) {
         <div className="border-b border-border/40 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
           <div className="container py-4 flex justify-center items-center">
             <span className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              Diccionario de
               <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">Latam Digital Bridge</Badge>
-              x
-              <span className="font-bold">OnlyPayments</span>
             </span>
           </div>
         </div>
