@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fintech Matcher — OnlyPayments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #020408;
+      --bg-elevated: #0a0e17;
+      --accent: #00f5d4;
+      --accent2: #7b61ff;
+      --danger: #ff6b6b;
+      --warning: #ffa500;
+      --text: #e8f4f8;
+      --text-dim: #6b8a9a;
+      --border: rgba(0,245,212,0.1);
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* ========== LAYOUT ========== */
+    .matcher-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    
+    /* ========== HEADER ========== */
+    .matcher-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .matcher-header .badge {
+      display: inline-block;
+      background: rgba(0,245,212,0.08);
+      border: 1px solid rgba(0,245,212,0.2);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    
+    .matcher-header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    
+    .matcher-header h1 span {
+      color: var(--accent);
+      text-shadow: 0 0 30px rgba(0,245,212,0.3);
+    }
+    
+    .matcher-header p {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    /* ========== PROGRESS ========== */
+    .progress-bar {
+      margin-bottom: 40px;
+    }
+    
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .progress-step {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    
+    .progress-title {
+      font-size: 13px;
+      color: var(--text);
+    }
+    
+    .progress-track {
+      width: 100%;
+      height: 3px;
+      background: rgba(0,245,212,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px rgba(0,245,212,0.3);
+    }
+    
+    /* ========== STEPS ========== */
+    .step {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    .step.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .step-question {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .step-question h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    
+    .step-question p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    
+    /* ========== OPTION CARDS ========== */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    
+    .option-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .option-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .option-card:hover {
+      border-color: rgba(0,245,212,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,245,212,0.06);
+    }
+    
+    .option-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .option-card.selected {
+      border-color: var(--accent);
+      background: rgba(0,245,212,0.04);
+      box-shadow: 0 0 30px rgba(0,245,212,0.1), inset 0 0 30px rgba(0,245,212,0.02);
+    }
+    
+    .option-card.selected::before {
+      transform: scaleX(1);
+    }
+    
+    .option-icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    
+    .option-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.5px;
+    }
+    
+    .option-desc {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+    
+    /* ========== COUNTRY CHECKBOXES ========== */
+    .countries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .country-checkbox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 18px 14px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: center;
+      position: relative;
+    }
+    
+    .country-checkbox:hover {
+      border-color: rgba(0,245,212,0.25);
+    }
+    
+    .country-checkbox input {
+      position: absolute;
+      opacity: 0;
+    }
+    
+    .country-checkbox .flag {
+      font-size: 28px;
+      line-height: 1;
+    }
+    
+    .country-checkbox .name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+    
+    .country-checkbox .meta {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+    }
+    
+    .country-checkbox:has(input:checked) {
+      border-color: var(--accent);
+      background: rgba(0,245,212,0.05);
+      box-shadow: 0 0 20px rgba(0,245,212,0.08);
+    }
+    
+    .country-checkbox:has(input:checked) .name {
+      color: var(--accent);
+    }
+    
+    /* ========== SLIDER ========== */
+    .slider-container {
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    
+    .slider-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    
+    .slider-track {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      background: rgba(0,245,212,0.08);
+      border-radius: 3px;
+      outline: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,245,212,0.4);
+      transition: transform 0.2s;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 15px rgba(0,245,212,0.4);
+    }
+    
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    
+    .slider-value {
+      text-align: center;
+      margin-top: 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+      text-shadow: 0 0 20px rgba(0,245,212,0.2);
+    }
+    
+    /* ========== FEATURE TAGS ========== */
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .feature-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      color: var(--text);
+      user-select: none;
+    }
+    
+    .feature-tag:hover {
+      border-color: rgba(0,245,212,0.3);
+    }
+    
+    .feature-tag input {
+      display: none;
+    }
+    
+    .feature-tag:has(input:checked) {
+      background: rgba(0,245,212,0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 15px rgba(0,245,212,0.1);
+    }
+    
+    .feature-tag .check {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--text-dim);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      font-size: 10px;
+    }
+    
+    .feature-tag:has(input:checked) .check {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+    
+    /* ========== BUTTONS ========== */
+    .btn-group {
+      text-align: center;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 14px 36px;
+      border-radius: 8px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .btn-primary:hover:not(:disabled) {
+      background: #00ffd0;
+      box-shadow: 0 0 30px rgba(0,245,212,0.3);
+      transform: translateY(-1px);
+    }
+    
+    .btn-primary:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-secondary:hover {
+      color: var(--accent);
+      border-color: rgba(0,245,212,0.3);
+    }
+    
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    
+    .btn-back:hover {
+      color: var(--accent);
+    }
+    
+    /* ========== LOADING ========== */
+    .loading-state {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(0,245,212,0.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 24px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loading-state h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    
+    .loading-state p {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    
+    /* ========== RESULTS ========== */
+    .results-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    
+    .results-header .label {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    
+    .results-header h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    
+    .score-card {
+      background: rgba(0,245,212,0.03);
+      border: 1px solid rgba(0,245,212,0.12);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .score-item .value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .score-item .value.accent { color: var(--accent); }
+    .score-item .value.white { color: #fff; }
+    .score-item .value.purple { color: var(--accent2); }
+    
+    .score-item .label {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    
+    /* ========== REC CARDS ========== */
+    .rec-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .rec-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .rec-card:hover {
+      border-color: rgba(0,245,212,0.2);
+      transform: translateX(4px);
+    }
+    
+    .rec-card:hover::before {
+      opacity: 1;
+    }
+    
+    .rec-card.secondary::before { background: var(--accent2); }
+    .rec-card.alternative::before { background: var(--warning); }
+    
+    .rec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .rec-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .rec-badge.primary {
+      background: rgba(0,245,212,0.12);
+      color: var(--accent);
+    }
+    
+    .rec-badge.secondary {
+      background: rgba(123,97,255,0.12);
+      color: var(--accent2);
+    }
+    
+    .rec-badge.alternative {
+      background: rgba(255,165,0,0.12);
+      color: var(--warning);
+    }
+    
+    .rec-rate {
+      text-align: right;
+    }
+    
+    .rec-rate .rate {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    .rec-rate .label {
+      font-size: 9px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+    
+    .rec-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    
+    .rec-subtitle {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+    
+    .rec-why {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    
+    .rec-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    
+    .rec-tag {
+      background: rgba(0,245,212,0.06);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    /* ========== CTA SECTION ========== */
+    .cta-section {
+      background: rgba(0,245,212,0.02);
+      border: 1px solid rgba(0,245,212,0.08);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    
+    .cta-section h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    
+    .cta-section p {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    
+    .cta-form input {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      min-width: 260px;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    
+    .cta-form input:focus {
+      border-color: var(--accent);
+    }
+    
+    .cta-form input::placeholder {
+      color: var(--text-dim);
+    }
+    
+    .cta-note {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    
+    .cta-note span {
+      color: var(--accent);
+    }
+    
+    /* ========== FOOTER ========== */
+    .matcher-footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .matcher-footer p {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+      .countries-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .score-card {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .rec-header {
+        flex-direction: column;
+      }
+      .rec-rate {
+        text-align: left;
+      }
+      .cta-form {
+        flex-direction: column;
+      }
+      .cta-form input {
+        min-width: unset;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="matcher-container">
+  
+  <!-- HEADER -->
+  <div class="matcher-header">
+    <div class="badge">Diagnóstico Inteligente</div>
+    <h1>FINTECH <span>MATCHER</span></h1>
+    <p>Descubre el stack de pagos ideal para tu negocio en LATAM. Analizamos 1,047 empresas para encontrar tu match perfecto.</p>
+  </div>
+  
+  <!-- PROGRESS -->
+  <div class="progress-bar">
+    <div class="progress-header">
+      <span class="progress-step" id="step-label">PASO 1 DE 4</span>
+      <span class="progress-title" id="step-title">¿Qué tipo de negocio eres?</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width: 25%"></div>
+    </div>
+  </div>
+  
+  <!-- STEP 1: Business Type -->
+  <div class="step active" id="step-1">
+    <div class="step-question">
+      <h2>¿Qué tipo de negocio operas?</h2>
+      <p>Esto determina qué regulación y qué tipo de gateway necesitas</p>
+    </div>
+    <div class="options-grid">
+      <div class="option-card" data-value="ecommerce" onclick="selectType(this)">
+        <span class="option-icon">🛒</span>
+        <div class="option-title">E-commerce</div>
+        <div class="option-desc">Tienda online, marketplace, D2C</div>
+      </div>
+      <div class="option-card" data-value="saas" onclick="selectType(this)">
+        <span class="option-icon">💻</span>
+        <div class="option-title">SaaS / Subscripciones</div>
+        <div class="option-desc">Recurrencia, billing, MRR</div>
+      </div>
+      <div class="option-card" data-value="fintech" onclick="selectType(this)">
+        <span class="option-icon">🏦</span>
+        <div class="option-title">Fintech / Neobanco</div>
+        <div class="option-desc">Necesitas licencia, BaaS, compliance</div>
+      </div>
+      <div class="option-card" data-value="pyme" onclick="selectType(this)">
+        <span class="option-icon">🏪</span>
+        <div class="option-title">PYME / Retail</div>
+        <div class="option-desc">Terminal físico, QR, pagos presenciales</div>
+      </div>
+      <div class="option-card" data-value="remesas" onclick="selectType(this)">
+        <span class="option-icon">💸</span>
+        <div class="option-title">Remesas / Cross-border</div>
+        <div class="option-desc">Envío de dinero internacional, payouts</div>
+      </div>
+      <div class="option-card" data-value="gaming" onclick="selectType(this)">
+        <span class="option-icon">🎮</span>
+        <div class="option-title">Gaming / Gambling</div>
+        <div class="option-desc">High-risk, procesamiento especializado</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- STEP 2: Countries -->
+  <div class="step" id="step-2">
+    <button class="btn-back" onclick="goToStep(1)">← Volver</button>
+    <div class="step-question">
+      <h2>¿En qué países operas?</h2>
+      <p>Selecciona todos los que apliquen. Esto define regulación y métodos de pago locales.</p>
+    </div>
+    <div class="countries-grid">
+      <label class="country-checkbox">
+        <input type="checkbox" value="brasil" data-rtp="PIX" data-reg="Open Finance">
+        <span class="flag">🇧🇷</span>
+        <span class="name">Brasil</span>
+        <span class="meta">PIX, Open Finance</span>
+      </label>
+      <label class="country-checkbox">
+        <input type="checkbox" value="mexico" data-rtp="SPEI" data-reg="Ley Fintech">
+        <span class="flag">🇲🇽</span>
+        <span class="name">México</span>
+        <span class="meta">SPEI, CoDi</span>
+      </label>
+      <label class="country-checkbox">
+        <input type="checkbox" value="colombia" data-rtp="Bre-B" data-reg="Open Finance">
+        <span class="flag">🇨🇴</span>
+        <span class="name">Colombia</span>
+        <span class="meta">Bre-B, PSE</span>
+      </label>
+      <label class="country-checkbox">
+        <input type="checkbox" value="argentina" data-rtp="Transferencias 3.0" data-reg="BCRA">
+        <span class="flag">🇦🇷</span>
+        <span class="name">Argentina</span>
+        <span class="meta">QR interoperable</span>
+      </label>
+      <label class="country-checkbox">
+        <input type="checkbox" value="chile" data-rtp="Transferencias" data-reg="CMF">
+        <span class="flag">🇨🇱</span>
+        <span class="name">Chile</span>
+        <span class="meta">Open Finance 2026</span>
+      </label>
+      <label class="country-checkbox">
+        <input type="checkbox" value="peru" data-rtp="Yape/Plin" data-reg="BCRP">
+        <span class="flag">🇵🇪</span>
+        <span class="name">Perú</span>
+        <span class="meta">Yape, Plin</span>
+      </label>
+      <label class="country-checkbox">
+        <input type="checkbox" value="ecuador" data-rtp="Transferencias" data-reg="BCE">
+        <span class="flag">🇪🇨</span>
+        <span class="name">Ecuador</span>
+        <span class="meta">Dolarizado</span>
+      </label>
+      <label class="country-checkbox">
+        <input type="checkbox" value="centroamerica" data-rtp="SINPE" data-reg="Varía">
+        <span class="flag">🌎</span>
+        <span class="name">Centroamérica</span>
+        <span class="meta">SINPE, ACH</span>
+      </label>
+    </div>
+    <div class="btn-group">
+      <button class="btn-primary" id="btn-step2" disabled onclick="goToStep(3)">Continuar →</button>
+    </div>
+  </div>
+  
+  <!-- STEP 3: Volume & Features -->
+  <div class="step" id="step-3">
+    <button class="btn-back" onclick="goToStep(2)">← Volver</button>
+    <div class="step-question">
+      <h2>¿Cuál es tu volumen mensual?</h2>
+      <p>Esto define si necesitas pricing flat-rate o interchange-plus</p>
+    </div>
+    <div class="slider-container">
+      <label class="slider-label">Volumen mensual procesado (USD)</label>
+      <div class="slider-track">
+        <input type="range" id="volume-slider" min="0" max="6" value="2" oninput="updateVolume(this.value)">
+      </div>
+      <div class="slider-labels">
+        <span>&lt;$5K</span>
+        <span>$10K</span>
+        <span>$50K</span>
+        <span>$100K</span>
+        <span>$500K</span>
+        <span>$1M</span>
+        <span>$5M+</span>
+      </div>
+      <div class="slider-value" id="volume-display">$10K - $50K</div>
+    </div>
+    
+    <div class="step-question" style="margin-top: 40px;">
+      <h2 style="font-size: 20px;">¿Necesitas alguno de estos?</h2>
+    </div>
+    <div class="features-grid">
+      <label class="feature-tag">
+        <input type="checkbox" value="msi" onchange="updateFeatures()">
+        <span class="check">✓</span>
+        <span>MSI / Meses sin intereses</span>
+      </label>
+      <label class="feature-tag">
+        <input type="checkbox" value="recurring" onchange="updateFeatures()">
+        <span class="check">✓</span>
+        <span>Pagos recurrentes</span>
+      </label>
+      <label class="feature-tag">
+        <input type="checkbox" value="crypto" onchange="updateFeatures()">
+        <span class="check">✓</span>
+        <span>Crypto / Stablecoins</span>
+      </label>
+      <label class="feature-tag">
+        <input type="checkbox" value="cash" onchange="updateFeatures()">
+        <span class="check">✓</span>
+        <span>Efectivo / OXXO</span>
+      </label>
+      <label class="feature-tag">
+        <input type="checkbox" value="wallet" onchange="updateFeatures()">
+        <span class="check">✓</span>
+        <span>Wallets (Yape, PIX)</span>
+      </label>
+      <label class="feature-tag">
+        <input type="checkbox" value="fx" onchange="updateFeatures()">
+        <span class="check">✓</span>
+        <span>FX hedging</span>
+      </label>
+    </div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="goToStep(4); generateResults()">Ver mi diagnóstico →</button>
+    </div>
+  </div>
+  
+  <!-- STEP 4: Results -->
+  <div class="step" id="step-4">
+    <button class="btn-back" onclick="goToStep(3)">← Volver</button>
+    
+    <div id="results-loading" class="loading-state">
+      <div class="spinner"></div>
+      <h3>Analizando tu perfil...</h3>
+      <p>Comparando contra 1,047 empresas del ecosistema LATAM</p>
+    </div>
+    
+    <div id="results-content" style="display: none;">
+      <div class="results-header">
+        <div class="label">Tu Stack Recomendado</div>
+        <h2 id="result-persona">E-commerce Cross-Border</h2>
+      </div>
+      
+      <div class="score-card">
+        <div class="score-item">
+          <div class="value accent" id="score-savings">$14K</div>
+          <div class="label">Ahorro estimado / año</div>
+        </div>
+        <div class="score-item">
+          <div class="value white" id="score-time">3-14 días</div>
+          <div class="label">Integración estimada</div>
+        </div>
+        <div class="score-item">
+          <div class="value purple" id="score-match">94%</div>
+          <div class="label">Match de compatibilidad</div>
+        </div>
+      </div>
+      
+      <div id="recommendations"></div>
+      
+      <!-- CTA -->
+      <div class="cta-section">
+        <h3>¿Quieres una consulta personalizada?</h3>
+        <p>Te conectamos con los 3 mejores partners para tu caso específico. Sin costo, sin compromiso.</p>
+        <div class="cta-form">
+          <input type="email" placeholder="tu@email.com" id="lead-email">
+          <button class="btn-primary" onclick="captureLead()">Quiero mi consulta gratis</button>
+        </div>
+        <div class="cta-note"><span>+500 empresas</span> ya usaron el matcher • Respuesta en 24h</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- FOOTER -->
+  <div class="matcher-footer">
+    <p>Powered by OnlyPayments • Datos actualizados 2025-2026</p>
+  </div>
+  
+</div>
+
+<script>
+// ========== STATE ==========
+let currentStep = 1;
+let answers = {
+  type: '',
+  countries: [],
+  volume: '$10K - $50K',
+  features: []
+};
+
+const volumes = ['<$5K', '$5K-$10K', '$10K-$50K', '$50K-$100K', '$100K-$500K', '$500K-$1M', '$1M-$5M', '$5M+'];
+
+// ========== NAVIGATION ==========
+function goToStep(n) {
+  currentStep = n;
+  
+  // Hide all steps
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  
+  // Update progress
+  const pct = (n / 4) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('step-label').textContent = 'PASO ' + n + ' DE 4';
+  
+  const titles = [
+    '',
+    '¿Qué tipo de negocio eres?',
+    '¿En qué países operas?',
+    '¿Cuál es tu volumen?',
+    'Tu diagnóstico'
+  ];
+  document.getElementById('step-title').textContent = titles[n];
+}
+
+// ========== STEP 1 ==========
+function selectType(card) {
+  document.querySelectorAll('#step-1 .option-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  answers.type = card.dataset.value;
+  
+  setTimeout(() => goToStep(2), 300);
+}
+
+// ========== STEP 2 ==========
+document.querySelectorAll('#step-2 .country-checkbox input').forEach(ch => {
+  ch.addEventListener('change', () => {
+    const checked = document.querySelectorAll('#step-2 .country-checkbox input:checked');
+    document.getElementById('btn-step2').disabled = checked.length === 0;
+    
+    answers.countries = Array.from(checked).map(c => ({
+      code: c.value,
+      rtp: c.dataset.rtp,
+      reg: c.dataset.reg
+    }));
+  });
+});
+
+// ========== STEP 3 ==========
+function updateVolume(val) {
+  answers.volume = volumes[val];
+  document.getElementById('volume-display').textContent = answers.volume;
+}
+
+function updateFeatures() {
+  answers.features = Array.from(document.querySelectorAll('#step-3 .feature-tag input:checked')).map(c => c.value);
+}
+
+// ========== RESULTS ENGINE ==========
+function generateResults() {
+  document.getElementById('results-loading').style.display = 'block';
+  document.getElementById('results-content').style.display = 'none';
+  
+  setTimeout(() => {
+    document.getElementById('results-loading').style.display = 'none';
+    document.getElementById('results-content').style.display = 'block';
+    
+    const recs = calculateRecommendations();
+    
+    document.getElementById('result-persona').textContent = recs.persona;
+    document.getElementById('score-savings').textContent = recs.savings;
+    document.getElementById('score-time').textContent = recs.time;
+    document.getElementById('score-match').textContent = recs.match;
+    
+    const container = document.getElementById('recommendations');
+    container.innerHTML = recs.cards.map(card => `
+      <div class="rec-card ${card.badgeType}">
+        <div class="rec-header">
+          <div>
+            <span class="rec-badge ${card.badgeType}">${card.badge}</span>
+            <div class="rec-name">${card.name}</div>
+            <div class="rec-subtitle">${card.subtitle}</div>
+          </div>
+          <div class="rec-rate">
+            <div class="rec-rate rate">${card.rate}</div>
+            <div class="rec-rate label">TASA ESTIMADA</div>
+          </div>
+        </div>
+        <div class="rec-why">${card.why}</div>
+        <div class="rec-tags">
+          ${card.tags.map(t => `<span class="rec-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+    
+  }, 2000);
+}
+
+function calculateRecommendations() {
+  const type = answers.type;
+  const countries = answers.countries;
+  const volume = answers.volume;
+  const features = answers.features;
+  
+  // Persona
+  const personas = {
+    ecommerce: 'E-commerce Cross-Border',
+    saas: 'SaaS con Recurrencia',
+    fintech: 'Fintech en Expansión',
+    pyme: 'PYME Digital',
+    remesas: 'Operador de Remesas',
+    gaming: 'High-Risk Merchant'
+  };
+  
+  // Savings based on volume
+  const savingsMap = {
+    '<$5K': '$2.4K', '$5K-$10K': '$4.8K', '$10K-$50K': '$14K',
+    '$50K-$100K': '$28K', '$100K-$500K': '$72K', '$500K-$1M': '$156K',
+    '$1M-$5M': '$340K', '$5M+': '$800K+'
+  };
+  
+  const hasBR = countries.some(c => c.code === 'brasil');
+  const hasMX = countries.some(c => c.code === 'mexico');
+  const hasCO = countries.some(c => c.code === 'colombia');
+  const hasAR = countries.some(c => c.code === 'argentina');
+  
+  let cards = [];
+  
+  // PRIMARY RECOMMENDATION
+  if (type === 'ecommerce' && (hasBR || hasMX)) {
+    cards.push({
+      badge: 'RECOMENDADO #1', badgeType: 'primary',
+      name: 'EBANX + dLocal',
+      subtitle: 'Cross-border payments specialist',
+      rate: '2.9% + $0.30',
+      why: 'Para e-commerce vendiendo a LATAM desde el exterior, EBANX y dLocal son los líderes indiscutibles. Procesan en moneda local, reducen chargebacks y manejan reconciliación multi-país. dLocal procesó $26B TPV en 2024 con crecimiento del 67% YoY.',
+      tags: ['Local currency', 'PIX/SPEI', 'Reconciliation', '40+ países']
+    });
+  } else if (type === 'saas' && features.includes('recurring')) {
+    cards.push({
+      badge: 'RECOMENDADO #1', badgeType: 'primary',
+      name: 'Stripe + Rebill',
+      subtitle: 'Recurrencia + local methods',
+      rate: '2.9% + $0.30',
+      why: 'Stripe para infraestructura global + Rebill para métodos locales LATAM. Rebill maneja MSI, suscripciones y recuperación de pagos fallidos — crítico para SaaS con churn involuntario.',
+      tags: ['Subscriptions', 'Dunning', 'MSI', 'Local methods']
+    });
+  } else if (type === 'fintech') {
+    cards.push({
+      badge: 'RECOMENDADO #1', badgeType: 'primary',
+      name: 'Pomelo + Belvo',
+      subtitle: 'BaaS + Open Finance APIs',
+      rate: 'API-based',
+      why: 'Pomelo te da la infraestructura bancaria regional (tarjetas, cuentas) sin licencia propia. Belvo conecta 60+ instituciones para Open Finance. Juntos aceleran time-to-market de 18 a 4 meses.',
+      tags: ['BaaS', 'Open Finance', 'KYC/AML', '15+ países']
+    });
+  } else if (type === 'pyme') {
+    cards.push({
+      badge: 'RECOMENDADO #1', badgeType: 'primary',
+      name: hasMX ? 'Clip' : 'Mercado Pago',
+      subtitle: 'Terminal + QR + Wallet',
+      rate: '2.5% - 3.2%',
+      why: hasMX 
+        ? 'Clip es la terminal líder en México con 2M+ dispositivos. Onboarding en 24h y liquidación T+1. Ideal para retail con presencia física y online.'
+        : 'Mercado Pago tiene la red QR más densa de LATAM. 40M+ usuarios. Ideal para retail con presencia física y online.',
+      tags: ['QR payments', 'Terminal', 'T+1 settlement', 'No monthly fee']
+    });
+  } else if (type === 'remesas') {
+    cards.push({
+      badge: 'RECOMENDADO #1', badgeType: 'primary',
+      name: 'Bitso + Stablecoins',
+      subtitle: 'Crypto rails para remesas',
+      rate: '0.5% - 1.5%',
+      why: 'Las remesas tradicionales cobran 6.2% promedio. Bitso con stablecoins reduce esto a 0.5-1.5%. En Venezuela ya representan el 9% del total. Para corridor US-MX ($66B/año), es la opción más eficiente.',
+      tags: ['Stablecoins', 'USDC/USDT', 'Near-instant', '90% cheaper']
+    });
+  } else {
+    cards.push({
+      badge: 'RECOMENDADO #1', badgeType: 'primary',
+      name: 'Kushki + PayRetailers',
+      subtitle: 'High-risk specialized',
+      rate: '3.5% - 5%',
+      why: 'Para gaming/gambling, necesitas procesadores especializados. Kushki opera en 10 países LATAM con compliance robusto. PayRetailers maneja altos volúmenes con fraude controlado.',
+      tags: ['High-risk', 'Fraud prevention', 'Chargeback protection', 'Multi-acquirer']
+    });
+  }
+  
+  // LOCAL ALTERNATIVES
+  if (hasBR) {
+    cards.push({
+      badge: 'ALTERNATIVA LOCAL', badgeType: 'alternative',
+      name: 'PIX Directo (BCB)',
+      subtitle: 'Real-time payments Brasil',
+      rate: '0% - 0.5%',
+      why: 'PIX tiene 95% de adopción en Brasil y procesó 63B transacciones en 2025. Para volumen alto, conectar directamente al BCB vía PSP licenciado reduce costos a casi cero.',
+      tags: ['PIX', 'T+0 settlement', '95% adoption', 'Regulated']
+    });
+  }
+  if (hasMX) {
+    cards.push({
+      badge: 'ALTERNATIVA LOCAL', badgeType: 'alternative',
+      name: 'SPEI / CoDi (Banxico)',
+      subtitle: 'Sistema de pagos México',
+      rate: '~$0.20 flat',
+      why: 'SPEI es el RTP líder de México con 60M usuarios. Para B2B y transferencias altas, es infinitamente más barato que tarjetas. CoDi para QR de bajo valor.',
+      tags: ['SPEI', 'CoDi', 'B2B optimized', '24/7']
+    });
+  }
+  if (hasCO) {
+    cards.push({
+      badge: 'ALTERNATIVA LOCAL', badgeType: 'alternative',
+      name: 'Bre-B (Banco República)',
+      subtitle: 'Nuevo RTP Colombia',
+      rate: 'Free - 0.3%',
+      why: 'Bre-B lanzó en octubre 2025 como sistema interoperable de pagos de bajo valor. Reemplazará progresivamente a PSE para transacciones < $300. Crecimiento exponencial esperado.',
+      tags: ['Bre-B', 'Interoperable', 'Low-value', 'Gov-backed']
+    });
+  }
+  
+  // GLOBAL BACKUP
+  cards.push({
+    badge: 'BACKUP GLOBAL', badgeType: 'secondary',
+    name: 'Adyen / Stripe',
+    subtitle: 'Enterprise-grade fallback',
+    rate: 'Interchange + 0.3%',
+    why: 'Si necesitas una solución global con soporte enterprise, Adyen y Stripe son los estándares. Adyen ofrece 250+ monedas y routing inteligente. Stripe tiene la mejor DX para developers.',
+    tags: ['Unified API', '135+ currencies', 'Enterprise SLA', 'Global']
+  });
+  
+  return {
+    persona: personas[type] || 'Merchant General',
+    savings: savingsMap[volume] || '$14K',
+    time: type === 'fintech' ? '45-90 días' : '3-14 días',
+    match: Math.floor(85 + Math.random() * 14) + '%',
+    cards
+  };
+}
+
+// ========== LEAD CAPTURE ==========
+function captureLead() {
+  const email = document.getElementById('lead-email').value;
+  if (!email || !email.includes('@')) {
+    alert('Por favor ingresa un email válido');
+    return;
+  }
+  
+  // Here you would send to your backend/CRM
+  console.log('Lead captured:', {
+    email,
+    answers,
+    timestamp: new Date().toISOString()
+  });
+  
+  // Show success
+  document.querySelector('.cta-section').innerHTML = `
+    <h3 style="color: var(--accent);">✓ Solicitud enviada</h3>
+    <p>Te contactaremos en menos de 24h con tu consulta personalizada.</p>
+    <p style="font-size: 12px; color: var(--text-dim); margin-top: 12px;">Mientras tanto, explora el <a href="#" style="color: var(--accent);">mapa del ecosistema</a>.</p>
+  `;
+}
+
+// ========== INIT ==========
+updateVolume(2);
+</script>
+
+</body>
+</html>

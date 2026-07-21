@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LATAM Fintech — Obsidian Graph</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #020408;
+      color: #e8f4f8;
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+    #graph-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    canvas { display: block; cursor: grab; }
+    canvas:active { cursor: grabbing; }
+    
+    /* ========== OBSIDIAN HUD OVERLAY ========== */
+    .hud {
+      position: absolute;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .hud-top-left {
+      top: 20px;
+      left: 24px;
+    }
+    .hud-top-right {
+      top: 20px;
+      right: 24px;
+      display: flex;
+      gap: 10px;
+      pointer-events: auto;
+    }
+    .hud-bottom-left {
+      bottom: 20px;
+      left: 24px;
+    }
+    .hud-bottom-right {
+      bottom: 20px;
+      right: 24px;
+    }
+    
+    .hud-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      color: #00f5d4;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(0,245,212,0.3);
+    }
+    .hud-subtitle {
+      font-size: 11px;
+      color: #6b8a9a;
+      letter-spacing: 1.5px;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 4px;
+    }
+    
+    .search-box {
+      background: rgba(10,14,23,0.9);
+      border: 1px solid rgba(0,245,212,0.2);
+      border-radius: 8px;
+      padding: 8px 14px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      font-family: 'Rajdhani', sans-serif;
+      width: 200px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-box:focus {
+      border-color: #00f5d4;
+      box-shadow: 0 0 15px rgba(0,245,212,0.2);
+    }
+    
+    .filter-btn {
+      background: rgba(10,14,23,0.9);
+      border: 1px solid rgba(0,245,212,0.2);
+      color: #6b8a9a;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      color: #00f5d4;
+      border-color: #00f5d4;
+      background: rgba(0,245,212,0.08);
+    }
+    
+    /* ========== OBSIDIAN TOOLTIP ========== */
+    #node-tooltip {
+      position: absolute;
+      background: rgba(10,14,23,0.95);
+      border: 1px solid rgba(0,245,212,0.3);
+      border-radius: 12px;
+      padding: 16px;
+      color: #fff;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 100;
+      min-width: 240px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(0,245,212,0.1);
+    }
+    #node-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #node-tooltip .node-type {
+      font-size: 10px;
+      color: #00f5d4;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    #node-tooltip .node-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    #node-tooltip .node-detail {
+      font-size: 12px;
+      color: #6b8a9a;
+      line-height: 1.5;
+    }
+    #node-tooltip .node-stat {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(0,245,212,0.1);
+      font-size: 12px;
+    }
+    #node-tooltip .node-stat-val {
+      color: #00f5d4;
+      font-weight: 700;
+    }
+
+    /* ========== LEGEND ========== */
+    .legend {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background: rgba(10,14,23,0.8);
+      border: 1px solid rgba(0,245,212,0.15);
+      padding: 8px 14px;
+      border-radius: 8px;
+      backdrop-filter: blur(8px);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #6b8a9a;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-hub { background: #00f5d4; box-shadow: 0 0 10px #00f5d4; }
+    .dot-country { background: #7b61ff; box-shadow: 0 0 8px #7b61ff; }
+    .dot-rail { background: #ff9f1c; box-shadow: 0 0 8px #ff9f1c; }
+    .dot-reg { background: #ff3864; box-shadow: 0 0 8px #ff3864; }
+  </style>
+</head>
+<body>
+
+<div id="graph-container">
+  <!-- HUD Top Left -->
+  <div class="hud hud-top-left">
+    <div class="hud-title">ONLYPAYMENTS ECOSYSTEM GRAPH</div>
+    <div class="hud-subtitle">1,047 NODOS CONECTADOS ● OBSIDIAN NETWORK GRAPH</div>
+  </div>
+  
+  <!-- HUD Top Right: Controls & Filters -->
+  <div class="hud hud-top-right">
+    <input type="text" id="search-input" class="search-box" placeholder="Buscar país, riel o entidad..." oninput="onSearch(this.value)">
+    <button class="filter-btn active" onclick="filterCategory('all', this)">Todos</button>
+    <button class="filter-btn" onclick="filterCategory('country', this)">Países</button>
+    <button class="filter-btn" onclick="filterCategory('rail', this)">Rieles A2A</button>
+    <button class="filter-btn" onclick="filterCategory('reg', this)">Reguladores</button>
+  </div>
+  
+  <!-- HUD Bottom Left: Legend -->
+  <div class="hud hud-bottom-left">
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot dot-hub"></div><span>Core Hub</span></div>
+      <div class="legend-item"><div class="legend-dot dot-country"></div><span>Países (20)</span></div>
+      <div class="legend-item"><div class="legend-dot dot-rail"></div><span>Rieles A2A Core</span></div>
+      <div class="legend-item"><div class="legend-dot dot-reg"></div><span>Entidades / Regulación</span></div>
+    </div>
+  </div>
+  
+  <!-- HUD Bottom Right -->
+  <div class="hud hud-bottom-right">
+    <div class="hud-subtitle">ARRASTRA NODOS ● SCROLL ZOOM ● CLIC PARA DETALLES</div>
+  </div>
+  
+  <!-- Canvas -->
+  <canvas id="graph-canvas"></canvas>
+  
+  <!-- Tooltip -->
+  <div id="node-tooltip">
+    <div class="node-type" id="tt-type">PAÍS</div>
+    <div class="node-name" id="tt-name">México</div>
+    <div class="node-detail" id="tt-detail">Detalles del nodo</div>
+    <div class="node-stat" id="tt-stat-container">
+      <span>Volumen / Métricas:</span>
+      <span class="node-stat-val" id="tt-stat-val">-</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================
+// OBSIDIAN FORCE-DIRECTED ECOSYSTEM GRAPH ENGINE
+// ============================================
+
+(function() {
+  const canvas = document.getElementById('graph-canvas');
+  const ctx = canvas.getContext('2d');
+  const tooltip = document.getElementById('node-tooltip');
+  
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+  
+  // Node Categories Colors & Config
+  const CATEGORY_COLORS = {
+    hub: '#00f5d4',
+    country: '#7b61ff',
+    rail: '#ff9f1c',
+    reg: '#ff3864',
+    provider: '#00b4d8'
+  };
+
+  // Node Dataset: 20 LATAM Countries + Core Rails + Regulators + Providers
+  const nodes = [
+    { id: 'core', label: 'OnlyPayments Hub', cat: 'hub', radius: 24, detail: 'Central Intelligence & B2B Matchmaking Engine', stat: '1,047 Entidades' },
+    
+    // Core LATAM Countries
+    { id: 'mx', label: '🇲🇽 México', cat: 'country', radius: 16, detail: '650+ Fintechs · $62.5B Remesas · Ley Fintech', stat: '$62.5B Remesas' },
+    { id: 'br', label: '🇧🇷 Brasil', cat: 'country', radius: 20, detail: '1,200+ Fintechs · $2.03B VC · PIX 95% Adopción', stat: '$2.03B VC Funding' },
+    { id: 'co', label: '🇨🇴 Colombia', cat: 'country', radius: 14, detail: '410+ Fintechs · Bre-B / PSE · Crecimiento 22%', stat: '$2.1B Remesas' },
+    { id: 'cl', label: '🇨🇱 Chile', cat: 'country', radius: 13, detail: '280+ Fintechs · Ley Fintech N° 21.521 · TEF', stat: '$110M VC H1' },
+    { id: 'ar', label: '🇦🇷 Argentina', cat: 'country', radius: 14, detail: '320+ Fintechs · Transferencias 3.0 · Ualá / QR', stat: 'High Talent' },
+    { id: 'pe', label: '🇵🇪 Perú', cat: 'country', radius: 12, detail: '180+ Fintechs · Yape & Plin Interoperable BCRP', stat: '$4.5B Remesas' },
+    { id: 'ec', label: '🇪🇨 Ecuador', cat: 'country', radius: 11, detail: '90+ Fintechs · BCE Pago Inmediato · Dolarizado', stat: '$5.2B Remesas' },
+    { id: 'gt', label: '🇬🇹 Guatemala', cat: 'country', radius: 11, detail: '60+ Fintechs · ACH Pronto · Remesas Dominantes', stat: '$19.8B Remesas' },
+    { id: 'sv', label: '🇸🇻 El Salvador', cat: 'country', radius: 10, detail: '45+ Fintechs · Bitcoin Legal Tender · Chivo', stat: '$8.3B Remesas' },
+    { id: 'cr', label: '🇨🇷 Costa Rica', cat: 'country', radius: 10, detail: '70+ Fintechs · SINPE Móvil (88% adopción)', stat: 'SINPE 88%' },
+    { id: 'pa', label: '🇵🇦 Panamá', cat: 'country', radius: 11, detail: '85+ Fintechs · Hub Financiero · Yappy / ACH', stat: 'Banking Hub' },
+    { id: 'do', label: '🇩🇴 Rep. Dominicana', cat: 'country', radius: 11, detail: '110+ Fintechs · LBTR Inmediato · Caribe', stat: '$11.9B Remesas' },
+    { id: 'uy', label: '🇺🇾 Uruguay', cat: 'country', radius: 9, detail: '55+ Fintechs · SPI / BCU Direct · Marco 2024', stat: 'BCU Reg' },
+    { id: 'py', label: '🇵🇾 Paraguay', cat: 'country', radius: 9, detail: '40+ Fintechs · SIPAP 24/7 BCP · Minería', stat: 'SIPAP BCP' },
+    { id: 'bo', label: '🇧🇴 Bolivia', cat: 'country', radius: 8, detail: '30+ Fintechs · QR Simple ASFI', stat: 'ASFI Norms' },
+    { id: 'hn', label: '🇭🇳 Honduras', cat: 'country', radius: 8, detail: '35+ Fintechs · ACH Banhprovi · Próspera ZEDE', stat: '$9.1B Remesas' },
+    { id: 'ni', label: '🇳🇮 Nicaragua', cat: 'country', radius: 8, detail: '25+ Fintechs · ACH UniRed', stat: '$4.2B Remesas' },
+    { id: 've', label: '🇻🇪 Venezuela', cat: 'country', radius: 9, detail: '50+ Fintechs · Pago Móvil Interbancario / USDT', stat: 'Crypto P2P' },
+    { id: 'jm', label: '🇯🇲 Jamaica', cat: 'country', radius: 8, detail: '35+ Fintechs · JAM-DEX CBDC Bank of Jamaica', stat: 'CBDC Pioneer' },
+    { id: 'pr', label: '🇵🇷 Puerto Rico', cat: 'country', radius: 10, detail: '120+ Fintechs · ATH Móvil · US Fedwire', stat: 'US Fedwire' },
+
+    // Core Payment Rails
+    { id: 'pix', label: 'PIX (Brasil)', cat: 'rail', radius: 16, detail: '63B Transacciones · 95% Adopción Adultos', stat: 'T+0 Instant' },
+    { id: 'spei', label: 'SPEI / DiMo (México)', cat: 'rail', radius: 15, detail: 'Sistema Banxico 24/7 B2B & P2P', stat: '60M Usuarios' },
+    { id: 'breb', label: 'Bre-B (Colombia)', cat: 'rail', radius: 14, detail: 'Nuevo Riel Interoperable Banco República', stat: 'Interoperable' },
+    { id: 'yape', label: 'Yape / Plin (Perú)', cat: 'rail', radius: 13, detail: 'Interoperabilidad BCRP Total', stat: '15M Usuarios' },
+    { id: 'sinpe', label: 'SINPE Móvil (Costa Rica)', cat: 'rail', radius: 12, detail: 'Riel Inmediato BCCR', stat: '88% Penetración' },
+    { id: 't3', label: 'Transferencias 3.0 (Argentina)', cat: 'rail', radius: 12, detail: 'QR Interoperable BCRA', stat: 'Multi-Wallet' },
+
+    // Regulators & Entities
+    { id: 'banxico', label: 'Banxico / CNBV', cat: 'reg', radius: 11, detail: 'Regulador Financiero México', stat: 'Ley Fintech' },
+    { id: 'bcb', label: 'Banco Central do Brasil', cat: 'reg', radius: 12, detail: 'Creador de PIX & Open Finance', stat: 'Open Fin F4' },
+    { id: 'sfc', label: 'Superfinanciera Colombia', cat: 'reg', radius: 10, detail: 'Regulación Sistema de Pagos Bajo Valor', stat: 'SFC Colombia' },
+    { id: 'cmf', label: 'CMF Chile', cat: 'reg', radius: 10, detail: 'Comisión para el Mercado Financiero', stat: 'Ley 21.521' }
+  ];
+
+  // Links connecting nodes
+  const links = [
+    // Core connections to key hubs
+    { source: 'core', target: 'mx' }, { source: 'core', target: 'br' }, { source: 'core', target: 'co' },
+    { source: 'core', target: 'cl' }, { source: 'core', target: 'ar' }, { source: 'core', target: 'pe' },
+    { source: 'core', target: 'ec' }, { source: 'core', target: 'gt' }, { source: 'core', target: 'sv' },
+    { source: 'core', target: 'cr' }, { source: 'core', target: 'pa' }, { source: 'core', target: 'do' },
+    { source: 'core', target: 'uy' }, { source: 'core', target: 'py' }, { source: 'core', target: 'bo' },
+    { source: 'core', target: 'hn' }, { source: 'core', target: 'ni' }, { source: 'core', target: 've' },
+    { source: 'core', target: 'jm' }, { source: 'core', target: 'pr' },
+
+    // Rail connections
+    { source: 'br', target: 'pix' }, { source: 'bcb', target: 'pix' },
+    { source: 'mx', target: 'spei' }, { source: 'banxico', target: 'spei' },
+    { source: 'co', target: 'breb' }, { source: 'sfc', target: 'breb' },
+    { source: 'pe', target: 'yape' },
+    { source: 'cr', target: 'sinpe' },
+    { source: 'ar', target: 't3' },
+    { source: 'cl', target: 'cmf' }
+  ];
+
+  // Node Map by ID
+  const nodeMap = {};
+  nodes.forEach((n, idx) => {
+    // Initial layout in concentric circles
+    const angle = (idx / nodes.length) * Math.PI * 2;
+    const dist = n.cat === 'hub' ? 0 : (n.cat === 'country' ? 180 + Math.random()*60 : 300 + Math.random()*40);
+    n.x = width / 2 + Math.cos(angle) * dist;
+    n.y = height / 2 + Math.sin(angle) * dist;
+    n.vx = 0;
+    n.vy = 0;
+    n.visible = true;
+    nodeMap[n.id] = n;
+  });
+
+  // Resolve links references
+  const resolvedLinks = links.map(l => ({
+    source: nodeMap[l.source],
+    target: nodeMap[l.target],
+    particles: [Math.random(), Math.random()]
+  })).filter(l => l.source && l.target);
+
+  // PAN & ZOOM CAMERA STATE
+  let transform = { x: 0, y: 0, k: 1 };
+  let isDragging = false;
+  let dragNode = null;
+  let mousePos = { x: 0, y: 0 };
+  let startMouse = { x: 0, y: 0 };
+
+  // ============================================
+  // PHYSICS SIMULATION (Force Directed Layout)
+  // ============================================
+  function updatePhysics() {
+    const kRepel = 1200;
+    const linkDist = 160;
+    const kLink = 0.04;
+    const centerForce = 0.015;
+
+    // Center attraction
+    nodes.forEach(n => {
+      if (!n.visible) return;
+      const dx = (width / 2) - n.x;
+      const dy = (height / 2) - n.y;
+      n.vx += dx * centerForce;
+      n.vy += dy * centerForce;
+    });
+
+    // Node Repulsion
+    for (let i = 0; i < nodes.length; i++) {
+      const n1 = nodes[i];
+      if (!n1.visible) continue;
+      for (let j = i + 1; j < nodes.length; j++) {
+        const n2 = nodes[j];
+        if (!n2.visible) continue;
+        const dx = n2.x - n1.x;
+        const dy = n2.y - n1.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        if (dist < 320) {
+          const force = (kRepel / (dist * dist));
+          const fx = (dx / dist) * force;
+          const fy = (dy / dist) * force;
+          n1.vx -= fx;
+          n1.vy -= fy;
+          n2.vx += fx;
+          n2.vy += fy;
+        }
+      }
+    }
+
+    // Link Spring Force
+    resolvedLinks.forEach(l => {
+      if (!l.source.visible || !l.target.visible) return;
+      const dx = l.target.x - l.source.x;
+      const dy = l.target.y - l.source.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const force = (dist - linkDist) * kLink;
+      const fx = (dx / dist) * force;
+      const fy = (dy / dist) * force;
+      l.source.vx += fx;
+      l.source.vy += fy;
+      l.target.vx -= fx;
+      l.target.vy -= fy;
+    });
+
+    // Apply velocity with damping
+    nodes.forEach(n => {
+      if (n === dragNode) return;
+      n.vx *= 0.85;
+      n.vy *= 0.85;
+      n.x += n.vx;
+      n.y += n.vy;
+    });
+  }
+
+  // ============================================
+  // RENDER LOOP
+  // ============================================
+  let hoveredNode = null;
+  let activeFilter = 'all';
+  let searchQuery = '';
+
+  function render() {
+    ctx.save();
+    ctx.clearRect(0, 0, width, height);
+
+    // Apply Camera Pan/Zoom
+    ctx.translate(transform.x, transform.y);
+    ctx.scale(transform.k, transform.k);
+
+    // Draw Links
+    resolvedLinks.forEach(l => {
+      if (!l.source.visible || !l.target.visible) return;
+
+      const isHighlighted = hoveredNode && (hoveredNode === l.source || hoveredNode === l.target);
+
+      ctx.beginPath();
+      ctx.moveTo(l.source.x, l.source.y);
+      ctx.lineTo(l.target.x, l.target.y);
+      ctx.strokeStyle = isHighlighted ? 'rgba(0,245,212,0.6)' : 'rgba(0,245,212,0.12)';
+      ctx.lineWidth = isHighlighted ? 2 : 1;
+      ctx.stroke();
+
+      // Particle Animation along Link
+      l.particles.forEach((p, idx) => {
+        l.particles[idx] = (p + 0.005) % 1;
+        const px = l.source.x + (l.target.x - l.source.x) * l.particles[idx];
+        const py = l.source.y + (l.target.y - l.source.y) * l.particles[idx];
+
+        ctx.beginPath();
+        ctx.arc(px, py, isHighlighted ? 2.5 : 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = CATEGORY_COLORS[l.source.cat] || '#00f5d4';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#00f5d4';
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+    });
+
+    // Draw Nodes
+    nodes.forEach(n => {
+      if (!n.visible) return;
+
+      const isHovered = hoveredNode === n;
+      const color = CATEGORY_COLORS[n.cat] || '#00f5d4';
+
+      // Outer Glow Sombra (Obsidian Glow)
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius + (isHovered ? 6 : 2), 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.globalOpacity = isHovered ? 0.4 : 0.15;
+      ctx.shadowBlur = isHovered ? 25 : 12;
+      ctx.shadowColor = color;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Inner Node Circle
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+      ctx.fillStyle = isHovered ? '#ffffff' : color;
+      ctx.fill();
+
+      // Border Ring
+      ctx.lineWidth = isHovered ? 3 : 1.5;
+      ctx.strokeStyle = '#020408';
+      ctx.stroke();
+
+      // Node Label
+      ctx.font = `${isHovered ? 'bold 13px' : '11px'} 'Rajdhani', sans-serif`;
+      ctx.fillStyle = isHovered ? '#00f5d4' : '#e8f4f8';
+      ctx.textAlign = 'center';
+      ctx.fillText(n.label, n.x, n.y + n.radius + 16);
+    });
+
+    ctx.restore();
+  }
+
+  function loop() {
+    updatePhysics();
+    render();
+    requestAnimationFrame(loop);
+  }
+
+  // ============================================
+  // INTERACTION HANDLERS (Drag, Zoom, Tooltip)
+  // ============================================
+  function screenToWorld(sx, sy) {
+    return {
+      x: (sx - transform.x) / transform.k,
+      y: (sy - transform.y) / transform.k
+    };
+  }
+
+  function getNodeAt(worldX, worldY) {
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      const n = nodes[i];
+      if (!n.visible) continue;
+      const dx = worldX - n.x;
+      const dy = worldY - n.y;
+      if (Math.sqrt(dx * dx + dy * dy) <= n.radius + 6) {
+        return n;
+      }
+    }
+    return null;
+  }
+
+  canvas.addEventListener('mousedown', (e) => {
+    startMouse = { x: e.clientX, y: e.clientY };
+    const w = screenToWorld(e.clientX, e.clientY);
+    dragNode = getNodeAt(w.x, w.y);
+    if (!dragNode) {
+      isDragging = true;
+    }
+  });
+
+  canvas.addEventListener('mousemove', (e) => {
+    mousePos = { x: e.clientX, y: e.clientY };
+    const w = screenToWorld(e.clientX, e.clientY);
+
+    if (dragNode) {
+      dragNode.x = w.x;
+      dragNode.y = w.y;
+      dragNode.vx = 0;
+      dragNode.vy = 0;
+    } else if (isDragging) {
+      transform.x += e.clientX - startMouse.x;
+      transform.y += e.clientY - startMouse.y;
+      startMouse = { x: e.clientX, y: e.clientY };
+    }
+
+    // Hover Tooltip Check
+    const found = getNodeAt(w.x, w.y);
+    if (found !== hoveredNode) {
+      hoveredNode = found;
+      if (hoveredNode) {
+        showTooltip(hoveredNode, e.clientX, e.clientY);
+      } else {
+        tooltip.classList.remove('visible');
+      }
+    } else if (hoveredNode) {
+      updateTooltipPos(e.clientX, e.clientY);
+    }
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    dragNode = null;
+  });
+
+  canvas.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+    const newK = Math.max(0.4, Math.min(3, transform.k * zoomFactor));
+
+    // Zoom towards cursor
+    transform.x = e.clientX - (e.clientX - transform.x) * (newK / transform.k);
+    transform.y = e.clientY - (e.clientY - transform.y) * (newK / transform.k);
+    transform.k = newK;
+  });
+
+  // TOOLTIP FUNCTIONS
+  function showTooltip(n, sx, sy) {
+    document.getElementById('tt-type').textContent = n.cat.toUpperCase();
+    document.getElementById('tt-name').textContent = n.label;
+    document.getElementById('tt-detail').textContent = n.detail;
+    document.getElementById('tt-stat-val').textContent = n.stat;
+    updateTooltipPos(sx, sy);
+    tooltip.classList.add('visible');
+  }
+
+  function updateTooltipPos(sx, sy) {
+    let px = sx + 18;
+    let py = sy - 18;
+    if (px + 240 > width) px = sx - 260;
+    if (py + 120 > height) py = sy - 120;
+    tooltip.style.left = px + 'px';
+    tooltip.style.top = py + 'px';
+  }
+
+  // SEARCH & FILTER FUNCTIONS
+  window.onSearch = function(query) {
+    searchQuery = query.toLowerCase().trim();
+    applyFilters();
+  };
+
+  window.filterCategory = function(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = cat;
+    applyFilters();
+  };
+
+  function applyFilters() {
+    nodes.forEach(n => {
+      const matchCat = activeFilter === 'all' || n.cat === activeFilter;
+      const matchQuery = !searchQuery || n.label.toLowerCase().includes(searchQuery) || n.detail.toLowerCase().includes(searchQuery);
+      n.visible = matchCat && matchQuery;
+    });
+  }
+
+  // RESIZE HANDLER
+  window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  });
+
+  loop();
+})();
+</script>
+
+</body>
+</html>

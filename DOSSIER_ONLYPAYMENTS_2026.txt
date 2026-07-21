@@ -1,0 +1,37 @@
+====================================================================
+ONLYPAYMENTS — DOSSIER EJECUTIVO 2026
+Arquitectura Técnica, Modelo de Monetización B2B y Dataset de LATAM
+====================================================================
+
+1. VISIÓN EJECUTIVA Y PROPUESTA DE VALOR
+--------------------------------------------------------------------
+OnlyPayments es la Plataforma de Inteligencia Operativa y Marketplace B2B
+de Introducciones Calificadas para el ecosistema Fintech y Medios de Pago en LATAM.
+
+Propuesta de Valor: "Zero cost · Sin mensualidades · Sin contratos obligatorios.
+El comprador navega gratis; los proveedores pagan únicamente por introducciones B2B
+calificadas ($150 USD) o comisiones por éxito al cerrar deals de procesamiento."
+
+2. ESTRATEGIA DE NAVEGACIÓN Y CONVERSIÓN (REVOPS 70/30)
+--------------------------------------------------------------------
+- Zona Informativa (70% del scroll): Paleta obsidiana (#020408). Tono: "Te enseñamos el mapa".
+  Objetivo: Educar, autoridad técnica y SEO orgánico.
+- Zona de Negocio (30% del scroll): Acento neón cyan (#00f5d4). Tono: "Te ayudamos a negociar".
+  Objetivo: Captura de Leads (Fintech Matcher) y agendamiento B2B.
+
+3. MOTOR DE MONETIZACIÓN (5 FLUJOS DE INGRESO)
+--------------------------------------------------------------------
+1. Consultoría Gratuita -> Comisión (Success Fee): Brokerage de procesamiento B2B.
+2. Sponsored Listings (Listados Destacados): Suscripciones de $500 - $2,500 USD/mes.
+3. Informes Premium (Market Intelligence): Reportes de regulaciones y remesas.
+4. API de Datos B2B: Acceso a la base de 1,047+ fintechs y stacks.
+5. Matchmaking Pay-per-Intro ($150 USD): Split 70% Conector / 15% Comunidad / 15% Plataforma.
+
+4. MAPA OFICIAL DE RUTAS DE LA APLICACIÓN WEB
+--------------------------------------------------------------------
+- onlypayments.com/            <- Landing Informativa principal (Hero 3D -> Matcher)
+- onlypayments.com/matcher     <- Fintech Matcher en 4 pasos (Diagnóstico & Captura Lead)
+- onlypayments.com/ecosistema  <- Grafo satelital 3D de 20 países en LATAM
+- onlypayments.com/insights    <- Blog de datos del ecosistema (PIX, Bre-B, Remesas)
+- onlypayments.com/rankings    <- Tablas sorteables de las 50+ fintechs más grandes
+- onlypayments.com/consultoria <- Servicios premium e introducciones B2B ($150 USD)
