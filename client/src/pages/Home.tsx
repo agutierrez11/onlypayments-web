@@ -66,6 +66,29 @@ export default function Home() {
   // Biblioteca de Expertos Tabs
   const [activeLibraryTab, setActiveLibraryTab] = useState<'ecosistema' | 'diccionario' | 'expertos'>('ecosistema');
   
+  // URL Hash Sync for deep linking on Cloudflare Pages (#diccionario, #matcher, #ecosistema)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase().replace('#', '');
+      if (hash === 'diccionario') {
+        setActiveLibraryTab('diccionario');
+        setTimeout(() => scrollToSection('biblioteca-section'), 100);
+      } else if (hash === 'ecosistema') {
+        setActiveLibraryTab('ecosistema');
+        setTimeout(() => scrollToSection('biblioteca-section'), 100);
+      } else if (hash === 'expertos') {
+        setActiveLibraryTab('expertos');
+        setTimeout(() => scrollToSection('biblioteca-section'), 100);
+      } else if (hash === 'matcher') {
+        setTimeout(() => scrollToSection('matcher-section'), 100);
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+  
   // Diccionario
   const [searchGlossaryTerm, setSearchGlossaryTerm] = useState<string>("");
   const [glossaryExpandedTerm, setGlossaryExpandedTerm] = useState<string | null>(null);
