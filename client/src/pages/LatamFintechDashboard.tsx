@@ -27,14 +27,14 @@ export default function LatamFintechDashboard() {
   const [, navigate] = useLocation();
 
   return (
-    <div className="flex h-screen bg-slate-50 text-slate-900 overflow-hidden relative font-sans">
+    <div className="flex flex-col md:flex-row min-h-screen md:h-screen bg-slate-50 text-slate-900 overflow-x-hidden relative font-sans">
       <SEO 
         title="Radar LATAM 2026 — OnlyPayments Hub" 
         description="Radar en tiempo real de regulación, Open Finance, iGaming y adquirencia regional en América Latina." 
       />
       
       {/* Sidebar Navigation */}
-      <nav className="w-20 md:w-64 h-full bg-white border-r border-slate-200 flex flex-col justify-between p-4 z-20 relative shadow-sm">
+      <nav className="w-full md:w-64 flex-shrink-0 md:h-full bg-white border-b md:border-r border-slate-200 flex flex-col justify-between p-4 z-20 relative shadow-sm">
         <div>
           {/* Botón Volver al Inicio */}
           <button 
@@ -42,20 +42,20 @@ export default function LatamFintechDashboard() {
             className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 border border-slate-300 hover:bg-slate-200 hover:text-slate-900 transition-all shadow-xs mb-4 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-cyan-600" />
-            <span className="hidden md:inline">Volver al Inicio</span>
+            <span className="inline">Volver al Inicio</span>
           </button>
 
           <div className="flex items-center gap-3 mb-6 px-2 cursor-pointer" onClick={() => navigate('/')}>
             <div className="w-10 h-10 bg-cyan-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">
               <Zap className="w-5 h-5 text-white font-extrabold" />
             </div>
-            <div className="hidden md:block">
+            <div>
               <h1 className="font-extrabold text-lg leading-tight tracking-tight text-slate-900">LATAM Hub</h1>
               <p className="text-[10px] text-cyan-700 uppercase tracking-widest font-mono font-bold">Radar 2026</p>
             </div>
           </div>
 
-          <div className="space-y-1.5">
+          <div className="grid grid-cols-2 md:grid-cols-1 gap-1.5">
             <NavItem 
               icon={Radio} 
               label="Radar Satelital 3D" 
@@ -101,8 +101,8 @@ export default function LatamFintechDashboard() {
         </div>
       </nav>
 
-      {/* Main Content Area */}
-      <main className="flex-1 h-full overflow-y-auto overflow-x-hidden relative z-10 scroll-smooth bg-slate-50">
+      {/* Main Content Area con Scroll Habilitado */}
+      <main className="flex-1 w-full min-h-screen md:h-full overflow-y-auto overflow-x-hidden relative z-10 scroll-smooth bg-slate-50">
         <AnimatePresence mode="wait">
           {activeTab === "satellite" && (
             <motion.div key="satellite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="w-full h-full relative">
