@@ -490,7 +490,7 @@ export default function Home() {
             {/* Pestañas de Alternancia */}
             <div className="inline-flex p-1 rounded-xl bg-secondary/30 border border-border mt-4">
               <button
-                onClick={() => setActiveLibraryTab('ecosistema')}
+                onClick={() => { setActiveLibraryTab('ecosistema'); window.location.hash = 'ecosistema'; }}
                 className={`px-5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all ${
                   activeLibraryTab === 'ecosistema'
                     ? 'bg-background text-foreground shadow-sm border border-border'
@@ -500,7 +500,7 @@ export default function Home() {
                 Quién es Quién (Flujos)
               </button>
               <button
-                onClick={() => setActiveLibraryTab('expertos')}
+                onClick={() => { setActiveLibraryTab('expertos'); window.location.hash = 'expertos'; }}
                 className={`px-5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all ${
                   activeLibraryTab === 'expertos'
                     ? 'bg-background text-foreground shadow-sm border border-border'
@@ -510,7 +510,7 @@ export default function Home() {
                 Expertos
               </button>
               <button
-                onClick={() => setActiveLibraryTab('diccionario')}
+                onClick={() => { setActiveLibraryTab('diccionario'); window.location.hash = 'diccionario'; }}
                 className={`px-5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all ${
                   activeLibraryTab === 'diccionario'
                     ? 'bg-background text-foreground shadow-sm border border-border'
