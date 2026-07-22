@@ -32,25 +32,25 @@ export default function NewsFeed() {
   }) || [];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       {/* Top Navigation Bar */}
-      <div className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+      <div className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-xs">
         <div className="container py-3 flex items-center justify-between">
           <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-slate-900 border border-cyan-500/30">
-              <ArrowLeft className="w-4 h-4" />
+            <Button variant="ghost" size="sm" className="gap-2 text-slate-700 hover:text-slate-900 font-bold border border-slate-300 cursor-pointer">
+              <ArrowLeft className="w-4 h-4 text-cyan-600" />
               Volver al inicio
             </Button>
           </Link>
-          <span className="font-extrabold text-white text-lg tracking-tight">OnlyPayments Insights</span>
+          <span className="font-extrabold text-slate-900 text-lg tracking-tight">OnlyPayments Insights</span>
         </div>
       </div>
 
       {/* Header */}
-      <div className="border-b border-border py-8">
-        <div className="container">
-          <h1 className="text-4xl font-bold mb-2 text-white">Noticias Globales de Pagos</h1>
-          <p className="text-lg text-slate-300">
+      <div className="border-b border-slate-200 py-8 bg-white">
+        <div className="container max-w-4xl">
+          <h1 className="text-4xl font-black mb-2 text-slate-900">Noticias Globales de Pagos</h1>
+          <p className="text-lg text-slate-600 font-medium">
             Noticias curadas por IA, actualizadas diariamente
           </p>
         </div>
@@ -141,21 +141,21 @@ export default function NewsFeed() {
               {filteredNews.map((item) => (
                 <Card
                   key={item.id}
-                  className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                  className="p-6 bg-white border-slate-200 hover:border-cyan-500 hover:shadow-md transition-all cursor-pointer rounded-2xl"
                   onClick={() => navigate(`/news/${item.id}`)}
                 >
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="secondary">{item.category}</Badge>
-                        <Badge variant="outline">{item.country}</Badge>
+                        <Badge className="bg-cyan-100 text-cyan-800 border-cyan-300 font-bold">{item.category}</Badge>
+                        <Badge className="bg-slate-100 text-slate-800 border-slate-300 font-bold">{item.country}</Badge>
                       </div>
-                      <h3 className="text-xl font-bold mb-2 hover:text-primary transition-colors">
+                      <h3 className="text-xl font-black text-slate-900 mb-2 hover:text-cyan-700 transition-colors">
                         {item.title}
                       </h3>
                     </div>
                     {item.imageUrl && (
-                      <div className="w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                      <div className="w-32 h-32 rounded-lg overflow-hidden flex-shrink-0 border border-slate-200">
                         <img
                           src={item.imageUrl}
                           alt={item.title}
@@ -165,31 +165,31 @@ export default function NewsFeed() {
                     )}
                   </div>
 
-                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                  <p className="text-slate-600 font-medium mb-4 line-clamp-3 leading-relaxed text-sm">
                     {item.summary}
                   </p>
 
                   {item.impactAndTools && (
-                    <div className="bg-accent/5 rounded-lg p-4 mb-4 border border-accent/20">
-                      <h4 className="font-semibold text-sm mb-2 text-accent">
+                    <div className="bg-cyan-50/60 rounded-xl p-4 mb-4 border border-cyan-200">
+                      <h4 className="font-extrabold text-xs uppercase tracking-wider mb-1 text-cyan-800">
                         Impacto y Herramientas
                       </h4>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
+                      <p className="text-xs text-slate-700 font-medium line-clamp-2">
                         {item.impactAndTools}
                       </p>
                     </div>
                   )}
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="w-4 h-4" />
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                    <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
+                      <Calendar className="w-3.5 h-3.5 text-slate-400" />
                       {new Date(item.publishedAt).toLocaleDateString("es-ES", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
                       })}
                     </div>
-                    <Button variant="ghost" size="sm">
+                    <Button variant="ghost" size="sm" className="text-cyan-700 font-bold hover:text-cyan-900">
                       Leer más →
                     </Button>
                   </div>

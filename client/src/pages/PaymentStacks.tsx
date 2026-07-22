@@ -24,25 +24,25 @@ export default function PaymentStacks() {
   }) || [];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       {/* Top Navigation Bar */}
-      <div className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+      <div className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-xs">
         <div className="container py-3 flex items-center justify-between">
           <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-slate-900 border border-cyan-500/30">
-              <ArrowLeft className="w-4 h-4" />
+            <Button variant="ghost" size="sm" className="gap-2 text-slate-700 hover:text-slate-900 font-bold border border-slate-300 cursor-pointer">
+              <ArrowLeft className="w-4 h-4 text-cyan-600" />
               Volver al inicio
             </Button>
           </Link>
-          <span className="font-extrabold text-white text-lg tracking-tight">OnlyPayments Stacks</span>
+          <span className="font-extrabold text-slate-900 text-lg tracking-tight">OnlyPayments Stacks</span>
         </div>
       </div>
 
       {/* Header */}
-      <div className="border-b border-border py-8">
-        <div className="container">
-          <h1 className="text-4xl font-bold mb-2 text-white">Stacks de Pago</h1>
-          <p className="text-lg text-slate-300">
+      <div className="border-b border-slate-200 py-8 bg-white">
+        <div className="container max-w-6xl">
+          <h1 className="text-4xl font-black mb-2 text-slate-900">Stacks de Pago</h1>
+          <p className="text-lg text-slate-600 font-medium">
             Recetas de pago organizadas por país y modelo de negocio
           </p>
         </div>
@@ -111,62 +111,59 @@ export default function PaymentStacks() {
 
       {/* Stacks Grid */}
       <div className="py-12">
-        <div className="container">
+        <div className="container max-w-6xl">
           {isLoading ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">Cargando stacks...</p>
+              <p className="text-slate-500 font-medium">Cargando stacks...</p>
             </div>
           ) : filteredStacks.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">No se encontraron stacks con los filtros seleccionados.</p>
+            <div className="text-center py-12 bg-white rounded-2xl border border-slate-200 p-8 shadow-xs">
+              <p className="text-slate-600 font-medium">No se encontraron stacks con los filtros seleccionados.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredStacks.map((stack) => (
                 <Card
                   key={stack.id}
-                  className="p-6 hover:shadow-lg transition-shadow hover:border-primary/50 cursor-pointer"
+                  className="p-6 bg-white border-slate-200 hover:border-cyan-500 hover:shadow-md transition-all cursor-pointer rounded-2xl flex flex-col justify-between"
                 >
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">{stack.name}</h3>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary">{stack.country}</Badge>
-                        <Badge variant="outline">
-                          {stack.businessModel === "e-commerce" && "E-commerce"}
-                          {stack.businessModel === "SaaS" && "SaaS"}
-                          {stack.businessModel === "remesas" && "Remesas"}
-                          {stack.businessModel === "iGaming" && "iGaming"}
-                        </Badge>
+                  <div>
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div>
+                        <h3 className="text-xl font-black text-slate-900 mb-2">{stack.name}</h3>
+                        <div className="flex items-center gap-2">
+                          <Badge className="bg-slate-100 text-slate-800 border-slate-300 font-bold">{stack.country}</Badge>
+                          <Badge className="bg-cyan-100 text-cyan-800 border-cyan-300 font-bold">
+                            {stack.businessModel === "e-commerce" && "E-commerce"}
+                            {stack.businessModel === "SaaS" && "SaaS"}
+                            {stack.businessModel === "remesas" && "Remesas"}
+                            {stack.businessModel === "iGaming" && "iGaming"}
+                          </Badge>
+                        </div>
                       </div>
                     </div>
+
+                    {stack.description && (
+                      <p className="text-slate-600 text-sm font-medium mb-4 line-clamp-3 leading-relaxed">
+                        {stack.description}
+                      </p>
+                    )}
+
+                    {stack.components && (
+                      <div className="mb-4">
+                        <h4 className="font-bold text-xs uppercase tracking-wider text-slate-400 mb-2">Componentes</h4>
+                        <div className="space-y-1 text-xs">
+                          {stack.components.split("\n").slice(0, 3).map((comp: string, idx: number) => (
+                            <p key={idx} className="text-slate-700 font-semibold">
+                              • {comp.trim()}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  {stack.description && (
-                    <p className="text-muted-foreground mb-4 line-clamp-3">
-                      {stack.description}
-                    </p>
-                  )}
-
-                  {stack.components && (
-                    <div className="mb-4">
-                      <h4 className="font-semibold text-sm mb-2">Componentes</h4>
-                      <div className="space-y-1 text-sm">
-                        {stack.components.split("\n").slice(0, 3).map((comp: string, idx: number) => (
-                          <p key={idx} className="text-muted-foreground">
-                            • {comp.trim()}
-                          </p>
-                        ))}
-                        {stack.components.split("\n").length > 3 && (
-                          <p className="text-muted-foreground text-xs">
-                            + {stack.components.split("\n").length - 3} más
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  <Button variant="outline" className="w-full" size="sm">
+                  <Button variant="outline" className="w-full mt-2 font-bold border-slate-300 hover:border-cyan-600 hover:text-cyan-700" size="sm">
                     Ver detalles
                   </Button>
                 </Card>
@@ -177,15 +174,15 @@ export default function PaymentStacks() {
       </div>
 
       {/* CTA Section */}
-      <section className="py-12 bg-gradient-to-r from-primary/10 to-accent/10 border-t border-border">
+      <section className="py-12 bg-cyan-50 border-t border-slate-200">
         <div className="container max-w-2xl text-center">
-          <h2 className="text-2xl font-bold mb-4">
+          <h2 className="text-2xl font-black text-slate-900 mb-3">
             ¿No encuentras el stack que necesitas?
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-slate-600 font-medium mb-6">
             Contáctanos para que creemos un stack personalizado para tu caso de uso específico.
           </p>
-          <Button size="lg">Solicitar Stack Personalizado</Button>
+          <Button size="lg" className="bg-cyan-600 hover:bg-cyan-700 text-white font-extrabold cursor-pointer">Solicitar Stack Personalizado</Button>
         </div>
       </section>
     </div>

@@ -5,15 +5,15 @@ import { Link } from "wouter";
 
 export default function Matcher() {
   return (
-    <div className="w-full min-h-screen bg-[#020408] text-white flex flex-col">
-      <div className="border-b border-slate-800 bg-slate-950/90 backdrop-blur-md px-6 py-3 flex items-center justify-between z-50">
+    <div className="w-full min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+      <div className="border-b border-slate-200 bg-white/95 backdrop-blur-md px-6 py-3 flex items-center justify-between z-50 shadow-xs">
         <Link href="/">
-          <Button variant="ghost" size="sm" className="gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-slate-900 border border-cyan-500/30">
-            <ArrowLeft className="w-4 h-4" />
+          <Button variant="ghost" size="sm" className="gap-2 text-slate-700 hover:text-slate-900 font-bold border border-slate-300 cursor-pointer">
+            <ArrowLeft className="w-4 h-4 text-cyan-600" />
             Volver al inicio
           </Button>
         </Link>
-        <span className="font-extrabold text-white text-lg tracking-tight">Fintech Matcher AI</span>
+        <span className="font-extrabold text-slate-900 text-lg tracking-tight">Fintech Matcher AI</span>
       </div>
       <iframe
         src="/fintech-matcher.html"

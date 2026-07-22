@@ -26,25 +26,25 @@ export default function HowToGuides() {
   }) || [];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       {/* Top Navigation Bar */}
-      <div className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+      <div className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-xs">
         <div className="container py-3 flex items-center justify-between">
           <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-slate-900 border border-cyan-500/30">
-              <ArrowLeft className="w-4 h-4" />
+            <Button variant="ghost" size="sm" className="gap-2 text-slate-700 hover:text-slate-900 font-bold border border-slate-300 cursor-pointer">
+              <ArrowLeft className="w-4 h-4 text-cyan-600" />
               Volver al inicio
             </Button>
           </Link>
-          <span className="font-extrabold text-white text-lg tracking-tight">OnlyPayments Guías</span>
+          <span className="font-extrabold text-slate-900 text-lg tracking-tight">OnlyPayments Guías</span>
         </div>
       </div>
 
       {/* Header */}
-      <div className="border-b border-border py-8">
-        <div className="container">
-          <h1 className="text-4xl font-bold mb-2 text-white">Guías Prácticas</h1>
-          <p className="text-lg text-slate-300">
+      <div className="border-b border-slate-200 py-8 bg-white">
+        <div className="container max-w-4xl">
+          <h1 className="text-4xl font-black mb-2 text-slate-900">Guías Prácticas</h1>
+          <p className="text-lg text-slate-600 font-medium">
             Todo lo que necesitas saber para implementar pagos en tu negocio
           </p>
         </div>
