@@ -264,17 +264,44 @@ export function EcosystemFlows() {
 
             {activeCountry === 'mexico' && mexicoAgregadores.length > 0 && (
               <div className="pt-4">
-                <h4 className="text-xs font-bold text-muted-foreground mb-5 uppercase tracking-widest flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                  Mapa de Agregadores Locales
-                </h4>
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="text-xs font-black text-slate-700 uppercase tracking-widest flex items-center gap-2 font-mono">
+                    <div className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse" />
+                    Mapa Completo de Agregadores en México (Registro Banxico)
+                  </h4>
+                  <span className="text-[11px] font-bold text-slate-500 font-mono">
+                    {mexicoAgregadores.length} Agregadores Registrados
+                  </span>
+                </div>
+                
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {mexicoAgregadores.slice(0, 9).map((agr: any) => (
-                    <div key={agr.name} className="flex flex-col p-4 rounded-2xl bg-card/50 border border-border/50 hover:bg-accent/10 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
-                      <span className="font-extrabold text-sm text-foreground mb-1 group-hover:text-accent transition-colors">{agr.name}</span>
-                      <span className="font-mono text-muted-foreground text-xs font-bold group-hover:text-accent/80 transition-colors">{agr.rate}</span>
-                    </div>
-                  ))}
+                  {mexicoAgregadores.map((agr: any) => {
+                    const isPopular = ["Clip", "Stripe", "Mercado Pago", "Conekta", "Netpay", "Kushki", "Sr Pago", "Paypal", "Dlocal"].includes(agr.name);
+                    return (
+                      <div 
+                        key={agr.name} 
+                        className={`flex flex-col justify-between p-3.5 rounded-2xl border transition-all duration-300 ${
+                          isPopular 
+                            ? 'bg-white border-cyan-300 shadow-xs hover:border-cyan-500 hover:shadow-md' 
+                            : 'bg-slate-50 border-slate-200 hover:bg-white hover:border-slate-300'
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="font-black text-sm text-slate-900">{agr.name}</span>
+                            {isPopular && (
+                              <span className="text-[9px] font-black uppercase font-mono px-1.5 py-0.5 rounded bg-cyan-100 text-cyan-800 border border-cyan-300">
+                                Destacado
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <span className="font-mono text-cyan-700 text-xs font-black mt-2">
+                          MDR: {agr.rate}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
