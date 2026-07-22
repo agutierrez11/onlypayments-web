@@ -97,35 +97,35 @@ export function EcosystemDirectory() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <section className="py-20 scroll-mt-24 bg-background relative overflow-hidden z-10" id="explorador">
+    <section className="py-20 scroll-mt-24 bg-slate-50 border-y border-slate-200 text-slate-900 relative overflow-hidden z-10" id="explorador">
       
-      {/* Luces de fondo estilo Flow Shader */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* Luces de fondo sutiles */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container max-w-6xl relative z-10">
         
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-2xl">
-            <Badge variant="outline" className="mb-4 text-xs font-mono">
+            <Badge variant="outline" className="mb-4 text-xs font-mono border-slate-300 bg-white text-cyan-700 font-bold">
               <Server className="w-3 h-3 mr-2" />
               SaaS MARKETPLACE
             </Badge>
-            <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+            <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 text-slate-900">
               El Stack de Pagos Perfecto
             </h2>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-slate-600 text-lg font-medium">
               Compara la infraestructura de pagos B2B. Encuentra tu Gateway, Adquirente o Motor Antifraude ideal.
             </p>
           </div>
 
           {/* Search Input */}
           <div className="w-full md:w-72 relative">
-            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input 
               type="text" 
               placeholder="Filtrar proveedor o feature..." 
-              className="w-full bg-card/50 border border-border rounded-lg pl-10 pr-4 py-2 text-sm outline-none focus:border-primary/50 transition-colors"
+              className="w-full bg-white border border-slate-300 rounded-lg pl-10 pr-4 py-2 text-sm text-slate-900 placeholder:text-slate-400 outline-none focus:border-cyan-600 shadow-sm transition-colors"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -136,10 +136,10 @@ export function EcosystemDirectory() {
         <div className="flex flex-wrap gap-2.5 mb-8">
           <button
             onClick={() => setActiveCategory(null)}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${
+            className={`px-4 py-2 rounded-full text-xs font-black transition-all border ${
               activeCategory === null 
-                ? 'bg-cyan-500 text-black border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]' 
-                : 'bg-slate-900 border-slate-700/80 text-slate-200 hover:bg-slate-800 hover:text-white'
+                ? 'bg-cyan-600 text-white border-cyan-700 shadow-md scale-105' 
+                : 'bg-white border-slate-300 text-slate-800 font-bold hover:bg-slate-100 hover:text-cyan-700 shadow-sm'
             }`}
           >
             Todos
@@ -150,10 +150,10 @@ export function EcosystemDirectory() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all border capitalize ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black transition-all border capitalize ${
                   activeCategory === cat 
-                    ? categoryColors[cat] + " border-opacity-70 shadow-md font-extrabold" 
-                    : 'bg-slate-900 border-slate-700/80 text-slate-200 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-cyan-600 text-white border-cyan-700 shadow-md scale-105' 
+                    : 'bg-white border-slate-300 text-slate-800 font-bold hover:bg-slate-100 hover:text-cyan-700 shadow-sm'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -175,26 +175,26 @@ export function EcosystemDirectory() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="bg-[#0b1329] hover:bg-[#111c3a] border border-slate-800 hover:border-cyan-400/80 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden shadow-lg transition-all"
+                  className="bg-white hover:bg-slate-50/80 border border-slate-200 hover:border-cyan-500 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden shadow-sm hover:shadow-md transition-all"
                 >
                   <div className="flex items-center gap-4 min-w-[210px]">
                     <span className={`flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center border ${categoryColors[provider.category]}`}>
                       <CatIcon className="w-5 h-5" />
                     </span>
                     <div>
-                      <div className="font-extrabold text-xl text-white flex items-center gap-2 tracking-tight">
+                      <div className="font-black text-xl text-slate-900 flex items-center gap-2 tracking-tight">
                         {provider.name}
-                        <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors opacity-0 group-hover:opacity-100 hidden md:flex items-center gap-1">
+                        <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-cyan-600 hover:text-cyan-700 transition-colors opacity-0 group-hover:opacity-100 hidden md:flex items-center gap-1">
                           <ChevronRight className="w-4 h-4" />
                         </a>
                       </div>
-                      <span className="text-xs text-cyan-300 font-mono font-bold uppercase tracking-wider">{provider.category}</span>
+                      <span className="text-xs text-cyan-700 font-mono font-extrabold uppercase tracking-wider">{provider.category}</span>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-2 flex-1 items-center">
                     {provider.features.map((f, i) => (
-                      <span key={i} className="text-xs px-3 py-1 rounded-md bg-[#030712] border border-slate-700 text-slate-100 font-semibold shadow-inner">
+                      <span key={i} className="text-xs px-3 py-1 rounded-md bg-slate-100 border border-slate-300 text-slate-800 font-bold shadow-xs">
                         {f}
                       </span>
                     ))}
@@ -202,16 +202,16 @@ export function EcosystemDirectory() {
 
                   <div className="flex items-center gap-2 md:min-w-[180px] justify-end">
                     {provider.coverage.slice(0,2).map(c => (
-                      <span key={c} className="text-xs uppercase font-extrabold text-cyan-200 bg-slate-800/90 px-2.5 py-0.5 rounded border border-cyan-600/50 font-mono">{c}</span>
+                      <span key={c} className="text-xs uppercase font-black text-slate-900 bg-slate-200 px-2.5 py-0.5 rounded border border-slate-300 font-mono">{c}</span>
                     ))}
-                    {provider.coverage.length > 2 && <span className="text-xs font-bold text-slate-300 font-mono">+{provider.coverage.length - 2}</span>}
+                    {provider.coverage.length > 2 && <span className="text-xs font-bold text-slate-600 font-mono">+{provider.coverage.length - 2}</span>}
                     <Badge 
                       className={`text-[10px] uppercase font-black tracking-wider px-2.5 py-1 rounded-md border ml-2 ${
                         provider.tier === 'enterprise'
-                          ? 'bg-amber-400/25 text-amber-200 border-amber-400/60 shadow-[0_0_10px_rgba(251,191,36,0.2)]'
+                          ? 'bg-amber-100 text-amber-900 border-amber-300'
                           : provider.tier === 'growth'
-                          ? 'bg-emerald-400/25 text-emerald-200 border-emerald-400/60 shadow-[0_0_10px_rgba(52,211,153,0.2)]'
-                          : 'bg-sky-400/25 text-sky-200 border-sky-400/60 shadow-[0_0_10px_rgba(56,189,248,0.2)]'
+                          ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                          : 'bg-sky-100 text-sky-900 border-sky-300'
                       }`}
                     >
                       {provider.tier}

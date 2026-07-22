@@ -318,35 +318,35 @@ export default function Home() {
       </div>
       
       {/* HEADER / NAVIGATION */}
-      <nav className="sticky top-0 z-[100] bg-slate-950/98 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
+      <nav className="sticky top-0 z-[100] bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm">
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-              <span className="text-black font-extrabold text-sm font-mono">OP</span>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center shadow-md">
+              <span className="text-white font-extrabold text-sm font-mono">OP</span>
             </div>
-            <span className="font-bold text-lg tracking-tight text-white">OnlyPayments</span>
-            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 font-semibold font-mono border border-cyan-500/30">GLOBAL</span>
+            <span className="font-extrabold text-lg tracking-tight text-slate-900">OnlyPayments</span>
+            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold font-mono border border-cyan-300">GLOBAL</span>
           </div>
 
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-5">
-              <button onClick={() => scrollToSection('explorador')} className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer">
+              <button onClick={() => scrollToSection('explorador')} className="text-sm font-bold text-slate-700 hover:text-cyan-600 transition-colors cursor-pointer">
                 Explorador
               </button>
-              <button onClick={() => scrollToSection('biblioteca')} className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer">
+              <button onClick={() => scrollToSection('biblioteca')} className="text-sm font-bold text-slate-700 hover:text-cyan-600 transition-colors cursor-pointer">
                 Biblioteca de Expertos
               </button>
-              <button onClick={() => scrollToSection('comunidad')} className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer">
+              <button onClick={() => scrollToSection('comunidad')} className="text-sm font-bold text-slate-700 hover:text-cyan-600 transition-colors cursor-pointer">
                 Comunidad
               </button>
-              <button onClick={() => navigate('/remesas')} className="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer">
+              <button onClick={() => navigate('/remesas')} className="text-sm font-extrabold text-cyan-700 hover:text-cyan-900 transition-colors cursor-pointer">
                 Remesas
               </button>
-              <button onClick={() => navigate('/latam-dashboard')} className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer">
+              <button onClick={() => navigate('/latam-dashboard')} className="text-sm font-extrabold text-indigo-700 hover:text-indigo-900 transition-colors cursor-pointer">
                 Radar Latam
               </button>
-              <button onClick={() => navigate('/b2b-intros')} className="text-sm font-bold text-cyan-300 hover:text-white transition-colors bg-cyan-950/80 px-3 py-1 rounded-lg border border-cyan-500/40 shadow-sm flex items-center gap-1.5 cursor-pointer">
-                <Zap className="w-3.5 h-3.5 text-cyan-400 fill-cyan-400" />
+              <button onClick={() => navigate('/b2b-intros')} className="text-sm font-extrabold text-cyan-800 hover:text-cyan-950 transition-colors bg-cyan-50 px-3 py-1 rounded-lg border border-cyan-300 shadow-xs flex items-center gap-1.5 cursor-pointer">
+                <Zap className="w-3.5 h-3.5 text-cyan-600 fill-cyan-600" />
                 Intros B2B
               </button>
             </div>
