@@ -250,13 +250,13 @@ function NavItem({ icon: Icon, label, active, onClick }: { icon: any, label: str
   return (
     <button
       onClick={onClick}
-      className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all ${
+      className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all cursor-pointer ${
         active 
-          ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold shadow-[0_0_15px_rgba(6,182,212,0.2)]' 
-          : 'text-slate-200 hover:bg-slate-800/80 hover:text-white font-medium'
+          ? 'bg-cyan-100 text-cyan-900 border border-cyan-300 font-extrabold shadow-xs' 
+          : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 font-bold'
       }`}
     >
-      <Icon className={`w-5 h-5 flex-shrink-0 ${active ? 'text-cyan-400' : 'text-slate-400'}`} />
+      <Icon className={`w-5 h-5 flex-shrink-0 ${active ? 'text-cyan-700' : 'text-slate-500'}`} />
       <span className="hidden md:block text-sm text-left">{label}</span>
     </button>
   );

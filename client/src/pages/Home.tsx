@@ -812,127 +812,90 @@ export default function Home() {
               </div>
 
               {/* Lista de Publicaciones */}
-              {(() => {
-                const displayPosts = filteredPosts.length > 0 ? filteredPosts : [
-                  {
-                    id: "post_1",
-                    title: "¿Alguien tiene experiencia integrando PIX Automático en Brasil?",
-                    body: "Estamos evaluando la adopción de cobros recurrentes vía PIX Automático en Brasil para nuestra plataforma SaaS. ¿Qué PSPs recomiendan para gestionar la autorización de débitos?",
-                    author: "Carlos Mendoza",
-                    authorTitle: "Head of Payments",
-                    tag: "Pregunta",
-                    country: "Brasil",
-                    upvotes: 24,
-                    createdAt: new Date().toISOString()
-                  },
-                  {
-                    id: "post_2",
-                    title: "Comparativa de comisiones FX en remesas USA -> México 2026",
-                    body: "Analizamos las tarifas efectivas de MTOs tradicionales vs. liquidez en stablecoins para el corredor México. El spread cambiario promedio sigue estando cerca del 3.2%.",
-                    author: "Mariana Rivas",
-                    authorTitle: "Fintech Analyst",
-                    tag: "Debate",
-                    country: "México",
-                    upvotes: 19,
-                    createdAt: new Date().toISOString()
-                  },
-                  {
-                    id: "post_3",
-                    title: "Sandboxes regulatorios de Open Finance en Colombia",
-                    body: "SFC en Colombia habilitó nuevos pilotos para iniciación de pagos. ¿Cuáles han sido las tasas de éxito en ambientes de prueba?",
-                    author: "Esteban Vega",
-                    authorTitle: "Product Lead",
-                    tag: "Opinión",
-                    country: "Colombia",
-                    upvotes: 15,
-                    createdAt: new Date().toISOString()
-                  }
-                ];
+              {filteredPosts.length > 0 ? (
+                <div className="space-y-4">
+                  {filteredPosts.map((post: any) => {
+                    const isCommentsExpanded = expandedCommentsPostId === post.id;
+                    return (
+                      <Card 
+                        key={post.id} 
+                        className="p-5 border-slate-200 bg-white hover:border-cyan-500 transition-all cursor-pointer shadow-xs rounded-2xl"
+                        onClick={() => setExpandedCommentsPostId(isCommentsExpanded ? null : post.id)}
+                      >
+                        <div className="flex gap-4 items-start">
+                          {/* Botón Upvote */}
+                          <button
+                            onClick={(e) => handleUpvotePost(post.id, e)}
+                            className="p-2.5 rounded-xl bg-slate-100 hover:bg-cyan-100 hover:text-cyan-800 border border-slate-300 flex flex-col items-center gap-1 transition-colors group cursor-pointer"
+                          >
+                            <ChevronUp className="w-4 h-4 text-slate-500 group-hover:text-cyan-700 group-hover:-translate-y-0.5 transition-transform" />
+                            <span className="text-xs font-black font-mono text-slate-900">{post.upvotes}</span>
+                          </button>
 
-                return (
-                  <div className="space-y-4">
-                    {displayPosts.map((post: any) => {
-                      const isCommentsExpanded = expandedCommentsPostId === post.id;
-                      return (
-                        <Card 
-                          key={post.id} 
-                          className="p-5 border-slate-200 bg-white hover:border-cyan-500 transition-all cursor-pointer shadow-xs rounded-2xl"
-                          onClick={() => setExpandedCommentsPostId(isCommentsExpanded ? null : post.id)}
-                        >
-                          <div className="flex gap-4 items-start">
-                            {/* Botón Upvote */}
-                            <button
-                              onClick={(e) => handleUpvotePost(post.id, e)}
-                              className="p-2.5 rounded-xl bg-slate-100 hover:bg-cyan-100 hover:text-cyan-800 border border-slate-300 flex flex-col items-center gap-1 transition-colors group cursor-pointer"
-                            >
-                              <ChevronUp className="w-4 h-4 text-slate-500 group-hover:text-cyan-700 group-hover:-translate-y-0.5 transition-transform" />
-                              <span className="text-xs font-black font-mono text-slate-900">{post.upvotes}</span>
-                            </button>
-
-                            {/* Contenido Post */}
-                            <div className="flex-1 space-y-2">
-                              <div className="flex flex-wrap items-center gap-2">
-                                <span className="text-[10px] font-black uppercase font-mono px-2 py-0.5 rounded bg-cyan-100 border border-cyan-300 text-cyan-800">{post.tag}</span>
-                                {post.country && (
-                                  <span className="text-xs text-slate-600 font-bold flex items-center gap-1">
-                                    📍 {post.country}
-                                  </span>
-                                )}
-                                <span className="text-xs text-slate-500 font-medium ml-auto">
-                                  Por <strong className="text-slate-900 font-extrabold">{post.author}</strong> ({post.authorTitle})
+                          {/* Contenido Post */}
+                          <div className="flex-1 space-y-2">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="text-[10px] font-black uppercase font-mono px-2 py-0.5 rounded bg-cyan-100 border border-cyan-300 text-cyan-800">{post.tag}</span>
+                              {post.country && (
+                                <span className="text-xs text-slate-600 font-bold flex items-center gap-1">
+                                  📍 {post.country}
                                 </span>
-                              </div>
+                              )}
+                              <span className="text-xs text-slate-500 font-medium ml-auto">
+                                Por <strong className="text-slate-900 font-extrabold">{post.author}</strong> ({post.authorTitle})
+                              </span>
+                            </div>
 
-                              <h4 className="font-black text-base text-slate-900 tracking-tight hover:text-cyan-700 transition-colors">{post.title}</h4>
-                              <p className="text-xs text-slate-700 leading-relaxed font-medium">{post.body}</p>
+                            <h4 className="font-black text-base text-slate-900 tracking-tight hover:text-cyan-700 transition-colors">{post.title}</h4>
+                            <p className="text-xs text-slate-700 leading-relaxed font-medium">{post.body}</p>
 
-                              <div className="flex items-center justify-between pt-2 text-xs text-slate-500 font-medium border-t border-slate-100">
-                                <span>Publicado recientemente</span>
-                                <span className="text-cyan-700 font-extrabold flex items-center gap-1">
-                                  <MessageSquare className="w-3.5 h-3.5" />
-                                  {isCommentsExpanded ? "Ocultar respuestas" : "Ver respuestas"}
-                                </span>
-                              </div>
+                            <div className="flex items-center justify-between pt-2 text-xs text-slate-500 font-medium border-t border-slate-100">
+                              <span>Publicado recientemente</span>
+                              <span className="text-cyan-700 font-extrabold flex items-center gap-1">
+                                <MessageSquare className="w-3.5 h-3.5" />
+                                {isCommentsExpanded ? "Ocultar respuestas" : "Ver respuestas"}
+                              </span>
                             </div>
                           </div>
+                        </div>
 
-                          {/* Caja de Comentarios Expandidos */}
-                          {isCommentsExpanded && (
-                            <div 
-                              className="mt-5 pt-5 border-t border-slate-200 space-y-4 cursor-default"
+                        {/* Caja de Comentarios Expandidos */}
+                        {isCommentsExpanded && (
+                          <div 
+                            className="mt-5 pt-5 border-t border-slate-200 space-y-4 cursor-default"
                             onClick={(e) => e.stopPropagation()} // Prevenir burbujeo para no cerrar el card
                           >
-                            <h5 className="text-xs font-bold text-accent uppercase font-mono tracking-wider">Respuestas de expertos</h5>
+                            <h5 className="text-xs font-bold text-cyan-700 uppercase font-mono tracking-wider">Respuestas de expertos</h5>
 
                             <div className="space-y-3">
                               {activeComments.length > 0 ? (
                                 activeComments.map((comment: any) => (
-                                  <div key={comment.id} className="p-3.5 rounded-lg bg-secondary/15 border border-border flex flex-col gap-1.5">
-                                    <div className="flex justify-between items-center text-[10px] text-muted-foreground font-mono">
-                                      <span className="font-bold text-foreground">💬 {comment.author}</span>
+                                  <div key={comment.id} className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
+                                    <div className="flex justify-between items-center text-xs text-slate-500 font-mono">
+                                      <span className="font-extrabold text-slate-900">💬 {comment.author}</span>
                                       <span>Hace poco</span>
                                     </div>
-                                    <p className="text-xs text-muted-foreground font-light leading-relaxed">{comment.body}</p>
+                                    <p className="text-xs text-slate-700 font-medium leading-relaxed">{comment.body}</p>
                                   </div>
                                 ))
                               ) : (
-                                <p className="text-xs text-muted-foreground font-light italic">No hay comentarios en este hilo. ¡Sé el primero en aportar!</p>
+                                <p className="text-xs text-slate-500 font-medium italic">No hay comentarios en este hilo. ¡Sé el primero en aportar!</p>
                               )}
                             </div>
 
                             {/* Creador de comentarios */}
-                            <div className="pt-4 border-t border-border/40 space-y-3">
+                            <div className="pt-4 border-t border-slate-200 space-y-3">
                               <div className="grid grid-cols-2 gap-3">
                                 <input
                                   type="text"
                                   placeholder="Tu nombre (opcional)"
                                   value={newCommentAuthor}
                                   onChange={(e) => setNewCommentAuthor(e.target.value)}
-                                  className="px-3 py-1.5 rounded bg-secondary/20 border border-border text-xs focus:outline-none focus:ring-1 focus:ring-accent"
+                                  className="px-3 py-1.5 rounded-xl bg-white border border-slate-300 text-slate-900 text-xs focus:outline-none focus:ring-1 focus:ring-cyan-600 shadow-xs"
                                 />
                                 <button
                                   onClick={() => handleAddComment(post.id)}
-                                  className="bg-accent text-accent-foreground font-bold text-xs rounded hover:scale-[1.02] transition-transform py-1.5"
+                                  className="bg-cyan-600 hover:bg-cyan-700 text-white font-extrabold text-xs rounded-xl py-1.5 cursor-pointer transition-colors shadow-xs"
                                 >
                                   Responder
                                 </button>
@@ -947,12 +910,23 @@ export default function Home() {
                             </div>
                           </div>
                         )}
-                        </Card>
-                      );
-                    })}
+                      </Card>
+                    );
+                  })}
+                </div>
+              ) : (
+                <Card className="p-12 border-dashed border-2 border-slate-300 bg-white flex flex-col items-center justify-center text-center space-y-4 rounded-2xl shadow-xs">
+                  <div className="w-12 h-12 rounded-full bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600">
+                    <MessageSquare className="w-6 h-6" />
                   </div>
-                );
-              })()}
+                  <div className="space-y-1.5 max-w-sm">
+                    <h4 className="text-base font-black text-slate-900 tracking-tight">Comunidad en tiempo real</h4>
+                    <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                      Aún no hay discusiones registradas en este filtro. ¡Sé el primero en iniciar un debate técnico utilizando el formulario de la izquierda!
+                    </p>
+                  </div>
+                </Card>
+              )}
 
             </div>
           </div>
