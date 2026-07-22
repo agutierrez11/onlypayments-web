@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, Calendar } from "lucide-react";
-import { useLocation } from "wouter";
+import { Search, Filter, Calendar, ArrowLeft } from "lucide-react";
+import { useLocation, Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 
 type Category = "A2A" | "transfronterizo" | "IA" | "regulación";
@@ -33,11 +33,24 @@ export default function NewsFeed() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Top Navigation Bar */}
+      <div className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="container py-3 flex items-center justify-between">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-slate-900 border border-cyan-500/30">
+              <ArrowLeft className="w-4 h-4" />
+              Volver al inicio
+            </Button>
+          </Link>
+          <span className="font-extrabold text-white text-lg tracking-tight">OnlyPayments Insights</span>
+        </div>
+      </div>
+
       {/* Header */}
       <div className="border-b border-border py-8">
         <div className="container">
-          <h1 className="text-4xl font-bold mb-2">Noticias Globales de Pagos</h1>
-          <p className="text-lg text-muted-foreground">
+          <h1 className="text-4xl font-bold mb-2 text-white">Noticias Globales de Pagos</h1>
+          <p className="text-lg text-slate-300">
             Noticias curadas por IA, actualizadas diariamente
           </p>
         </div>

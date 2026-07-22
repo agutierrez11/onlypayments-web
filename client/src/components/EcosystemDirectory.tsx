@@ -133,13 +133,13 @@ export function EcosystemDirectory() {
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2.5 mb-8">
           <button
             onClick={() => setActiveCategory(null)}
-            className={`px-4 py-2 rounded-full text-xs font-semibold transition-all border ${
+            className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${
               activeCategory === null 
-                ? 'bg-primary text-primary-foreground border-primary' 
-                : 'bg-muted/30 border-transparent text-muted-foreground hover:bg-muted/80'
+                ? 'bg-cyan-500 text-black border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]' 
+                : 'bg-slate-900 border-slate-700/80 text-slate-200 hover:bg-slate-800 hover:text-white'
             }`}
           >
             Todos
@@ -150,13 +150,13 @@ export function EcosystemDirectory() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all border capitalize ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all border capitalize ${
                   activeCategory === cat 
-                    ? categoryColors[cat] + " border-opacity-50 shadow-sm" 
-                    : 'bg-muted/30 border-transparent text-muted-foreground hover:bg-muted/80'
+                    ? categoryColors[cat] + " border-opacity-70 shadow-md font-extrabold" 
+                    : 'bg-slate-900 border-slate-700/80 text-slate-200 hover:bg-slate-800 hover:text-white'
                 }`}
               >
-                <Icon className="w-3 h-3" />
+                <Icon className="w-3.5 h-3.5" />
                 {cat}
               </button>
             )
@@ -175,37 +175,45 @@ export function EcosystemDirectory() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="glass-panel glass-panel-hover rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden"
+                  className="bg-slate-900/90 hover:bg-slate-850 border border-slate-800/90 hover:border-cyan-500/50 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden shadow-lg transition-all"
                 >
                   <div className="flex items-center gap-4 min-w-[200px]">
                     <span className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center border ${categoryColors[provider.category]}`}>
                       <CatIcon className="w-5 h-5" />
                     </span>
                     <div>
-                      <div className="font-bold text-base text-foreground flex items-center gap-2">
+                      <div className="font-extrabold text-lg text-white flex items-center gap-2">
                         {provider.name}
-                        <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors opacity-0 group-hover:opacity-100 hidden md:flex items-center gap-1">
-                          <ChevronRight className="w-3 h-3" />
+                        <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors opacity-0 group-hover:opacity-100 hidden md:flex items-center gap-1">
+                          <ChevronRight className="w-3.5 h-3.5" />
                         </a>
                       </div>
-                      <span className="text-xs text-muted-foreground capitalize">{provider.category}</span>
+                      <span className="text-xs text-cyan-400 font-mono font-bold capitalize">{provider.category}</span>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 flex-1 items-center">
+                  <div className="flex flex-wrap gap-2 flex-1 items-center">
                     {provider.features.map((f, i) => (
-                      <span key={i} className="text-[10px] px-2 py-0.5 rounded border border-white/10 text-white/70">
+                      <span key={i} className="text-xs px-2.5 py-1 rounded-md bg-slate-950/80 border border-slate-800 text-slate-200 font-medium">
                         {f}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-2 md:min-w-[150px] justify-end">
+                  <div className="flex items-center gap-2 md:min-w-[170px] justify-end">
                     {provider.coverage.slice(0,2).map(c => (
-                      <span key={c} className="text-[10px] uppercase font-bold text-white/50">{c}</span>
+                      <span key={c} className="text-xs uppercase font-bold text-slate-200 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/80 font-mono">{c}</span>
                     ))}
-                    {provider.coverage.length > 2 && <span className="text-[10px] text-white/30">+{provider.coverage.length - 2}</span>}
-                    <Badge variant={provider.tier === 'enterprise' ? 'default' : 'secondary'} className="text-[9px] uppercase scale-90 ml-2">
+                    {provider.coverage.length > 2 && <span className="text-xs font-bold text-slate-400 font-mono">+{provider.coverage.length - 2}</span>}
+                    <Badge 
+                      className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md border ml-2 ${
+                        provider.tier === 'enterprise'
+                          ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                          : provider.tier === 'growth'
+                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                          : 'bg-blue-500/20 text-blue-300 border-blue-500/40'
+                      }`}
+                    >
                       {provider.tier}
                     </Badge>
                   </div>

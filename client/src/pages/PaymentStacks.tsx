@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Filter } from "lucide-react";
+import { Filter, ArrowLeft } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import { Link } from "wouter";
 
 type BusinessModel = "e-commerce" | "SaaS" | "remesas" | "iGaming";
 
@@ -24,11 +25,24 @@ export default function PaymentStacks() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Top Navigation Bar */}
+      <div className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="container py-3 flex items-center justify-between">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-slate-900 border border-cyan-500/30">
+              <ArrowLeft className="w-4 h-4" />
+              Volver al inicio
+            </Button>
+          </Link>
+          <span className="font-extrabold text-white text-lg tracking-tight">OnlyPayments Stacks</span>
+        </div>
+      </div>
+
       {/* Header */}
       <div className="border-b border-border py-8">
         <div className="container">
-          <h1 className="text-4xl font-bold mb-2">Stacks de Pago</h1>
-          <p className="text-lg text-muted-foreground">
+          <h1 className="text-4xl font-bold mb-2 text-white">Stacks de Pago</h1>
+          <p className="text-lg text-slate-300">
             Recetas de pago organizadas por país y modelo de negocio
           </p>
         </div>
