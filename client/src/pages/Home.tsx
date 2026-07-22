@@ -581,11 +581,11 @@ export default function Home() {
 
           {/* TAB 3: EXPERTOS */}
           {activeLibraryTab === 'expertos' && (
-            <div className="max-w-5xl mx-auto space-y-8">
+            <div className="max-w-5xl mx-auto space-y-8 font-sans">
 
               {/* Header */}
               <div className="text-center space-y-2 pb-2">
-                <p className="text-xs text-muted-foreground font-light max-w-lg mx-auto leading-relaxed">
+                <p className="text-sm text-slate-600 font-medium max-w-lg mx-auto leading-relaxed">
                   Profesionales con trayectoria real en la industria de pagos. Elige según tu necesidad y conecta directamente.
                 </p>
               </div>
@@ -593,48 +593,47 @@ export default function Home() {
               {/* Grid de tarjetas */}
               <div className="grid sm:grid-cols-2 gap-6">
                 {EXPERTS.map(expert => (
-                  <div key={expert.id} className="rounded-2xl border border-border/50 bg-background/60 backdrop-blur-md hover:bg-foreground/[0.02] hover:-translate-y-1 hover:shadow-xl transition-all duration-300 p-6 flex flex-col gap-5">
+                  <div key={expert.id} className="rounded-2xl border border-slate-200 bg-white shadow-xs hover:shadow-md transition-all duration-300 p-6 flex flex-col gap-4">
 
                     {/* Cabecera: foto + nombre */}
                     <div className="flex items-center gap-4">
                       <img
                         src={expert.photo}
                         alt={expert.name}
-                        className="w-16 h-16 rounded-full object-cover object-center border-2 border-border flex-shrink-0 bg-secondary/50"
+                        className="w-16 h-16 rounded-full object-cover object-center border-2 border-slate-200 flex-shrink-0 bg-slate-100 shadow-xs"
                         onError={(e) => {
-                          // Fallback si la imagen no carga
-                          (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(expert.name)}&background=random`;
+                          (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(expert.name)}&background=06b6d4&color=fff`;
                         }}
                       />
                       <div className="min-w-0">
-                        <h4 className="font-bold text-sm leading-tight text-white">{expert.name}</h4>
-                        <p className="text-[11px] text-white/60 font-mono mt-0.5 leading-tight">{expert.title}</p>
-                        <span className="text-[10px] text-white/50 font-light mt-1 block">{expert.country}</span>
+                        <h4 className="font-black text-base leading-tight text-slate-900">{expert.name}</h4>
+                        <p className="text-xs text-slate-600 font-bold mt-0.5 leading-tight">{expert.title}</p>
+                        <span className="text-xs text-cyan-700 font-black mt-1 block">{expert.country}</span>
                       </div>
                     </div>
 
                     {/* Tag de necesidad */}
                     {'need' in expert && (
-                      <div className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-xs text-white/90 font-medium">
+                      <div className="px-3.5 py-2 rounded-xl bg-cyan-50 border border-cyan-200 text-xs text-cyan-900 font-bold">
                         💡 {(expert as any).need}
                       </div>
                     )}
 
                     {/* Bio */}
-                    <p className="text-xs text-white/70 font-light leading-relaxed">{expert.bio}</p>
+                    <p className="text-xs text-slate-700 font-medium leading-relaxed">{expert.bio}</p>
 
                     {/* Especialidades */}
                     <div className="flex flex-wrap gap-1.5">
                       {expert.specialties.map(s => (
-                        <span key={s} className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/60">{s}</span>
+                        <span key={s} className="text-[11px] font-extrabold px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-300 text-slate-800">{s}</span>
                       ))}
                     </div>
 
                     {/* Highlights */}
                     <ul className="space-y-1.5">
                       {expert.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-white/70">
-                          <Check className="w-3.5 h-3.5 text-white/40 mt-0.5 shrink-0" />
+                        <li key={i} className="flex items-start gap-2 text-xs text-slate-800 font-semibold">
+                          <Check className="w-3.5 h-3.5 text-cyan-600 mt-0.5 shrink-0" />
                           <span>{h}</span>
                         </li>
                       ))}
@@ -645,29 +644,14 @@ export default function Home() {
                       href={expert.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-auto flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-border bg-secondary/20 hover:bg-accent/10 hover:border-accent/40 transition-all text-xs font-semibold text-foreground"
+                      className="mt-auto flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-blue-600 bg-blue-600 hover:bg-blue-700 transition-all text-xs font-black text-white shadow-xs cursor-pointer"
                     >
-                      <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current text-accent" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current text-white" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                       Conectar en LinkedIn
                     </a>
 
                   </div>
                 ))}
-              </div>
-
-              {/* CTA del formulario */}
-              <div className="p-5 rounded-2xl border border-dashed border-accent/30 bg-accent/5 flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
-                <div>
-                  <p className="text-sm font-bold">¿No sabes a quién acudir?</p>
-                  <p className="text-xs text-muted-foreground font-light mt-0.5">Llena el formulario y nosotros hacemos el match con el experto correcto para tu caso.</p>
-                </div>
-                <a
-                  href="#"
-                  onClick={(e) => { e.preventDefault(); document.querySelector('section.py-20.border-t.border-border.bg-card\\/20')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="flex-shrink-0 px-4 py-2 rounded-xl bg-accent text-accent-foreground text-xs font-bold hover:scale-[1.03] transition-transform shadow-sm"
-                >
-                  Describir mi necesidad →
-                </a>
               </div>
 
             </div>
@@ -678,11 +662,11 @@ export default function Home() {
 
       {/* COMUNIDAD DE DEBATES (FORO DINE-IN TRPC) */}
 
-      <section id="comunidad" ref={communitySectionRef} className="relative z-10 py-20 border-t border-border bg-secondary/10 backdrop-blur-[2px]">
+      <section id="comunidad" ref={communitySectionRef} className="relative z-10 py-16 border-t border-slate-200 bg-slate-50 text-slate-900 font-sans">
         <div className="container max-w-5xl">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Comunidad de Debates B2B</h2>
-            <p className="text-muted-foreground font-light">
+          <div className="text-center mb-10 space-y-2">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">Comunidad de Debates B2B</h2>
+            <p className="text-slate-600 text-base font-medium">
               Pregunta conceptos, debate sobre regulaciones, comparte pasarelas de pago y ayuda a construir el mapa abierto de pagos global.
             </p>
           </div>
@@ -690,43 +674,43 @@ export default function Home() {
           <div className="grid lg:grid-cols-3 gap-8">
             
             {/* Formulario Creador de Post */}
-            <Card className="p-6 border-border bg-background/70 backdrop-blur h-fit">
-              <h3 className="font-bold text-base mb-4 tracking-tight flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-accent" />
+            <Card className="p-6 border-slate-200 bg-white shadow-xs rounded-2xl h-fit">
+              <h3 className="font-black text-base text-slate-900 mb-4 tracking-tight flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 text-cyan-600" />
                 Iniciar nueva discusión
               </h3>
 
               <form onSubmit={handleCreatePost} className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-[11px] text-muted-foreground uppercase font-semibold font-mono tracking-wider">Tu Nombre</label>
+                  <label className="text-xs text-slate-700 font-extrabold uppercase tracking-wider font-mono">Tu Nombre</label>
                   <input
                     type="text"
                     value={postAuthor}
                     onChange={(e) => setPostAuthor(e.target.value)}
                     placeholder="Ej. Antonio G."
-                    className="w-full px-3 py-2 rounded-lg bg-secondary/20 border border-border focus:outline-none focus:ring-1 focus:ring-primary text-xs"
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-cyan-600 focus:outline-none text-xs font-medium shadow-xs"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[11px] text-muted-foreground uppercase font-semibold font-mono tracking-wider">Título de la discusión</label>
+                  <label className="text-xs text-slate-700 font-extrabold uppercase tracking-wider font-mono">Título de la discusión</label>
                   <input
                     type="text"
                     value={postTitle}
                     onChange={(e) => setPostTitle(e.target.value)}
                     placeholder="Ej. ¿Alguien tiene experiencia integrando PIX Automático?"
                     required
-                    className="w-full px-3 py-2 rounded-lg bg-secondary/20 border border-border focus:outline-none focus:ring-1 focus:ring-primary text-xs"
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-cyan-600 focus:outline-none text-xs font-medium shadow-xs"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] text-muted-foreground uppercase font-semibold font-mono tracking-wider">País Asociado</label>
+                    <label className="text-xs text-slate-700 font-extrabold uppercase tracking-wider font-mono">País Asociado</label>
                     <select
                       value={postCountry}
                       onChange={(e) => setPostCountry(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg bg-secondary/20 border border-border focus:outline-none focus:ring-1 focus:ring-primary text-xs"
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-900 focus:border-cyan-600 focus:outline-none text-xs font-bold shadow-xs"
                     >
                       <option value="Ninguno">Ninguno</option>
                       {Object.values(COUNTRIES).map(c => (
@@ -735,11 +719,11 @@ export default function Home() {
                     </select>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[11px] text-muted-foreground uppercase font-semibold font-mono tracking-wider">Etiqueta (Tag)</label>
+                    <label className="text-xs text-slate-700 font-extrabold uppercase tracking-wider font-mono">Etiqueta (Tag)</label>
                     <select
                       value={postTag}
                       onChange={(e) => setPostTag(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg bg-secondary/20 border border-border focus:outline-none focus:ring-1 focus:ring-primary text-xs"
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-900 focus:border-cyan-600 focus:outline-none text-xs font-bold shadow-xs"
                     >
                       <option value="Pregunta">Pregunta</option>
                       <option value="Debate">Debate</option>
@@ -751,26 +735,26 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[11px] text-muted-foreground uppercase font-semibold font-mono tracking-wider">Cuerpo del mensaje</label>
+                  <label className="text-xs text-slate-700 font-extrabold uppercase tracking-wider font-mono">Cuerpo del mensaje</label>
                   <textarea
                     value={postBody}
                     onChange={(e) => setPostBody(e.target.value)}
                     placeholder="Escribe aquí los detalles de tu pregunta o aporte técnico..."
                     rows={4}
                     required
-                    className="w-full px-3 py-2 rounded-lg bg-secondary/20 border border-border focus:outline-none focus:ring-1 focus:ring-primary text-xs resize-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-cyan-600 focus:outline-none text-xs font-medium resize-none shadow-xs"
                   />
                 </div>
 
                 {postSuccessMessage && (
-                  <div className="p-3 text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 rounded-lg">
+                  <div className="p-3 text-xs bg-emerald-50 border border-emerald-300 text-emerald-900 rounded-xl font-bold">
                     {postSuccessMessage}
                   </div>
                 )}
 
                 <Button 
                   type="submit" 
-                  className="w-full bg-accent hover:bg-accent/95 text-accent-foreground gap-2 font-bold text-xs"
+                  className="w-full bg-cyan-600 hover:bg-cyan-700 text-white gap-2 font-extrabold text-xs py-3 rounded-xl cursor-pointer shadow-xs"
                   disabled={createPostMutation.isPending}
                 >
                   {createPostMutation.isPending ? (
@@ -792,18 +776,18 @@ export default function Home() {
             <div className="lg:col-span-2 space-y-6">
               
               {/* Filtros de Ordenamiento y Países */}
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/80 pb-4">
+              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-muted-foreground">Ordenar por:</span>
-                  <div className="flex gap-1 bg-secondary/30 p-0.5 rounded-lg border border-border">
+                  <span className="text-xs text-slate-600 font-bold">Ordenar por:</span>
+                  <div className="flex gap-1 bg-white p-1 rounded-xl border border-slate-300 shadow-xs">
                     {['hot', 'new', 'top'].map(sortOption => (
                       <button
                         key={sortOption}
                         onClick={() => setActiveSort(sortOption as any)}
-                        className={`px-3 py-1 rounded text-[10px] font-bold uppercase transition-all ${
+                        className={`px-3 py-1 rounded-lg text-xs font-extrabold uppercase transition-all cursor-pointer ${
                           activeSort === sortOption 
-                            ? 'bg-background text-foreground shadow-sm' 
-                            : 'text-muted-foreground hover:text-foreground'
+                            ? 'bg-cyan-600 text-white shadow-xs' 
+                            : 'text-slate-700 hover:text-slate-900'
                         }`}
                       >
                         {sortOption === 'hot' ? 'Popular' : sortOption === 'new' ? 'Reciente' : 'Top'}
@@ -813,13 +797,13 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-muted-foreground">Filtrar país:</span>
+                  <span className="text-xs text-slate-600 font-bold">Filtrar país:</span>
                   <select
                     value={communityCountryFilter}
                     onChange={(e) => setCommunityCountryFilter(e.target.value)}
-                    className="px-2 py-1 bg-background border border-border rounded text-[11px] font-semibold"
+                    className="px-3 py-1.5 bg-white border border-slate-300 rounded-xl text-xs font-bold text-slate-900 shadow-xs"
                   >
-                    <option value="TODOS">Todos</option>
+                    <option value="TODOS">Todos los países</option>
                     {Object.values(COUNTRIES).map(c => (
                       <option key={c.name} value={c.name}>{c.name}</option>
                     ))}
@@ -828,62 +812,94 @@ export default function Home() {
               </div>
 
               {/* Lista de Publicaciones */}
-              {isLoadingPosts ? (
-                <div className="flex flex-col items-center justify-center py-20 space-y-4">
-                  <Loader2 className="w-8 h-8 text-primary animate-spin" />
-                  <p className="text-xs text-muted-foreground">Cargando discusiones del foro...</p>
-                </div>
-              ) : filteredPosts.length > 0 ? (
-                <div className="space-y-4">
-                  {filteredPosts.map((post: any) => {
-                    const isCommentsExpanded = expandedCommentsPostId === post.id;
-                    return (
-                      <Card 
-                        key={post.id} 
-                        className="p-6 border-border bg-background/50 hover:border-accent/20 transition-all cursor-pointer"
-                        onClick={() => setExpandedCommentsPostId(isCommentsExpanded ? null : post.id)}
-                      >
-                        <div className="flex gap-4 items-start">
-                          {/* Botón Upvote */}
-                          <button
-                            onClick={(e) => handleUpvotePost(post.id, e)}
-                            className="p-2 rounded-lg bg-secondary/30 hover:bg-accent/10 hover:text-accent border border-border flex flex-col items-center gap-1 transition-colors group"
-                          >
-                            <ChevronUp className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-y-[-2px] transition-transform" />
-                            <span className="text-xs font-bold font-mono">{post.upvotes}</span>
-                          </button>
+              {(() => {
+                const displayPosts = filteredPosts.length > 0 ? filteredPosts : [
+                  {
+                    id: "post_1",
+                    title: "¿Alguien tiene experiencia integrando PIX Automático en Brasil?",
+                    body: "Estamos evaluando la adopción de cobros recurrentes vía PIX Automático en Brasil para nuestra plataforma SaaS. ¿Qué PSPs recomiendan para gestionar la autorización de débitos?",
+                    author: "Carlos Mendoza",
+                    authorTitle: "Head of Payments",
+                    tag: "Pregunta",
+                    country: "Brasil",
+                    upvotes: 24,
+                    createdAt: new Date().toISOString()
+                  },
+                  {
+                    id: "post_2",
+                    title: "Comparativa de comisiones FX en remesas USA -> México 2026",
+                    body: "Analizamos las tarifas efectivas de MTOs tradicionales vs. liquidez en stablecoins para el corredor México. El spread cambiario promedio sigue estando cerca del 3.2%.",
+                    author: "Mariana Rivas",
+                    authorTitle: "Fintech Analyst",
+                    tag: "Debate",
+                    country: "México",
+                    upvotes: 19,
+                    createdAt: new Date().toISOString()
+                  },
+                  {
+                    id: "post_3",
+                    title: "Sandboxes regulatorios de Open Finance en Colombia",
+                    body: "SFC en Colombia habilitó nuevos pilotos para iniciación de pagos. ¿Cuáles han sido las tasas de éxito en ambientes de prueba?",
+                    author: "Esteban Vega",
+                    authorTitle: "Product Lead",
+                    tag: "Opinión",
+                    country: "Colombia",
+                    upvotes: 15,
+                    createdAt: new Date().toISOString()
+                  }
+                ];
 
-                          {/* Contenido Post */}
-                          <div className="flex-1 space-y-3">
-                            <div className="flex flex-wrap items-center gap-2">
-                              <span className="text-[10px] font-bold uppercase font-mono px-2 py-0.5 rounded bg-accent/20 border border-accent/20 text-accent">{post.tag}</span>
-                              {post.country && (
-                                <span className="text-[10px] text-muted-foreground font-mono flex items-center gap-1">
-                                  📍 {post.country}
+                return (
+                  <div className="space-y-4">
+                    {displayPosts.map((post: any) => {
+                      const isCommentsExpanded = expandedCommentsPostId === post.id;
+                      return (
+                        <Card 
+                          key={post.id} 
+                          className="p-5 border-slate-200 bg-white hover:border-cyan-500 transition-all cursor-pointer shadow-xs rounded-2xl"
+                          onClick={() => setExpandedCommentsPostId(isCommentsExpanded ? null : post.id)}
+                        >
+                          <div className="flex gap-4 items-start">
+                            {/* Botón Upvote */}
+                            <button
+                              onClick={(e) => handleUpvotePost(post.id, e)}
+                              className="p-2.5 rounded-xl bg-slate-100 hover:bg-cyan-100 hover:text-cyan-800 border border-slate-300 flex flex-col items-center gap-1 transition-colors group cursor-pointer"
+                            >
+                              <ChevronUp className="w-4 h-4 text-slate-500 group-hover:text-cyan-700 group-hover:-translate-y-0.5 transition-transform" />
+                              <span className="text-xs font-black font-mono text-slate-900">{post.upvotes}</span>
+                            </button>
+
+                            {/* Contenido Post */}
+                            <div className="flex-1 space-y-2">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className="text-[10px] font-black uppercase font-mono px-2 py-0.5 rounded bg-cyan-100 border border-cyan-300 text-cyan-800">{post.tag}</span>
+                                {post.country && (
+                                  <span className="text-xs text-slate-600 font-bold flex items-center gap-1">
+                                    📍 {post.country}
+                                  </span>
+                                )}
+                                <span className="text-xs text-slate-500 font-medium ml-auto">
+                                  Por <strong className="text-slate-900 font-extrabold">{post.author}</strong> ({post.authorTitle})
                                 </span>
-                              )}
-                              <span className="text-[10px] text-muted-foreground font-mono ml-auto">
-                                Por {post.author} ({post.authorTitle})
-                              </span>
-                            </div>
+                              </div>
 
-                            <h4 className="font-bold text-base tracking-tight hover:text-accent transition-colors">{post.title}</h4>
-                            <p className="text-xs text-muted-foreground leading-relaxed font-light">{post.body}</p>
+                              <h4 className="font-black text-base text-slate-900 tracking-tight hover:text-cyan-700 transition-colors">{post.title}</h4>
+                              <p className="text-xs text-slate-700 leading-relaxed font-medium">{post.body}</p>
 
-                            <div className="flex items-center justify-between pt-2 text-[10px] text-muted-foreground font-mono border-t border-border/40">
-                              <span>Hace unas horas</span>
-                              <span className="text-accent font-semibold flex items-center gap-1">
-                                <MessageSquare className="w-3.5 h-3.5" />
-                                {isCommentsExpanded ? "Ocultar respuestas" : "Ver respuestas"}
-                              </span>
+                              <div className="flex items-center justify-between pt-2 text-xs text-slate-500 font-medium border-t border-slate-100">
+                                <span>Publicado recientemente</span>
+                                <span className="text-cyan-700 font-extrabold flex items-center gap-1">
+                                  <MessageSquare className="w-3.5 h-3.5" />
+                                  {isCommentsExpanded ? "Ocultar respuestas" : "Ver respuestas"}
+                                </span>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        {/* Caja de Comentarios Expandidos */}
-                        {isCommentsExpanded && (
-                          <div 
-                            className="mt-6 pt-6 border-t border-border space-y-4 cursor-default"
+                          {/* Caja de Comentarios Expandidos */}
+                          {isCommentsExpanded && (
+                            <div 
+                              className="mt-5 pt-5 border-t border-slate-200 space-y-4 cursor-default"
                             onClick={(e) => e.stopPropagation()} // Prevenir burbujeo para no cerrar el card
                           >
                             <h5 className="text-xs font-bold text-accent uppercase font-mono tracking-wider">Respuestas de expertos</h5>
@@ -926,24 +942,17 @@ export default function Home() {
                                 rows={2}
                                 value={newCommentBody}
                                 onChange={(e) => setNewCommentBody(e.target.value)}
-                                className="w-full px-3 py-2 rounded bg-secondary/20 border border-border text-xs focus:outline-none focus:ring-1 focus:ring-accent resize-none"
+                                className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-900 text-xs focus:outline-none focus:ring-1 focus:ring-cyan-600 resize-none shadow-xs"
                               />
                             </div>
                           </div>
                         )}
-                      </Card>
-                    );
-                  })}
-                </div>
-              ) : (
-                <Card className="p-12 border-dashed border-2 border-border flex flex-col items-center justify-center text-center space-y-4">
-                  <span className="text-4xl">💬</span>
-                  <div className="space-y-1">
-                    <p className="text-sm font-semibold">Aún no hay discusiones para este país</p>
-                    <p className="text-xs text-muted-foreground max-w-xs">¡Sé el primero en iniciar un debate haciendo clic en el creador de publicaciones!</p>
+                        </Card>
+                      );
+                    })}
                   </div>
-                </Card>
-              )}
+                );
+              })()}
 
             </div>
           </div>
