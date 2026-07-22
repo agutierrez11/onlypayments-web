@@ -21,12 +21,15 @@ export function FintechDirectory() {
     return Array.from(s).sort();
   }, []);
 
-  // Filter and paginate data
   const filteredData = useMemo(() => {
+    const q = searchTerm.toLowerCase().trim();
     return fintechsData.filter((company: any) => {
-      const matchesSearch = 
-        company.Nombre?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        company["Descripción"]?.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = !q || 
+        company.Nombre?.toLowerCase().includes(q) || 
+        company["Descripción"]?.toLowerCase().includes(q) ||
+        company.Segmento?.toLowerCase().includes(q) ||
+        company.Vertical?.toLowerCase().includes(q) ||
+        company.País?.toLowerCase().includes(q);
       
       const matchesSegment = activeSegment ? company.Segmento === activeSegment : true;
 
