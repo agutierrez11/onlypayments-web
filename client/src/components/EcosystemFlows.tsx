@@ -157,164 +157,187 @@ export function EcosystemFlows() {
         </div>
       </div>
 
-      {/* Tables & Charts Grid */}
-      <div className="grid lg:grid-cols-2 gap-8">
+      {/* Tables & Charts Grid - Balanced Layout */}
+      <div className="space-y-8">
         
-        {/* Estructura Legal - Optimized Table (NO HORIZONTAL SCROLLBAR) */}
-        <Card className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="p-3 bg-cyan-100 border border-cyan-300 rounded-xl">
-              <Building2 className="w-6 h-6 text-cyan-700" />
-            </div>
-            <h3 className="text-2xl font-black tracking-tight text-slate-900">Estructura Legal</h3>
-          </div>
-          
-          <div className="w-full">
-            <table className="w-full text-xs text-left border-collapse table-fixed">
-              <thead>
-                <tr className="border-b-2 border-slate-200 text-slate-500 font-mono text-[11px] uppercase tracking-wider">
-                  <th className="pb-3 font-bold w-[25%]">Concepto</th>
-                  <th className="pb-3 font-bold text-cyan-700 w-[37.5%]">Adquirente</th>
-                  <th className="pb-3 font-bold text-emerald-700 w-[37.5%]">Agregador</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="py-4 font-extrabold text-slate-900 align-top">Definición</td>
-                  <td className="py-4 text-slate-700 font-medium pr-2 break-words align-top">{adquirenteData.definicion}</td>
-                  <td className="py-4 text-slate-700 font-medium break-words align-top">{agregadorData.definicion}</td>
-                </tr>
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="py-4 font-extrabold text-slate-900 align-top">Licencia</td>
-                  <td className="py-4 text-slate-700 pr-2 break-words align-top"><Badge variant="outline" className="bg-slate-100 border-slate-300 text-slate-800 font-bold">{adquirenteData.requiere}</Badge></td>
-                  <td className="py-4 text-slate-700 break-words align-top"><Badge variant="outline" className="bg-slate-100 border-slate-300 text-slate-800 font-bold">{agregadorData.requiere}</Badge></td>
-                </tr>
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="py-4 font-extrabold text-slate-900 align-top">Tasa Típica</td>
-                  <td className="py-4 text-cyan-700 pr-2 font-mono font-black text-sm break-words align-top">{adquirenteData.tasa_tipica}</td>
-                  <td className="py-4 text-emerald-700 font-mono font-black text-sm break-words align-top">{agregadorData.tasa_tipica}</td>
-                </tr>
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="py-4 font-extrabold text-slate-900 align-top">Risk / KYC</td>
-                  <td className="py-4 text-slate-700 pr-2 break-words align-top">{adquirenteData.relacion_comercio}</td>
-                  <td className="py-4 text-slate-700 break-words align-top">{agregadorData.relacion_comercio}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </Card>
-
-        {/* Dynamic Comissions */}
-        <Card className="bg-card/30 backdrop-blur-3xl border-border/40 p-8 md:p-12 rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] hover:border-purple-500/30 transition-all relative overflow-hidden flex flex-col group">
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none group-hover:bg-purple-500/20 transition-colors duration-700" />
-          
-          <div className="flex items-center gap-5 mb-12 relative z-10">
-            <div className="p-4 bg-gradient-to-br from-purple-500/20 to-purple-500/5 border border-purple-500/20 rounded-2xl shadow-inner">
-              <TrendingDown className="w-8 h-8 text-purple-400" />
-            </div>
+        <div className="grid lg:grid-cols-2 gap-6 items-start">
+          {/* Card 1: Estructura Legal */}
+          <Card className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden h-full flex flex-col justify-between">
             <div>
-              <h3 className="text-3xl font-black tracking-tight text-foreground capitalize">Ecosistema {activeCountry}</h3>
-              <p className="text-purple-400 text-xs font-mono mt-2 uppercase tracking-widest font-bold">Tasas & Regulación 2026</p>
-            </div>
-          </div>
-          
-          <div className="space-y-10 flex-1 relative z-10">
-            {activeCountry === "mexico" && countryData.cuota_intercambio_propuesta_2026 && (
-              <div className="p-8 rounded-[2rem] bg-gradient-to-br from-secondary/50 to-background/50 border border-border/50 hover:border-purple-500/30 hover:shadow-[0_10px_30px_rgba(168,85,247,0.1)] transition-all">
-                <div className="flex justify-between items-center mb-8">
-                  <h4 className="text-sm font-black text-foreground flex items-center gap-3">
-                    <TrendingDown className="w-5 h-5 text-purple-500" /> 
-                    Impacto Reducción CI <span className="text-xs font-semibold text-slate-500">(Cuota de Intercambio)</span>
-                  </h4>
-                  <Badge variant="secondary" className="bg-purple-500/10 text-purple-400 border-purple-500/20">Banxico 2026</Badge>
-                </div>
-                <div className="space-y-8">
-                  <div>
-                    <div className="flex justify-between text-sm mb-3 font-mono">
-                      <span className="text-muted-foreground font-semibold">Agregadores</span>
-                      <span className="font-black text-foreground text-lg">{countryData.cuota_intercambio_propuesta_2026.credito.agregadores.split('(')[0]}</span>
-                    </div>
-                    <div className="h-4 bg-background rounded-full overflow-hidden flex border border-border/50 shadow-inner">
-                      <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1.5, ease: "easeOut" }} className="bg-gradient-to-r from-purple-600 to-fuchsia-500 w-full" />
-                    </div>
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-cyan-100 border border-cyan-300 rounded-xl">
+                    <Building2 className="w-5 h-5 text-cyan-700" />
                   </div>
                   <div>
-                    <div className="flex justify-between text-sm mb-3 font-mono">
-                      <span className="text-muted-foreground font-semibold">Retail Grandes Comercios</span>
-                      <span className="font-black text-foreground text-lg">{countryData.cuota_intercambio_propuesta_2026.credito.retail}</span>
-                    </div>
-                    <div className="h-4 bg-background rounded-full overflow-hidden flex border border-border/50 shadow-inner">
-                      <motion.div initial={{ width: 0 }} animate={{ width: "85%" }} transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }} className="bg-gradient-to-r from-pink-500 to-rose-400 w-full" />
-                    </div>
+                    <h3 className="text-xl font-black text-slate-900">Estructura Legal</h3>
+                    <p className="text-xs text-slate-500 font-bold">Adquirente vs. Agregador</p>
                   </div>
                 </div>
+                <Badge className="bg-cyan-100 text-cyan-900 border-cyan-300 font-bold text-xs">Modelos MX/LATAM</Badge>
               </div>
-            )}
-
-            <div className="grid grid-cols-2 gap-6">
-              <div className="p-6 rounded-[2rem] bg-gradient-to-br from-background/80 to-secondary/30 border border-border/50 hover:border-accent/30 transition-colors">
-                <h4 className="text-xs font-bold text-muted-foreground mb-3 uppercase tracking-widest">Tasa Adquirente Crédito</h4>
-                <div className="text-3xl font-black text-accent font-mono">{countryData.tasas_tarjeta?.credito || "1.5% - 2.5%"}</div>
-              </div>
-              <div className="p-6 rounded-[2rem] bg-gradient-to-br from-background/80 to-secondary/30 border border-border/50 hover:border-emerald-500/30 transition-colors">
-                <h4 className="text-xs font-bold text-muted-foreground mb-3 uppercase tracking-widest">Tasa Adquirente Débito</h4>
-                <div className="text-3xl font-black text-emerald-400 font-mono">{countryData.tasas_tarjeta?.debito || "0.75% - 1.5%"}</div>
+              
+              <div className="w-full">
+                <table className="w-full text-xs text-left border-collapse table-fixed">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-500 font-mono text-[11px] uppercase tracking-wider">
+                      <th className="pb-3 font-bold w-[25%]">Concepto</th>
+                      <th className="pb-3 font-bold text-cyan-700 w-[37.5%]">Adquirente</th>
+                      <th className="pb-3 font-bold text-emerald-700 w-[37.5%]">Agregador</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 font-extrabold text-slate-900 align-top">Definición</td>
+                      <td className="py-3 text-slate-700 font-medium pr-2 break-words align-top">{adquirenteData.definicion}</td>
+                      <td className="py-3 text-slate-700 font-medium break-words align-top">{agregadorData.definicion}</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 font-extrabold text-slate-900 align-top">Licencia</td>
+                      <td className="py-3 text-slate-700 pr-2 break-words align-top"><Badge variant="outline" className="bg-slate-100 border-slate-300 text-slate-800 font-bold text-[10px]">{adquirenteData.requiere}</Badge></td>
+                      <td className="py-3 text-slate-700 break-words align-top"><Badge variant="outline" className="bg-slate-100 border-slate-300 text-slate-800 font-bold text-[10px]">{agregadorData.requiere}</Badge></td>
+                    </tr>
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 font-extrabold text-slate-900 align-top">Tasa Típica</td>
+                      <td className="py-3 text-cyan-700 pr-2 font-mono font-black text-xs break-words align-top">{adquirenteData.tasa_tipica}</td>
+                      <td className="py-3 text-emerald-700 font-mono font-black text-xs break-words align-top">{agregadorData.tasa_tipica}</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 font-extrabold text-slate-900 align-top">Risk / KYC</td>
+                      <td className="py-3 text-slate-700 pr-2 break-words align-top">{adquirenteData.relacion_comercio}</td>
+                      <td className="py-3 text-slate-700 break-words align-top">{agregadorData.relacion_comercio}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
 
-            {activeCountry === 'mexico' && mexicoAgregadores.length > 0 && (
-              <div className="pt-4">
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-xs font-black text-slate-700 uppercase tracking-widest flex items-center gap-2 font-mono">
-                    <div className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse" />
-                    Mapa Completo de Agregadores en México (Registro Banxico)
-                  </h4>
-                  <span className="text-[11px] font-bold text-slate-500 font-mono">
-                    {mexicoAgregadores.length} Agregadores Registrados
-                  </span>
+            <div className="grid grid-cols-2 gap-3 pt-6 mt-6 border-t border-slate-100">
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Tasa Crédito</h4>
+                <div className="text-xl font-black text-cyan-700 font-mono mt-0.5">{countryData.tasas_tarjeta?.credito || "1.5% - 2.5%"}</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Tasa Débito</h4>
+                <div className="text-xl font-black text-emerald-700 font-mono mt-0.5">{countryData.tasas_tarjeta?.debito || "0.75% - 1.5%"}</div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Card 2: Impacto Reducción CI & Regulación */}
+          <Card className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden h-full flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-purple-100 border border-purple-300 rounded-xl">
+                    <TrendingDown className="w-5 h-5 text-purple-700" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black text-slate-900 capitalize">Ecosistema {activeCountry}</h3>
+                    <p className="text-xs text-purple-700 font-bold font-mono">Tasas & Regulación 2026</p>
+                  </div>
                 </div>
-                
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {mexicoAgregadores.map((agr: any) => {
-                    const isPopular = ["Clip", "Stripe", "Mercado Pago", "Conekta", "Netpay", "Kushki", "Sr Pago", "Paypal", "Dlocal"].includes(agr.name);
-                    return (
-                      <div 
-                        key={agr.name} 
-                        className={`flex flex-col justify-between p-3.5 rounded-2xl border transition-all duration-300 ${
-                          isPopular 
-                            ? 'bg-white border-cyan-300 shadow-xs hover:border-cyan-500 hover:shadow-md' 
-                            : 'bg-slate-50 border-slate-200 hover:bg-white hover:border-slate-300'
-                        }`}
-                      >
-                        <div>
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-black text-sm text-slate-900">{agr.name}</span>
-                            {isPopular && (
-                              <span className="text-[9px] font-black uppercase font-mono px-1.5 py-0.5 rounded bg-cyan-100 text-cyan-800 border border-cyan-300">
-                                Destacado
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        <span className="font-mono text-cyan-700 text-xs font-black mt-2">
-                          MDR: {agr.rate}
-                        </span>
+                <Badge className="bg-purple-100 text-purple-900 border-purple-300 font-bold text-xs">Banxico / Regulación</Badge>
+              </div>
+
+              {activeCountry === "mexico" && countryData.cuota_intercambio_propuesta_2026 ? (
+                <div className="p-5 rounded-2xl bg-purple-50/50 border border-purple-200 space-y-6">
+                  <div className="flex justify-between items-center">
+                    <h4 className="text-xs font-black text-slate-900 flex items-center gap-2 font-mono">
+                      <TrendingDown className="w-4 h-4 text-purple-600" /> 
+                      Reducción Cuota de Intercambio (CI)
+                    </h4>
+                    <span className="text-[10px] font-bold px-2 py-0.5 bg-purple-200 text-purple-900 rounded font-mono">Topes 2026</span>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex justify-between text-xs mb-1.5 font-mono">
+                        <span className="text-slate-600 font-bold">Agregadores</span>
+                        <span className="font-black text-slate-900">{countryData.cuota_intercambio_propuesta_2026.credito.agregadores.split('(')[0]}</span>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-            
-            {activeCountry !== 'mexico' && (
-              <div className="p-6 rounded-[2rem] bg-secondary/30 border border-border/50 mt-4">
-                <h4 className="text-sm font-bold text-muted-foreground mb-3 uppercase tracking-widest">Observaciones Regulatorias</h4>
-                <p className="text-base font-medium leading-relaxed text-foreground/90">{countryData.observacion || countryData.open_finance || countryData.sistemas_pago?.[0]}</p>
-              </div>
-            )}
+                      <div className="h-3 bg-purple-100 rounded-full overflow-hidden flex border border-purple-200">
+                        <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1.2, ease: "easeOut" }} className="bg-gradient-to-r from-purple-600 to-indigo-600 w-full" />
+                      </div>
+                    </div>
 
-          </div>
-        </Card>
+                    <div>
+                      <div className="flex justify-between text-xs mb-1.5 font-mono">
+                        <span className="text-slate-600 font-bold">Retail / Grandes Comercios</span>
+                        <span className="font-black text-slate-900">{countryData.cuota_intercambio_propuesta_2026.credito.retail}</span>
+                      </div>
+                      <div className="h-3 bg-purple-100 rounded-full overflow-hidden flex border border-purple-200">
+                        <motion.div initial={{ width: 0 }} animate={{ width: "85%" }} transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }} className="bg-gradient-to-r from-pink-500 to-rose-500 w-full" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                  <h4 className="text-xs font-black text-slate-800 uppercase tracking-wider font-mono">Observaciones Regulatorias</h4>
+                  <p className="text-xs font-medium leading-relaxed text-slate-600">
+                    {countryData.observacion || countryData.open_finance || countryData.sistemas_pago?.[0] || "Información actualizada de tasas locales."}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 mt-6">
+              <p className="text-[11px] text-slate-600 font-medium leading-relaxed">
+                💡 <strong className="text-slate-900 font-bold">Tip B2B:</strong> La reducción de la CI le da margen a tu comercio para solicitar renegociación de comisiones de adquirencia directa.
+              </p>
+            </div>
+          </Card>
+        </div>
+
+        {/* Full-width Card 3: Mapa Completo de Agregadores en México */}
+        {activeCountry === 'mexico' && mexicoAgregadores.length > 0 && (
+          <Card className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl shadow-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-slate-100">
+              <div>
+                <h3 className="text-xl font-black text-slate-900 flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-cyan-600 animate-pulse" />
+                  Mapa Completo de Agregadores en México
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">Catálogo oficial de Agregadores registrados ante Banxico/CNBV</p>
+              </div>
+              <Badge className="bg-cyan-100 text-cyan-900 border-cyan-300 font-bold text-xs font-mono">
+                {mexicoAgregadores.length} Registrados
+              </Badge>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {mexicoAgregadores.map((agr: any) => {
+                const isPopular = ["Clip", "Stripe", "Mercado Pago", "Conekta", "Netpay", "Kushki", "Sr Pago", "Paypal", "Dlocal"].includes(agr.name);
+                return (
+                  <div 
+                    key={agr.name} 
+                    className={`flex flex-col justify-between p-3 rounded-xl border transition-all duration-200 ${
+                      isPopular 
+                        ? 'bg-white border-cyan-300 shadow-xs hover:border-cyan-500 hover:shadow-md ring-1 ring-cyan-200' 
+                        : 'bg-slate-50 border-slate-200 hover:bg-white hover:border-slate-300'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-black text-xs text-slate-900 truncate">{agr.name}</span>
+                      </div>
+                      {isPopular && (
+                        <span className="text-[8px] font-black uppercase font-mono px-1 py-0.2 rounded bg-cyan-100 text-cyan-800 border border-cyan-300 inline-block mb-1">
+                          Líder
+                        </span>
+                      )}
+                    </div>
+                    <span className="font-mono text-cyan-700 text-xs font-black mt-1">
+                      {agr.rate}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+        )}
+
       </div>
 
     </div>
