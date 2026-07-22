@@ -21,6 +21,7 @@ import {
   ChevronUp, 
   ExternalLink, 
   X,
+  Menu,
   Send,
   Loader2
 } from "lucide-react";
@@ -47,8 +48,17 @@ export default function Home() {
   const [, navigate] = useLocation();
 
   // Estados generales
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [selectedCountryKey, setSelectedCountryKey] = useState<string>("MX");
+
+  const scrollToSection = (id: string) => {
+    setMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   // Biblioteca de Expertos Tabs
   const [activeLibraryTab, setActiveLibraryTab] = useState<'ecosistema' | 'diccionario' | 'expertos'>('ecosistema');
@@ -301,49 +311,112 @@ export default function Home() {
       </div>
       
       {/* HEADER / NAVIGATION */}
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border relative">
+      <nav className="sticky top-0 z-50 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 relative">
         <div className="container flex items-center justify-between h-16">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
-              <span className="text-primary-foreground font-bold text-sm font-mono">OP</span>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+              <span className="text-black font-extrabold text-sm font-mono">OP</span>
             </div>
-            <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">OnlyPayments</span>
-            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-accent/20 text-accent font-semibold font-mono border border-accent/20">GLOBAL</span>
+            <span className="font-bold text-lg tracking-tight text-white">OnlyPayments</span>
+            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 font-semibold font-mono border border-cyan-500/30">GLOBAL</span>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-5">
-              <a href="#explorador" className="text-sm font-medium hover:text-accent transition-colors">Explorador</a>
-              <a href="#biblioteca" className="text-sm font-medium hover:text-accent transition-colors">Biblioteca de Expertos</a>
-              <a href="#comunidad" className="text-sm font-medium hover:text-accent transition-colors">Comunidad</a>
-              <button onClick={() => navigate('/remesas')} className="text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+              <button onClick={() => scrollToSection('explorador')} className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer">
+                Explorador
+              </button>
+              <button onClick={() => scrollToSection('biblioteca')} className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer">
+                Biblioteca de Expertos
+              </button>
+              <button onClick={() => scrollToSection('comunidad')} className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer">
+                Comunidad
+              </button>
+              <button onClick={() => navigate('/remesas')} className="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer">
                 Remesas
               </button>
-              <button onClick={() => navigate('/latam-dashboard')} className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors">
+              <button onClick={() => navigate('/latam-dashboard')} className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer">
                 Radar Latam
               </button>
-              <button onClick={() => navigate('/b2b-intros')} className="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors bg-cyan-950/60 px-3 py-1 rounded-lg border border-cyan-800/60 shadow-sm flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 fill-cyan-400" />
+              <button onClick={() => navigate('/b2b-intros')} className="text-sm font-bold text-cyan-300 hover:text-white transition-colors bg-cyan-950/80 px-3 py-1 rounded-lg border border-cyan-500/40 shadow-sm flex items-center gap-1.5 cursor-pointer">
+                <Zap className="w-3.5 h-3.5 text-cyan-400 fill-cyan-400" />
                 Intros B2B
               </button>
             </div>
 
-            <div className="flex items-center gap-3 border-l border-border pl-3">
-              {/* Botón modo claro/oscuro eliminado para forzar estética dark premium */}
-
-
+            <div className="flex items-center gap-2">
               {user ? (
-                <Button variant="outline" size="sm" onClick={() => navigate("/dashboard")} className="hidden sm:inline-flex border-white/20 text-white hover:bg-white/10">
+                <Button variant="outline" size="sm" onClick={() => navigate("/dashboard")} className="hidden sm:inline-flex border-slate-700 text-white hover:bg-slate-900">
                   Mi Dashboard
                 </Button>
               ) : (
-                <Button size="sm" onClick={startLogin} className="hidden sm:inline-flex bg-white text-black hover:bg-white/90 font-semibold shadow-sm">
+                <Button size="sm" onClick={startLogin} className="hidden sm:inline-flex bg-cyan-500 text-black hover:bg-cyan-400 font-extrabold shadow-sm">
                   Ingresar
                 </Button>
               )}
+
+              {/* Botón de Menú Móvil */}
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-800"
+                aria-label="Abrir menú"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5 text-cyan-400" />}
+              </button>
             </div>
           </div>
         </div>
+
+        {/* Menú Desplegable Móvil */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-slate-950 border-b border-slate-800 px-4 py-4 space-y-3 animate-in slide-in-from-top-2 duration-200">
+            <button 
+              onClick={() => scrollToSection('explorador')} 
+              className="w-full text-left px-3 py-2 text-sm font-medium text-slate-200 hover:bg-slate-900 rounded-lg flex items-center justify-between"
+            >
+              <span>Explorador</span>
+              <span className="text-xs text-cyan-400 font-mono">→</span>
+            </button>
+            <button 
+              onClick={() => scrollToSection('biblioteca')} 
+              className="w-full text-left px-3 py-2 text-sm font-medium text-slate-200 hover:bg-slate-900 rounded-lg flex items-center justify-between"
+            >
+              <span>Biblioteca de Expertos</span>
+              <span className="text-xs text-cyan-400 font-mono">→</span>
+            </button>
+            <button 
+              onClick={() => scrollToSection('comunidad')} 
+              className="w-full text-left px-3 py-2 text-sm font-medium text-slate-200 hover:bg-slate-900 rounded-lg flex items-center justify-between"
+            >
+              <span>Comunidad</span>
+              <span className="text-xs text-cyan-400 font-mono">→</span>
+            </button>
+            <button 
+              onClick={() => { setMobileMenuOpen(false); navigate('/remesas'); }} 
+              className="w-full text-left px-3 py-2 text-sm font-bold text-cyan-400 hover:bg-slate-900 rounded-lg flex items-center justify-between"
+            >
+              <span>Remesas</span>
+              <span className="text-xs text-cyan-400 font-mono">→</span>
+            </button>
+            <button 
+              onClick={() => { setMobileMenuOpen(false); navigate('/latam-dashboard'); }} 
+              className="w-full text-left px-3 py-2 text-sm font-bold text-indigo-400 hover:bg-slate-900 rounded-lg flex items-center justify-between"
+            >
+              <span>Radar Latam</span>
+              <span className="text-xs text-indigo-400 font-mono">→</span>
+            </button>
+            <button 
+              onClick={() => { setMobileMenuOpen(false); navigate('/b2b-intros'); }} 
+              className="w-full text-left px-3 py-2 text-sm font-bold text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 rounded-lg flex items-center justify-between"
+            >
+              <span className="flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                Intros B2B
+              </span>
+              <span className="text-xs text-cyan-400 font-mono">→</span>
+            </button>
+          </div>
+        )}
       </nav>
 
       <HeroParallax 

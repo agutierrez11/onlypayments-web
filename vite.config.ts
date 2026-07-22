@@ -166,6 +166,30 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("three") || id.includes("globe.gl")) {
+              return "vendor-three";
+            }
+            if (id.includes("recharts") || id.includes("d3-")) {
+              return "vendor-charts";
+            }
+            if (id.includes("framer-motion") || id.includes("gsap") || id.includes("lenis")) {
+              return "vendor-animation";
+            }
+            if (id.includes("@radix-ui") || id.includes("lucide-react")) {
+              return "vendor-ui";
+            }
+            if (id.includes("react") || id.includes("react-dom") || id.includes("wouter") || id.includes("@tanstack")) {
+              return "vendor-core";
+            }
+          }
+        },
+      },
+    },
   },
   server: {
     host: true,
