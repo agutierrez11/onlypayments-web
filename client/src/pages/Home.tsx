@@ -429,6 +429,7 @@ export default function Home() {
         onExplore={() => {
           document.getElementById('matcher-section')?.scrollIntoView({ behavior: 'smooth' })
         }}
+        onApis={() => navigate('/latam-dashboard')}
         onRemittances={() => navigate('/remesas')}
         onCommunity={() => {
           document.getElementById('comunidad')?.scrollIntoView({ behavior: 'smooth' })

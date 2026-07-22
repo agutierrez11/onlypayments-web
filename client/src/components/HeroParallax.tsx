@@ -5,10 +5,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 export function HeroParallax({
   onExplore,
+  onApis,
 }: {
   onExplore: () => void;
-  onRemittances: () => void;
-  onCommunity: () => void;
+  onApis?: () => void;
+  onRemittances?: () => void;
+  onCommunity?: () => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -91,6 +93,7 @@ export function HeroParallax({
           <Button 
             size="lg" 
             variant="outline"
+            onClick={onApis}
             className="w-full sm:w-auto gap-3 bg-white border-2 border-slate-300 hover:bg-slate-100 text-slate-900 transition-all duration-200 rounded-xl h-14 px-8 text-base font-extrabold shadow-xs cursor-pointer"
           >
             Ver APIs <Network className="w-5 h-5 text-cyan-600" />
