@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diccionario de Medios de Pago v6.0 — Fernando Estévez & OnlyPayments</title>
+  <title>Diccionario Medios de Pago — Latam Digital Bridge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -16,25 +16,27 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xni32dnkft");
   </script>
+
   <style>
     :root {
-      --bg: #020408;
-      --bg-card: #0a0e17;
-      --accent: #00f5d4;
-      --text: #e8f4f8;
-      --text-dim: #6b8a9a;
-      --border: rgba(0,245,212,0.15);
+      --bg: #070d19;
+      --bg-card: #0e172a;
+      --accent: #00a8ff;
+      --accent-glow: rgba(0, 168, 255, 0.2);
+      --text: #f1f5f9;
+      --text-dim: #94a3b8;
+      --border: rgba(0, 168, 255, 0.2);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Rajdhani', system-ui, sans-serif;
-      padding-bottom: 40px;
+      padding-bottom: 30px;
     }
     .header-bar {
       border-bottom: 1px solid var(--border);
-      background: rgba(2,4,8,0.95);
+      background: rgba(7, 13, 25, 0.95);
       padding: 12px 24px;
       display: flex;
       justify-content: space-between;
@@ -46,58 +48,61 @@
     }
     .brand-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--accent);
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .author-badge {
-      background: #0a0e17;
-      border: 1px solid rgba(0,245,212,0.3);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 10px;
-      color: #fff;
+      background: #00205b;
+      border: 1px solid rgba(0,168,255,0.4);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #ffffff;
+      font-weight: 600;
     }
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 32px 20px;
+      padding: 24px 20px;
     }
     .title-sec {
       text-align: center;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
     .badge-top {
       display: inline-block;
-      background: rgba(0,245,212,0.08);
-      border: 1px solid rgba(0,245,212,0.2);
+      background: rgba(0, 168, 255, 0.1);
+      border: 1px solid rgba(0, 168, 255, 0.3);
       color: var(--accent);
-      padding: 4px 14px;
+      padding: 4px 16px;
       border-radius: 20px;
       font-size: 11px;
       font-family: 'JetBrains Mono', monospace;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      font-weight: 700;
     }
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(26px, 4vw, 40px);
+      font-size: clamp(24px, 4vw, 36px);
       color: #fff;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .sub {
       color: var(--text-dim);
       font-size: 15px;
-      max-width: 600px;
+      max-width: 650px;
       margin: 0 auto;
+      line-height: 1.5;
     }
     .search-box {
       position: relative;
-      max-width: 600px;
-      margin: 0 auto 36px;
+      max-width: 650px;
+      margin: 0 auto 28px;
     }
     .search-input {
       width: 100%;
@@ -106,101 +111,87 @@
       border-radius: 14px;
       padding: 14px 20px 14px 44px;
       color: #fff;
-      font-size: 14px;
-      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px;
       outline: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
       transition: all 0.2s;
     }
     .search-input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 20px rgba(0,245,212,0.15);
+      box-shadow: 0 0 20px var(--accent-glow);
     }
     .search-icon {
       position: absolute;
       left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-dim);
-      font-size: 16px;
+      font-size: 18px;
     }
-    
-    /* CATEGORIES GRID (MATCHER STYLE) */
     .cat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
     }
     .cat-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 14px;
       cursor: pointer;
-      transition: all 0.3s;
-      text-align: left;
+      transition: all 0.2s;
     }
     .cat-card:hover, .cat-card.active {
       border-color: var(--accent);
-      background: #0e1626;
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(0,245,212,0.1);
+      background: #1e293b;
+      box-shadow: 0 0 15px var(--accent-glow);
     }
-    .cat-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-      display: inline-block;
-      background: #020408;
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(0,245,212,0.1);
-    }
+    .cat-icon { font-size: 20px; margin-bottom: 6px; }
     .cat-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .cat-desc {
       font-size: 12px;
       color: var(--text-dim);
-      line-height: 1.4;
+      line-height: 1.3;
     }
-
-    /* TERMS GRID */
     .terms-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 16px;
     }
     .term-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
+      border-radius: 14px;
+      padding: 18px;
       cursor: pointer;
       transition: all 0.2s;
     }
     .term-card:hover {
-      border-color: rgba(0,245,212,0.4);
-      background: #0c121e;
+      border-color: var(--accent);
+      background: #1e293b;
     }
     .term-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .term-title-box {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .term-icon { font-size: 22px; }
+    .term-icon { font-size: 20px; }
     .term-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: #fff;
     }
@@ -213,8 +204,6 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-
-    /* MODAL */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -228,10 +217,10 @@
     }
     .modal-overlay.active { display: flex; }
     .modal-card {
-      background: #0a0e17;
-      border: 1px solid rgba(0,245,212,0.3);
+      background: #0e172a;
+      border: 1px solid rgba(0, 168, 255, 0.4);
       border-radius: 20px;
-      padding: 28px;
+      padding: 26px;
       max-width: 540px;
       width: 100%;
       position: relative;
@@ -253,44 +242,44 @@
 <body>
 
   <div class="header-bar">
-    <a href="/" target="_top" style="text-decoration: none;" class="brand-tag">
-      📖 DICCIONARIO FINTECH v6.0
+    <div class="brand-tag">
+      🌐 LATAM DIGITAL BRIDGE
       <span class="author-badge">Fernando Estévez</span>
-    </a>
-    <a href="/" target="_top" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #00f5d4; text-decoration: none; background: rgba(0,245,212,0.1); border: 1px solid rgba(0,245,212,0.3); padding: 4px 10px; border-radius: 6px; font-weight: 700; transition: all 0.2s;" onmouseover="this.style.background='rgba(0,245,212,0.2)'" onmouseout="this.style.background='rgba(0,245,212,0.1)'">
-      ⚡ Powered by <strong style="color: #fff;">OnlyPayments</strong> →
-    </a>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim);">
+      Motor de Búsqueda de Pagos v6.0
+    </div>
   </div>
 
   <div class="container">
     <div class="title-sec">
-      <div class="badge-top">LATAM Fintech Knowledge Base</div>
+      <div class="badge-top">Biblioteca Interactiva de Pagos</div>
       <h1>Diccionario de Medios de Pago</h1>
-      <p class="sub">Toda la terminología técnica, legal y comercial estructurada para profesionales por Fernando Estévez.</p>
+      <p class="sub">Toda la terminología técnica, legal y comercial estructurada para profesionales por <strong>Fernando Estévez</strong>.</p>
     </div>
 
     <!-- Buscador -->
     <div class="search-box">
       <span class="search-icon">🔍</span>
-      <input type="text" id="search-input" class="search-input" placeholder="Buscar término (ej. PIX, SPEI, PCI DSS, BaaS)..." oninput="filterTerms()">
+      <input type="text" id="search-input" class="search-input" placeholder="Buscar término (ej. PIX, SPEI, SOFOM, Core Bancario, BaaS)..." oninput="filterTerms()">
     </div>
 
-    <!-- Categorías Estilo Matcher -->
+    <!-- Categorías -->
     <div class="cat-grid">
       <div class="cat-card" onclick="selectCat('comercial', this)">
         <div class="cat-icon">💳</div>
         <div class="cat-title">Comercial & Finanzas</div>
-        <div class="cat-desc">Adquirencia, MDR, Cuota de Intercambio, Liquidación</div>
+        <div class="cat-desc">Adquirencia, MDR, Factoraje, Liquidación</div>
       </div>
       <div class="cat-card" onclick="selectCat('tecnico', this)">
         <div class="cat-icon">⚡</div>
         <div class="cat-title">Técnico & Core</div>
-        <div class="cat-desc">PIX, SPEI, Bre-B, Pasarelas, Tokenización, 3DS2</div>
+        <div class="cat-desc">PIX, SPEI, Core Bancario, Tokenización</div>
       </div>
       <div class="cat-card" onclick="selectCat('legal', this)">
         <div class="cat-icon">⚖️</div>
         <div class="cat-title">Legal & Compliance</div>
-        <div class="cat-desc">PCI DSS 4.0, KYC/KYB, PLD, Ley Fintech</div>
+        <div class="cat-desc">SOFOM, PCI DSS, KYC/KYB, Ley Fintech</div>
       </div>
       <div class="cat-card" onclick="selectCat('infraestructura', this)">
         <div class="cat-icon">🏛️</div>
@@ -301,15 +290,6 @@
 
     <!-- Grid de Términos -->
     <div class="terms-grid" id="terms-container"></div>
-
-    <!-- CTA Banner to OnlyPayments Platform -->
-    <div style="margin-top: 40px; background: linear-gradient(135deg, rgba(0,245,212,0.1), rgba(123,97,255,0.1)); border: 1px solid rgba(0,245,212,0.3); border-radius: 16px; padding: 24px; text-align: center;">
-      <h3 style="font-family: 'Orbitron', sans-serif; font-size: 18px; color: #fff; margin-bottom: 8px;">¿Quieres comparar Proveedores, Stacks y Radar Fintech?</h3>
-      <p style="color: #6b8a9a; font-size: 13px; margin-bottom: 16px;">Explora el ecosistema completo de pagos en OnlyPayments Platform.</p>
-      <a href="/" target="_top" style="display: inline-block; background: #00f5d4; color: #020408; font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 900; padding: 12px 24px; border-radius: 10px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-        Ir a OnlyPayments Global →
-      </a>
-    </div>
   </div>
 
   <!-- Modal Detalle -->
@@ -320,11 +300,11 @@
         <span id="m-icon" style="font-size: 32px;">📄</span>
         <div>
           <div id="m-title" style="font-family: Orbitron; font-size: 22px; font-weight: 700; color: #fff;"></div>
-          <div id="m-acronym" style="font-family: JetBrains Mono; font-size: 11px; color: #00f5d4;"></div>
+          <div id="m-acronym" style="font-family: JetBrains Mono; font-size: 11px; color: #00a8ff;"></div>
         </div>
       </div>
-      <div id="m-def" style="background: #020408; border: 1px solid rgba(0,245,212,0.15); padding: 16px; border-radius: 12px; font-size: 14px; line-height: 1.6; color: #e8f4f8; margin-bottom: 16px;"></div>
-      <div id="m-source" style="font-family: JetBrains Mono; font-size: 11px; color: #6b8a9a;"></div>
+      <div id="m-def" style="background: #070d19; border: 1px solid rgba(0,168,255,0.3); padding: 16px; border-radius: 12px; font-size: 14px; line-height: 1.6; color: #f1f5f9; margin-bottom: 16px;"></div>
+      <div id="m-source" style="font-family: JetBrains Mono; font-size: 11px; color: #94a3b8;"></div>
     </div>
   </div>
 
@@ -370,10 +350,10 @@
               <span class="term-icon">${t.icon}</span>
               <div>
                 <div class="term-title">${t.term}</div>
-                ${t.acronym ? `<span style="font-family: JetBrains Mono; font-size: 10px; color: #6b8a9a;">${t.acronym}</span>` : ''}
+                ${t.acronym ? `<span style="font-family: JetBrains Mono; font-size: 10px; color: #94a3b8;">${t.acronym}</span>` : ''}
               </div>
             </div>
-            <span style="color: #00f5d4;">→</span>
+            <span style="color: #00a8ff;">→</span>
           </div>
           <div class="term-def">${t.def}</div>
         </div>
