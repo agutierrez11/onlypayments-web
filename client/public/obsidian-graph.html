@@ -193,6 +193,7 @@
     .dot-country { background: #7b61ff; box-shadow: 0 0 8px #7b61ff; }
     .dot-rail { background: #ff9f1c; box-shadow: 0 0 8px #ff9f1c; }
     .dot-reg { background: #ff3864; box-shadow: 0 0 8px #ff3864; }
+    .dot-assoc { background: #00b4d8; box-shadow: 0 0 8px #00b4d8; }
   </style>
 </head>
 <body>
@@ -201,25 +202,27 @@
   <!-- HUD Top Left -->
   <div class="hud hud-top-left">
     <div class="hud-title">ONLYPAYMENTS ECOSYSTEM GRAPH</div>
-    <div class="hud-subtitle">1,047 NODOS CONECTADOS ● OBSIDIAN NETWORK GRAPH</div>
+    <div class="hud-subtitle">1,047 NODOS CONECTADOS ● MAPA COMPLETO DE RIELES, REGULADORES Y CÁMARAS FINTECH</div>
   </div>
   
   <!-- HUD Top Right: Controls & Filters -->
   <div class="hud hud-top-right">
-    <input type="text" id="search-input" class="search-box" placeholder="Buscar país, riel o entidad..." oninput="onSearch(this.value)">
+    <input type="text" id="search-input" class="search-box" placeholder="Buscar país, riel o cámara..." oninput="onSearch(this.value)">
     <button class="filter-btn active" onclick="filterCategory('all', this)">Todos</button>
     <button class="filter-btn" onclick="filterCategory('country', this)">Países</button>
     <button class="filter-btn" onclick="filterCategory('rail', this)">Rieles A2A</button>
     <button class="filter-btn" onclick="filterCategory('reg', this)">Reguladores</button>
+    <button class="filter-btn" onclick="filterCategory('assoc', this)">Cámaras Fintech</button>
   </div>
   
   <!-- HUD Bottom Left: Legend -->
   <div class="hud hud-bottom-left">
     <div class="legend">
       <div class="legend-item"><div class="legend-dot dot-hub"></div><span>Core Hub</span></div>
-      <div class="legend-item"><div class="legend-dot dot-country"></div><span>Países (20)</span></div>
-      <div class="legend-item"><div class="legend-dot dot-rail"></div><span>Rieles A2A Core</span></div>
-      <div class="legend-item"><div class="legend-dot dot-reg"></div><span>Entidades / Regulación</span></div>
+      <div class="legend-item"><div class="legend-dot dot-country"></div><span>Países LATAM</span></div>
+      <div class="legend-item"><div class="legend-dot dot-rail"></div><span>Rieles A2A & Pagos Instantáneos</span></div>
+      <div class="legend-item"><div class="legend-dot dot-reg"></div><span>Bancos Centrales / Reguladores</span></div>
+      <div class="legend-item"><div class="legend-dot dot-assoc"></div><span>Cámaras & Asociaciones Fintech</span></div>
     </div>
   </div>
   
@@ -264,10 +267,10 @@
     country: '#7b61ff',
     rail: '#ff9f1c',
     reg: '#ff3864',
-    provider: '#00b4d8'
+    assoc: '#00b4d8'
   };
 
-  // Node Dataset: 20 LATAM Countries + Core Rails + Regulators + Providers
+  // Node Dataset: 20 LATAM Countries + Complete Payment Rails + Regulators + Fintech Chambers
   const nodes = [
     { id: 'core', label: 'OnlyPayments Hub', cat: 'hub', radius: 24, detail: 'Central Intelligence & B2B Matchmaking Engine', stat: '1,047 Entidades' },
     
@@ -293,19 +296,49 @@
     { id: 'jm', label: '🇯🇲 Jamaica', cat: 'country', radius: 8, detail: '35+ Fintechs · JAM-DEX CBDC Bank of Jamaica', stat: 'CBDC Pioneer' },
     { id: 'pr', label: '🇵🇷 Puerto Rico', cat: 'country', radius: 10, detail: '120+ Fintechs · ATH Móvil · US Fedwire', stat: 'US Fedwire' },
 
-    // Core Payment Rails
+    // Complete Payment Rails (Rieles A2A & Pagos Instantáneos)
     { id: 'pix', label: 'PIX (Brasil)', cat: 'rail', radius: 16, detail: '63B Transacciones · 95% Adopción Adultos', stat: 'T+0 Instant' },
-    { id: 'spei', label: 'SPEI / DiMo (México)', cat: 'rail', radius: 15, detail: 'Sistema Banxico 24/7 B2B & P2P', stat: '60M Usuarios' },
-    { id: 'breb', label: 'Bre-B (Colombia)', cat: 'rail', radius: 14, detail: 'Nuevo Riel Interoperable Banco República', stat: 'Interoperable' },
-    { id: 'yape', label: 'Yape / Plin (Perú)', cat: 'rail', radius: 13, detail: 'Interoperabilidad BCRP Total', stat: '15M Usuarios' },
+    { id: 'spei', label: 'SPEI / DiMo / CoDi (México)', cat: 'rail', radius: 15, detail: 'Sistema Banxico 24/7 B2B & P2P', stat: '60M Usuarios' },
+    { id: 'breb', label: 'Bre-B / PSE (Colombia)', cat: 'rail', radius: 14, detail: 'Riel Interoperable Banco de la República', stat: 'Interoperable' },
+    { id: 'yape', label: 'Yape / Plin / CCE (Perú)', cat: 'rail', radius: 13, detail: 'Interoperabilidad BCRP Total', stat: '15M Usuarios' },
     { id: 'sinpe', label: 'SINPE Móvil (Costa Rica)', cat: 'rail', radius: 12, detail: 'Riel Inmediato BCCR', stat: '88% Penetración' },
-    { id: 't3', label: 'Transferencias 3.0 (Argentina)', cat: 'rail', radius: 12, detail: 'QR Interoperable BCRA', stat: 'Multi-Wallet' },
+    { id: 't3', label: 'Transferencias 3.0 / MODO (Argentina)', cat: 'rail', radius: 13, detail: 'QR Interoperable BCRA & DEBIN', stat: 'Multi-Wallet' },
+    { id: 'tef', label: 'TEF / Khipu / PagoRápido (Chile)', cat: 'rail', radius: 12, detail: 'Transferencias Electrónicas CCA / CMF', stat: 'High Conversion' },
+    { id: 'lbtr', label: 'LBTR Inmediato (Rep. Dominicana)', cat: 'rail', radius: 11, detail: 'Sistema de Pagos al Tiempo Real BCRD', stat: '24/7 Clearance' },
+    { id: 'spi_uy', label: 'SPI Directo / QR (Uruguay)', cat: 'rail', radius: 10, detail: 'Sistema de Pagos Instantáneos BCU', stat: 'Open Banking' },
+    { id: 'sipap', label: 'SIPAP 24/7 (Paraguay)', cat: 'rail', radius: 10, detail: 'Sistema de Pagos del Paraguay BCP', stat: 'Real-time B2B' },
+    { id: 'qr_bo', label: 'QR Simple / ACH (Bolivia)', cat: 'rail', radius: 9, detail: 'Cobro por QR Interbancario ASFI', stat: 'Zero Fee P2P' },
+    { id: 'ach_gt', label: 'ACH Pronto / GuatePago (Guatemala)', cat: 'rail', radius: 10, detail: 'Riel Interbancario BANGUAT', stat: 'Remesas Core' },
+    { id: 'chivo', label: 'Chivo / Lightning Network (El Salvador)', cat: 'rail', radius: 10, detail: 'Riel Crypto & Fiat Instantáneo', stat: 'Zero FX Fee' },
+    { id: 'pago_ve', label: 'Pago Móvil Interbancario (Venezuela)', cat: 'rail', radius: 10, detail: 'Red Interbancaria P2P & C2P', stat: 'Instant Clearance' },
+    { id: 'ath_pr', label: 'ATH Móvil / Fedwire (Puerto Rico)', cat: 'rail', radius: 11, detail: 'Evertec & US Federal Reserve System', stat: 'US Dollar Rail' },
 
-    // Regulators & Entities
-    { id: 'banxico', label: 'Banxico / CNBV', cat: 'reg', radius: 11, detail: 'Regulador Financiero México', stat: 'Ley Fintech' },
-    { id: 'bcb', label: 'Banco Central do Brasil', cat: 'reg', radius: 12, detail: 'Creador de PIX & Open Finance', stat: 'Open Fin F4' },
-    { id: 'sfc', label: 'Superfinanciera Colombia', cat: 'reg', radius: 10, detail: 'Regulación Sistema de Pagos Bajo Valor', stat: 'SFC Colombia' },
-    { id: 'cmf', label: 'CMF Chile', cat: 'reg', radius: 10, detail: 'Comisión para el Mercado Financiero', stat: 'Ley 21.521' }
+    // Central Banks & Financial Regulators
+    { id: 'banxico', label: 'Banxico & CNBV (México)', cat: 'reg', radius: 12, detail: 'Comisión Nacional Bancaria y de Valores · Ley Fintech', stat: 'Regulador MX' },
+    { id: 'bcb', label: 'Banco Central do Brasil & CVM', cat: 'reg', radius: 13, detail: 'Creador de PIX & Open Finance Brasil', stat: 'Regulador BR' },
+    { id: 'sfc', label: 'Superfinanciera Colombia & BanRep', cat: 'reg', radius: 11, detail: 'Regulación de Pagos de Bajo Valor & Open Finance', stat: 'Regulador CO' },
+    { id: 'cmf', label: 'CMF Chile & Banco Central', cat: 'reg', radius: 11, detail: 'Comisión para el Mercado Financiero · Ley 21.521', stat: 'Regulador CL' },
+    { id: 'bcra', label: 'BCRA (Argentina)', cat: 'reg', radius: 11, detail: 'Banco Central de la República Argentina', stat: 'Regulador AR' },
+    { id: 'bcrp', label: 'BCRP & SBS (Perú)', cat: 'reg', radius: 11, detail: 'Banco Central de Reserva del Perú & SBS', stat: 'Regulador PE' },
+    { id: 'bccr', label: 'BCCR & SUGEF (Costa Rica)', cat: 'reg', radius: 10, detail: 'Banco Central de Costa Rica', stat: 'Regulador CR' },
+    { id: 'bcrd', label: 'Banco Central Rep. Dominicana', cat: 'reg', radius: 10, detail: 'Administrador del Sistema de Pagos SIPARD', stat: 'Regulador DO' },
+    { id: 'bcu', label: 'Banco Central del Uruguay', cat: 'reg', radius: 10, detail: 'Superintendencia de Servicios Financieros', stat: 'Regulador UY' },
+    { id: 'bcp', label: 'Banco Central del Paraguay', cat: 'reg', radius: 10, detail: 'Administrador del SIPAP & SPI', stat: 'Regulador PY' },
+    { id: 'asfi', label: 'ASFI & BCB (Bolivia)', cat: 'reg', radius: 9, detail: 'Autoridad de Supervisión del Sistema Financiero', stat: 'Regulador BO' },
+    { id: 'banguat', label: 'BANGUAT & SIB (Guatemala)', cat: 'reg', radius: 9, detail: 'Superintendencia de Bancos de Guatemala', stat: 'Regulador GT' },
+
+    // Fintech Chambers & Industry Associations
+    { id: 'fintech_mx', label: 'Fintech México', cat: 'assoc', radius: 12, detail: 'Asociación Fintech México (180+ miembros)', stat: 'Gremio MX' },
+    { id: 'abfintechs', label: 'ABFintechs (Brasil)', cat: 'assoc', radius: 13, detail: 'Associação Brasileira de Fintechs (650+ miembros)', stat: 'Gremio BR' },
+    { id: 'colombia_fintech', label: 'Colombia Fintech', cat: 'assoc', radius: 12, detail: 'Asociación Colombiana de Empresas Fintech (350+ miembros)', stat: 'Gremio CO' },
+    { id: 'fintech_chile', label: 'FinteChile', cat: 'assoc', radius: 11, detail: 'Asociación de Empresas Fintech de Chile (140+ miembros)', stat: 'Gremio CL' },
+    { id: 'fintech_ar', label: 'Cámara Argentina de Fintech', cat: 'assoc', radius: 12, detail: 'Cámara Argentina de Fintech (230+ miembros)', stat: 'Gremio AR' },
+    { id: 'fintech_peru', label: 'Asociación Fintech del Perú', cat: 'assoc', radius: 11, detail: 'Gremio líder del ecosistema fintech peruano', stat: 'Gremio PE' },
+    { id: 'fintech_ibero', label: 'Alianza Iberoamericana Fintech', cat: 'assoc', radius: 13, detail: 'Federación de 14 Cámaras Fintech de Iberoamérica', stat: 'Alianza Regional' },
+    { id: 'asofintech_do', label: 'Asofintech (Rep. Dominicana)', cat: 'assoc', radius: 10, detail: 'Asociación Dominicana de Empresas Fintech', stat: 'Gremio DO' },
+    { id: 'fintech_uy', label: 'Cámara Uruguaya de FinTech', cat: 'assoc', radius: 10, detail: 'Cámara de Innovación Financiera de Uruguay', stat: 'Gremio UY' },
+    { id: 'fintech_cr', label: 'Asociación Fintech de Costa Rica', cat: 'assoc', radius: 10, detail: 'Asociación de Tecnologías Financieras de Costa Rica', stat: 'Gremio CR' },
+    { id: 'fintech_py', label: 'Cámara Paraguaya de Fintech', cat: 'assoc', radius: 9, detail: 'Gremio impulsor del ecosistema de pagos paraguayo', stat: 'Gremio PY' }
   ];
 
   // Links connecting nodes
@@ -317,26 +350,46 @@
     { source: 'core', target: 'cr' }, { source: 'core', target: 'pa' }, { source: 'core', target: 'do' },
     { source: 'core', target: 'uy' }, { source: 'core', target: 'py' }, { source: 'core', target: 'bo' },
     { source: 'core', target: 'hn' }, { source: 'core', target: 'ni' }, { source: 'core', target: 've' },
-    { source: 'core', target: 'jm' }, { source: 'core', target: 'pr' },
+    { source: 'core', target: 'jm' }, { source: 'core', target: 'pr' }, { source: 'core', target: 'fintech_ibero' },
 
     // Rail connections
     { source: 'br', target: 'pix' }, { source: 'bcb', target: 'pix' },
     { source: 'mx', target: 'spei' }, { source: 'banxico', target: 'spei' },
     { source: 'co', target: 'breb' }, { source: 'sfc', target: 'breb' },
-    { source: 'pe', target: 'yape' },
-    { source: 'cr', target: 'sinpe' },
-    { source: 'ar', target: 't3' },
-    { source: 'cl', target: 'cmf' }
+    { source: 'pe', target: 'yape' }, { source: 'bcrp', target: 'yape' },
+    { source: 'cr', target: 'sinpe' }, { source: 'bccr', target: 'sinpe' },
+    { source: 'ar', target: 't3' }, { source: 'bcra', target: 't3' },
+    { source: 'cl', target: 'tef' }, { source: 'cmf', target: 'tef' },
+    { source: 'do', target: 'lbtr' }, { source: 'bcrd', target: 'lbtr' },
+    { source: 'uy', target: 'spi_uy' }, { source: 'bcu', target: 'spi_uy' },
+    { source: 'py', target: 'sipap' }, { source: 'bcp', target: 'sipap' },
+    { source: 'bo', target: 'qr_bo' }, { source: 'asfi', target: 'qr_bo' },
+    { source: 'gt', target: 'ach_gt' }, { source: 'banguat', target: 'ach_gt' },
+    { source: 'sv', target: 'chivo' },
+    { source: 've', target: 'pago_ve' },
+    { source: 'pr', target: 'ath_pr' },
+
+    // Fintech Chamber connections
+    { source: 'mx', target: 'fintech_mx' }, { source: 'fintech_ibero', target: 'fintech_mx' },
+    { source: 'br', target: 'abfintechs' }, { source: 'fintech_ibero', target: 'abfintechs' },
+    { source: 'co', target: 'colombia_fintech' }, { source: 'fintech_ibero', target: 'colombia_fintech' },
+    { source: 'cl', target: 'fintech_chile' }, { source: 'fintech_ibero', target: 'fintech_chile' },
+    { source: 'ar', target: 'fintech_ar' }, { source: 'fintech_ibero', target: 'fintech_ar' },
+    { source: 'pe', target: 'fintech_peru' }, { source: 'fintech_ibero', target: 'fintech_peru' },
+    { source: 'do', target: 'asofintech_do' },
+    { source: 'uy', target: 'fintech_uy' },
+    { source: 'cr', target: 'fintech_cr' },
+    { source: 'py', target: 'fintech_py' }
   ];
 
   // Node Map by ID
   const nodeMap = {};
   nodes.forEach((n, idx) => {
-    // Initial layout in concentric circles
+    // Initial layout in wide concentric circles with offset
     const angle = (idx / nodes.length) * Math.PI * 2;
-    const dist = n.cat === 'hub' ? 0 : (n.cat === 'country' ? 180 + Math.random()*60 : 300 + Math.random()*40);
-    n.x = width / 2 + Math.cos(angle) * dist;
-    n.y = height / 2 + Math.sin(angle) * dist;
+    const radiusBase = n.cat === 'hub' ? 0 : (n.cat === 'country' ? 380 + (idx % 3) * 60 : 620 + (idx % 2) * 80);
+    n.x = width / 2 + Math.cos(angle) * radiusBase;
+    n.y = height / 2 + Math.sin(angle) * radiusBase;
     n.vx = 0;
     n.vy = 0;
     n.visible = true;
@@ -351,7 +404,7 @@
   })).filter(l => l.source && l.target);
 
   // PAN & ZOOM CAMERA STATE
-  let transform = { x: 0, y: 0, k: 1 };
+  let transform = { x: 0, y: 0, k: 0.85 };
   let isDragging = false;
   let dragNode = null;
   let mousePos = { x: 0, y: 0 };
@@ -361,12 +414,12 @@
   // PHYSICS SIMULATION (Force Directed Layout)
   // ============================================
   function updatePhysics() {
-    const kRepel = 1200;
-    const linkDist = 160;
-    const kLink = 0.04;
-    const centerForce = 0.015;
+    const kRepel = 45000;
+    const linkDist = 420;
+    const kLink = 0.015;
+    const centerForce = 0.0012;
 
-    // Center attraction
+    // Center attraction (very gentle so nodes don't collapse)
     nodes.forEach(n => {
       if (!n.visible) return;
       const dx = (width / 2) - n.x;
@@ -375,7 +428,7 @@
       n.vy += dy * centerForce;
     });
 
-    // Node Repulsion
+    // Node Repulsion & Hard Collision Prevention
     for (let i = 0; i < nodes.length; i++) {
       const n1 = nodes[i];
       if (!n1.visible) continue;
@@ -385,10 +438,22 @@
         const dx = n2.x - n1.x;
         const dy = n2.y - n1.y;
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        if (dist < 320) {
+        
+        // Minimum distance to keep labels separated
+        const minSpace = (n1.radius + n2.radius) + 70;
+        
+        if (dist < 850) {
           const force = (kRepel / (dist * dist));
-          const fx = (dx / dist) * force;
-          const fy = (dy / dist) * force;
+          let fx = (dx / dist) * force;
+          let fy = (dy / dist) * force;
+
+          // Extra push if nodes get uncomfortably close
+          if (dist < minSpace) {
+            const overlapPush = (minSpace - dist) * 0.15;
+            fx += (dx / dist) * overlapPush;
+            fy += (dy / dist) * overlapPush;
+          }
+
           n1.vx -= fx;
           n1.vy -= fy;
           n2.vx += fx;
