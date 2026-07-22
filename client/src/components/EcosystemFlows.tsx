@@ -222,7 +222,10 @@ export function EcosystemFlows() {
             {activeCountry === "mexico" && countryData.cuota_intercambio_propuesta_2026 && (
               <div className="p-8 rounded-[2rem] bg-gradient-to-br from-secondary/50 to-background/50 border border-border/50 hover:border-purple-500/30 hover:shadow-[0_10px_30px_rgba(168,85,247,0.1)] transition-all">
                 <div className="flex justify-between items-center mb-8">
-                  <h4 className="text-sm font-black text-foreground flex items-center gap-3"><TrendingDown className="w-5 h-5 text-purple-500" /> Impacto Reducción CI</h4>
+                  <h4 className="text-sm font-black text-foreground flex items-center gap-3">
+                    <TrendingDown className="w-5 h-5 text-purple-500" /> 
+                    Impacto Reducción CI <span className="text-xs font-semibold text-slate-500">(Cuota de Intercambio)</span>
+                  </h4>
                   <Badge variant="secondary" className="bg-purple-500/10 text-purple-400 border-purple-500/20">Banxico 2026</Badge>
                 </div>
                 <div className="space-y-8">
