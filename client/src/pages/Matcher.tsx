@@ -16,7 +16,7 @@ export default function Matcher() {
         <span className="font-extrabold text-slate-900 text-lg tracking-tight">Fintech Matcher AI</span>
       </div>
       <iframe
-        src="/fintech-matcher.html"
+        src="/fintech-matcher.html?v=3"
         title="Fintech Matcher — OnlyPayments"
         className="w-full flex-1 border-0 block"
         allow="clipboard-write"

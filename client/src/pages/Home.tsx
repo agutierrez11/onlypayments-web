@@ -527,15 +527,68 @@ export default function Home() {
           {activeLibraryTab === 'diccionario' && (
             <div className="max-w-4xl mx-auto space-y-8">
               
+              {/* 6 Cajitas Estructuradas por Modelo de Negocio (Estilo Solicitado) */}
+              <div className="space-y-3">
+                <p className="text-xs font-black text-slate-700 uppercase font-mono tracking-wider">
+                  Filtra los conceptos por Modelo de Negocio / Vertical:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                  {[
+                    { id: "e-commerce", term: "adquirente", icon: "🛒", label: "E-commerce", desc: "Checkout, Orquestación, D2C, Tarjetas" },
+                    { id: "saas", term: "tokenización", icon: "💻", label: "SaaS / Subscripciones", desc: "Recurrencia, Billing, MRR, Tokenización" },
+                    { id: "fintech", term: "licencia", icon: "🏦", label: "Fintech / Neobancos", desc: "BaaS, Licencias, Crypto, Wallets" },
+                    { id: "pyme", term: "pos", icon: "🏪", label: "PYME / Retail", desc: "Terminal POS, Códigos QR, Adquirencia" },
+                    { id: "remesas", term: "remesas", icon: "💸", label: "Remesas / Cross-border", desc: "Payouts, FX, Dispersión A2A" },
+                    { id: "gaming", term: "contracargo", icon: "🎮", label: "Gaming / Gambling", desc: "High-risk, Prevención de Fraude, 3DS" },
+                  ].map((card) => {
+                    const isSelected = searchGlossaryTerm.toLowerCase() === card.term.toLowerCase();
+                    return (
+                      <div
+                        key={card.id}
+                        onClick={() => {
+                          if (isSelected) {
+                            setSearchGlossaryTerm("");
+                          } else {
+                            setSearchGlossaryTerm(card.term);
+                          }
+                        }}
+                        className={`p-4 rounded-xl border transition-all cursor-pointer shadow-xs flex flex-col justify-between ${
+                          isSelected
+                            ? 'bg-cyan-600 text-white border-cyan-700 font-bold shadow-md'
+                            : 'bg-white border-slate-200 hover:border-cyan-400 hover:shadow-sm text-slate-900'
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-2xl">{card.icon}</span>
+                            {isSelected && (
+                              <span className="text-[10px] font-black uppercase font-mono px-2 py-0.5 rounded bg-white text-cyan-900">
+                                Seleccionado
+                              </span>
+                            )}
+                          </div>
+                          <h4 className={`text-sm font-black tracking-tight mb-1 ${isSelected ? 'text-white' : 'text-slate-900'}`}>
+                            {card.label}
+                          </h4>
+                          <p className={`text-[11px] leading-relaxed font-medium ${isSelected ? 'text-cyan-100' : 'text-slate-500'}`}>
+                            {card.desc}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
               {/* Buscador */}
               <div className="relative">
-                <Search className="w-5 h-5 text-muted-foreground absolute left-4 top-3.5" />
+                <Search className="w-5 h-5 text-slate-400 absolute left-4 top-3.5" />
                 <input
                   type="text"
                   placeholder="Busca conceptos (ej. contracargo, adquirente, 3DS, tokenización...)"
                   value={searchGlossaryTerm}
                   onChange={(e) => setSearchGlossaryTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-card/40 border border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition-all shadow-xs"
                 />
               </div>
 
@@ -935,7 +988,7 @@ export default function Home() {
       </section>
 
       {/* FORMULARIO DE INTAKE — ENCUENTRA TU SOLUCIÓN */}
-      <section className="relative z-10 py-20 border-t border-border bg-card/20 backdrop-blur-[2px]">
+      <section id="matcher-section" className="relative z-10 py-20 border-t border-slate-200 bg-slate-50 text-slate-900">
         <div className="container max-w-3xl">
           <div className="text-center space-y-3 mb-12">
             <span className="text-[10px] font-mono text-accent tracking-widest uppercase">Matching de Soluciones · Gratuito</span>

@@ -27,14 +27,14 @@ export default function LatamFintechDashboard() {
   const [, navigate] = useLocation();
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen md:h-screen bg-slate-50 text-slate-900 overflow-x-hidden relative font-sans">
+    <div className="flex flex-col md:flex-row min-h-screen w-full bg-slate-50 text-slate-900 relative font-sans">
       <SEO 
         title="Radar LATAM 2026 — OnlyPayments Hub" 
         description="Radar en tiempo real de regulación, Open Finance, iGaming y adquirencia regional en América Latina." 
       />
       
-      {/* Sidebar Navigation */}
-      <nav className="w-full md:w-64 flex-shrink-0 md:h-full bg-white border-b md:border-r border-slate-200 flex flex-col justify-between p-4 z-20 relative shadow-sm">
+      {/* Sidebar Navigation - Sticky on desktop */}
+      <nav className="w-full md:w-64 flex-shrink-0 md:sticky md:top-0 md:h-screen bg-white border-b md:border-r border-slate-200 flex flex-col justify-between p-4 z-20 relative shadow-sm">
         <div>
           {/* Botón Volver al Inicio */}
           <button 
@@ -102,10 +102,10 @@ export default function LatamFintechDashboard() {
       </nav>
 
       {/* Main Content Area con Scroll Habilitado */}
-      <main className="flex-1 w-full min-h-screen md:h-full overflow-y-auto overflow-x-hidden relative z-10 scroll-smooth bg-slate-50">
+      <main className="flex-1 w-full min-h-screen bg-slate-50 relative z-10 scroll-smooth pb-24 overflow-y-auto">
         <AnimatePresence mode="wait">
           {activeTab === "satellite" && (
-            <motion.div key="satellite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="w-full h-full relative">
+            <motion.div key="satellite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="w-full h-[calc(100vh-40px)] relative">
               <iframe
                 src="/latam-fintech-satellite.html"
                 title="LATAM Fintech Satellite 3D"
