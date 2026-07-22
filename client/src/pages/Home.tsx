@@ -42,6 +42,7 @@ import { EcosystemDirectory } from "@/components/EcosystemDirectory";
 import { EcosystemFlows } from "@/components/EcosystemFlows";
 import { AssessmentQuiz } from "@/components/AssessmentQuiz";
 import FintechGlobe from "@/components/FintechGlobe";
+import { SEO } from "@/components/SEO";
 
 export default function Home() {
   const { user } = useAuth();
@@ -285,6 +286,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen text-foreground font-sans transition-colors duration-300">
+      <SEO 
+        title="OnlyPayments — El Ecosistema Desnudo de Pagos LATAM" 
+        description="Orquesta tu infraestructura técnica. Analiza stacks reales. Simula márgenes. El framework B2B definitivo para dominar los pagos en LATAM." 
+      />
       {/* FONDO PARALLAX GLOBAL — capa fija con blobs de color y grid de puntos,
           cada elemento se desplaza a distinta velocidad al hacer scroll. */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">

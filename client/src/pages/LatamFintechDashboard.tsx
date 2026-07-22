@@ -18,6 +18,7 @@ import { EcosystemFlows } from "../components/EcosystemFlows";
 import { FintechDirectory } from "../components/FintechDirectory";
 import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
+import { SEO } from "../components/SEO";
 
 type Tab = "satellite" | "pagos" | "igaming" | "openfinance" | "remesas" | "directorio";
 
@@ -27,6 +28,10 @@ export default function LatamFintechDashboard() {
 
   return (
     <div className="flex h-screen bg-background overflow-hidden relative">
+      <SEO 
+        title="Radar LATAM 2026 — OnlyPayments Hub" 
+        description="Radar en tiempo real de regulación, Open Finance, iGaming y adquirencia regional en América Latina." 
+      />
       {/* Dynamic Background Glows based on active tab */}
       <div className={`absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none transition-colors duration-1000 ${
         activeTab === 'satellite' ? 'bg-cyan-500/10' :

@@ -1,16 +1,29 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Building2, ChevronLeft, ChevronRight, Activity } from 'lucide-react';
+import { Search, Building2, ChevronLeft, ChevronRight, Activity, Loader2 } from 'lucide-react';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
-import fintechsData from '../data/fintechs_latam.json';
 
 const ITEMS_PER_PAGE = 24;
 
 export function FintechDirectory() {
+  const [fintechsData, setFintechsData] = useState<any[]>([]);
+  const [loadingData, setLoadingData] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSegment, setActiveSegment] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    import('../data/fintechs_latam.json')
+      .then((mod) => {
+        setFintechsData(mod.default || mod);
+        setLoadingData(false);
+      })
+      .catch((err) => {
+        console.error("Error loading fintech dataset:", err);
+        setLoadingData(false);
+      });
+  }, []);
 
   // Extract unique segments
   const segments = useMemo(() => {
@@ -19,7 +32,7 @@ export function FintechDirectory() {
       if (f.Segmento) s.add(f.Segmento);
     });
     return Array.from(s).sort();
-  }, []);
+  }, [fintechsData]);
 
   const filteredData = useMemo(() => {
     const q = searchTerm.toLowerCase().trim();
@@ -35,7 +48,7 @@ export function FintechDirectory() {
 
       return matchesSearch && matchesSegment;
     });
-  }, [searchTerm, activeSegment]);
+  }, [searchTerm, activeSegment, fintechsData]);
 
   const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
   
