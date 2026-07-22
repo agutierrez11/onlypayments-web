@@ -64,23 +64,30 @@ export default function Home() {
   };
 
   // Biblioteca de Expertos Tabs
-  const [activeLibraryTab, setActiveLibraryTab] = useState<'ecosistema' | 'diccionario' | 'expertos'>('ecosistema');
+  const [activeLibraryTab, setActiveLibraryTab] = useState<'ecosistema' | 'diccionario' | 'expertos'>(() => {
+    if (typeof window !== 'undefined' && window.location.hash.toLowerCase().includes('diccionario')) {
+      return 'diccionario';
+    }
+    return 'ecosistema';
+  });
   
-  // URL Hash Sync for deep linking on Cloudflare Pages (#diccionario, #matcher, #ecosistema)
+  // URL Hash Sync for deep linking (#diccionario, #matcher, #ecosistema, #biblioteca)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase().replace('#', '');
       if (hash === 'diccionario') {
         setActiveLibraryTab('diccionario');
-        setTimeout(() => scrollToSection('biblioteca-section'), 100);
+        setTimeout(() => scrollToSection('biblioteca'), 150);
       } else if (hash === 'ecosistema') {
         setActiveLibraryTab('ecosistema');
-        setTimeout(() => scrollToSection('biblioteca-section'), 100);
+        setTimeout(() => scrollToSection('biblioteca'), 150);
       } else if (hash === 'expertos') {
         setActiveLibraryTab('expertos');
-        setTimeout(() => scrollToSection('biblioteca-section'), 100);
+        setTimeout(() => scrollToSection('biblioteca'), 150);
       } else if (hash === 'matcher') {
-        setTimeout(() => scrollToSection('matcher-section'), 100);
+        setTimeout(() => scrollToSection('matcher-section'), 150);
+      } else if (hash === 'biblioteca') {
+        setTimeout(() => scrollToSection('biblioteca'), 150);
       }
     };
 
