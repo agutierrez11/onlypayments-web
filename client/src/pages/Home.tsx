@@ -182,9 +182,8 @@ export default function Home() {
     }
   }, [expandedCommentsPostId]);
 
-  // Manejar modo oscuro en HTML (Forzado a siempre oscuro para estética premium)
   useEffect(() => {
-    document.documentElement.classList.add("dark");
+    document.documentElement.classList.remove("dark");
   }, []);
 
   const selectedCountry = useMemo(() => {

@@ -1,7 +1,8 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Building2, Server, ShieldCheck, CheckCircle2, ChevronRight, Filter, Network, Fingerprint, ArrowRight } from "lucide-react";
+import { Globe, Building2, Server, ShieldCheck, ChevronRight, Filter, Network, Fingerprint, ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 interface Provider {
   id: string;
@@ -66,12 +67,12 @@ const PROVIDERS_DB: Provider[] = [
 ];
 
 const categoryColors = {
-  gateway: "text-blue-500 bg-blue-500/10 border-blue-500/20",
-  adquirente: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20",
-  antifraude: "text-rose-500 bg-rose-500/10 border-rose-500/20",
-  orquestador: "text-purple-500 bg-purple-500/10 border-purple-500/20",
-  switch: "text-amber-500 bg-amber-500/10 border-amber-500/20",
-  identidad: "text-indigo-500 bg-indigo-500/10 border-indigo-500/20",
+  gateway: "text-blue-600 bg-blue-100 border-blue-300",
+  adquirente: "text-emerald-600 bg-emerald-100 border-emerald-300",
+  antifraude: "text-rose-600 bg-rose-100 border-rose-300",
+  orquestador: "text-purple-600 bg-purple-100 border-purple-300",
+  switch: "text-amber-600 bg-amber-100 border-amber-300",
+  identidad: "text-indigo-600 bg-indigo-100 border-indigo-300",
 };
 
 const categoryIcons = {
@@ -83,9 +84,12 @@ const categoryIcons = {
   identidad: Fingerprint,
 };
 
+const ITEMS_PER_PAGE = 6;
+
 export function EcosystemDirectory() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredProviders = useMemo(() => {
     return PROVIDERS_DB.filter(p => {
@@ -96,25 +100,42 @@ export function EcosystemDirectory() {
     });
   }, [activeCategory, searchQuery]);
 
+  const totalPages = Math.ceil(filteredProviders.length / ITEMS_PER_PAGE) || 1;
+
+  const paginatedProviders = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProviders.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredProviders, currentPage]);
+
+  const handleCategoryChange = (cat: string | null) => {
+    setActiveCategory(cat);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
   return (
-    <section className="py-20 scroll-mt-24 bg-slate-50 border-y border-slate-200 text-slate-900 relative overflow-hidden z-10" id="explorador">
+    <section className="py-16 scroll-mt-24 bg-slate-50 border-y border-slate-200 text-slate-900 relative overflow-hidden z-10 font-sans" id="explorador">
       
       {/* Luces de fondo sutiles */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-200/30 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container max-w-6xl relative z-10">
         
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
           <div className="max-w-2xl">
-            <Badge variant="outline" className="mb-4 text-xs font-mono border-slate-300 bg-white text-cyan-700 font-bold">
-              <Server className="w-3 h-3 mr-2" />
-              SaaS MARKETPLACE
+            <Badge variant="outline" className="mb-3 text-xs font-mono border-slate-300 bg-white text-cyan-800 font-extrabold">
+              <Server className="w-3 h-3 mr-2 text-cyan-600" />
+              SAAS MARKETPLACE
             </Badge>
-            <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 text-slate-900">
+            <h2 className="text-3xl lg:text-4xl font-black tracking-tight mb-2 text-slate-900">
               El Stack de Pagos Perfecto
             </h2>
-            <p className="text-slate-600 text-lg font-medium">
+            <p className="text-slate-600 text-base font-medium">
               Compara la infraestructura de pagos B2B. Encuentra tu Gateway, Adquirente o Motor Antifraude ideal.
             </p>
           </div>
@@ -125,76 +146,77 @@ export function EcosystemDirectory() {
             <input 
               type="text" 
               placeholder="Filtrar proveedor o feature..." 
-              className="w-full bg-white border border-slate-300 rounded-lg pl-10 pr-4 py-2 text-sm text-slate-900 placeholder:text-slate-400 outline-none focus:border-cyan-600 shadow-sm transition-colors"
+              className="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-xs font-bold text-slate-900 placeholder:text-slate-400 outline-none focus:border-cyan-600 shadow-xs transition-colors"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
             />
           </div>
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap gap-2.5 mb-8">
+        <div className="flex flex-wrap gap-2 mb-6">
           <button
-            onClick={() => setActiveCategory(null)}
-            className={`px-4 py-2 rounded-full text-xs font-black transition-all border ${
+            onClick={() => handleCategoryChange(null)}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-black transition-all border cursor-pointer ${
               activeCategory === null 
-                ? 'bg-cyan-600 text-white border-cyan-700 shadow-md scale-105' 
-                : 'bg-white border-slate-300 text-slate-800 font-bold hover:bg-slate-100 hover:text-cyan-700 shadow-sm'
+                ? 'bg-cyan-600 text-white border-cyan-700 shadow-xs' 
+                : 'bg-white border-slate-300 text-slate-800 font-bold hover:bg-slate-100 hover:text-cyan-700'
             }`}
           >
-            Todos
+            Todos ({PROVIDERS_DB.length})
           </button>
           {(Object.keys(categoryColors) as Array<keyof typeof categoryColors>).map((cat) => {
             const Icon = categoryIcons[cat];
+            const count = PROVIDERS_DB.filter(p => p.category === cat).length;
             return (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black transition-all border capitalize ${
+                onClick={() => handleCategoryChange(cat)}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black transition-all border capitalize cursor-pointer ${
                   activeCategory === cat 
-                    ? 'bg-cyan-600 text-white border-cyan-700 shadow-md scale-105' 
-                    : 'bg-white border-slate-300 text-slate-800 font-bold hover:bg-slate-100 hover:text-cyan-700 shadow-sm'
+                    ? 'bg-cyan-600 text-white border-cyan-700 shadow-xs' 
+                    : 'bg-white border-slate-300 text-slate-800 font-bold hover:bg-slate-100 hover:text-cyan-700'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
-                {cat}
+                {cat} ({count})
               </button>
             )
           })}
         </div>
 
-        {/* Compact List Layout */}
+        {/* Compact List Layout (Paginated) */}
         <div className="flex flex-col gap-3">
-          <AnimatePresence>
-            {filteredProviders.map((provider) => {
+          <AnimatePresence mode="wait">
+            {paginatedProviders.map((provider) => {
               const CatIcon = categoryIcons[provider.category];
               return (
                 <motion.div 
                   key={provider.id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="bg-white hover:bg-slate-50/80 border border-slate-200 hover:border-cyan-500 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden shadow-sm hover:shadow-md transition-all"
+                  className="bg-white hover:bg-slate-50 border border-slate-200 hover:border-cyan-500 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden shadow-xs hover:shadow-sm transition-all"
                 >
                   <div className="flex items-center gap-4 min-w-[210px]">
-                    <span className={`flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center border ${categoryColors[provider.category]}`}>
+                    <span className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center border ${categoryColors[provider.category]}`}>
                       <CatIcon className="w-5 h-5" />
                     </span>
                     <div>
-                      <div className="font-black text-xl text-slate-900 flex items-center gap-2 tracking-tight">
+                      <div className="font-black text-lg text-slate-900 flex items-center gap-2 tracking-tight">
                         {provider.name}
                         <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-cyan-600 hover:text-cyan-700 transition-colors opacity-0 group-hover:opacity-100 hidden md:flex items-center gap-1">
                           <ChevronRight className="w-4 h-4" />
                         </a>
                       </div>
-                      <span className="text-xs text-cyan-700 font-mono font-extrabold uppercase tracking-wider">{provider.category}</span>
+                      <span className="text-[10px] text-cyan-800 font-mono font-black uppercase tracking-wider">{provider.category}</span>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 flex-1 items-center">
+                  <div className="flex flex-wrap gap-1.5 flex-1 items-center">
                     {provider.features.map((f, i) => (
-                      <span key={i} className="text-xs px-3 py-1 rounded-md bg-slate-100 border border-slate-300 text-slate-800 font-bold shadow-xs">
+                      <span key={i} className="text-[11px] px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-300 text-slate-800 font-bold">
                         {f}
                       </span>
                     ))}
@@ -202,11 +224,11 @@ export function EcosystemDirectory() {
 
                   <div className="flex items-center gap-2 md:min-w-[180px] justify-end">
                     {provider.coverage.slice(0,2).map(c => (
-                      <span key={c} className="text-xs uppercase font-black text-slate-900 bg-slate-200 px-2.5 py-0.5 rounded border border-slate-300 font-mono">{c}</span>
+                      <span key={c} className="text-[11px] uppercase font-black text-slate-900 bg-slate-200 px-2 py-0.5 rounded border border-slate-300 font-mono">{c}</span>
                     ))}
                     {provider.coverage.length > 2 && <span className="text-xs font-bold text-slate-600 font-mono">+{provider.coverage.length - 2}</span>}
                     <Badge 
-                      className={`text-[10px] uppercase font-black tracking-wider px-2.5 py-1 rounded-md border ml-2 ${
+                      className={`text-[10px] uppercase font-black tracking-wider px-2 py-0.5 rounded-md border ml-2 ${
                         provider.tier === 'enterprise'
                           ? 'bg-amber-100 text-amber-900 border-amber-300'
                           : provider.tier === 'growth'
@@ -224,10 +246,57 @@ export function EcosystemDirectory() {
         </div>
         
         {filteredProviders.length === 0 && (
-          <div className="text-center py-24 text-muted-foreground glass-panel rounded-3xl mt-8">
-            <Server className="w-16 h-16 mx-auto mb-6 opacity-20" />
-            <h3 className="text-xl font-bold text-white mb-2">No se encontraron resultados</h3>
-            <p className="text-white/50">Intenta con otros filtros o términos de búsqueda.</p>
+          <div className="text-center py-16 bg-white rounded-2xl border border-slate-200 mt-4 p-8">
+            <Server className="w-12 h-12 mx-auto mb-3 text-slate-400" />
+            <h3 className="text-lg font-black text-slate-900 mb-1">No se encontraron proveedores</h3>
+            <p className="text-xs text-slate-600 font-medium">Intenta con otros filtros o términos de búsqueda.</p>
+          </div>
+        )}
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-slate-200">
+            <p className="text-xs text-slate-600 font-medium">
+              Mostrando <span className="font-extrabold text-slate-900">{(currentPage - 1) * ITEMS_PER_PAGE + 1}</span> - <span className="font-extrabold text-slate-900">{Math.min(currentPage * ITEMS_PER_PAGE, filteredProviders.length)}</span> de <span className="font-extrabold text-slate-900">{filteredProviders.length}</span> proveedores
+            </p>
+
+            <div className="flex items-center gap-1.5">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+                disabled={currentPage === 1}
+                className="gap-1 font-bold text-xs border-slate-300 text-slate-800 disabled:opacity-40 cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" /> Anterior
+              </Button>
+
+              <div className="flex items-center gap-1 px-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`w-7 h-7 rounded-lg text-xs font-black transition-all cursor-pointer ${
+                      currentPage === page
+                        ? 'bg-cyan-600 text-white shadow-xs'
+                        : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="gap-1 font-bold text-xs border-slate-300 text-slate-800 disabled:opacity-40 cursor-pointer"
+              >
+                Siguiente <ChevronRight className="w-3.5 h-3.5" />
+              </Button>
+            </div>
           </div>
         )}
 
