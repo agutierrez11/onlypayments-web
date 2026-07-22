@@ -21,11 +21,11 @@ const FLOWS = {
 };
 
 export function EcosystemFlows() {
-  const [activeCountry, setActiveCountry] = useState<"mexico" | "brasil" | "colombia" | "chile">("mexico");
+  const [activeCountry, setActiveCountry] = useState<string>("mexico");
   const [activeFlowType, setActiveFlowType] = useState<"autorizacion" | "contracargo">("autorizacion");
   const [activeStep, setActiveStep] = useState(0);
 
-  const countryData = fintechHubData.ecosistema_pagos_4_partes.tasas_por_pais[activeCountry];
+  const countryData = (fintechHubData.ecosistema_pagos_4_partes.tasas_por_pais as any)[activeCountry] || fintechHubData.ecosistema_pagos_4_partes.tasas_por_pais.mexico;
   const adquirenteData = fintechHubData.ecosistema_pagos_4_partes.diferencia_adquirente_vs_agregador.adquirente;
   const agregadorData = fintechHubData.ecosistema_pagos_4_partes.diferencia_adquirente_vs_agregador.agregador;
   const currentFlow = FLOWS[activeFlowType];
@@ -48,121 +48,109 @@ export function EcosystemFlows() {
     return [];
   }, [activeCountry, countryData]);
 
+  const allCountries = [
+    { id: "mexico", name: "México" },
+    { id: "brasil", name: "Brasil" },
+    { id: "colombia", name: "Colombia" },
+    { id: "chile", name: "Chile" },
+    { id: "peru", name: "Perú" },
+    { id: "argentina", name: "Argentina" },
+    { id: "uruguay", name: "Uruguay" },
+    { id: "ecuador", name: "Ecuador" },
+    { id: "guatemala", name: "Guatemala" },
+    { id: "el_salvador", name: "El Salvador" },
+    { id: "costa_rica", name: "Costa Rica" },
+    { id: "panama", name: "Panamá" },
+    { id: "dominicana", name: "Rep. Dominicana" },
+  ];
+
   return (
-    <div className="w-full relative z-10 p-4 md:p-8 max-w-[1400px] mx-auto">
+    <div className="w-full relative z-10 p-4 md:p-8 max-w-[1400px] mx-auto text-slate-900">
       
-      <div className="text-center mb-16">
+      <div className="text-center mb-12">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-bold font-mono uppercase tracking-widest mb-6 shadow-[0_0_25px_rgba(var(--accent),0.3)] backdrop-blur-md"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-100 border border-cyan-300 text-cyan-800 text-xs font-bold font-mono uppercase tracking-widest mb-4 shadow-sm"
         >
-          <Sparkles className="w-4 h-4" />
+          <Sparkles className="w-4 h-4 text-cyan-600" />
           Modelo Interactivo
         </motion.div>
-        <h2 className="text-4xl md:text-7xl font-black tracking-tight mb-6 text-foreground">
-          El Ecosistema <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-purple-500 drop-shadow-sm">de Pagos</span>
+        <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-4 text-slate-900">
+          El Ecosistema <span className="text-cyan-600">de Pagos</span>
         </h2>
-        <p className="text-muted-foreground font-light text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed">
+        <p className="text-slate-600 font-medium text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
           Anatomía de una transacción y orquestación inteligente en LATAM.
         </p>
       </div>
 
-      {/* Country Tabs */}
-      <div className="flex flex-wrap justify-center gap-4 mb-16">
-        {(["mexico", "brasil", "colombia", "chile"] as const).map((country) => (
-          <button
-            key={country}
-            onClick={() => setActiveCountry(country)}
-            className={`px-8 py-4 rounded-2xl text-sm font-black transition-all duration-300 uppercase tracking-widest ${
-              activeCountry === country 
-                ? 'bg-gradient-to-r from-accent to-indigo-500 text-white shadow-[0_10px_40px_rgba(var(--accent),0.5)] scale-105 border border-white/10' 
-                : 'bg-card/40 backdrop-blur-lg border border-border/50 text-muted-foreground hover:bg-secondary/80 hover:border-accent/40 hover:text-foreground hover:shadow-lg'
-            }`}
-          >
-            {country}
-          </button>
-        ))}
+      {/* Country Tabs - Scrollable Pill Bar for ALL countries */}
+      <div className="mb-12">
+        <p className="text-xs font-mono font-bold text-slate-600 uppercase text-center mb-3 tracking-wider">Selecciona País ({allCountries.length} Disponibles):</p>
+        <div className="flex overflow-x-auto pb-4 gap-2.5 max-w-full no-scrollbar justify-start md:justify-center px-2">
+          {allCountries.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => setActiveCountry(c.id)}
+              className={`px-5 py-2.5 rounded-xl text-xs font-black transition-all whitespace-nowrap uppercase tracking-wider border cursor-pointer ${
+                activeCountry === c.id 
+                  ? 'bg-cyan-600 text-white border-cyan-700 shadow-md scale-105' 
+                  : 'bg-white border-slate-300 text-slate-800 hover:bg-slate-100 hover:text-cyan-700 shadow-xs'
+              }`}
+            >
+              {c.name}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* 4-Part Diagram & Simulator */}
-      <div className="w-full bg-card/20 backdrop-blur-3xl rounded-[3rem] border border-border/60 shadow-2xl p-8 md:p-16 relative mb-20 overflow-visible">
-        {/* Deep Glowing Backgrounds */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-r from-accent/20 to-purple-500/20 blur-[150px] rounded-full pointer-events-none" />
-        <div className="absolute inset-0 opacity-[0.03] [background-image:linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] [background-size:60px_60px] pointer-events-none rounded-[3rem]" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center mb-16 relative z-10 gap-6">
-          <h3 className="text-3xl md:text-4xl font-black flex items-center gap-4 text-foreground">
+      <div className="w-full bg-white rounded-3xl border border-slate-200 shadow-md p-6 md:p-12 relative mb-16 overflow-hidden">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12 relative z-10 gap-6">
+          <h3 className="text-2xl md:text-3xl font-black flex items-center gap-3 text-slate-900">
             {activeFlowType === "autorizacion" ? (
-              <><ArrowLeftRight className="w-10 h-10 text-accent drop-shadow-[0_0_15px_rgba(var(--accent),0.5)]" /> Flujo de Autorización</>
+              <><ArrowLeftRight className="w-8 h-8 text-cyan-600" /> Flujo de Autorización</>
             ) : (
-              <><RotateCcw className="w-10 h-10 text-rose-500 drop-shadow-[0_0_15px_rgba(244,63,94,0.5)]" /> Flujo de Contracargo</>
+              <><RotateCcw className="w-8 h-8 text-rose-600" /> Flujo de Contracargo</>
             )}
           </h3>
-          <div className="flex bg-background/60 backdrop-blur-xl p-1.5 rounded-2xl border border-border/50 shadow-inner">
+          <div className="flex bg-slate-100 p-1.5 rounded-xl border border-slate-200 shadow-inner">
             <button 
               onClick={() => { setActiveFlowType("autorizacion"); setActiveStep(0); }}
-              className={`px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeFlowType === "autorizacion" ? 'bg-accent text-white shadow-[0_5px_20px_rgba(var(--accent),0.4)]' : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'}`}
+              className={`px-5 py-2 rounded-lg text-xs font-black transition-all cursor-pointer ${activeFlowType === "autorizacion" ? 'bg-cyan-600 text-white shadow-sm' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'}`}
             >
               Normal
             </button>
             <button 
               onClick={() => { setActiveFlowType("contracargo"); setActiveStep(0); }}
-              className={`px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeFlowType === "contracargo" ? 'bg-rose-500 text-white shadow-[0_5px_20px_rgba(244,63,94,0.4)]' : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'}`}
+              className={`px-5 py-2 rounded-lg text-xs font-black transition-all cursor-pointer ${activeFlowType === "contracargo" ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'}`}
             >
               Contracargo
             </button>
           </div>
         </div>
         
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 relative z-10 py-12">
-          {/* Animated Track */}
-          <div className="hidden md:block absolute left-[12%] right-[12%] top-1/2 h-2 bg-secondary -translate-y-1/2 z-0 rounded-full border border-border/30 overflow-hidden shadow-inner">
-            <motion.div 
-              className={`h-full bg-gradient-to-r ${activeFlowType === 'autorizacion' ? 'from-accent to-purple-500' : 'from-rose-500 to-orange-500'}`}
-              initial={{ width: "0%" }}
-              animate={{ width: `${(activeStep / (currentFlow.length - 1)) * 100}%` }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            />
-          </div>
-
-          {/* Glowing dot moving along track */}
-          <motion.div
-            className={`hidden md:flex absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full items-center justify-center bg-white z-20 ${activeFlowType === 'autorizacion' ? 'shadow-[0_0_30px_rgba(var(--accent),1)]' : 'shadow-[0_0_30px_rgba(244,63,94,1)]'}`}
-            initial={{ left: "12%" }}
-            animate={{ left: `${12 + (activeStep / (currentFlow.length - 1)) * 76}%` }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-          >
-            <div className={`w-3 h-3 rounded-full ${activeFlowType === 'autorizacion' ? 'bg-accent' : 'bg-rose-500'}`} />
-          </motion.div>
-          
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 relative z-10 py-6">
           {currentFlow.map((actor, idx) => {
             const isActive = idx === activeStep;
             const isPast = idx <= activeStep;
 
             return (
-              <div key={actor.id} className="relative z-30 flex flex-col items-center w-full md:w-1/4 group cursor-default perspective-1000">
+              <div key={actor.id} className="relative z-30 flex flex-col items-center w-full md:w-1/4 group cursor-default">
                 <motion.div 
-                  className={`relative w-24 h-24 md:w-32 md:h-32 rounded-[2rem] flex items-center justify-center mb-6 transition-all duration-700 border-2 backdrop-blur-xl ${
+                  className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center mb-4 transition-all border-2 ${
                     isActive 
-                      ? `bg-gradient-to-br ${actor.gradient} border-transparent text-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] scale-110 -translate-y-2` 
+                      ? `bg-cyan-600 border-cyan-700 text-white shadow-md scale-105` 
                       : isPast 
-                        ? 'bg-card border-border/80 text-foreground shadow-lg' 
-                        : 'bg-background/40 border-border/30 text-muted-foreground/40'
+                        ? 'bg-slate-100 border-slate-300 text-slate-900' 
+                        : 'bg-slate-50 border-slate-200 text-slate-400'
                   }`}
-                  animate={isActive ? { rotateY: [0, 10, -10, 0] } : {}}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <actor.icon className={`w-10 h-10 md:w-12 md:h-12 transition-colors ${isActive ? 'text-white drop-shadow-md' : isPast ? 'text-foreground' : 'text-muted-foreground/30'}`} />
-                  
-                  {/* Outer glow ring for active state */}
-                  {isActive && (
-                    <div className={`absolute -inset-2 rounded-[2.2rem] bg-gradient-to-br ${actor.gradient} opacity-30 blur-xl -z-10`} />
-                  )}
+                  <actor.icon className={`w-8 h-8 ${isActive ? 'text-white' : isPast ? 'text-slate-800' : 'text-slate-400'}`} />
                 </motion.div>
                 
-                <span className={`font-black text-center text-lg md:text-xl transition-colors ${isActive ? 'text-foreground drop-shadow-sm' : isPast ? 'text-foreground/80' : 'text-muted-foreground/40'}`}>{actor.label}</span>
-                <span className={`text-sm mt-3 text-center font-mono px-4 py-1.5 rounded-lg transition-colors font-semibold ${isActive ? `bg-gradient-to-r ${actor.gradient} text-white shadow-md` : isPast ? 'bg-secondary/80 text-foreground' : 'text-muted-foreground/30'}`}>{actor.desc}</span>
+                <span className="font-extrabold text-center text-base text-slate-900">{actor.label}</span>
+                <span className={`text-xs mt-2 text-center font-mono px-3 py-1 rounded-md font-bold ${isActive ? 'bg-cyan-600 text-white' : 'bg-slate-100 text-slate-700 border border-slate-200'}`}>{actor.desc}</span>
               </div>
             )
           })}
@@ -170,48 +158,46 @@ export function EcosystemFlows() {
       </div>
 
       {/* Tables & Charts Grid */}
-      <div className="grid lg:grid-cols-2 gap-8 md:gap-10">
+      <div className="grid lg:grid-cols-2 gap-8">
         
-        {/* Adquirente vs Agregador */}
-        <Card className="bg-card/30 backdrop-blur-3xl border-border/40 p-8 md:p-12 rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] hover:border-accent/40 transition-all group relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-accent/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-accent/20 transition-colors duration-700" />
-          
-          <div className="flex items-center gap-5 mb-10 relative z-10">
-            <div className="p-4 bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 rounded-2xl shadow-inner">
-              <Building2 className="w-8 h-8 text-accent" />
+        {/* Estructura Legal - Optimized Table (NO HORIZONTAL SCROLLBAR) */}
+        <Card className="bg-white border border-slate-200 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 bg-cyan-100 border border-cyan-300 rounded-xl">
+              <Building2 className="w-6 h-6 text-cyan-700" />
             </div>
-            <h3 className="text-3xl font-black tracking-tight text-foreground">Estructura Legal</h3>
+            <h3 className="text-2xl font-black tracking-tight text-slate-900">Estructura Legal</h3>
           </div>
           
-          <div className="overflow-x-auto relative z-10">
-            <table className="w-full text-sm text-left">
+          <div className="w-full">
+            <table className="w-full text-xs text-left border-collapse table-fixed">
               <thead>
-                <tr className="border-b-2 border-border/50 text-muted-foreground font-mono text-xs uppercase tracking-widest">
-                  <th className="pb-5 font-bold">Concepto</th>
-                  <th className="pb-5 font-bold text-accent">Adquirente</th>
-                  <th className="pb-5 font-bold text-emerald-500">Agregador</th>
+                <tr className="border-b-2 border-slate-200 text-slate-500 font-mono text-[11px] uppercase tracking-wider">
+                  <th className="pb-3 font-bold w-[25%]">Concepto</th>
+                  <th className="pb-3 font-bold text-cyan-700 w-[37.5%]">Adquirente</th>
+                  <th className="pb-3 font-bold text-emerald-700 w-[37.5%]">Agregador</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/20">
-                <tr className="hover:bg-secondary/40 transition-colors group/row">
-                  <td className="py-6 font-bold text-foreground pr-4 group-hover/row:text-accent transition-colors">Definición</td>
-                  <td className="py-6 text-muted-foreground pr-4 font-medium">{adquirenteData.definicion}</td>
-                  <td className="py-6 text-muted-foreground font-medium">{agregadorData.definicion}</td>
+              <tbody className="divide-y divide-slate-100">
+                <tr className="hover:bg-slate-50 transition-colors">
+                  <td className="py-4 font-extrabold text-slate-900 align-top">Definición</td>
+                  <td className="py-4 text-slate-700 font-medium pr-2 break-words align-top">{adquirenteData.definicion}</td>
+                  <td className="py-4 text-slate-700 font-medium break-words align-top">{agregadorData.definicion}</td>
                 </tr>
-                <tr className="hover:bg-secondary/40 transition-colors group/row">
-                  <td className="py-6 font-bold text-foreground pr-4 group-hover/row:text-accent transition-colors">Licencia</td>
-                  <td className="py-6 text-muted-foreground pr-4"><Badge variant="outline" className="bg-background/50">{adquirenteData.requiere}</Badge></td>
-                  <td className="py-6 text-muted-foreground"><Badge variant="outline" className="bg-background/50">{agregadorData.requiere}</Badge></td>
+                <tr className="hover:bg-slate-50 transition-colors">
+                  <td className="py-4 font-extrabold text-slate-900 align-top">Licencia</td>
+                  <td className="py-4 text-slate-700 pr-2 break-words align-top"><Badge variant="outline" className="bg-slate-100 border-slate-300 text-slate-800 font-bold">{adquirenteData.requiere}</Badge></td>
+                  <td className="py-4 text-slate-700 break-words align-top"><Badge variant="outline" className="bg-slate-100 border-slate-300 text-slate-800 font-bold">{agregadorData.requiere}</Badge></td>
                 </tr>
-                <tr className="hover:bg-secondary/40 transition-colors group/row">
-                  <td className="py-6 font-bold text-foreground pr-4 group-hover/row:text-accent transition-colors">Tasa Típica</td>
-                  <td className="py-6 text-accent pr-4 font-mono font-bold text-lg">{adquirenteData.tasa_tipica}</td>
-                  <td className="py-6 text-emerald-500 font-mono font-bold text-lg">{agregadorData.tasa_tipica}</td>
+                <tr className="hover:bg-slate-50 transition-colors">
+                  <td className="py-4 font-extrabold text-slate-900 align-top">Tasa Típica</td>
+                  <td className="py-4 text-cyan-700 pr-2 font-mono font-black text-sm break-words align-top">{adquirenteData.tasa_tipica}</td>
+                  <td className="py-4 text-emerald-700 font-mono font-black text-sm break-words align-top">{agregadorData.tasa_tipica}</td>
                 </tr>
-                <tr className="hover:bg-secondary/40 transition-colors group/row">
-                  <td className="py-6 font-bold text-foreground pr-4 group-hover/row:text-accent transition-colors">Risk/Kyc</td>
-                  <td className="py-6 text-muted-foreground pr-4">{adquirenteData.relacion_comercio}</td>
-                  <td className="py-6 text-muted-foreground">{agregadorData.relacion_comercio}</td>
+                <tr className="hover:bg-slate-50 transition-colors">
+                  <td className="py-4 font-extrabold text-slate-900 align-top">Risk / KYC</td>
+                  <td className="py-4 text-slate-700 pr-2 break-words align-top">{adquirenteData.relacion_comercio}</td>
+                  <td className="py-4 text-slate-700 break-words align-top">{agregadorData.relacion_comercio}</td>
                 </tr>
               </tbody>
             </table>

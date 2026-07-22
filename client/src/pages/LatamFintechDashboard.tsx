@@ -129,28 +129,30 @@ export default function LatamFintechDashboard() {
           )}
 
           {activeTab === "igaming" && (
-            <motion.div key="igaming" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="p-8 md:p-12 max-w-[1200px] mx-auto">
-              <div className="mb-12">
-                <Badge variant="outline" className="mb-4 border-purple-500/40 text-purple-300 bg-purple-500/20 font-bold"><Gamepad2 className="w-3.5 h-3.5 mr-2"/> iGaming y Apuestas</Badge>
-                <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-white">Mercado iGaming LATAM 2026</h2>
-                <p className="text-xl text-slate-300">Volumen GGR proyectado: <span className="font-mono text-cyan-400 font-bold">{fintechHubData.gaming_igaming.mercado_total_latam_2026}</span></p>
+            <motion.div key="igaming" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="p-6 md:p-8 max-w-[1200px] mx-auto text-slate-900">
+              <div className="mb-8">
+                <Badge variant="outline" className="mb-3 border-purple-300 text-purple-800 bg-purple-100 font-bold"><Gamepad2 className="w-3.5 h-3.5 mr-2 text-purple-700"/> iGaming y Apuestas</Badge>
+                <h2 className="text-3xl md:text-4xl font-black mb-2 text-slate-900">Mercado iGaming LATAM 2026</h2>
+                <p className="text-lg text-slate-600 font-medium">Volumen GGR proyectado: <span className="font-mono text-purple-700 font-black">{fintechHubData.gaming_igaming.mercado_total_latam_2026}</span></p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {Object.entries(fintechHubData.gaming_igaming.por_pais).map(([pais, data]: [string, any]) => (
-                  <Card key={pais} className="bg-slate-900/90 border-slate-800/90 p-6 hover:border-purple-500/50 transition-colors shadow-lg">
-                    <h3 className="text-xl font-bold capitalize mb-2 flex items-center justify-between text-white">
-                      {pais}
-                      {data.estado.includes('✅') && <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 font-bold">Regulado</Badge>}
-                      {data.estado.includes('⚠️') && <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold">Gris / Transición</Badge>}
-                      {data.estado.includes('❌') && <Badge className="bg-red-500/20 text-red-300 border-red-500/40 font-bold">Prohibido</Badge>}
-                      {data.estado.includes('🔄') && <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/40 font-bold">Desarrollo</Badge>}
-                    </h3>
-                    <div className="space-y-3 mt-4 text-sm">
-                      {data.regulador && <div className="flex justify-between"><span className="text-slate-400 font-medium">Regulador:</span><span className="font-semibold text-white text-right">{data.regulador}</span></div>}
-                      {data.ley && <div className="flex justify-between"><span className="text-slate-400 font-medium">Ley:</span><span className="font-mono text-xs text-slate-200 text-right max-w-[60%] font-semibold">{data.ley}</span></div>}
-                      {data.ggr_2026 && <div className="flex justify-between"><span className="text-slate-400 font-medium">GGR 2026:</span><span className="font-mono font-bold text-purple-300 text-base">{data.ggr_2026}</span></div>}
-                      {data.tax && <div className="flex justify-between"><span className="text-slate-400 font-medium">Tax:</span><span className="font-semibold text-slate-200 text-right max-w-[70%]">{data.tax}</span></div>}
+                  <Card key={pais} className="bg-white border border-slate-200 p-4 hover:border-purple-500 transition-all shadow-sm flex flex-col justify-between rounded-xl">
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-100">
+                        <h3 className="text-lg font-black capitalize text-slate-900">{pais}</h3>
+                        {data.estado.includes('✅') && <Badge className="bg-emerald-100 text-emerald-900 border-emerald-300 font-bold text-[10px]">Regulado</Badge>}
+                        {data.estado.includes('⚠️') && <Badge className="bg-amber-100 text-amber-900 border-amber-300 font-bold text-[10px]">Gris / Transición</Badge>}
+                        {data.estado.includes('❌') && <Badge className="bg-red-100 text-red-900 border-red-300 font-bold text-[10px]">Prohibido</Badge>}
+                        {data.estado.includes('🔄') && <Badge className="bg-blue-100 text-blue-900 border-blue-300 font-bold text-[10px]">Desarrollo</Badge>}
+                      </div>
+                      <div className="space-y-2 text-xs">
+                        <div className="flex justify-between items-center"><span className="text-slate-500 font-bold">Regulador:</span><span className="font-extrabold text-slate-900">{data.regulador || "N/A"}</span></div>
+                        {data.ley && <div className="flex justify-between items-start gap-2"><span className="text-slate-500 font-bold flex-shrink-0">Ley:</span><span className="font-mono text-[11px] text-slate-700 text-right font-medium">{data.ley}</span></div>}
+                        {data.ggr_2026 && <div className="flex justify-between items-center"><span className="text-slate-500 font-bold">GGR 2026:</span><span className="font-mono font-black text-purple-700 text-sm">{data.ggr_2026}</span></div>}
+                        {data.tax && <div className="flex justify-between items-start gap-2"><span className="text-slate-500 font-bold flex-shrink-0">Impuesto:</span><span className="font-semibold text-slate-800 text-right text-[11px]">{data.tax}</span></div>}
+                      </div>
                     </div>
                   </Card>
                 ))}
