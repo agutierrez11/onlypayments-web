@@ -7,6 +7,7 @@ export default function FintechGlobe() {
         src="/obsidian-graph.html"
         title="LATAM Fintech — Obsidian Graph"
         className="w-full h-full min-h-[550px] border-0 block"
+        loading="lazy"
       />
     </div>
   );

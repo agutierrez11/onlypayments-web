@@ -97,7 +97,7 @@ export function EcosystemDirectory() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <section className="py-20 bg-background relative overflow-hidden" id="explorador">
+    <section className="py-20 scroll-mt-24 bg-background relative overflow-hidden z-10" id="explorador">
       
       {/* Luces de fondo estilo Flow Shader */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
@@ -175,43 +175,43 @@ export function EcosystemDirectory() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="bg-slate-900/90 hover:bg-slate-850 border border-slate-800/90 hover:border-cyan-500/50 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden shadow-lg transition-all"
+                  className="bg-[#0b1329] hover:bg-[#111c3a] border border-slate-800 hover:border-cyan-400/80 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 group cursor-pointer relative overflow-hidden shadow-lg transition-all"
                 >
-                  <div className="flex items-center gap-4 min-w-[200px]">
-                    <span className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center border ${categoryColors[provider.category]}`}>
+                  <div className="flex items-center gap-4 min-w-[210px]">
+                    <span className={`flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center border ${categoryColors[provider.category]}`}>
                       <CatIcon className="w-5 h-5" />
                     </span>
                     <div>
-                      <div className="font-extrabold text-lg text-white flex items-center gap-2">
+                      <div className="font-extrabold text-xl text-white flex items-center gap-2 tracking-tight">
                         {provider.name}
                         <a href={`https://${provider.website}`} target="_blank" rel="noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors opacity-0 group-hover:opacity-100 hidden md:flex items-center gap-1">
-                          <ChevronRight className="w-3.5 h-3.5" />
+                          <ChevronRight className="w-4 h-4" />
                         </a>
                       </div>
-                      <span className="text-xs text-cyan-400 font-mono font-bold capitalize">{provider.category}</span>
+                      <span className="text-xs text-cyan-300 font-mono font-bold uppercase tracking-wider">{provider.category}</span>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-2 flex-1 items-center">
                     {provider.features.map((f, i) => (
-                      <span key={i} className="text-xs px-2.5 py-1 rounded-md bg-slate-950/80 border border-slate-800 text-slate-200 font-medium">
+                      <span key={i} className="text-xs px-3 py-1 rounded-md bg-[#030712] border border-slate-700 text-slate-100 font-semibold shadow-inner">
                         {f}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-2 md:min-w-[170px] justify-end">
+                  <div className="flex items-center gap-2 md:min-w-[180px] justify-end">
                     {provider.coverage.slice(0,2).map(c => (
-                      <span key={c} className="text-xs uppercase font-bold text-slate-200 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/80 font-mono">{c}</span>
+                      <span key={c} className="text-xs uppercase font-extrabold text-cyan-200 bg-slate-800/90 px-2.5 py-0.5 rounded border border-cyan-600/50 font-mono">{c}</span>
                     ))}
-                    {provider.coverage.length > 2 && <span className="text-xs font-bold text-slate-400 font-mono">+{provider.coverage.length - 2}</span>}
+                    {provider.coverage.length > 2 && <span className="text-xs font-bold text-slate-300 font-mono">+{provider.coverage.length - 2}</span>}
                     <Badge 
-                      className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md border ml-2 ${
+                      className={`text-[10px] uppercase font-black tracking-wider px-2.5 py-1 rounded-md border ml-2 ${
                         provider.tier === 'enterprise'
-                          ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                          ? 'bg-amber-400/25 text-amber-200 border-amber-400/60 shadow-[0_0_10px_rgba(251,191,36,0.2)]'
                           : provider.tier === 'growth'
-                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                          : 'bg-blue-500/20 text-blue-300 border-blue-500/40'
+                          ? 'bg-emerald-400/25 text-emerald-200 border-emerald-400/60 shadow-[0_0_10px_rgba(52,211,153,0.2)]'
+                          : 'bg-sky-400/25 text-sky-200 border-sky-400/60 shadow-[0_0_10px_rgba(56,189,248,0.2)]'
                       }`}
                     >
                       {provider.tier}
