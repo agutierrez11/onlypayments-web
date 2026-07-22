@@ -185,39 +185,36 @@ export default function Diccionario({ isEmbed }: Props) {
   });
 
   return (
-    <div className="min-h-screen bg-[#070b12] text-slate-100 font-sans pb-24 selection:bg-emerald-500 selection:text-black">
-      {/* Header Navigation */}
-      <div className="border-b border-slate-800/80 bg-[#070b12]/90 backdrop-blur-md sticky top-0 z-40">
-        <div className="container max-w-5xl py-3.5 flex justify-between items-center px-4">
-          <div className="flex items-center gap-3">
-            {!isEmbed && (
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-24 selection:bg-cyan-500 selection:text-white">
+      {/* Header Navigation - Oculto en modo Marca Blanca / Embed */}
+      {!isEmbed && (
+        <div className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-40 shadow-xs">
+          <div className="container max-w-5xl py-3.5 flex justify-between items-center px-4">
+            <div className="flex items-center gap-3">
               <Link href="/">
-                <Button variant="ghost" size="sm" className="gap-2 text-slate-400 hover:text-white text-xs">
-                  <ArrowLeft className="w-4 h-4" />
-                  Inicio
+                <Button variant="ghost" size="sm" className="gap-2 text-slate-700 hover:text-slate-900 text-xs font-bold border border-slate-300">
+                  <ArrowLeft className="w-4 h-4 text-cyan-600" />
+                  Volver al Inicio
                 </Button>
               </Link>
-            )}
-            <span className="text-xs font-semibold text-emerald-400 flex items-center gap-2 font-mono">
-              Diccionario de Medios de Pago
-              <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-950/60 text-emerald-300 border border-emerald-800/40">
-                Fernando Estévez
+              <span className="text-xs font-black text-cyan-700 flex items-center gap-2 font-mono">
+                Diccionario de Medios de Pago LATAM
               </span>
+            </div>
+
+            <span className="text-[11px] font-mono font-bold text-slate-600 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+              25 Términos Verificados 2026
             </span>
           </div>
-
-          <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            25 Términos Verificados
-          </span>
         </div>
-      </div>
+      )}
 
       <div className="container max-w-5xl pt-8 px-4">
-        {/* INTELLIGENTIAL STYLE: OPERATIONAL PANEL CONTAINER */}
-        <div className="bg-[#0b101b] border border-slate-800/90 rounded-2xl p-6 sm:p-8 mb-10 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-          {/* macOS Title Bar Header */}
-          <div className="flex items-center justify-between pb-6 border-b border-slate-800/80 mb-6">
+        {/* OPERATIONAL PANEL CONTAINER */}
+        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 mb-10 shadow-sm relative overflow-hidden">
+          {/* Header */}
+          <div className="flex items-center justify-between pb-6 border-b border-slate-100 mb-6">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
