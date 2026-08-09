@@ -18,14 +18,15 @@ import fintechHubData from "../data/fintechHubData.json";
 import { EcosystemFlows } from "../components/EcosystemFlows";
 import { FintechDirectory } from "../components/FintechDirectory";
 import { LatamPaymentRailsMap } from "../components/LatamPaymentRailsMap";
+import LatamFintechGISRadar from "../components/LatamFintechGISRadar";
 import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { SEO } from "../components/SEO";
 
-type Tab = "telemetria" | "satellite" | "pagos" | "igaming" | "openfinance" | "remesas" | "directorio";
+type Tab = "gisradar" | "telemetria" | "satellite" | "pagos" | "igaming" | "openfinance" | "remesas" | "directorio";
 
 export default function LatamFintechDashboard() {
-  const [activeTab, setActiveTab] = useState<Tab>("telemetria");
+  const [activeTab, setActiveTab] = useState<Tab>("gisradar");
   const [, navigate] = useLocation();
 
   return (
@@ -60,6 +61,12 @@ export default function LatamFintechDashboard() {
           <div className="grid grid-cols-2 md:grid-cols-1 gap-1.5">
             <NavItem 
               icon={MapPin} 
+              label="Mapa GIS Estatal (32 Edos)" 
+              active={activeTab === "gisradar"} 
+              onClick={() => setActiveTab("gisradar")} 
+            />
+            <NavItem 
+              icon={Building2} 
               label="Telemetría de Rieles" 
               active={activeTab === "telemetria"} 
               onClick={() => setActiveTab("telemetria")} 
@@ -112,6 +119,12 @@ export default function LatamFintechDashboard() {
       {/* Main Content Area con Scroll Habilitado */}
       <main className="flex-1 w-full min-h-screen bg-slate-50 relative z-10 scroll-smooth pb-24 overflow-y-auto">
         <AnimatePresence mode="wait">
+          {activeTab === "gisradar" && (
+            <motion.div key="gisradar" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }}>
+              <LatamFintechGISRadar />
+            </motion.div>
+          )}
+
           {activeTab === "telemetria" && (
             <motion.div key="telemetria" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }}>
               <LatamPaymentRailsMap />
