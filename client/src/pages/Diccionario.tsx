@@ -170,7 +170,7 @@ interface Props {
   isEmbed?: boolean;
 }
 
-export default function Diccionario({ isEmbed }: Props) {
+export default function Diccionario({ isEmbed = false }: Props = {}) {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTerm, setSelectedTerm] = useState<GlossaryTerm | null>(null);

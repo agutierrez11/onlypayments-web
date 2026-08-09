@@ -31,6 +31,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useLocation } from "wouter";
+import { toast } from "sonner";
 
 // Datos iniciales de demostración de decisores y conexiones de confianza
 const DEMO_DECISION_MAKERS = [
@@ -155,6 +156,7 @@ export default function IntroduccionesB2B() {
   const [selectedIntro, setSelectedIntro] = useState<typeof DEMO_DECISION_MAKERS[0] | null>(null);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [simulatedVolume, setSimulatedVolume] = useState(10);
 
   // Data Crossing Simulator
   const [rawUploadText, setRawUploadText] = useState(SAMPLE_CSV_DATA);
@@ -597,41 +599,148 @@ export default function IntroduccionesB2B() {
 
           {/* TAB 3: DISPERSIÓN FINANCIERA STRIPE CONNECT */}
           <TabsContent value="stripe" className="space-y-6">
-            <Card className="bg-slate-900/60 border-slate-800 p-8 rounded-2xl backdrop-blur-md">
-              <div className="max-w-3xl mb-8">
-                <h2 className="text-2xl font-bold text-white flex items-center gap-3 mb-2">
-                  <DollarSign className="w-6 h-6 text-emerald-400" />
-                  Arquitectura Financiera de Split Payouts (Stripe Connect)
-                </h2>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  Cada introducción calificada se cobra a <strong className="text-white">$150.00 USD</strong> y se dispersa en el mismo milisegundo a la cuenta Express del dueño del contacto y la caja de la comunidad.
-                </p>
+            <Card className="bg-slate-900/60 border-slate-800 p-8 rounded-2xl backdrop-blur-md space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+                <div className="max-w-2xl">
+                  <h2 className="text-2xl font-bold text-white flex items-center gap-3 mb-2">
+                    <DollarSign className="w-6 h-6 text-emerald-400" />
+                    Arquitectura Financiera de Split Payouts (Stripe Connect Express)
+                  </h2>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    Cada introducción calificada se cobra a <strong className="text-white">$150.00 USD</strong> y se dispersa en el mismo milisegundo a la cuenta Express del conector, el fondo de la comunidad y el software OnlyPayments.
+                  </p>
+                </div>
+
+                {/* Control Dinámico de Volumen de Intros */}
+                <div className="bg-slate-950 border border-slate-800 p-3.5 rounded-xl flex items-center gap-3">
+                  <span className="text-xs text-slate-400 font-bold">Volumen Simulado:</span>
+                  <div className="flex items-center gap-1.5">
+                    {[1, 5, 10, 25, 50].map((num) => (
+                      <button
+                        key={num}
+                        onClick={() => setSimulatedVolume(num)}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                          simulatedVolume === num 
+                            ? "bg-cyan-500 text-slate-950 shadow-xs" 
+                            : "bg-slate-900 text-slate-400 hover:text-white border border-slate-800"
+                        }`}
+                      >
+                        {num}x
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <Card className="bg-slate-950 border-emerald-500/30 p-6 rounded-xl relative overflow-hidden">
-                  <div className="text-xs font-mono text-emerald-400 mb-1">70% DISPERSIÓN DIRECTA</div>
-                  <div className="text-3xl font-extrabold text-white font-mono mb-2">$105.00 USD</div>
-                  <p className="text-xs text-slate-400">
-                    Al miembro de la comunidad que custodia el contacto y facilita la introducción de 15 min.
+              {/* Tarjetas de Desglose en Vivo */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Card className="bg-slate-950 border-slate-800 p-5 rounded-xl">
+                  <div className="text-[11px] font-mono text-slate-400 mb-1 uppercase">Facturación Bruta ({simulatedVolume} intros)</div>
+                  <div className="text-2xl font-extrabold text-white font-mono mb-1">
+                    ${(simulatedVolume * 150).toLocaleString()} USD
+                  </div>
+                  <p className="text-[10px] text-slate-400">
+                    Cobrado a la demanda corporativa vía Stripe PaymentIntent.
                   </p>
                 </Card>
 
-                <Card className="bg-slate-950 border-cyan-500/30 p-6 rounded-xl relative overflow-hidden">
-                  <div className="text-xs font-mono text-cyan-400 mb-1">15% FONDO COMUNIDAD</div>
-                  <div className="text-3xl font-extrabold text-white font-mono mb-2">$22.50 USD</div>
-                  <p className="text-xs text-slate-400">
-                    Directo al Administrador del Grupo (Fintech Bar / PayTech) para financiar meetups y eventos.
+                <Card className="bg-slate-950 border-emerald-500/30 p-5 rounded-xl">
+                  <div className="text-[11px] font-mono text-emerald-400 mb-1 uppercase">70% Dispersión Conector</div>
+                  <div className="text-2xl font-extrabold text-emerald-300 font-mono mb-1">
+                    ${(simulatedVolume * 105).toLocaleString()} USD
+                  </div>
+                  <p className="text-[10px] text-slate-400">
+                    Al miembro custodio del contacto tras confirmar la llamada de 15 min.
                   </p>
                 </Card>
 
-                <Card className="bg-slate-950 border-indigo-500/30 p-6 rounded-xl relative overflow-hidden">
-                  <div className="text-xs font-mono text-indigo-400 mb-1">15% SOFTWARE FEE</div>
-                  <div className="text-3xl font-extrabold text-white font-mono mb-2">$22.50 USD</div>
-                  <p className="text-xs text-slate-400">
-                    Mantenimiento de infraestructura pgvector, llamadas OpenAI y seguridad de la plataforma.
+                <Card className="bg-slate-950 border-cyan-500/30 p-5 rounded-xl">
+                  <div className="text-[11px] font-mono text-cyan-400 mb-1 uppercase">15% Fondo Comunidad</div>
+                  <div className="text-2xl font-extrabold text-cyan-300 font-mono mb-1">
+                    ${(simulatedVolume * 22.5).toLocaleString()} USD
+                  </div>
+                  <p className="text-[10px] text-slate-400">
+                    Caja del grupo o hub partner para eventos y meetups presenciales.
                   </p>
                 </Card>
+
+                <Card className="bg-slate-950 border-indigo-500/30 p-5 rounded-xl">
+                  <div className="text-[11px] font-mono text-indigo-400 mb-1 uppercase">15% Software Fee</div>
+                  <div className="text-2xl font-extrabold text-indigo-300 font-mono mb-1">
+                    ${(simulatedVolume * 22.5).toLocaleString()} USD
+                  </div>
+                  <p className="text-[10px] text-slate-400">
+                    Mantenimiento de infraestructura, pgvector y API de IA.
+                  </p>
+                </Card>
+              </div>
+
+              {/* Generador de Plantillas de Outreach MEDDIC (1 Clic) */}
+              <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                  <div>
+                    <h3 className="font-extrabold text-white text-base flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-cyan-400" />
+                      Calificador MEDDIC & Generador de Outreach de 1 Clic
+                    </h3>
+                    <p className="text-xs text-slate-400">
+                      Plantillas ejecutivas optimizadas para que el conector introduzca tu solución por WhatsApp o Email sin fricción.
+                    </p>
+                  </div>
+                  <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 font-mono text-[10px] self-start sm:self-auto">
+                    SPICED / MEDDIC
+                  </Badge>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Plantilla WhatsApp */}
+                  <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-emerald-400 text-xs flex items-center gap-1.5">
+                        💬 Formato WhatsApp Ejecutivo
+                      </span>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          const text = `Hola [Nombre Decisor], espero que todo vaya excelente. Te escribo rápido porque sé que en [Empresa] están optimizando sus costos de adquirencia y contracargos. Un partner verificado de OnlyPayments con excelente reputación en la comunidad quiere presentarte una propuesta concreta que reduce comisiones en [País]. ¿Te parece si les abro un puente de 15 minutos esta semana?`;
+                          navigator.clipboard.writeText(text);
+                          toast.success("¡Plantilla de WhatsApp copiada al portapapeles!");
+                        }}
+                        className="text-[11px] h-7 bg-slate-800 text-slate-200 hover:text-white border-slate-700 cursor-pointer"
+                      >
+                        Copiar WhatsApp
+                      </Button>
+                    </div>
+                    <p className="text-xs text-slate-300 font-mono bg-slate-950 p-3 rounded-lg leading-relaxed border border-slate-800/80">
+                      "Hola [Nombre], te escribo rápido porque un partner de confianza de OnlyPayments tiene una solución para reducir tasas de adquirencia en [País]. ¿Te abro un puente de 15 min esta semana?"
+                    </p>
+                  </div>
+
+                  {/* Plantilla Email / LinkedIn */}
+                  <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-cyan-400 text-xs flex items-center gap-1.5">
+                        ✉️ Formato Email / Nota LinkedIn
+                      </span>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          const text = `Asunto: Introducción calificada — Optimización de Rieles de Pago\n\nEstimado/a [Nombre],\n\nA través de la red de OnlyPayments, hemos identificado una sinergia técnica para mitigar la fricción de pagos locales en su operación. Nos gustaría coordinar una llamada ejecutiva de 15 minutos para compartir métricas de aprobación.\n\nSaludos cordiales,\n[Conector Verificado]`;
+                          navigator.clipboard.writeText(text);
+                          toast.success("¡Plantilla de Email copiada al portapapeles!");
+                        }}
+                        className="text-[11px] h-7 bg-slate-800 text-slate-200 hover:text-white border-slate-700 cursor-pointer"
+                      >
+                        Copiar Email
+                      </Button>
+                    </div>
+                    <p className="text-xs text-slate-300 font-mono bg-slate-950 p-3 rounded-lg leading-relaxed border border-slate-800/80">
+                      "Asunto: Intro calificada — Optimización de Rieles de Pago. Sinergia técnica para mitigar fricción y contracargos en LATAM..."
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* SIMULADOR DE TRANSACCION EN TIEMPO REAL */}
@@ -647,20 +756,20 @@ export default function IntroduccionesB2B() {
                 </div>
 
                 <pre className="text-slate-300 bg-slate-900/80 p-4 rounded-lg overflow-x-auto text-[11px]">
-{`// 1. Cobro off-session al comprador del lead
+{`// 1. Cobro off-session al comprador del lead ($150 USD x ${simulatedVolume})
 const paymentIntent = await stripe.paymentIntents.create({
-    amount: 15000, // $150.00 USD
+    amount: ${simulatedVolume * 15000}, // $${(simulatedVolume * 150).toLocaleString()}.00 USD
     currency: 'usd',
     payment_method: paymentMethodId,
     confirm: true
 });
 
-// 2. Dispersión al conector de la comunidad (70%)
+// 2. Dispersión automática al conector verificado (70%)
 await stripe.transfers.create({
-    amount: 10500, // $105.00 USD
+    amount: ${simulatedVolume * 10500}, // $${(simulatedVolume * 105).toLocaleString()}.00 USD
     currency: 'usd',
     destination: connectorStripeConnectId, // acct_1Mxxxxxxx
-    transfer_group: 'group_lead_8941'
+    transfer_group: 'group_lead_batch_${simulatedVolume}'
 });`}
                 </pre>
               </div>

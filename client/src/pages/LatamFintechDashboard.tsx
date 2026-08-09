@@ -10,20 +10,22 @@ import {
   Search,
   Zap,
   Radio,
-  ArrowLeft
+  ArrowLeft,
+  MapPin
 } from "lucide-react";
 import { useLocation } from "wouter";
 import fintechHubData from "../data/fintechHubData.json";
 import { EcosystemFlows } from "../components/EcosystemFlows";
 import { FintechDirectory } from "../components/FintechDirectory";
+import { LatamPaymentRailsMap } from "../components/LatamPaymentRailsMap";
 import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { SEO } from "../components/SEO";
 
-type Tab = "satellite" | "pagos" | "igaming" | "openfinance" | "remesas" | "directorio";
+type Tab = "telemetria" | "satellite" | "pagos" | "igaming" | "openfinance" | "remesas" | "directorio";
 
 export default function LatamFintechDashboard() {
-  const [activeTab, setActiveTab] = useState<Tab>("satellite");
+  const [activeTab, setActiveTab] = useState<Tab>("telemetria");
   const [, navigate] = useLocation();
 
   return (
@@ -56,6 +58,12 @@ export default function LatamFintechDashboard() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-1 gap-1.5">
+            <NavItem 
+              icon={MapPin} 
+              label="Telemetría de Rieles" 
+              active={activeTab === "telemetria"} 
+              onClick={() => setActiveTab("telemetria")} 
+            />
             <NavItem 
               icon={Radio} 
               label="Radar Satelital 3D" 
@@ -104,6 +112,12 @@ export default function LatamFintechDashboard() {
       {/* Main Content Area con Scroll Habilitado */}
       <main className="flex-1 w-full min-h-screen bg-slate-50 relative z-10 scroll-smooth pb-24 overflow-y-auto">
         <AnimatePresence mode="wait">
+          {activeTab === "telemetria" && (
+            <motion.div key="telemetria" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }}>
+              <LatamPaymentRailsMap />
+            </motion.div>
+          )}
+
           {activeTab === "satellite" && (
             <motion.div key="satellite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="w-full h-[calc(100vh-40px)] relative">
               <iframe
@@ -213,10 +227,10 @@ export default function LatamFintechDashboard() {
                 <Card className="p-6 bg-white border border-slate-200 shadow-sm rounded-2xl">
                   <h3 className="text-lg font-black text-slate-900 mb-3">Canales & Tendencias 2026</h3>
                   <p className="text-xs text-slate-600 font-medium leading-relaxed mb-4">
-                    {fintechHubData.remesas.observacion_general}
+                    Flujo líder de remesas en Centroamérica y México con más del 80% de los envíos originados en EE.UU., impulsado por la adopción de billeteras digitales y comisiones a la baja.
                   </p>
                   <div className="space-y-2">
-                    {fintechHubData.remesas.tendencias_2026.map((t: string, i: number) => (
+                    {fintechHubData.remesas.tendencias.map((t: string, i: number) => (
                       <div key={i} className="flex items-center gap-2 text-xs font-bold text-slate-800 bg-slate-100 p-2.5 rounded-lg border border-slate-200">
                         <Banknote className="w-4 h-4 text-cyan-700 flex-shrink-0" />
                         <span>{t}</span>

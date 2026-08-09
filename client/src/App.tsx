@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
+import { PaymentCopilot } from "./components/PaymentCopilot";
 import Home from "./pages/Home";
 import NewsFeed from "./pages/NewsFeed";
 import NewsDetail from "./pages/NewsDetail";
@@ -31,7 +32,9 @@ function Router() {
       <Route path={"/stacks"} component={PaymentStacks} />
       <Route path={"/remesas"} component={Remesas} />
       <Route path={"/guides"} component={HowToGuides} />
-      <Route path={"/diccionario"} component={Diccionario} />
+      <Route path={"/diccionario"}>
+        <Diccionario />
+      </Route>
       <Route path={"/latam-dashboard"} component={LatamFintechDashboard} />
       <Route path={"/b2b-intros"} component={IntroduccionesB2B} />
       <Route path={"/embed/diccionario"}>
@@ -60,6 +63,7 @@ function App() {
           <TooltipProvider>
             <Toaster />
             <Router />
+            <PaymentCopilot />
           </TooltipProvider>
         </SmoothScrollProvider>
       </ThemeProvider>
