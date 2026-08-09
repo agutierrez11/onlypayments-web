@@ -34,7 +34,7 @@ export default function FintechGlobe() {
 
       <iframe
         key={viewMode}
-        src={viewMode === 'graph' ? '/obsidian-graph.html' : '/latam-fintech-satellite.html'}
+        src={viewMode === 'graph' ? '/obsidian-graph.html?v=2026.3' : '/latam-fintech-satellite.html?v=2026.3'}
         title={viewMode === 'graph' ? 'OnlyPayments Ecosystem Graph' : 'LATAM Fintech Satellite 3D'}
         className="w-full h-full min-h-[640px] border-0 block flex-1"
         loading="lazy"

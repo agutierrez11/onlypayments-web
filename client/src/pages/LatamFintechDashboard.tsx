@@ -121,7 +121,7 @@ export default function LatamFintechDashboard() {
           {activeTab === "satellite" && (
             <motion.div key="satellite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="w-full h-[calc(100vh-40px)] relative">
               <iframe
-                src="/latam-fintech-satellite.html"
+                src="/latam-fintech-satellite.html?v=2026.3"
                 title="LATAM Fintech Satellite 3D"
                 className="w-full h-full border-0 block"
               />
