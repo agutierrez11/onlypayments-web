@@ -3,1104 +3,863 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Microsoft Clarity -->
-  <script>
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xni32dnkft");
-  </script>
+  <title>LATAM Fintech Hub — 3D Satellite Radar 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #020408;
+      background: #020617;
+      color: #f8fafc;
       overflow: hidden;
-      font-family: 'Orbitron', 'Rajdhani', system-ui, sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       width: 100vw;
       height: 100vh;
+      user-select: none;
     }
+
     #canvas-container {
       width: 100%;
       height: 100%;
       position: relative;
+      background: radial-gradient(circle at center, #0a1128 0%, #020617 80%, #01040f 100%);
     }
-    canvas { display: block; cursor: grab; }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+    }
     canvas:active { cursor: grabbing; }
-    
-    /* ========== HUD OVERLAY ========== */
+
+    /* ========== HIGH-TECH HUD OVERLAYS ========== */
     .hud {
       position: absolute;
       pointer-events: none;
       z-index: 10;
     }
+
     .hud-top-left {
-      top: 20px;
-      left: 24px;
+      top: 24px;
+      left: 28px;
     }
-    .hud-top-right {
-      top: 20px;
-      right: 24px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      max-width: 500px;
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(14, 165, 233, 0.12);
+      border: 1px solid rgba(14, 165, 233, 0.35);
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 10px;
     }
-    .hud-bottom-left {
-      bottom: 20px;
-      left: 24px;
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00f5d4;
+      box-shadow: 0 0 10px #00f5d4, 0 0 20px rgba(0, 245, 212, 0.5);
+      animation: pulseDot 2s infinite ease-in-out;
     }
-    .hud-bottom-right {
-      bottom: 20px;
-      right: 24px;
-      text-align: right;
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
     }
-    
-    .hud-title {
-      font-size: 20px;
-      font-weight: 900;
-      color: #00f5d4;
-      letter-spacing: 3px;
-      text-shadow: 0 0 20px rgba(0,245,212,0.4);
-    }
-    .hud-subtitle {
-      font-size: 11px;
-      color: #00f5d4;
-      opacity: 0.6;
-      margin-top: 4px;
-      letter-spacing: 2px;
+    .brand-tag {
       font-family: 'JetBrains Mono', monospace;
-    }
-    .hud-panel {
-      background: rgba(4,8,20,0.85);
-      border: 1px solid rgba(0,245,212,0.15);
-      border-radius: 10px;
-      padding: 12px 18px;
-      text-align: center;
-      backdrop-filter: blur(8px);
-      min-width: 100px;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .hud-panel:hover {
-      border-color: rgba(0,245,212,0.4);
-      box-shadow: 0 0 20px rgba(0,245,212,0.1);
-    }
-    .hud-value {
-      font-size: 24px;
+      font-size: 11px;
       font-weight: 700;
-      color: #fff;
-      font-variant-numeric: tabular-nums;
-      text-shadow: 0 0 10px rgba(255,255,255,0.2);
-    }
-    .hud-label {
-      font-size: 9px;
-      color: #6b8a9a;
+      color: #38bdf8;
       letter-spacing: 1.5px;
-      margin-top: 3px;
       text-transform: uppercase;
     }
-    .hud-accent {
-      color: #00f5d4;
-      font-size: 18px;
-      font-weight: 600;
+
+    .hud-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      line-height: 1.1;
+      text-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
     }
-    .hud-pulse {
-      animation: hudPulse 2s ease-in-out infinite;
+    .hud-title span {
+      background: linear-gradient(135deg, #00f5d4 0%, #38bdf8 50%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    @keyframes hudPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-    
-    /* ========== TOOLTIP ========== */
-    #tooltip {
-      position: absolute;
-      background: rgba(4,8,20,0.95);
-      border: 1px solid rgba(0,245,212,0.3);
-      border-radius: 12px;
-      padding: 16px 20px;
-      color: #fff;
-      font-family: 'Rajdhani', system-ui, sans-serif;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s, transform 0.3s;
-      z-index: 100;
-      min-width: 220px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(0,245,212,0.1);
-    }
-    #tooltip.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #tooltip .tt-country {
-      font-size: 18px;
-      font-weight: 700;
-      color: #00f5d4;
-      margin-bottom: 8px;
+
+    .hud-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 6px;
       letter-spacing: 1px;
     }
-    #tooltip .tt-stat {
+
+    /* ========== HUD TOP RIGHT CONTROLS ========== */
+    .hud-top-right {
+      top: 24px;
+      right: 28px;
       display: flex;
-      justify-content: space-between;
+      gap: 12px;
       align-items: center;
-      padding: 4px 0;
-      border-bottom: 1px solid rgba(0,245,212,0.1);
+      pointer-events: auto;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
-    #tooltip .tt-stat:last-child { border-bottom: none; }
-    #tooltip .tt-stat-label {
-      font-size: 12px;
-      color: #6b8a9a;
+
+    .metric-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 10px 16px;
+      text-align: right;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
     }
-    #tooltip .tt-stat-value {
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      font-variant-numeric: tabular-nums;
+    .metric-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
     }
-    #tooltip .tt-tag {
-      display: inline-block;
-      background: rgba(0,245,212,0.1);
+    .metric-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: -0.5px;
+    }
+    .metric-value.accent {
       color: #00f5d4;
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-top: 8px;
-      margin-right: 4px;
-      letter-spacing: 0.5px;
+      text-shadow: 0 0 15px rgba(0, 245, 212, 0.4);
     }
-    
-    /* ========== SCANNER LINE ========== */
-    .scanner {
+    .metric-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* ========== CATEGORY SWITCHER (BOTTOM CENTER) ========== */
+    .hud-bottom-center {
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px;
+      border-radius: 9999px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      pointer-events: auto;
+    }
+
+    .rail-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rail-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .rail-btn.active {
+      background: linear-gradient(135deg, #00f5d4 0%, #0284c7 100%);
+      color: #020617;
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+    }
+
+    /* ========== HUD BOTTOM CORNERS ========== */
+    .hud-bottom-left {
+      bottom: 28px;
+      left: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+    .legend-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .indicator-a2a { background: #00f5d4; box-shadow: 0 0 8px #00f5d4; }
+    .indicator-card { background: #38bdf8; box-shadow: 0 0 8px #38bdf8; }
+    .indicator-crypto { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+
+    .hud-bottom-right {
+      bottom: 28px;
+      right: 28px;
+      text-align: right;
+    }
+    .telemetry-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #64748b;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ========== DETAIL DRAWER / TOOLTIP ========== */
+    #detail-drawer {
+      position: absolute;
+      top: 50%;
+      right: 32px;
+      transform: translateY(-50%) translateX(40px);
+      width: 340px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.15);
+      color: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+    }
+    #detail-drawer.visible {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+      pointer-events: auto;
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 16px;
+    }
+    .drawer-country {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .drawer-flag { font-size: 26px; }
+    .drawer-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .drawer-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 2px 6px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .drawer-close {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 8px;
+      transition: color 0.2s;
+    }
+    .drawer-close:hover { color: #ffffff; }
+
+    .drawer-section {
+      margin-bottom: 14px;
+    }
+    .drawer-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .drawer-value {
+      font-size: 13px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    .drawer-rail-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(0, 245, 212, 0.1);
+      border: 1px solid rgba(0, 245, 212, 0.3);
+      border-radius: 8px;
+      color: #00f5d4;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .drawer-stats-grid {
+      display: grid;
+      grid-cols: 2;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .drawer-stat-box {
+      background: rgba(2, 6, 23, 0.6);
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .drawer-stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    /* ========== SCANNING OVERLAY ========== */
+    .scanner-line {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(0,245,212,0.3), transparent);
-      animation: scan 4s linear infinite;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 245, 212, 0.6) 50%, transparent 100%);
+      animation: scanAnim 5s linear infinite;
       pointer-events: none;
+      opacity: 0.4;
       z-index: 5;
     }
-    @keyframes scan {
-      0% { top: 0; }
-      100% { top: 100%; }
-    }
-    
-    /* ========== CORNER BRACKETS ========== */
-    .corner {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-color: rgba(0,245,212,0.3);
-      pointer-events: none;
-      z-index: 5;
-    }
-    .corner-tl { top: 12px; left: 12px; border-top: 2px solid; border-left: 2px solid; }
-    .corner-tr { top: 12px; right: 12px; border-top: 2px solid; border-right: 2px solid; }
-    .corner-bl { bottom: 12px; left: 12px; border-bottom: 2px solid; border-left: 2px solid; }
-    .corner-br { bottom: 12px; right: 12px; border-bottom: 2px solid; border-right: 2px solid; }
-    
-    /* ========== LOADING ========== */
-    .loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #00f5d4;
-      font-size: 12px;
-      letter-spacing: 3px;
-      animation: pulse 1.5s ease-in-out infinite;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-    
-    /* ========== LEGEND ========== */
-    .legend {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: #6b8a9a;
-    }
-    .legend-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-    .legend-dot.core { background: #00f5d4; box-shadow: 0 0 8px #00f5d4; }
-    .legend-dot.node { background: rgba(0,245,212,0.6); }
-    .legend-dot.connection { background: rgba(0,245,212,0.2); width: 20px; height: 1px; border-radius: 0; }
-    
-    /* ========== FALLBACK SVG ========== */
-    #fallback-globe {
-      display: none;
-      width: 100%;
-      height: 100%;
+    @keyframes scanAnim {
+      0% { top: -5%; }
+      100% { top: 105%; }
     }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="canvas-container">
-    <div class="loader" id="loader">INICIANDO SATÉLITE...</div>
-    
-    <!-- Scanner line -->
-    <div class="scanner"></div>
-    
-    <!-- Corner brackets -->
-    <div class="corner corner-tl"></div>
-    <div class="corner corner-tr"></div>
-    <div class="corner corner-bl"></div>
-    <div class="corner corner-br"></div>
-    
+    <div class="scanner-line"></div>
+
     <!-- HUD Top Left -->
     <div class="hud hud-top-left">
-      <div class="hud-title">LATAM FINTECH HUB</div>
-      <div class="hud-subtitle">● SATELLITE TRACKING — 20 PAÍSES</div>
+      <div class="brand-badge">
+        <div class="brand-dot"></div>
+        <span class="brand-tag">Telemetría Global 2026</span>
+      </div>
+      <h1 class="hud-title">LATAM <span>FinTech Hub</span></h1>
+      <p class="hud-subtitle">3D SATELLITE RADAR & TRANSACTIONS ENGINE</p>
     </div>
-    
+
     <!-- HUD Top Right -->
     <div class="hud hud-top-right">
-      <div class="hud-panel">
-        <div class="hud-value hud-pulse">20</div>
-        <div class="hud-label">Países Mapeados</div>
+      <div class="metric-card">
+        <div class="metric-value accent">20 PAÍSES</div>
+        <div class="metric-label">Mapeados</div>
       </div>
-      <div class="hud-panel">
-        <div class="hud-value">$173.7B</div>
-        <div class="hud-label">Remesas 2025</div>
+      <div class="metric-card">
+        <div class="metric-value">$173.7B</div>
+        <div class="metric-label">Remesas 2025</div>
       </div>
-      <div class="hud-panel">
-        <div class="hud-value">3,000+</div>
-        <div class="hud-label">Fintechs Activas</div>
+      <div class="metric-card">
+        <div class="metric-value accent">PIX + SPEI</div>
+        <div class="metric-label">RTP A2A Core</div>
       </div>
-      <div class="hud-panel">
-        <div class="hud-accent">PIX + SPEI</div>
-        <div class="hud-label">RTP A2A Core</div>
-      </div>
-    </div>
-    
-    <!-- HUD Bottom Left -->
-    <div class="hud hud-bottom-left">
-      <div class="legend">
-        <div class="legend-item">
-          <div class="legend-dot core"></div>
-          <span>Núcleo Fintech</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot node"></div>
-          <span>Países Activos</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot connection"></div>
-          <span>Conexiones</span>
-        </div>
+      <div class="metric-card">
+        <div class="metric-value">3,000+</div>
+        <div class="metric-label">FinTechs Activas</div>
       </div>
     </div>
-    
-    <!-- HUD Bottom Right -->
-    <div class="hud hud-bottom-right">
-      <div class="hud-subtitle">ARRASTRA PARA ROTAR ● SCROLL PARA ZOOM</div>
+
+    <!-- Bottom Center: Rail Switcher -->
+    <div class="hud-bottom-center">
+      <button class="rail-btn active" onclick="setRailMode('all', this)">⚡ Todos los Rieles</button>
+      <button class="rail-btn" onclick="setRailMode('a2a', this)">💎 Rieles A2A Instantáneos</button>
+      <button class="rail-btn" onclick="setRailMode('crossborder', this)">🌐 Cross-Border / Remesas</button>
+      <button class="rail-btn" onclick="setRailMode('acquirers', this)">💳 Adquirencia Regional</button>
     </div>
-    
-    <!-- Three.js Canvas -->
+
+    <!-- Bottom Left: Legend -->
+    <div class="hud-bottom-left">
+      <div class="legend-item">
+        <div class="legend-indicator indicator-a2a"></div>
+        <span>RTP A2A Instantáneo</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-indicator indicator-card"></div>
+        <span>Adquirencia Local</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-indicator indicator-crypto"></div>
+        <span>Flujo Transfronterizo</span>
+      </div>
+    </div>
+
+    <!-- Bottom Right: Hint -->
+    <div class="hud-bottom-right">
+      <div class="telemetry-hint">Arrastra para Rotar ● Scroll para Zoom ● Clic en Nodo</div>
+    </div>
+
+    <!-- Canvas -->
     <canvas id="gl-canvas"></canvas>
-    
-    <!-- Tooltip -->
-    <div id="tooltip">
-      <div class="tt-country" id="tt-country">País</div>
-      <div class="tt-stat">
-        <span class="tt-stat-label">Fintechs</span>
-        <span class="tt-stat-value" id="tt-fintechs">-</span>
+
+    <!-- Detail Drawer -->
+    <div id="detail-drawer">
+      <div class="drawer-header">
+        <div class="drawer-country">
+          <span class="drawer-flag" id="d-flag">🇲🇽</span>
+          <div>
+            <div class="drawer-name" id="d-name">México</div>
+            <span class="drawer-code" id="d-code">MX</span>
+          </div>
+        </div>
+        <button class="drawer-close" onclick="closeDrawer()">✕</button>
       </div>
-      <div class="tt-stat">
-        <span class="tt-stat-label">VC Funding 2025</span>
-        <span class="tt-stat-value" id="tt-funding">-</span>
+
+      <div class="drawer-section">
+        <div class="drawer-label">Riel Instantáneo Dominante</div>
+        <div class="drawer-rail-badge" id="d-rail">
+          <span>⚡ SPEI / CoDi / Dimo</span>
+        </div>
       </div>
-      <div class="tt-stat">
-        <span class="tt-stat-label">Remesas</span>
-        <span class="tt-stat-value" id="tt-remesas">-</span>
+
+      <div class="drawer-section">
+        <div class="drawer-label">Regulador & Marco Legal</div>
+        <div class="drawer-value" id="d-regulator">Banxico & CNBV (Ley Fintech)</div>
       </div>
-      <div class="tt-stat">
-        <span class="tt-stat-label">RTP Dominante</span>
-        <span class="tt-stat-value" id="tt-rtp">-</span>
+
+      <div class="drawer-section">
+        <div class="drawer-label">Pasarelas Líderes</div>
+        <div class="drawer-value" id="d-gateways">Clip, Stripe, Mercado Pago, Kushki, Conekta</div>
       </div>
-      <div id="tt-tags"></div>
+
+      <div class="drawer-stats-grid">
+        <div class="drawer-stat-box">
+          <div class="drawer-label">MDR Promedio</div>
+          <div class="drawer-stat-num" id="d-mdr">2.6% - 3.5%</div>
+        </div>
+        <div class="drawer-stat-box">
+          <div class="drawer-label">Penetración A2A</div>
+          <div class="drawer-stat-num" id="d-pen">+35% YoY</div>
+        </div>
+      </div>
     </div>
-    
-    <!-- Fallback SVG -->
-    <svg id="fallback-globe" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#00f5d4" stop-opacity="0.2"/>
-          <stop offset="100%" stop-color="#00f5d4" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <rect width="100%" height="100%" fill="#020408"/>
-      <ellipse cx="400" cy="300" rx="200" ry="200" fill="url(#glow)"/>
-      <g transform="translate(400,300)">
-        <ellipse cx="0" cy="0" rx="180" ry="180" fill="none" stroke="rgba(0,245,212,0.15)" stroke-width="1.5"/>
-        <ellipse cx="0" cy="0" rx="180" ry="180" fill="none" stroke="rgba(0,245,212,0.1)" stroke-width="1" transform="scale(1,0.35)"/>
-        <circle cx="0" cy="0" r="40" fill="#00f5d4" opacity="0.8">
-          <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
-        </circle>
-      </g>
-    </svg>
   </div>
 
+  <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <script>
-    // ============================================
-    // LATAM FINTECH HUB - GLOBO 3D SATELITAL
-    // Datos reales del ecosistema 2025-2026
-    // ============================================
-    
-    (function() {
+    // =========================================================================
+    // LATAM 3D GLOBE ENGINE (Kage WebGL + Shaders + Pulsing Geodesic Arcs)
+    // =========================================================================
+
+    const HUB_NODES = [
+      { id: 'mx', name: 'México', code: 'MX', flag: '🇲🇽', lat: 19.43, lon: -99.13, rail: 'SPEI / CoDi', reg: 'Banxico & CNBV', gateways: 'Clip, Mercado Pago, Stripe, Kushki, Conekta', mdr: '2.64% - 3.59%', pen: '60M Usuarios', color: 0x00f5d4, size: 2.2 },
+      { id: 'br', name: 'Brasil', code: 'BR', flag: '🇧🇷', lat: -23.55, lon: -46.63, rail: 'Pix (BCB)', reg: 'Banco Central do Brasil', gateways: 'Mercado Pago, Stripe, Stone, PagBank, Cielo', mdr: '1.90% - 2.80%', pen: '95% Adopción', color: 0x10b981, size: 2.6 },
+      { id: 'co', name: 'Colombia', code: 'CO', flag: '🇨🇴', lat: 4.71, lon: -74.07, rail: 'Bre-B / PSE / Transfiya', reg: 'Superfinanciera & BanRep', gateways: 'Wompi, Bold, Kushki, PayU, dLocal', mdr: '2.40% - 3.20%', pen: '70% E-comm', color: 0x38bdf8, size: 1.9 },
+      { id: 'ar', name: 'Argentina', code: 'AR', flag: '🇦🇷', lat: -34.60, lon: -58.38, rail: 'Transferencias 3.0 / QR', reg: 'BCRA', gateways: 'Mercado Pago, Ualá, dLocal, Modo, Payway', mdr: '1.80% - 3.50%', pen: 'Líder QR', color: 0x818cf8, size: 1.9 },
+      { id: 'cl', name: 'Chile', code: 'CL', flag: '🇨🇱', lat: -33.44, lon: -70.66, rail: 'TEF / Khipu / Webpay', reg: 'CMF Chile', gateways: 'Transbank, Kushki, Mercado Pago, Fintoc', mdr: '1.40% - 2.20%', pen: 'Alta Tarjetas', color: 0xa855f7, size: 1.7 },
+      { id: 'pe', name: 'Perú', code: 'PE', flag: '🇵🇪', lat: -12.04, lon: -77.04, rail: 'Yape / Plin (BCRP)', reg: 'SBS & BCRP', gateways: 'Niubiz, Izipay, Culqi, Kushki, dLocal', mdr: '2.80% - 3.60%', pen: '16M Usuarios', color: 0xf43f5e, size: 1.7 },
+      { id: 'uy', name: 'Uruguay', code: 'UY', flag: '🇺🇾', lat: -34.90, lon: -56.16, rail: 'SPI Directo (BCU)', reg: 'Banco Central del Uruguay', gateways: 'dLocal (HQ), Handy, Geopagos', mdr: '1.80% - 2.50%', pen: 'Hub Fintech', color: 0x06b6d4, size: 1.5 },
+      { id: 'ec', name: 'Ecuador', code: 'EC', flag: '🇪🇨', lat: -0.18, lon: -78.46, rail: 'SPI / Dólar USD', reg: 'BCE & SuperBancos', gateways: 'Kushki (Origen), Payphone, Datafast', mdr: '2.90% - 4.20%', pen: 'Dolarizado', color: 0xf59e0b, size: 1.5 },
+      { id: 'cr', name: 'Costa Rica', code: 'CR', flag: '🇨🇷', lat: 9.92, lon: -84.09, rail: 'SINPE Móvil', reg: 'BCCR & SUGEF', gateways: 'BAC Credomatic, dLocal, Tilopay', mdr: '1.75% - 2.50%', pen: '95% P2P', color: 0x14b8a6, size: 1.4 },
+      { id: 'pa', name: 'Panamá', code: 'PA', flag: '🇵🇦', lat: 8.98, lon: -79.51, rail: 'Yappy / ACH Xpress', reg: 'Superintendencia de Bancos', gateways: 'Banco General, PagueloFacil, dLocal', mdr: '2.50% - 3.50%', pen: 'Centro Bancario', color: 0x6366f1, size: 1.5 },
+      { id: 'gt', name: 'Guatemala', code: 'GT', flag: '🇬🇹', lat: 14.63, lon: -90.50, rail: 'ACH Pronto / GuatePago', reg: 'BANGUAT & SIB', gateways: 'Bam, Fri, NeoNet, dLocal', mdr: '3.00% - 4.50%', pen: '$19.8B Remesas', color: 0x0ea5e9, size: 1.4 },
+      { id: 'do', name: 'Rep. Dominicana', code: 'DO', flag: '🇩🇴', lat: 18.48, lon: -69.93, rail: 'LBTR Inmediato', reg: 'Banco Central Rep. Dom.', gateways: 'CardNET, Azul, dLocal, MIO', mdr: '2.50% - 3.80%', pen: '$11.9B Remesas', color: 0x38bdf8, size: 1.4 }
+    ];
+
+    // Transaction routes (Curved Arcs in 3D)
+    const TRANSACTION_ROUTES = [
+      { from: 'br', to: 'mx', color: 0x00f5d4 },
+      { from: 'mx', to: 'co', color: 0x38bdf8 },
+      { from: 'br', to: 'ar', color: 0x818cf8 },
+      { from: 'co', to: 'pe', color: 0xf43f5e },
+      { from: 'cl', to: 'pe', color: 0xa855f7 },
+      { from: 'uy', to: 'br', color: 0x00f5d4 },
+      { from: 'cr', to: 'pa', color: 0x14b8a6 },
+      { from: 'mx', to: 'gt', color: 0x0ea5e9 },
+      { from: 'co', to: 'ec', color: 0xf59e0b },
+      { from: 'mx', to: 'do', color: 0x38bdf8 }
+    ];
+
+    let scene, camera, renderer, globeGroup;
+    let markers = [];
+    let arcCurves = [];
+    let pulseParticles = [];
+    let isDragging = false;
+    let prevMouse = { x: 0, y: 0 };
+    let targetRotation = { x: 0.35, y: -0.6 };
+    let currentRotation = { x: 0.35, y: -0.6 };
+    let autoRotate = true;
+
+    function init() {
       const container = document.getElementById('canvas-container');
       const canvas = document.getElementById('gl-canvas');
-      const loader = document.getElementById('loader');
-      const fallback = document.getElementById('fallback-globe');
-      const tooltip = document.getElementById('tooltip');
-      const ttCountry = document.getElementById('tt-country');
-      const ttFintechs = document.getElementById('tt-fintechs');
-      const ttFunding = document.getElementById('tt-funding');
-      const ttRemesas = document.getElementById('tt-remesas');
-      const ttRtp = document.getElementById('tt-rtp');
-      const ttTags = document.getElementById('tt-tags');
-      
-      // ========== DATOS REALES DEL ECOSISTEMA ==========
-      const countryData = {
-        'México': {
-          lat: 19.4, lon: -99.1,
-          fintechs: '650+',
-          funding: '$980M',
-          fundingRank: 2,
-          remesas: '$62.5B',
-          remesasRank: 1,
-          rtp: 'SPEI',
-          tags: ['A2A Leader', 'Fintech Law', 'Plata', 'Klar'],
-          color: 0x00f5d4,
-          size: 4.5
-        },
-        'Brasil': {
-          lat: -23.5, lon: -46.6,
-          fintechs: '1,200+',
-          funding: '$2.03B',
-          fundingRank: 1,
-          remesas: '$1.2B',
-          remesasRank: 10,
-          rtp: 'PIX',
-          tags: ['PIX 95% adoption', 'Nubank', 'C6 Bank', 'Open Banking'],
-          color: 0x00f5d4,
-          size: 6
-        },
-        'Colombia': {
-          lat: 4.7, lon: -74.0,
-          fintechs: '410+',
-          funding: '$92M (H1)',
-          fundingRank: 4,
-          remesas: '$2.1B',
-          remesasRank: 6,
-          rtp: 'PSE / Bre-B',
-          tags: ['Fastest Growth 22%', 'AI 66%', 'Bre-B Launch'],
-          color: 0x7b61ff,
-          size: 3.5
-        },
-        'Chile': {
-          lat: -33.4, lon: -70.7,
-          fintechs: '280+',
-          funding: '$110M (H1)',
-          fundingRank: 3,
-          remesas: '$0.3B',
-          remesasRank: 14,
-          rtp: 'Transferencias',
-          tags: ['Start-Up Chile', 'Clean Energy', 'Stable regs'],
-          color: 0x00f5d4,
-          size: 3
-        },
-        'Argentina': {
-          lat: -34.6, lon: -58.4,
-          fintechs: '320+',
-          funding: 'Variable',
-          fundingRank: 5,
-          remesas: '$0.8B',
-          remesasRank: 11,
-          rtp: 'Transferencias CB',
-          tags: ['Ualá $2.75B', 'Nuvemshop', 'High Talent'],
-          color: 0xff6b6b,
-          size: 3.5
-        },
-        'Perú': {
-          lat: -12.0, lon: -77.0,
-          fintechs: '180+',
-          funding: 'Growing',
-          fundingRank: 6,
-          remesas: '$4.5B',
-          remesasRank: 4,
-          rtp: 'Transferencias',
-          tags: ['Lima Hub', 'Yape', 'Plin'],
-          color: 0x00f5d4,
-          size: 2.8
-        },
-        'Ecuador': {
-          lat: -0.2, lon: -78.5,
-          fintechs: '90+',
-          funding: 'Emerging',
-          fundingRank: 8,
-          remesas: '$5.2B',
-          remesasRank: 3,
-          rtp: 'Transferencias',
-          tags: ['Dollarized', 'Remittance Hub'],
-          color: 0x00f5d4,
-          size: 2.2
-        },
-        'Guatemala': {
-          lat: 14.6, lon: -90.5,
-          fintechs: '60+',
-          funding: 'Seed',
-          fundingRank: 12,
-          remesas: '$19.8B',
-          remesasRank: 2,
-          rtp: 'Transferencias',
-          tags: ['Remittance King', '18.7% Growth'],
-          color: 0xffa500,
-          size: 2.5
-        },
-        'El Salvador': {
-          lat: 13.7, lon: -89.2,
-          fintechs: '45+',
-          funding: 'Seed',
-          fundingRank: 14,
-          remesas: '$8.3B',
-          remesasRank: 5,
-          rtp: 'Bitcoin + Trad',
-          tags: ['Bitcoin Legal', '17.8% Growth'],
-          color: 0xffa500,
-          size: 2
-        },
-        'Costa Rica': {
-          lat: 9.9, lon: -84.0,
-          fintechs: '70+',
-          funding: 'Seed+',
-          fundingRank: 10,
-          remesas: '$0.6B',
-          remesasRank: 12,
-          rtp: 'SINPE',
-          tags: ['SINPE Móvil', '19.6% Growth'],
-          color: 0x00f5d4,
-          size: 2
-        },
-        'Panamá': {
-          lat: 8.9, lon: -79.5,
-          fintechs: '85+',
-          funding: 'Seed+',
-          fundingRank: 9,
-          remesas: '$0.7B',
-          remesasRank: 13,
-          rtp: 'ACH',
-          tags: ['Banking Hub', 'Regional HQ'],
-          color: 0x00f5d4,
-          size: 2.2
-        },
-        'Rep. Dominicana': {
-          lat: 18.5, lon: -69.9,
-          fintechs: '110+',
-          funding: 'Series A',
-          fundingRank: 7,
-          remesas: '$11.9B',
-          remesasRank: 8,
-          rtp: 'Transferencias',
-          tags: ['Caribbean Leader', '9.3% Growth'],
-          color: 0x00f5d4,
-          size: 2.8
-        },
-        'Honduras': {
-          lat: 14.0, lon: -87.2,
-          fintechs: '35+',
-          funding: 'Seed',
-          fundingRank: 16,
-          remesas: '$9.1B',
-          remesasRank: 7,
-          rtp: 'Transferencias',
-          tags: ['27.1% Growth', 'Highest in CA'],
-          color: 0xffa500,
-          size: 1.8
-        },
-        'Uruguay': {
-          lat: -34.9, lon: -56.2,
-          fintechs: '55+',
-          funding: 'Seed+',
-          fundingRank: 11,
-          remesas: '$0.15B',
-          remesasRank: 18,
-          rtp: 'Transferencias',
-          tags: ['Stable Base', 'Low Tax'],
-          color: 0x00f5d4,
-          size: 1.8
-        },
-        'Paraguay': {
-          lat: -25.3, lon: -57.6,
-          fintechs: '40+',
-          funding: 'Seed',
-          fundingRank: 15,
-          remesas: '$0.4B',
-          remesasRank: 15,
-          rtp: 'Transferencias',
-          tags: ['34.3% Growth', 'Emerging'],
-          color: 0x00f5d4,
-          size: 1.6
-        },
-        'Bolivia': {
-          lat: -16.5, lon: -68.1,
-          fintechs: '30+',
-          funding: 'Seed',
-          fundingRank: 17,
-          remesas: '$1.4B',
-          remesasRank: 9,
-          rtp: 'Transferencias',
-          tags: ['Dollarized', 'Stable'],
-          color: 0x00f5d4,
-          size: 1.5
-        },
-        'Nicaragua': {
-          lat: 12.1, lon: -86.2,
-          fintechs: '25+',
-          funding: 'Seed',
-          fundingRank: 18,
-          remesas: '$4.2B',
-          remesasRank: 16,
-          rtp: 'Transferencias',
-          tags: ['18.2% Growth'],
-          color: 0xffa500,
-          size: 1.5
-        },
-        'Jamaica': {
-          lat: 17.9, lon: -76.8,
-          fintechs: '35+',
-          funding: 'Seed',
-          fundingRank: 13,
-          remesas: '$3.8B',
-          remesasRank: 17,
-          rtp: 'JNBS',
-          tags: ['Caribbean Fintech'],
-          color: 0x00f5d4,
-          size: 1.6
-        },
-        'Venezuela': {
-          lat: 10.5, lon: -66.9,
-          fintechs: '50+',
-          funding: 'Bootstrap',
-          fundingRank: 19,
-          remesas: '$0.1B',
-          remesasRank: 19,
-          rtp: 'Zelle / P2P',
-          tags: ['Crypto Heavy', 'Dollarized'],
-          color: 0xff6b6b,
-          size: 2
-        },
-        'Cuba': {
-          lat: 23.1, lon: -82.4,
-          fintechs: '15+',
-          funding: 'Bootstrap',
-          fundingRank: 20,
-          remesas: '$3.0B',
-          remesasRank: 20,
-          rtp: 'Transferencias',
-          tags: ['Emerging', 'Limited'],
-          color: 0x6b8a9a,
-          size: 1.3
-        }
-      };
-      
-      // ========== WEBGL CHECK ==========
-      function webglAvailable() {
-        try {
-          const testCanvas = document.createElement('canvas');
-          return !!(window.WebGLRenderingContext && 
-            (testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl')));
-        } catch(e) { return false; }
-      }
-      
-      if (!webglAvailable() || typeof THREE === 'undefined') {
-        canvas.style.display = 'none';
-        fallback.style.display = 'block';
-        loader.style.display = 'none';
-        return;
-      }
-      
-      // ========== THREE.JS SETUP ==========
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x020408, 0.002);
-      
-      const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 320;
-      camera.position.y = 30;
-      
-      const renderer = new THREE.WebGLRenderer({ 
-        canvas: canvas,
-        antialias: true,
-        alpha: true,
-        powerPreference: 'high-performance'
-      });
+
+      // 1. Scene & Camera
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 210;
+
+      // 2. Renderer
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setClearColor(0x020408, 1);
-      
-      // ========== GLOW SHADER ==========
-      const glowVertexShader = `
-        uniform vec3 viewVector;
-        varying float intensity;
-        void main() {
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-          vec3 actual_normal = vec3(modelMatrix * vec4(normal, 0.0));
-          intensity = pow(0.55 - dot(normalize(viewVector), actual_normal), 4.0);
-        }
-      `;
-      const glowFragmentShader = `
-        uniform vec3 glowColor;
-        varying float intensity;
-        void main() {
-          vec3 glow = glowColor * intensity;
-          gl_FragColor = vec4(glow, 1.0);
-        }
-      `;
-      
-      // ========== GLOBE WIRE ==========
-      const globeRadius = 100;
-      
-      // Wireframe principal
-      const globeGeo = new THREE.IcosahedronGeometry(globeRadius, 3);
-      const globeMat = new THREE.MeshBasicMaterial({
-        color: 0x00f5d4,
+
+      globeGroup = new THREE.Group();
+      scene.add(globeGroup);
+
+      // 3. Build Sphere Layers
+      buildEarthGlobe();
+
+      // 4. Build Markers & Beacons
+      buildHubMarkers();
+
+      // 5. Build 3D Curved Arcs & Flow Particles
+      buildTransactionArcs();
+
+      // 6. Add Starfield Particle Dust
+      buildStarfield();
+
+      // Event Listeners
+      window.addEventListener('resize', onResize);
+      setupInteractivity(canvas);
+
+      animate();
+    }
+
+    function latLonToVector3(lat, lon, radius) {
+      const phi = (90 - lat) * (Math.PI / 180);
+      const theta = (lon + 180) * (Math.PI / 180);
+      const x = -(radius * Math.sin(phi) * Math.cos(theta));
+      const z = (radius * Math.sin(phi) * Math.sin(theta));
+      const y = (radius * Math.cos(phi));
+      return new THREE.Vector3(x, y, z);
+    }
+
+    function buildEarthGlobe() {
+      const R = 68;
+
+      // Inner Dark Sphere
+      const innerGeo = new THREE.SphereGeometry(R - 0.5, 64, 64);
+      const innerMat = new THREE.MeshBasicMaterial({
+        color: 0x030712,
+        transparent: true,
+        opacity: 0.96
+      });
+      const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+      globeGroup.add(innerMesh);
+
+      // Sci-Fi Wireframe Outer Mesh
+      const wireGeo = new THREE.IcosahedronGeometry(R, 3);
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: 0x0e7490,
         wireframe: true,
         transparent: true,
-        opacity: 0.12
+        opacity: 0.28
       });
-      const globe = new THREE.Mesh(globeGeo, globeMat);
-      scene.add(globe);
-      
-      // Wireframe secundario (más denso, más opaco)
-      const globeGeo2 = new THREE.IcosahedronGeometry(globeRadius * 0.99, 2);
-      const globeMat2 = new THREE.MeshBasicMaterial({
-        color: 0x00f5d4,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.06
-      });
-      const globeInner = new THREE.Mesh(globeGeo2, globeMat2);
-      scene.add(globeInner);
-      
-      // ========== ANILLOS DE LATITUD ==========
-      const ringGroup = new THREE.Group();
-      for (let i = 1; i < 8; i++) {
-        const phi = (Math.PI * i) / 8;
-        const r = globeRadius * Math.sin(phi);
-        const y = globeRadius * Math.cos(phi);
-        if (r > 8) {
-          const ringGeo = new THREE.RingGeometry(r - 0.3, r + 0.3, 64);
-          const ringMat = new THREE.MeshBasicMaterial({
-            color: 0x00f5d4, transparent: true, opacity: 0.05, side: THREE.DoubleSide
-          });
-          const ring = new THREE.Mesh(ringGeo, ringMat);
-          ring.position.y = y;
-          ring.rotation.x = Math.PI / 2;
-          ringGroup.add(ring);
-          const ring2 = ring.clone();
-          ring2.position.y = -y;
-          ringGroup.add(ring2);
+      const wireMesh = new THREE.Mesh(wireGeo, wireMat);
+      globeGroup.add(wireMesh);
+
+      // Latitude / Longitude Glowing Rings
+      for (let i = -60; i <= 60; i += 30) {
+        const ringRad = R * Math.cos((i * Math.PI) / 180);
+        const ringY = R * Math.sin((i * Math.PI) / 180);
+        const ringGeo = new THREE.BufferGeometry();
+        const pts = [];
+        for (let j = 0; j <= 64; j++) {
+          const theta = (j / 64) * Math.PI * 2;
+          pts.push(Math.cos(theta) * ringRad, ringY, Math.sin(theta) * ringRad);
         }
-      }
-      scene.add(ringGroup);
-      
-      // ========== MERIDIANOS ==========
-      const meridianGroup = new THREE.Group();
-      for (let i = 0; i < 8; i++) {
-        const mGeo = new THREE.RingGeometry(globeRadius - 0.2, globeRadius + 0.2, 64);
-        const mMat = new THREE.MeshBasicMaterial({
-          color: 0x00f5d4, transparent: true, opacity: 0.04, side: THREE.DoubleSide
+        ringGeo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
+        const ringMat = new THREE.LineBasicMaterial({
+          color: 0x0284c7,
+          transparent: true,
+          opacity: 0.22
         });
-        const m = new THREE.Mesh(mGeo, mMat);
-        m.rotation.y = (Math.PI * i) / 4;
-        meridianGroup.add(m);
+        globeGroup.add(new THREE.Line(ringGeo, ringMat));
       }
-      scene.add(meridianGroup);
-      
-      // ========== NÚCLEO LUMINOSO ==========
-      const coreGlowGeo = new THREE.SphereGeometry(globeRadius * 0.3, 32, 32);
-      const coreGlowMat = new THREE.ShaderMaterial({
-        uniforms: {
-          glowColor: { value: new THREE.Color(0x00f5d4) },
-          viewVector: { value: camera.position }
-        },
-        vertexShader: glowVertexShader,
-        fragmentShader: glowFragmentShader,
-        side: THREE.FrontSide,
+
+      // Outer Atmosphere Rim Glow (Custom Sprite)
+      const glowGeo = new THREE.SphereGeometry(R * 1.18, 32, 32);
+      const glowMat = new THREE.ShaderMaterial({
+        uniforms: {},
+        vertexShader: `
+          varying vec3 vNormal;
+          void main() {
+            vNormal = normalize(normalMatrix * normal);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          varying vec3 vNormal;
+          void main() {
+            float intensity = pow(0.65 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
+            gl_FragColor = vec4(0.0, 0.96, 0.83, 1.0) * intensity * 0.45;
+          }
+        `,
+        side: THREE.BackSide,
         blending: THREE.AdditiveBlending,
         transparent: true
       });
-      const coreGlow = new THREE.Mesh(coreGlowGeo, coreGlowMat);
-      scene.add(coreGlow);
-      
-      // Núcleo sólido
-      const coreSolidGeo = new THREE.SphereGeometry(globeRadius * 0.12, 16, 16);
-      const coreSolidMat = new THREE.MeshBasicMaterial({ color: 0x00f5d4, transparent: true, opacity: 0.9 });
-      const coreSolid = new THREE.Mesh(coreSolidGeo, coreSolidMat);
-      scene.add(coreSolid);
-      
-      // Punto central
-      const centerGeo = new THREE.SphereGeometry(globeRadius * 0.05, 8, 8);
-      const centerMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-      const centerPoint = new THREE.Mesh(centerGeo, centerMat);
-      scene.add(centerPoint);
-      
-      // ========== NODOS DE PAÍSES ==========
-      const nodeGroup = new THREE.Group();
-      const nodes = [];
-      const nodeConnections = [];
-      
-      Object.entries(countryData).forEach(([name, data]) => {
-        const phi = (90 - data.lat) * (Math.PI / 180);
-        const theta = (data.lon + 180) * (Math.PI / 180);
-        const r = globeRadius + 3;
-        
-        const x = -(r * Math.sin(phi) * Math.cos(theta));
-        const z = (r * Math.sin(phi) * Math.sin(theta));
-        const y = (r * Math.cos(phi));
-        
-        // Nodo principal (más grande para países con más funding)
-        const nodeGeo = new THREE.SphereGeometry(data.size, 12, 12);
-        const nodeMat = new THREE.MeshBasicMaterial({
-          color: data.color,
+      globeGroup.add(new THREE.Mesh(glowGeo, glowMat));
+    }
+
+    function buildHubMarkers() {
+      const R = 68;
+      const nodeMap = {};
+
+      HUB_NODES.forEach((node) => {
+        const pos = latLonToVector3(node.lat, node.lon, R);
+        node.pos = pos;
+        nodeMap[node.id] = node;
+
+        // Base Core Marker
+        const sphereGeo = new THREE.SphereGeometry(node.size, 16, 16);
+        const sphereMat = new THREE.MeshBasicMaterial({
+          color: node.color,
           transparent: true,
-          opacity: 0.85
+          opacity: 0.95
         });
-        const node = new THREE.Mesh(nodeGeo, nodeMat);
-        node.position.set(x, y, z);
-        node.userData = { 
-          country: name, 
-          data: data,
-          baseOpacity: 0.7 + Math.random() * 0.3,
-          pulseSpeed: 1.2 + Math.random() * 1.8,
-          pulseOffset: Math.random() * Math.PI * 2,
-          originalSize: data.size
-        };
-        
-        // Halo alrededor del nodo
-        const haloGeo = new THREE.RingGeometry(data.size * 1.5, data.size * 2.2, 16);
-        const haloMat = new THREE.MeshBasicMaterial({
-          color: data.color,
+        const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+        sphere.position.copy(pos);
+        sphere.userData = node;
+        globeGroup.add(sphere);
+        markers.push(sphere);
+
+        // Pulsing Ring Beacon
+        const ringGeo = new THREE.RingGeometry(node.size * 1.3, node.size * 2.2, 32);
+        const ringMat = new THREE.MeshBasicMaterial({
+          color: node.color,
+          side: THREE.DoubleSide,
           transparent: true,
-          opacity: 0.15,
-          side: THREE.DoubleSide
+          opacity: 0.6
         });
-        const halo = new THREE.Mesh(haloGeo, haloMat);
-        halo.position.set(x, y, z);
-        halo.lookAt(0, 0, 0);
-        halo.userData = { parentNode: node };
-        
-        nodeGroup.add(node);
-        nodeGroup.add(halo);
-        nodes.push({ mesh: node, halo: halo, data: data });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.position.copy(pos);
+        ring.lookAt(new THREE.Vector3(0, 0, 0));
+        ring.userData = { initialScale: 1, maxScale: 2.8, rate: 0.02 + Math.random() * 0.01 };
+        globeGroup.add(ring);
+        node.ringMesh = ring;
       });
-      scene.add(nodeGroup);
-      
-      // ========== CONEXIONES ENTRE NODOS ==========
-      const connectionGroup = new THREE.Group();
-      const connectionLines = [];
-      
-      // Conectar nodos cercanos geográficamente
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const p1 = nodes[i].mesh.position;
-          const p2 = nodes[j].mesh.position;
-          const dist = p1.distanceTo(p2);
-          
-          if (dist < globeRadius * 0.9) {
-            // Curva Bézier para conexión elegante
-            const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
-            mid.normalize().multiplyScalar(globeRadius * 1.15);
-            
-            const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
-            const points = curve.getPoints(30);
-            const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
-            const lineMat = new THREE.LineBasicMaterial({
-              color: 0x00f5d4,
-              transparent: true,
-              opacity: 0.06
-            });
-            const line = new THREE.Line(lineGeo, lineMat);
-            connectionGroup.add(line);
-            connectionLines.push({ line, p1, p2, mid, offset: Math.random() * Math.PI * 2 });
-          }
+
+      window.nodeMap = nodeMap;
+    }
+
+    function buildTransactionArcs() {
+      const R = 68;
+
+      TRANSACTION_ROUTES.forEach((route) => {
+        const n1 = window.nodeMap[route.from];
+        const n2 = window.nodeMap[route.to];
+        if (!n1 || !n2) return;
+
+        const v1 = n1.pos;
+        const v2 = n2.pos;
+
+        // Middle control point lifted up into 3D space
+        const mid = new THREE.Vector3().addVectors(v1, v2).multiplyScalar(0.5);
+        const dist = v1.distanceTo(v2);
+        const alt = R + dist * 0.35;
+        mid.normalize().multiplyScalar(alt);
+
+        const curve = new THREE.QuadraticBezierCurve3(v1, mid, v2);
+        arcCurves.push(curve);
+
+        // Arc line geometry
+        const points = curve.getPoints(50);
+        const arcGeo = new THREE.BufferGeometry().setFromPoints(points);
+        const arcMat = new THREE.LineBasicMaterial({
+          color: route.color,
+          transparent: true,
+          opacity: 0.45
+        });
+        const arcLine = new THREE.Line(arcGeo, arcMat);
+        globeGroup.add(arcLine);
+
+        // Flowing Light Pulses along Arc
+        for (let i = 0; i < 2; i++) {
+          const particleGeo = new THREE.SphereGeometry(1.2, 8, 8);
+          const particleMat = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.95
+          });
+          const particleMesh = new THREE.Mesh(particleGeo, particleMat);
+          globeGroup.add(particleMesh);
+
+          pulseParticles.push({
+            mesh: particleMesh,
+            curve: curve,
+            t: Math.random(),
+            speed: 0.003 + Math.random() * 0.003
+          });
         }
+      });
+    }
+
+    function buildStarfield() {
+      const starGeo = new THREE.BufferGeometry();
+      const count = 1200;
+      const positions = new Float32Array(count * 3);
+
+      for (let i = 0; i < count * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 800;
+        positions[i + 1] = (Math.random() - 0.5) * 800;
+        positions[i + 2] = (Math.random() - 0.5) * 800;
       }
-      scene.add(connectionGroup);
-      
-      // ========== PARTÍCULAS ATMOSFÉRICAS ==========
-      const particleCount = 300;
-      const pGeo = new THREE.BufferGeometry();
-      const pPos = new Float32Array(particleCount * 3);
-      const pSpeeds = [];
-      
-      for (let i = 0; i < particleCount; i++) {
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2 * Math.random() - 1);
-        const r = globeRadius * (1.05 + Math.random() * 0.5);
-        pPos[i*3] = r * Math.sin(phi) * Math.cos(theta);
-        pPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-        pPos[i*3+2] = r * Math.cos(phi);
-        pSpeeds.push({ theta: (Math.random()-0.5)*0.003, phi: (Math.random()-0.5)*0.003 });
-      }
-      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-      const pMat = new THREE.PointsMaterial({ color: 0x00f5d4, size: 1.2, transparent: true, opacity: 0.35 });
-      const particles = new THREE.Points(pGeo, pMat);
-      scene.add(particles);
-      
-      // ========== LUCES ==========
-      scene.add(new THREE.AmbientLight(0x00f5d4, 0.2));
-      const pLight = new THREE.PointLight(0x00f5d4, 0.8, 500);
-      pLight.position.set(0, 0, 0);
-      scene.add(pLight);
-      
-      // ========== INTERACCIÓN: ROTACIÓN CON INERCIA ==========
-      let isDragging = false;
-      let previousMousePosition = { x: 0, y: 0 };
-      let rotationVelocity = { x: 0, y: 0 };
-      let autoRotate = true;
-      let autoRotateSpeed = 0.001;
-      
-      // Mouse
+      starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const starMat = new THREE.PointsMaterial({
+        color: 0x38bdf8,
+        size: 1.2,
+        transparent: true,
+        opacity: 0.45
+      });
+      scene.add(new THREE.Points(starGeo, starMat));
+    }
+
+    function setupInteractivity(canvas) {
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+
       canvas.addEventListener('mousedown', (e) => {
         isDragging = true;
         autoRotate = false;
-        previousMousePosition = { x: e.clientX, y: e.clientY };
+        prevMouse = { x: e.clientX, y: e.clientY };
       });
-      canvas.addEventListener('mousemove', (e) => {
-        // Raycaster para tooltip
-        checkIntersection(e.clientX, e.clientY);
-        
-        if (!isDragging) return;
-        const deltaX = e.clientX - previousMousePosition.x;
-        const deltaY = e.clientY - previousMousePosition.y;
-        rotationVelocity.y = deltaX * 0.005;
-        rotationVelocity.x = deltaY * 0.005;
-        previousMousePosition = { x: e.clientX, y: e.clientY };
-      });
-      canvas.addEventListener('mouseup', () => {
-        isDragging = false;
-        setTimeout(() => { if (!isDragging) autoRotate = true; }, 3000);
-      });
-      canvas.addEventListener('mouseleave', () => {
-        isDragging = false;
-        tooltip.classList.remove('visible');
-      });
-      
-      // Touch
-      canvas.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
-          isDragging = true;
-          autoRotate = false;
-          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          const dx = e.clientX - prevMouse.x;
+          const dy = e.clientY - prevMouse.y;
+          targetRotation.y += dx * 0.006;
+          targetRotation.x += dy * 0.006;
+          prevMouse = { x: e.clientX, y: e.clientY };
         }
       });
-      canvas.addEventListener('touchmove', (e) => {
-        if (e.touches.length === 1 && isDragging) {
-          const deltaX = e.touches[0].clientX - previousMousePosition.x;
-          const deltaY = e.touches[0].clientY - previousMousePosition.y;
-          rotationVelocity.y = deltaX * 0.005;
-          rotationVelocity.x = deltaY * 0.005;
-          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        setTimeout(() => { autoRotate = true; }, 3000);
+      });
+
+      // Click to select node
+      canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(markers);
+
+        if (intersects.length > 0) {
+          const nodeData = intersects[0].object.userData;
+          openDrawer(nodeData);
         }
       });
-      canvas.addEventListener('touchend', () => {
-        isDragging = false;
-        setTimeout(() => { if (!isDragging) autoRotate = true; }, 3000);
-      });
-      
-      // Scroll zoom
+
+      // Zoom via wheel
       canvas.addEventListener('wheel', (e) => {
         e.preventDefault();
-        camera.position.z += e.deltaY * 0.15;
-        camera.position.z = Math.max(180, Math.min(500, camera.position.z));
+        camera.position.z = Math.max(140, Math.min(300, camera.position.z + e.deltaY * 0.15));
       });
-      
-      // ========== RAYCASTER PARA TOOLTIP ==========
-      const raycaster = new THREE.Raycaster();
-      const mouse = new THREE.Vector2();
-      let hoveredNode = null;
-      
-      function checkIntersection(clientX, clientY) {
-        mouse.x = (clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-        
-        raycaster.setFromCamera(mouse, camera);
-        const intersects = raycaster.intersectObjects(nodeGroup.children);
-        
-        if (intersects.length > 0) {
-          const obj = intersects[0].object;
-          if (obj.userData && obj.userData.country) {
-            if (hoveredNode !== obj) {
-              hoveredNode = obj;
-              showTooltip(obj.userData.country, obj.userData.data, clientX, clientY);
-              // Efecto hover: agrandar nodo
-              obj.scale.set(1.4, 1.4, 1.4);
-            } else {
-              updateTooltipPosition(clientX, clientY);
-            }
+    }
+
+    function openDrawer(node) {
+      document.getElementById('d-flag').textContent = node.flag;
+      document.getElementById('d-name').textContent = node.name;
+      document.getElementById('d-code').textContent = node.code;
+      document.getElementById('d-rail').innerHTML = `<span>⚡ ${node.rail}</span>`;
+      document.getElementById('d-regulator').textContent = node.reg;
+      document.getElementById('d-gateways').textContent = node.gateways;
+      document.getElementById('d-mdr').textContent = node.mdr;
+      document.getElementById('d-pen').textContent = node.pen;
+
+      document.getElementById('detail-drawer').classList.add('visible');
+    }
+
+    window.closeDrawer = function() {
+      document.getElementById('detail-drawer').classList.remove('visible');
+    };
+
+    window.setRailMode = function(mode, btn) {
+      document.querySelectorAll('.rail-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    };
+
+    function onResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Inertial smooth rotation
+      if (autoRotate && !isDragging) {
+        targetRotation.y += 0.0018;
+      }
+      currentRotation.x += (targetRotation.x - currentRotation.x) * 0.08;
+      currentRotation.y += (targetRotation.y - currentRotation.y) * 0.08;
+
+      globeGroup.rotation.x = currentRotation.x;
+      globeGroup.rotation.y = currentRotation.y;
+
+      // Animate pulsing beacons
+      HUB_NODES.forEach((node) => {
+        if (node.ringMesh) {
+          const u = node.ringMesh.userData;
+          u.initialScale += u.rate;
+          if (u.initialScale > u.maxScale) {
+            u.initialScale = 1;
           }
-        } else {
-          if (hoveredNode) {
-            hoveredNode.scale.set(1, 1, 1);
-            hoveredNode = null;
-            tooltip.classList.remove('visible');
-          }
+          node.ringMesh.scale.set(u.initialScale, u.initialScale, 1);
+          node.ringMesh.material.opacity = Math.max(0, 0.7 - (u.initialScale / u.maxScale) * 0.7);
         }
-      }
-      
-      function showTooltip(country, data, x, y) {
-        ttCountry.textContent = country;
-        ttFintechs.textContent = data.fintechs;
-        ttFunding.textContent = data.funding;
-        ttRemesas.textContent = data.remesas;
-        ttRtp.textContent = data.rtp;
-        
-        ttTags.innerHTML = '';
-        data.tags.forEach(tag => {
-          const span = document.createElement('span');
-          span.className = 'tt-tag';
-          span.textContent = tag;
-          ttTags.appendChild(span);
-        });
-        
-        updateTooltipPosition(x, y);
-        tooltip.classList.add('visible');
-      }
-      
-      function updateTooltipPosition(x, y) {
-        const offsetX = x + 20;
-        const offsetY = y - 20;
-        // Evitar que salga de pantalla
-        const rect = tooltip.getBoundingClientRect();
-        let finalX = offsetX;
-        let finalY = offsetY;
-        if (finalX + rect.width > window.innerWidth) finalX = x - rect.width - 20;
-        if (finalY + rect.height > window.innerHeight) finalY = y - rect.height - 20;
-        if (finalY < 0) finalY = 10;
-        
-        tooltip.style.left = finalX + 'px';
-        tooltip.style.top = finalY + 'px';
-      }
-      
-      // ========== ANIMACIÓN PRINCIPAL ==========
-      const clock = new THREE.Clock();
-      
-      function animate() {
-        requestAnimationFrame(animate);
-        const time = clock.getElapsedTime();
-        
-        // Rotación automática con inercia
-        if (autoRotate) {
-          globe.rotation.y += autoRotateSpeed;
-          globeInner.rotation.y += autoRotateSpeed * 1.2;
-          ringGroup.rotation.y += autoRotateSpeed;
-          meridianGroup.rotation.y += autoRotateSpeed * 0.7;
-        }
-        
-        // Aplicar velocidad de rotación con fricción (inercia)
-        scene.rotation.y += rotationVelocity.y;
-        scene.rotation.x += rotationVelocity.x;
-        rotationVelocity.x *= 0.95;
-        rotationVelocity.y *= 0.95;
-        
-        // Pulso de nodos
-        nodes.forEach(({ mesh, halo }) => {
-          const d = mesh.userData;
-          const pulse = Math.sin(time * d.pulseSpeed + d.pulseOffset) * 0.25 + 0.75;
-          mesh.material.opacity = d.baseOpacity * pulse;
-          
-          // Halo rotando
-          halo.rotation.z += 0.01;
-          halo.material.opacity = 0.1 * pulse;
-        });
-        
-        // Update glow shader
-        coreGlowMat.uniforms.viewVector.value = new THREE.Vector3().subVectors(
-          camera.position, coreGlow.getWorldPosition(new THREE.Vector3())
-        );
-        
-        // Pulso del núcleo
-        const corePulse = Math.sin(time * 2) * 0.15 + 1;
-        coreSolid.scale.set(corePulse, corePulse, corePulse);
-        centerPoint.scale.set(corePulse * 0.8, corePulse * 0.8, corePulse * 0.8);
-        
-        // Animar partículas
-        const positions = particles.geometry.attributes.position.array;
-        for (let i = 0; i < particleCount; i++) {
-          const s = pSpeeds[i];
-          const ix = i*3, iy = i*3+1, iz = i*3+2;
-          const x = positions[ix], y = positions[iy], z = positions[iz];
-          positions[ix] = x * Math.cos(s.theta) - z * Math.sin(s.theta);
-          positions[iz] = x * Math.sin(s.theta) + z * Math.cos(s.theta);
-          positions[iy] = y * Math.cos(s.phi) - z * Math.sin(s.phi);
-        }
-        particles.geometry.attributes.position.needsUpdate = true;
-        
-        // Animar conexiones (pulsar)
-        connectionLines.forEach((conn, i) => {
-          const pulse = Math.sin(time * 1.5 + conn.offset) * 0.5 + 0.5;
-          conn.line.material.opacity = 0.03 + pulse * 0.06;
-        });
-        
-        renderer.render(scene, camera);
-      }
-      
-      // ========== RESIZE ==========
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
       });
-      
-      // ========== CONTEXT LOST ==========
-      canvas.addEventListener('webglcontextlost', (e) => {
-        e.preventDefault();
-        canvas.style.display = 'none';
-        fallback.style.display = 'block';
+
+      // Animate transaction particles along curved arcs
+      pulseParticles.forEach((p) => {
+        p.t += p.speed;
+        if (p.t > 1) p.t = 0;
+        const pos = p.curve.getPoint(p.t);
+        p.mesh.position.copy(pos);
       });
-      canvas.addEventListener('webglcontextrestored', () => {
-        canvas.style.display = 'block';
-        fallback.style.display = 'none';
-      });
-      
-      // ========== CLEANUP ==========
-      loader.style.display = 'none';
-      animate();
-      
-      window.addEventListener('beforeunload', () => {
-        globeGeo.dispose(); globeMat.dispose();
-        globeGeo2.dispose(); globeMat2.dispose();
-        coreGlowGeo.dispose(); coreGlowMat.dispose();
-        coreSolidGeo.dispose(); coreSolidMat.dispose();
-        centerGeo.dispose(); centerMat.dispose();
-        nodes.forEach(n => { n.mesh.geometry.dispose(); n.mesh.material.dispose(); n.halo.geometry.dispose(); n.halo.material.dispose(); });
-        connectionLines.forEach(c => { c.line.geometry.dispose(); c.line.material.dispose(); });
-        pGeo.dispose(); pMat.dispose();
-        renderer.dispose();
-      });
-      
-    })();
+
+      renderer.render(scene, camera);
+    }
+
+    window.onload = init;
   </script>
 </body>
 </html>

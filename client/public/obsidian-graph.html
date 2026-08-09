@@ -3,706 +3,778 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LATAM Fintech — Obsidian Graph</title>
+  <title>OnlyPayments — Ecosystem Graph 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Microsoft Clarity -->
-  <script>
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xni32dnkft");
-  </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #020408;
-      color: #e8f4f8;
-      font-family: 'Rajdhani', system-ui, sans-serif;
+      background: #020617;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       overflow: hidden;
       width: 100vw;
       height: 100vh;
+      user-select: none;
     }
+
     #graph-container {
       width: 100%;
       height: 100%;
       position: relative;
+      background: radial-gradient(circle at center, #09132e 0%, #020617 75%, #01030d 100%);
     }
-    canvas { display: block; cursor: grab; }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+    }
     canvas:active { cursor: grabbing; }
-    
-    /* ========== OBSIDIAN HUD OVERLAY ========== */
+
+    /* ========== HUD OVERLAYS ========== */
     .hud {
       position: absolute;
       pointer-events: none;
       z-index: 10;
     }
+
     .hud-top-left {
-      top: 20px;
-      left: 24px;
+      top: 24px;
+      left: 28px;
     }
-    .hud-top-right {
-      top: 20px;
-      right: 24px;
-      display: flex;
-      gap: 10px;
-      pointer-events: auto;
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      background: rgba(0, 245, 212, 0.1);
+      border: 1px solid rgba(0, 245, 212, 0.3);
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 8px;
     }
-    .hud-bottom-left {
-      bottom: 20px;
-      left: 24px;
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00f5d4;
+      box-shadow: 0 0 10px #00f5d4;
+      animation: pulseDot 2s infinite ease-in-out;
     }
-    .hud-bottom-right {
-      bottom: 20px;
-      right: 24px;
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.5; }
     }
-    
-    .hud-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 18px;
-      font-weight: 900;
-      color: #00f5d4;
-      letter-spacing: 2px;
-      text-shadow: 0 0 15px rgba(0,245,212,0.3);
-    }
-    .hud-subtitle {
-      font-size: 11px;
-      color: #6b8a9a;
-      letter-spacing: 1.5px;
+    .brand-text {
       font-family: 'JetBrains Mono', monospace;
-      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #00f5d4;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
-    
+
+    .hud-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      line-height: 1.1;
+      text-shadow: 0 0 30px rgba(0, 245, 212, 0.25);
+    }
+    .hud-title span {
+      background: linear-gradient(135deg, #00f5d4 0%, #38bdf8 60%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hud-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 6px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ========== HUD TOP RIGHT CONTROLS ========== */
+    .hud-top-right {
+      top: 24px;
+      right: 28px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      pointer-events: auto;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: 680px;
+    }
+
     .search-box {
-      background: rgba(10,14,23,0.9);
-      border: 1px solid rgba(0,245,212,0.2);
-      border-radius: 8px;
-      padding: 8px 14px;
-      color: #fff;
-      font-size: 13px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 9px 16px;
+      color: #f8fafc;
+      font-size: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       outline: none;
-      font-family: 'Rajdhani', sans-serif;
-      width: 200px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 220px;
+      backdrop-filter: blur(16px);
+      transition: all 0.25s ease;
     }
     .search-box:focus {
       border-color: #00f5d4;
-      box-shadow: 0 0 15px rgba(0,245,212,0.2);
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.25);
+      width: 250px;
     }
-    
-    .filter-btn {
-      background: rgba(10,14,23,0.9);
-      border: 1px solid rgba(0,245,212,0.2);
-      color: #6b8a9a;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      color: #00f5d4;
-      border-color: #00f5d4;
-      background: rgba(0,245,212,0.08);
-    }
-    
-    /* ========== OBSIDIAN TOOLTIP ========== */
-    #node-tooltip {
-      position: absolute;
-      background: rgba(10,14,23,0.95);
-      border: 1px solid rgba(0,245,212,0.3);
-      border-radius: 12px;
-      padding: 16px;
-      color: #fff;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.2s, transform 0.2s;
-      z-index: 100;
-      min-width: 240px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(0,245,212,0.1);
-    }
-    #node-tooltip.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #node-tooltip .node-type {
-      font-size: 10px;
-      color: #00f5d4;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    #node-tooltip .node-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    #node-tooltip .node-detail {
-      font-size: 12px;
-      color: #6b8a9a;
-      line-height: 1.5;
-    }
-    #node-tooltip .node-stat {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 6px;
-      padding-top: 6px;
-      border-top: 1px solid rgba(0,245,212,0.1);
-      font-size: 12px;
-    }
-    #node-tooltip .node-stat-val {
-      color: #00f5d4;
-      font-weight: 700;
+    .search-box::placeholder {
+      color: #64748b;
     }
 
-    /* ========== LEGEND ========== */
-    .legend {
+    .filter-btn {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 9px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .filter-btn:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(30, 41, 59, 0.85);
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, #00f5d4 0%, #0284c7 100%);
+      color: #020617;
+      font-weight: 800;
+      border-color: transparent;
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.35);
+    }
+
+    /* ========== HUD BOTTOM LEFT: LEGEND ========== */
+    .hud-bottom-left {
+      bottom: 24px;
+      left: 28px;
+    }
+    .legend-container {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 16px;
+      border-radius: 14px;
+      backdrop-filter: blur(20px);
       display: flex;
-      gap: 14px;
+      gap: 16px;
       align-items: center;
-      background: rgba(10,14,23,0.8);
-      border: 1px solid rgba(0,245,212,0.15);
-      padding: 8px 14px;
-      border-radius: 8px;
-      backdrop-filter: blur(8px);
+      flex-wrap: wrap;
     }
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       font-size: 11px;
-      color: #6b8a9a;
+      font-weight: 600;
+      color: #94a3b8;
     }
     .legend-dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
     }
     .dot-hub { background: #00f5d4; box-shadow: 0 0 10px #00f5d4; }
-    .dot-country { background: #7b61ff; box-shadow: 0 0 8px #7b61ff; }
-    .dot-rail { background: #ff9f1c; box-shadow: 0 0 8px #ff9f1c; }
-    .dot-reg { background: #ff3864; box-shadow: 0 0 8px #ff3864; }
-    .dot-assoc { background: #00b4d8; box-shadow: 0 0 8px #00b4d8; }
+    .dot-country { background: #818cf8; box-shadow: 0 0 8px #818cf8; }
+    .dot-rail { background: #10b981; box-shadow: 0 0 8px #10b981; }
+    .dot-reg { background: #f43f5e; box-shadow: 0 0 8px #f43f5e; }
+    .dot-assoc { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+
+    /* ========== HUD BOTTOM RIGHT: HINT ========== */
+    .hud-bottom-right {
+      bottom: 24px;
+      right: 28px;
+      text-align: right;
+    }
+    .hint-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #64748b;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ========== INSPECTION MODAL / DRAWER ========== */
+    #node-drawer {
+      position: absolute;
+      top: 50%;
+      right: 28px;
+      transform: translateY(-50%) translateX(30px);
+      width: 330px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(0, 245, 212, 0.35);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(0, 245, 212, 0.15);
+      color: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+    }
+    #node-drawer.visible {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+      pointer-events: auto;
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    .drawer-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .drawer-close {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .drawer-close:hover { color: #fff; }
+
+    .drawer-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .drawer-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .drawer-stat-box {
+      background: rgba(2, 6, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .drawer-stat-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .drawer-stat-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 800;
+      color: #00f5d4;
+      margin-top: 2px;
+    }
   </style>
 </head>
 <body>
+  <div id="graph-container">
+    <!-- HUD Top Left -->
+    <div class="hud hud-top-left">
+      <div class="brand-badge">
+        <div class="brand-dot"></div>
+        <span class="brand-text">Ecosistema Mapeado</span>
+      </div>
+      <h1 class="hud-title">OnlyPayments <span>Ecosystem Graph</span></h1>
+      <p class="hud-subtitle">1,047 Nodos Conectados ● Rieles, Reguladores y Cámaras Fintech</p>
+    </div>
 
-<div id="graph-container">
-  <!-- HUD Top Left -->
-  <div class="hud hud-top-left">
-    <div class="hud-title">ONLYPAYMENTS ECOSYSTEM GRAPH</div>
-    <div class="hud-subtitle">1,047 NODOS CONECTADOS ● MAPA COMPLETO DE RIELES, REGULADORES Y CÁMARAS FINTECH</div>
-  </div>
-  
-  <!-- HUD Top Right: Controls & Filters -->
-  <div class="hud hud-top-right">
-    <input type="text" id="search-input" class="search-box" placeholder="Buscar país, riel o cámara..." oninput="onSearch(this.value)">
-    <button class="filter-btn active" onclick="filterCategory('all', this)">Todos</button>
-    <button class="filter-btn" onclick="filterCategory('country', this)">Países</button>
-    <button class="filter-btn" onclick="filterCategory('rail', this)">Rieles A2A</button>
-    <button class="filter-btn" onclick="filterCategory('reg', this)">Reguladores</button>
-    <button class="filter-btn" onclick="filterCategory('assoc', this)">Cámaras Fintech</button>
-  </div>
-  
-  <!-- HUD Bottom Left: Legend -->
-  <div class="hud hud-bottom-left">
-    <div class="legend">
-      <div class="legend-item"><div class="legend-dot dot-hub"></div><span>Core Hub</span></div>
-      <div class="legend-item"><div class="legend-dot dot-country"></div><span>Países LATAM</span></div>
-      <div class="legend-item"><div class="legend-dot dot-rail"></div><span>Rieles A2A & Pagos Instantáneos</span></div>
-      <div class="legend-item"><div class="legend-dot dot-reg"></div><span>Bancos Centrales / Reguladores</span></div>
-      <div class="legend-item"><div class="legend-dot dot-assoc"></div><span>Cámaras & Asociaciones Fintech</span></div>
+    <!-- HUD Top Right: Search & Filters -->
+    <div class="hud hud-top-right">
+      <input type="text" id="search-input" class="search-box" placeholder="Buscar país, riel o regulador..." oninput="onSearch(this.value)">
+      <button class="filter-btn active" onclick="filterCategory('all', this)">Todos</button>
+      <button class="filter-btn" onclick="filterCategory('country', this)">Países</button>
+      <button class="filter-btn" onclick="filterCategory('rail', this)">Rieles A2A</button>
+      <button class="filter-btn" onclick="filterCategory('reg', this)">Reguladores</button>
+      <button class="filter-btn" onclick="filterCategory('assoc', this)">Cámaras Fintech</button>
+    </div>
+
+    <!-- HUD Bottom Left: Legend -->
+    <div class="hud hud-bottom-left">
+      <div class="legend-container">
+        <div class="legend-item"><div class="legend-dot dot-hub"></div><span>Core Hub</span></div>
+        <div class="legend-item"><div class="legend-dot dot-country"></div><span>Países LATAM</span></div>
+        <div class="legend-item"><div class="legend-dot dot-rail"></div><span>Rieles Instantáneos</span></div>
+        <div class="legend-item"><div class="legend-dot dot-reg"></div><span>Bancos Centrales</span></div>
+        <div class="legend-item"><div class="legend-dot dot-assoc"></div><span>Cámaras Fintech</span></div>
+      </div>
+    </div>
+
+    <!-- HUD Bottom Right -->
+    <div class="hud hud-bottom-right">
+      <div class="hint-text">Arrastra Nodos ● Scroll para Zoom ● Clic para Inspeccionar</div>
+    </div>
+
+    <!-- Graph Canvas -->
+    <canvas id="graph-canvas"></canvas>
+
+    <!-- Node Inspection Drawer -->
+    <div id="node-drawer">
+      <div class="drawer-header">
+        <span class="drawer-type" id="d-type" style="background: rgba(0, 245, 212, 0.15); color: #00f5d4;">PAÍS</span>
+        <button class="drawer-close" onclick="closeDrawer()">✕</button>
+      </div>
+      <div class="drawer-name" id="d-name">México</div>
+      <div class="drawer-desc" id="d-desc">Ecosistema Fintech con más de 650 empresas activas y liderazgo en transferencias SPEI.</div>
+      <div class="drawer-stat-box">
+        <div class="drawer-stat-label">Métrica Clave / Transacciones</div>
+        <div class="drawer-stat-val" id="d-stat">$62.5B Remesas</div>
+      </div>
     </div>
   </div>
-  
-  <!-- HUD Bottom Right -->
-  <div class="hud hud-bottom-right">
-    <div class="hud-subtitle">ARRASTRA NODOS ● SCROLL ZOOM ● CLIC PARA DETALLES</div>
-  </div>
-  
-  <!-- Canvas -->
-  <canvas id="graph-canvas"></canvas>
-  
-  <!-- Tooltip -->
-  <div id="node-tooltip">
-    <div class="node-type" id="tt-type">PAÍS</div>
-    <div class="node-name" id="tt-name">México</div>
-    <div class="node-detail" id="tt-detail">Detalles del nodo</div>
-    <div class="node-stat" id="tt-stat-container">
-      <span>Volumen / Métricas:</span>
-      <span class="node-stat-val" id="tt-stat-val">-</span>
-    </div>
-  </div>
-</div>
 
-<script>
-// ============================================
-// OBSIDIAN FORCE-DIRECTED ECOSYSTEM GRAPH ENGINE
-// ============================================
+  <script>
+    // =========================================================================
+    // OBSIDIAN FORCE-DIRECTED GRAPH PRO ENGINE
+    // =========================================================================
 
-(function() {
-  const canvas = document.getElementById('graph-canvas');
-  const ctx = canvas.getContext('2d');
-  const tooltip = document.getElementById('node-tooltip');
-  
-  let width = window.innerWidth;
-  let height = window.innerHeight;
-  canvas.width = width;
-  canvas.height = height;
-  
-  // Node Categories Colors & Config
-  const CATEGORY_COLORS = {
-    hub: '#00f5d4',
-    country: '#7b61ff',
-    rail: '#ff9f1c',
-    reg: '#ff3864',
-    assoc: '#00b4d8'
-  };
+    (function() {
+      const canvas = document.getElementById('graph-canvas');
+      const ctx = canvas.getContext('2d');
+      const drawer = document.getElementById('node-drawer');
 
-  // Node Dataset: 20 LATAM Countries + Complete Payment Rails + Regulators + Fintech Chambers
-  const nodes = [
-    { id: 'core', label: 'OnlyPayments Hub', cat: 'hub', radius: 24, detail: 'Central Intelligence & B2B Matchmaking Engine', stat: '1,047 Entidades' },
-    
-    // Core LATAM Countries
-    { id: 'mx', label: '🇲🇽 México', cat: 'country', radius: 16, detail: '650+ Fintechs · $62.5B Remesas · Ley Fintech', stat: '$62.5B Remesas' },
-    { id: 'br', label: '🇧🇷 Brasil', cat: 'country', radius: 20, detail: '1,200+ Fintechs · $2.03B VC · PIX 95% Adopción', stat: '$2.03B VC Funding' },
-    { id: 'co', label: '🇨🇴 Colombia', cat: 'country', radius: 14, detail: '410+ Fintechs · Bre-B / PSE · Crecimiento 22%', stat: '$2.1B Remesas' },
-    { id: 'cl', label: '🇨🇱 Chile', cat: 'country', radius: 13, detail: '280+ Fintechs · Ley Fintech N° 21.521 · TEF', stat: '$110M VC H1' },
-    { id: 'ar', label: '🇦🇷 Argentina', cat: 'country', radius: 14, detail: '320+ Fintechs · Transferencias 3.0 · Ualá / QR', stat: 'High Talent' },
-    { id: 'pe', label: '🇵🇪 Perú', cat: 'country', radius: 12, detail: '180+ Fintechs · Yape & Plin Interoperable BCRP', stat: '$4.5B Remesas' },
-    { id: 'ec', label: '🇪🇨 Ecuador', cat: 'country', radius: 11, detail: '90+ Fintechs · BCE Pago Inmediato · Dolarizado', stat: '$5.2B Remesas' },
-    { id: 'gt', label: '🇬🇹 Guatemala', cat: 'country', radius: 11, detail: '60+ Fintechs · ACH Pronto · Remesas Dominantes', stat: '$19.8B Remesas' },
-    { id: 'sv', label: '🇸🇻 El Salvador', cat: 'country', radius: 10, detail: '45+ Fintechs · Bitcoin Legal Tender · Chivo', stat: '$8.3B Remesas' },
-    { id: 'cr', label: '🇨🇷 Costa Rica', cat: 'country', radius: 10, detail: '70+ Fintechs · SINPE Móvil (88% adopción)', stat: 'SINPE 88%' },
-    { id: 'pa', label: '🇵🇦 Panamá', cat: 'country', radius: 11, detail: '85+ Fintechs · Hub Financiero · Yappy / ACH', stat: 'Banking Hub' },
-    { id: 'do', label: '🇩🇴 Rep. Dominicana', cat: 'country', radius: 11, detail: '110+ Fintechs · LBTR Inmediato · Caribe', stat: '$11.9B Remesas' },
-    { id: 'uy', label: '🇺🇾 Uruguay', cat: 'country', radius: 9, detail: '55+ Fintechs · SPI / BCU Direct · Marco 2024', stat: 'BCU Reg' },
-    { id: 'py', label: '🇵🇾 Paraguay', cat: 'country', radius: 9, detail: '40+ Fintechs · SIPAP 24/7 BCP · Minería', stat: 'SIPAP BCP' },
-    { id: 'bo', label: '🇧🇴 Bolivia', cat: 'country', radius: 8, detail: '30+ Fintechs · QR Simple ASFI', stat: 'ASFI Norms' },
-    { id: 'hn', label: '🇭🇳 Honduras', cat: 'country', radius: 8, detail: '35+ Fintechs · ACH Banhprovi · Próspera ZEDE', stat: '$9.1B Remesas' },
-    { id: 'ni', label: '🇳🇮 Nicaragua', cat: 'country', radius: 8, detail: '25+ Fintechs · ACH UniRed', stat: '$4.2B Remesas' },
-    { id: 've', label: '🇻🇪 Venezuela', cat: 'country', radius: 9, detail: '50+ Fintechs · Pago Móvil Interbancario / USDT', stat: 'Crypto P2P' },
-    { id: 'jm', label: '🇯🇲 Jamaica', cat: 'country', radius: 8, detail: '35+ Fintechs · JAM-DEX CBDC Bank of Jamaica', stat: 'CBDC Pioneer' },
-    { id: 'pr', label: '🇵🇷 Puerto Rico', cat: 'country', radius: 10, detail: '120+ Fintechs · ATH Móvil · US Fedwire', stat: 'US Fedwire' },
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
 
-    // Complete Payment Rails (Rieles A2A & Pagos Instantáneos)
-    { id: 'pix', label: 'PIX (Brasil)', cat: 'rail', radius: 16, detail: '63B Transacciones · 95% Adopción Adultos', stat: 'T+0 Instant' },
-    { id: 'spei', label: 'SPEI / DiMo / CoDi (México)', cat: 'rail', radius: 15, detail: 'Sistema Banxico 24/7 B2B & P2P', stat: '60M Usuarios' },
-    { id: 'breb', label: 'Bre-B / PSE (Colombia)', cat: 'rail', radius: 14, detail: 'Riel Interoperable Banco de la República', stat: 'Interoperable' },
-    { id: 'yape', label: 'Yape / Plin / CCE (Perú)', cat: 'rail', radius: 13, detail: 'Interoperabilidad BCRP Total', stat: '15M Usuarios' },
-    { id: 'sinpe', label: 'SINPE Móvil (Costa Rica)', cat: 'rail', radius: 12, detail: 'Riel Inmediato BCCR', stat: '88% Penetración' },
-    { id: 't3', label: 'Transferencias 3.0 / MODO (Argentina)', cat: 'rail', radius: 13, detail: 'QR Interoperable BCRA & DEBIN', stat: 'Multi-Wallet' },
-    { id: 'tef', label: 'TEF / Khipu / PagoRápido (Chile)', cat: 'rail', radius: 12, detail: 'Transferencias Electrónicas CCA / CMF', stat: 'High Conversion' },
-    { id: 'lbtr', label: 'LBTR Inmediato (Rep. Dominicana)', cat: 'rail', radius: 11, detail: 'Sistema de Pagos al Tiempo Real BCRD', stat: '24/7 Clearance' },
-    { id: 'spi_uy', label: 'SPI Directo / QR (Uruguay)', cat: 'rail', radius: 10, detail: 'Sistema de Pagos Instantáneos BCU', stat: 'Open Banking' },
-    { id: 'sipap', label: 'SIPAP 24/7 (Paraguay)', cat: 'rail', radius: 10, detail: 'Sistema de Pagos del Paraguay BCP', stat: 'Real-time B2B' },
-    { id: 'qr_bo', label: 'QR Simple / ACH (Bolivia)', cat: 'rail', radius: 9, detail: 'Cobro por QR Interbancario ASFI', stat: 'Zero Fee P2P' },
-    { id: 'ach_gt', label: 'ACH Pronto / GuatePago (Guatemala)', cat: 'rail', radius: 10, detail: 'Riel Interbancario BANGUAT', stat: 'Remesas Core' },
-    { id: 'chivo', label: 'Chivo / Lightning Network (El Salvador)', cat: 'rail', radius: 10, detail: 'Riel Crypto & Fiat Instantáneo', stat: 'Zero FX Fee' },
-    { id: 'pago_ve', label: 'Pago Móvil Interbancario (Venezuela)', cat: 'rail', radius: 10, detail: 'Red Interbancaria P2P & C2P', stat: 'Instant Clearance' },
-    { id: 'ath_pr', label: 'ATH Móvil / Fedwire (Puerto Rico)', cat: 'rail', radius: 11, detail: 'Evertec & US Federal Reserve System', stat: 'US Dollar Rail' },
+      const CATEGORY_COLORS = {
+        hub: { fill: '#00f5d4', stroke: '#00f5d4', glow: 'rgba(0, 245, 212, 0.5)' },
+        country: { fill: '#818cf8', stroke: '#a5b4fc', glow: 'rgba(129, 140, 248, 0.4)' },
+        rail: { fill: '#10b981', stroke: '#34d399', glow: 'rgba(16, 185, 129, 0.4)' },
+        reg: { fill: '#f43f5e', stroke: '#fb7185', glow: 'rgba(244, 63, 94, 0.4)' },
+        assoc: { fill: '#f59e0b', stroke: '#fbbf24', glow: 'rgba(245, 158, 11, 0.4)' }
+      };
 
-    // Central Banks & Financial Regulators
-    { id: 'banxico', label: 'Banxico & CNBV (México)', cat: 'reg', radius: 12, detail: 'Comisión Nacional Bancaria y de Valores · Ley Fintech', stat: 'Regulador MX' },
-    { id: 'bcb', label: 'Banco Central do Brasil & CVM', cat: 'reg', radius: 13, detail: 'Creador de PIX & Open Finance Brasil', stat: 'Regulador BR' },
-    { id: 'sfc', label: 'Superfinanciera Colombia & BanRep', cat: 'reg', radius: 11, detail: 'Regulación de Pagos de Bajo Valor & Open Finance', stat: 'Regulador CO' },
-    { id: 'cmf', label: 'CMF Chile & Banco Central', cat: 'reg', radius: 11, detail: 'Comisión para el Mercado Financiero · Ley 21.521', stat: 'Regulador CL' },
-    { id: 'bcra', label: 'BCRA (Argentina)', cat: 'reg', radius: 11, detail: 'Banco Central de la República Argentina', stat: 'Regulador AR' },
-    { id: 'bcrp', label: 'BCRP & SBS (Perú)', cat: 'reg', radius: 11, detail: 'Banco Central de Reserva del Perú & SBS', stat: 'Regulador PE' },
-    { id: 'bccr', label: 'BCCR & SUGEF (Costa Rica)', cat: 'reg', radius: 10, detail: 'Banco Central de Costa Rica', stat: 'Regulador CR' },
-    { id: 'bcrd', label: 'Banco Central Rep. Dominicana', cat: 'reg', radius: 10, detail: 'Administrador del Sistema de Pagos SIPARD', stat: 'Regulador DO' },
-    { id: 'bcu', label: 'Banco Central del Uruguay', cat: 'reg', radius: 10, detail: 'Superintendencia de Servicios Financieros', stat: 'Regulador UY' },
-    { id: 'bcp', label: 'Banco Central del Paraguay', cat: 'reg', radius: 10, detail: 'Administrador del SIPAP & SPI', stat: 'Regulador PY' },
-    { id: 'asfi', label: 'ASFI & BCB (Bolivia)', cat: 'reg', radius: 9, detail: 'Autoridad de Supervisión del Sistema Financiero', stat: 'Regulador BO' },
-    { id: 'banguat', label: 'BANGUAT & SIB (Guatemala)', cat: 'reg', radius: 9, detail: 'Superintendencia de Bancos de Guatemala', stat: 'Regulador GT' },
-
-    // Fintech Chambers & Industry Associations
-    { id: 'fintech_mx', label: 'Fintech México', cat: 'assoc', radius: 12, detail: 'Asociación Fintech México (180+ miembros)', stat: 'Gremio MX' },
-    { id: 'abfintechs', label: 'ABFintechs (Brasil)', cat: 'assoc', radius: 13, detail: 'Associação Brasileira de Fintechs (650+ miembros)', stat: 'Gremio BR' },
-    { id: 'colombia_fintech', label: 'Colombia Fintech', cat: 'assoc', radius: 12, detail: 'Asociación Colombiana de Empresas Fintech (350+ miembros)', stat: 'Gremio CO' },
-    { id: 'fintech_chile', label: 'FinteChile', cat: 'assoc', radius: 11, detail: 'Asociación de Empresas Fintech de Chile (140+ miembros)', stat: 'Gremio CL' },
-    { id: 'fintech_ar', label: 'Cámara Argentina de Fintech', cat: 'assoc', radius: 12, detail: 'Cámara Argentina de Fintech (230+ miembros)', stat: 'Gremio AR' },
-    { id: 'fintech_peru', label: 'Asociación Fintech del Perú', cat: 'assoc', radius: 11, detail: 'Gremio líder del ecosistema fintech peruano', stat: 'Gremio PE' },
-    { id: 'fintech_ibero', label: 'Alianza Iberoamericana Fintech', cat: 'assoc', radius: 13, detail: 'Federación de 14 Cámaras Fintech de Iberoamérica', stat: 'Alianza Regional' },
-    { id: 'asofintech_do', label: 'Asofintech (Rep. Dominicana)', cat: 'assoc', radius: 10, detail: 'Asociación Dominicana de Empresas Fintech', stat: 'Gremio DO' },
-    { id: 'fintech_uy', label: 'Cámara Uruguaya de FinTech', cat: 'assoc', radius: 10, detail: 'Cámara de Innovación Financiera de Uruguay', stat: 'Gremio UY' },
-    { id: 'fintech_cr', label: 'Asociación Fintech de Costa Rica', cat: 'assoc', radius: 10, detail: 'Asociación de Tecnologías Financieras de Costa Rica', stat: 'Gremio CR' },
-    { id: 'fintech_py', label: 'Cámara Paraguaya de Fintech', cat: 'assoc', radius: 9, detail: 'Gremio impulsor del ecosistema de pagos paraguayo', stat: 'Gremio PY' }
-  ];
-
-  // Links connecting nodes
-  const links = [
-    // Core connections to key hubs
-    { source: 'core', target: 'mx' }, { source: 'core', target: 'br' }, { source: 'core', target: 'co' },
-    { source: 'core', target: 'cl' }, { source: 'core', target: 'ar' }, { source: 'core', target: 'pe' },
-    { source: 'core', target: 'ec' }, { source: 'core', target: 'gt' }, { source: 'core', target: 'sv' },
-    { source: 'core', target: 'cr' }, { source: 'core', target: 'pa' }, { source: 'core', target: 'do' },
-    { source: 'core', target: 'uy' }, { source: 'core', target: 'py' }, { source: 'core', target: 'bo' },
-    { source: 'core', target: 'hn' }, { source: 'core', target: 'ni' }, { source: 'core', target: 've' },
-    { source: 'core', target: 'jm' }, { source: 'core', target: 'pr' }, { source: 'core', target: 'fintech_ibero' },
-
-    // Rail connections
-    { source: 'br', target: 'pix' }, { source: 'bcb', target: 'pix' },
-    { source: 'mx', target: 'spei' }, { source: 'banxico', target: 'spei' },
-    { source: 'co', target: 'breb' }, { source: 'sfc', target: 'breb' },
-    { source: 'pe', target: 'yape' }, { source: 'bcrp', target: 'yape' },
-    { source: 'cr', target: 'sinpe' }, { source: 'bccr', target: 'sinpe' },
-    { source: 'ar', target: 't3' }, { source: 'bcra', target: 't3' },
-    { source: 'cl', target: 'tef' }, { source: 'cmf', target: 'tef' },
-    { source: 'do', target: 'lbtr' }, { source: 'bcrd', target: 'lbtr' },
-    { source: 'uy', target: 'spi_uy' }, { source: 'bcu', target: 'spi_uy' },
-    { source: 'py', target: 'sipap' }, { source: 'bcp', target: 'sipap' },
-    { source: 'bo', target: 'qr_bo' }, { source: 'asfi', target: 'qr_bo' },
-    { source: 'gt', target: 'ach_gt' }, { source: 'banguat', target: 'ach_gt' },
-    { source: 'sv', target: 'chivo' },
-    { source: 've', target: 'pago_ve' },
-    { source: 'pr', target: 'ath_pr' },
-
-    // Fintech Chamber connections
-    { source: 'mx', target: 'fintech_mx' }, { source: 'fintech_ibero', target: 'fintech_mx' },
-    { source: 'br', target: 'abfintechs' }, { source: 'fintech_ibero', target: 'abfintechs' },
-    { source: 'co', target: 'colombia_fintech' }, { source: 'fintech_ibero', target: 'colombia_fintech' },
-    { source: 'cl', target: 'fintech_chile' }, { source: 'fintech_ibero', target: 'fintech_chile' },
-    { source: 'ar', target: 'fintech_ar' }, { source: 'fintech_ibero', target: 'fintech_ar' },
-    { source: 'pe', target: 'fintech_peru' }, { source: 'fintech_ibero', target: 'fintech_peru' },
-    { source: 'do', target: 'asofintech_do' },
-    { source: 'uy', target: 'fintech_uy' },
-    { source: 'cr', target: 'fintech_cr' },
-    { source: 'py', target: 'fintech_py' }
-  ];
-
-  // Node Map by ID
-  const nodeMap = {};
-  nodes.forEach((n, idx) => {
-    // Initial layout in wide concentric circles with offset
-    const angle = (idx / nodes.length) * Math.PI * 2;
-    const radiusBase = n.cat === 'hub' ? 0 : (n.cat === 'country' ? 380 + (idx % 3) * 60 : 620 + (idx % 2) * 80);
-    n.x = width / 2 + Math.cos(angle) * radiusBase;
-    n.y = height / 2 + Math.sin(angle) * radiusBase;
-    n.vx = 0;
-    n.vy = 0;
-    n.visible = true;
-    nodeMap[n.id] = n;
-  });
-
-  // Resolve links references
-  const resolvedLinks = links.map(l => ({
-    source: nodeMap[l.source],
-    target: nodeMap[l.target],
-    particles: [Math.random(), Math.random()]
-  })).filter(l => l.source && l.target);
-
-  // PAN & ZOOM CAMERA STATE
-  let transform = { x: 0, y: 0, k: 0.85 };
-  let isDragging = false;
-  let dragNode = null;
-  let mousePos = { x: 0, y: 0 };
-  let startMouse = { x: 0, y: 0 };
-
-  // ============================================
-  // PHYSICS SIMULATION (Force Directed Layout)
-  // ============================================
-  function updatePhysics() {
-    const kRepel = 45000;
-    const linkDist = 420;
-    const kLink = 0.015;
-    const centerForce = 0.0012;
-
-    // Center attraction (very gentle so nodes don't collapse)
-    nodes.forEach(n => {
-      if (!n.visible) return;
-      const dx = (width / 2) - n.x;
-      const dy = (height / 2) - n.y;
-      n.vx += dx * centerForce;
-      n.vy += dy * centerForce;
-    });
-
-    // Node Repulsion & Hard Collision Prevention
-    for (let i = 0; i < nodes.length; i++) {
-      const n1 = nodes[i];
-      if (!n1.visible) continue;
-      for (let j = i + 1; j < nodes.length; j++) {
-        const n2 = nodes[j];
-        if (!n2.visible) continue;
-        const dx = n2.x - n1.x;
-        const dy = n2.y - n1.y;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const nodes = [
+        { id: 'core', label: 'OnlyPayments Hub', cat: 'hub', radius: 28, desc: 'Motor Central de Búsqueda Semántica y Rieles de Pago', stat: '1,047 Entidades' },
         
-        // Minimum distance to keep labels separated
-        const minSpace = (n1.radius + n2.radius) + 70;
-        
-        if (dist < 850) {
-          const force = (kRepel / (dist * dist));
-          let fx = (dx / dist) * force;
-          let fy = (dy / dist) * force;
+        // Países Core
+        { id: 'mx', label: '🇲🇽 México', cat: 'country', radius: 18, desc: '650+ Fintechs · $62.5B Remesas · Regulación Ley Fintech CNBV', stat: '$62.5B Remesas' },
+        { id: 'br', label: '🇧🇷 Brasil', cat: 'country', radius: 22, desc: '1,200+ Fintechs · $2.03B VC Funding · Ecosistema Pix Líder Global', stat: '95% Adopción Pix' },
+        { id: 'co', label: '🇨🇴 Colombia', cat: 'country', radius: 16, desc: '410+ Fintechs · Bre-B / PSE / Transfiya · Crecimiento 22%', stat: '70% E-comm A2A' },
+        { id: 'cl', label: '🇨🇱 Chile', cat: 'country', radius: 15, desc: '280+ Fintechs · Ley Fintech N° 21.521 · Open Finance CMF', stat: '$110M VC' },
+        { id: 'ar', label: '🇦🇷 Argentina', cat: 'country', radius: 16, desc: '320+ Fintechs · Transferencias 3.0 · QR Interoperable BCRA', stat: 'Líder Adopción QR' },
+        { id: 'pe', label: '🇵🇪 Perú', cat: 'country', radius: 14, desc: '180+ Fintechs · Interoperabilidad Yape / Plin regulada por BCRP', stat: '16M Usuarios' },
+        { id: 'ec', label: '🇪🇨 Ecuador', cat: 'country', radius: 13, desc: '90+ Fintechs · Riel SPI Interbancario · Dolarizado USD', stat: '$5.2B Remesas' },
+        { id: 'gt', label: '🇬🇹 Guatemala', cat: 'country', radius: 13, desc: '60+ Fintechs · ACH Pronto / GuatePago · Remesas Dominantes', stat: '$19.8B Remesas' },
+        { id: 'sv', label: '🇸🇻 El Salvador', cat: 'country', radius: 12, desc: '45+ Fintechs · Riel Chivo / Lightning & Transfer365', stat: '$8.3B Remesas' },
+        { id: 'cr', label: '🇨🇷 Costa Rica', cat: 'country', radius: 12, desc: '70+ Fintechs · SINPE Móvil Banco Central BCCR', stat: '95% Penetración P2P' },
+        { id: 'pa', label: '🇵🇦 Panamá', cat: 'country', radius: 13, desc: '85+ Fintechs · Hub Bancario Internacional · Yappy / ACH Xpress', stat: 'Centro Bancario' },
+        { id: 'do', label: '🇩🇴 Rep. Dominicana', cat: 'country', radius: 13, desc: '110+ Fintechs · LBTR Inmediato BCRD', stat: '$11.9B Remesas' },
+        { id: 'uy', label: '🇺🇾 Uruguay', cat: 'country', radius: 11, desc: '55+ Fintechs · SPI Directo · Sede Global de dLocal', stat: 'Hub PayTech' },
+        { id: 'py', label: '🇵🇾 Paraguay', cat: 'country', radius: 11, desc: '40+ Fintechs · SIPAP 24/7 Banco Central BCP', stat: 'SIPAP BCP' },
+        { id: 'bo', label: '🇧🇴 Bolivia', cat: 'country', radius: 10, desc: '30+ Fintechs · QR Simple Interbancario ASFI', stat: 'Cero Fricción P2P' },
 
-          // Extra push if nodes get uncomfortably close
-          if (dist < minSpace) {
-            const overlapPush = (minSpace - dist) * 0.15;
-            fx += (dx / dist) * overlapPush;
-            fy += (dy / dist) * overlapPush;
-          }
+        // Rieles A2A Instantáneos
+        { id: 'pix', label: '⚡ Pix (Brasil)', cat: 'rail', radius: 18, desc: '63B+ Transacciones anuales · Liquidación instantánea T+0', stat: 'Líder Mundial A2A' },
+        { id: 'spei', label: '⚡ SPEI / CoDi (México)', cat: 'rail', radius: 17, desc: 'Sistema de Pagos Electrónicos Interbancarios Banxico 24/7', stat: '60M Usuarios Activos' },
+        { id: 'breb', label: '⚡ Bre-B / PSE (Colombia)', cat: 'rail', radius: 15, desc: 'Riel Interoperable del Banco de la República', stat: 'T+0 Interbancario' },
+        { id: 'yape', label: '⚡ Yape & Plin (Perú)', cat: 'rail', radius: 14, desc: 'Ecosistema de billeteras interoperables BCRP', stat: '16M+ Cuentas' },
+        { id: 'sinpe', label: '⚡ SINPE Móvil (Costa Rica)', cat: 'rail', radius: 13, desc: 'Sistema Nacional de Pagos Electrónicos BCCR', stat: '88% Penetración' },
+        { id: 't3', label: '⚡ Transferencias 3.0 (Argentina)', cat: 'rail', radius: 14, desc: 'QR Interoperable y transferencias inmediatas CVU/CBU', stat: 'Multi-Billetera' },
+        { id: 'tef', label: '⚡ TEF / Khipu (Chile)', cat: 'rail', radius: 13, desc: 'Transferencias bancarias automatizadas de alta conversión', stat: 'Alta Seguridad' },
+        { id: 'lbtr', label: '⚡ LBTR Inmediato (Rep. Dom.)', cat: 'rail', radius: 12, desc: 'Liquidación bruta en tiempo real SIPARD', stat: '24/7 Clearance' },
+        { id: 'ach_xpress', label: '⚡ Yappy / ACH Xpress (Panamá)', cat: 'rail', radius: 12, desc: 'Riel de pagos móviles dolarizado en tiempo real', stat: 'Dolarizado USD' },
 
-          n1.vx -= fx;
-          n1.vy -= fy;
-          n2.vx += fx;
-          n2.vy += fy;
-        }
-      }
-    }
+        // Bancos Centrales & Reguladores
+        { id: 'banxico', label: '🏛️ Banxico & CNBV (México)', cat: 'reg', radius: 14, desc: 'Comisión Nacional Bancaria y de Valores · Administrador SPEI', stat: 'Regulador Central' },
+        { id: 'bcb', label: '🏛️ Banco Central do Brasil (BCB)', cat: 'reg', radius: 15, desc: 'Creador y operador del protocolo Pix y Open Finance Brasil', stat: 'Regulador Central' },
+        { id: 'sfc', label: '🏛️ Superfinanciera (Colombia)', cat: 'reg', radius: 13, desc: 'Regulador del sistema financiero y pagos Bre-B', stat: 'Regulador Central' },
+        { id: 'cmf', label: '🏛️ CMF Chile & Banco Central', cat: 'reg', radius: 13, desc: 'Comisión para el Mercado Financiero · Ley Fintech 21.521', stat: 'Regulador Central' },
+        { id: 'bcra', label: '🏛️ BCRA (Argentina)', cat: 'reg', radius: 13, desc: 'Banco Central de la República Argentina · Normativa PSP', stat: 'Regulador Central' },
+        { id: 'bcrp', label: '🏛️ BCRP & SBS (Perú)', cat: 'reg', radius: 13, desc: 'Banco Central de Reserva del Perú · Mandato Interoperabilidad', stat: 'Regulador Central' },
+        { id: 'bccr', label: '🏛️ BCCR (Costa Rica)', cat: 'reg', radius: 12, desc: 'Banco Central de Costa Rica · Operador SINPE', stat: 'Regulador Central' },
 
-    // Link Spring Force
-    resolvedLinks.forEach(l => {
-      if (!l.source.visible || !l.target.visible) return;
-      const dx = l.target.x - l.source.x;
-      const dy = l.target.y - l.source.y;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      const force = (dist - linkDist) * kLink;
-      const fx = (dx / dist) * force;
-      const fy = (dy / dist) * force;
-      l.source.vx += fx;
-      l.source.vy += fy;
-      l.target.vx -= fx;
-      l.target.vy -= fy;
-    });
+        // Cámaras & Gremios Fintech
+        { id: 'fintech_mx', label: '🤝 Fintech México', cat: 'assoc', radius: 13, desc: 'Asociación Fintech México (+180 miembros corporativos)', stat: 'Gremio MX' },
+        { id: 'abfintechs', label: '🤝 ABFintechs (Brasil)', cat: 'assoc', radius: 14, desc: 'Associação Brasileira de Fintechs (+650 miembros)', stat: 'Gremio BR' },
+        { id: 'colombia_fintech', label: '🤝 Colombia Fintech', cat: 'assoc', radius: 13, desc: 'Asociación Colombiana de Empresas Fintech (+350 miembros)', stat: 'Gremio CO' },
+        { id: 'fintech_chile', label: '🤝 FinteChile', cat: 'assoc', radius: 12, desc: 'Asociación de Empresas Fintech de Chile (+140 miembros)', stat: 'Gremio CL' },
+        { id: 'fintech_ar', label: '🤝 Cámara Argentina Fintech', cat: 'assoc', radius: 13, desc: 'Cámara Argentina de Fintech (+230 miembros)', stat: 'Gremio AR' },
+        { id: 'fintech_ibero', label: '🤝 Alianza Iberoamérica Fintech', cat: 'assoc', radius: 14, desc: 'Federación de 14 Cámaras Fintech de Iberoamérica', stat: 'Alianza Regional' }
+      ];
 
-    // Apply velocity with damping
-    nodes.forEach(n => {
-      if (n === dragNode) return;
-      n.vx *= 0.85;
-      n.vy *= 0.85;
-      n.x += n.vx;
-      n.y += n.vy;
-    });
-  }
+      const links = [
+        { source: 'core', target: 'mx' }, { source: 'core', target: 'br' }, { source: 'core', target: 'co' },
+        { source: 'core', target: 'cl' }, { source: 'core', target: 'ar' }, { source: 'core', target: 'pe' },
+        { source: 'core', target: 'ec' }, { source: 'core', target: 'gt' }, { source: 'core', target: 'sv' },
+        { source: 'core', target: 'cr' }, { source: 'core', target: 'pa' }, { source: 'core', target: 'do' },
+        { source: 'core', target: 'uy' }, { source: 'core', target: 'py' }, { source: 'core', target: 'bo' },
+        { source: 'core', target: 'fintech_ibero' },
 
-  // ============================================
-  // RENDER LOOP
-  // ============================================
-  let hoveredNode = null;
-  let activeFilter = 'all';
-  let searchQuery = '';
+        // Rieles
+        { source: 'br', target: 'pix' }, { source: 'bcb', target: 'pix' },
+        { source: 'mx', target: 'spei' }, { source: 'banxico', target: 'spei' },
+        { source: 'co', target: 'breb' }, { source: 'sfc', target: 'breb' },
+        { source: 'pe', target: 'yape' }, { source: 'bcrp', target: 'yape' },
+        { source: 'cr', target: 'sinpe' }, { source: 'bccr', target: 'sinpe' },
+        { source: 'ar', target: 't3' }, { source: 'bcra', target: 't3' },
+        { source: 'cl', target: 'tef' }, { source: 'cmf', target: 'tef' },
+        { source: 'do', target: 'lbtr' },
+        { source: 'pa', target: 'ach_xpress' },
 
-  function render() {
-    ctx.save();
-    ctx.clearRect(0, 0, width, height);
+        // Cámaras
+        { source: 'mx', target: 'fintech_mx' }, { source: 'fintech_ibero', target: 'fintech_mx' },
+        { source: 'br', target: 'abfintechs' }, { source: 'fintech_ibero', target: 'abfintechs' },
+        { source: 'co', target: 'colombia_fintech' }, { source: 'fintech_ibero', target: 'colombia_fintech' },
+        { source: 'cl', target: 'fintech_chile' }, { source: 'fintech_ibero', target: 'fintech_chile' },
+        { source: 'ar', target: 'fintech_ar' }, { source: 'fintech_ibero', target: 'fintech_ar' }
+      ];
 
-    // Apply Camera Pan/Zoom
-    ctx.translate(transform.x, transform.y);
-    ctx.scale(transform.k, transform.k);
-
-    // Draw Links
-    resolvedLinks.forEach(l => {
-      if (!l.source.visible || !l.target.visible) return;
-
-      const isHighlighted = hoveredNode && (hoveredNode === l.source || hoveredNode === l.target);
-
-      ctx.beginPath();
-      ctx.moveTo(l.source.x, l.source.y);
-      ctx.lineTo(l.target.x, l.target.y);
-      ctx.strokeStyle = isHighlighted ? 'rgba(0,245,212,0.6)' : 'rgba(0,245,212,0.12)';
-      ctx.lineWidth = isHighlighted ? 2 : 1;
-      ctx.stroke();
-
-      // Particle Animation along Link
-      l.particles.forEach((p, idx) => {
-        l.particles[idx] = (p + 0.005) % 1;
-        const px = l.source.x + (l.target.x - l.source.x) * l.particles[idx];
-        const py = l.source.y + (l.target.y - l.source.y) * l.particles[idx];
-
-        ctx.beginPath();
-        ctx.arc(px, py, isHighlighted ? 2.5 : 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = CATEGORY_COLORS[l.source.cat] || '#00f5d4';
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = '#00f5d4';
-        ctx.fill();
-        ctx.shadowBlur = 0;
+      const nodeMap = {};
+      nodes.forEach((n, idx) => {
+        const angle = (idx / nodes.length) * Math.PI * 2;
+        const dist = n.cat === 'hub' ? 0 : (n.cat === 'country' ? 240 + (idx % 3) * 40 : 420 + (idx % 2) * 50);
+        n.x = width / 2 + Math.cos(angle) * dist;
+        n.y = height / 2 + Math.sin(angle) * dist;
+        n.vx = 0;
+        n.vy = 0;
+        n.visible = true;
+        nodeMap[n.id] = n;
       });
-    });
 
-    // Draw Nodes
-    nodes.forEach(n => {
-      if (!n.visible) return;
+      const resolvedLinks = links.map(l => ({
+        source: nodeMap[l.source],
+        target: nodeMap[l.target],
+        particles: [Math.random(), Math.random()]
+      })).filter(l => l.source && l.target);
 
-      const isHovered = hoveredNode === n;
-      const color = CATEGORY_COLORS[n.cat] || '#00f5d4';
+      // Camera State
+      let transform = { x: 0, y: 0, k: 0.95 };
+      let targetTransform = { x: 0, y: 0, k: 0.95 };
+      let isDragging = false;
+      let dragNode = null;
+      let prevMouse = { x: 0, y: 0 };
+      let hoveredNode = null;
 
-      // Outer Glow Sombra (Obsidian Glow)
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.radius + (isHovered ? 6 : 2), 0, Math.PI * 2);
-      ctx.fillStyle = color;
-      ctx.globalOpacity = isHovered ? 0.4 : 0.15;
-      ctx.shadowBlur = isHovered ? 25 : 12;
-      ctx.shadowColor = color;
-      ctx.fill();
-      ctx.shadowBlur = 0;
+      function updatePhysics() {
+        const kRepel = 32000;
+        const centerForce = 0.0008;
 
-      // Inner Node Circle
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-      ctx.fillStyle = isHovered ? '#ffffff' : color;
-      ctx.fill();
+        nodes.forEach(n => {
+          if (!n.visible) return;
+          const dx = (width / 2) - n.x;
+          const dy = (height / 2) - n.y;
+          n.vx += dx * centerForce;
+          n.vy += dy * centerForce;
+        });
 
-      // Border Ring
-      ctx.lineWidth = isHovered ? 3 : 1.5;
-      ctx.strokeStyle = '#020408';
-      ctx.stroke();
+        for (let i = 0; i < nodes.length; i++) {
+          const n1 = nodes[i];
+          if (!n1.visible) continue;
+          for (let j = i + 1; j < nodes.length; j++) {
+            const n2 = nodes[j];
+            if (!n2.visible) continue;
+            const dx = n2.x - n1.x;
+            const dy = n2.y - n1.y;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            if (dist < 600) {
+              const force = kRepel / (dist * dist);
+              const fx = (dx / dist) * force;
+              const fy = (dy / dist) * force;
+              n1.vx -= fx;
+              n1.vy -= fy;
+              n2.vx += fx;
+              n2.vy += fy;
+            }
+          }
+        }
 
-      // Node Label
-      ctx.font = `${isHovered ? 'bold 13px' : '11px'} 'Rajdhani', sans-serif`;
-      ctx.fillStyle = isHovered ? '#00f5d4' : '#e8f4f8';
-      ctx.textAlign = 'center';
-      ctx.fillText(n.label, n.x, n.y + n.radius + 16);
-    });
+        resolvedLinks.forEach(l => {
+          if (!l.source.visible || !l.target.visible) return;
+          const dx = l.target.x - l.source.x;
+          const dy = l.target.y - l.source.y;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const targetDist = 180;
+          const force = (dist - targetDist) * 0.035;
+          const fx = (dx / dist) * force;
+          const fy = (dy / dist) * force;
 
-    ctx.restore();
-  }
+          if (l.source !== dragNode) {
+            l.source.vx += fx;
+            l.source.vy += fy;
+          }
+          if (l.target !== dragNode) {
+            l.target.vx -= fx;
+            l.target.vy -= fy;
+          }
+        });
 
-  function loop() {
-    updatePhysics();
-    render();
-    requestAnimationFrame(loop);
-  }
-
-  // ============================================
-  // INTERACTION HANDLERS (Drag, Zoom, Tooltip)
-  // ============================================
-  function screenToWorld(sx, sy) {
-    return {
-      x: (sx - transform.x) / transform.k,
-      y: (sy - transform.y) / transform.k
-    };
-  }
-
-  function getNodeAt(worldX, worldY) {
-    for (let i = nodes.length - 1; i >= 0; i--) {
-      const n = nodes[i];
-      if (!n.visible) continue;
-      const dx = worldX - n.x;
-      const dy = worldY - n.y;
-      if (Math.sqrt(dx * dx + dy * dy) <= n.radius + 6) {
-        return n;
+        nodes.forEach(n => {
+          if (n === dragNode) return;
+          n.x += n.vx;
+          n.y += n.vy;
+          n.vx *= 0.88;
+          n.vy *= 0.88;
+        });
       }
-    }
-    return null;
-  }
 
-  canvas.addEventListener('mousedown', (e) => {
-    startMouse = { x: e.clientX, y: e.clientY };
-    const w = screenToWorld(e.clientX, e.clientY);
-    dragNode = getNodeAt(w.x, w.y);
-    if (!dragNode) {
-      isDragging = true;
-    }
-  });
+      function render() {
+        ctx.clearRect(0, 0, width, height);
 
-  canvas.addEventListener('mousemove', (e) => {
-    mousePos = { x: e.clientX, y: e.clientY };
-    const w = screenToWorld(e.clientX, e.clientY);
+        // Smooth Camera Transition
+        transform.x += (targetTransform.x - transform.x) * 0.1;
+        transform.y += (targetTransform.y - transform.y) * 0.1;
+        transform.k += (targetTransform.k - transform.k) * 0.1;
 
-    if (dragNode) {
-      dragNode.x = w.x;
-      dragNode.y = w.y;
-      dragNode.vx = 0;
-      dragNode.vy = 0;
-    } else if (isDragging) {
-      transform.x += e.clientX - startMouse.x;
-      transform.y += e.clientY - startMouse.y;
-      startMouse = { x: e.clientX, y: e.clientY };
-    }
+        ctx.save();
+        ctx.translate(transform.x, transform.y);
+        ctx.scale(transform.k, transform.k);
 
-    // Hover Tooltip Check
-    const found = getNodeAt(w.x, w.y);
-    if (found !== hoveredNode) {
-      hoveredNode = found;
-      if (hoveredNode) {
-        showTooltip(hoveredNode, e.clientX, e.clientY);
-      } else {
-        tooltip.classList.remove('visible');
+        // Draw Links
+        resolvedLinks.forEach(l => {
+          if (!l.source.visible || !l.target.visible) return;
+
+          ctx.beginPath();
+          ctx.moveTo(l.source.x, l.source.y);
+          ctx.lineTo(l.target.x, l.target.y);
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.15)';
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+
+          // Flowing Energy Pulses
+          l.particles.forEach((p, idx) => {
+            l.particles[idx] = (p + 0.006) % 1;
+            const px = l.source.x + (l.target.x - l.source.x) * l.particles[idx];
+            const py = l.source.y + (l.target.y - l.source.y) * l.particles[idx];
+
+            ctx.beginPath();
+            ctx.arc(px, py, 2, 0, Math.PI * 2);
+            ctx.fillStyle = '#00f5d4';
+            ctx.shadowColor = '#00f5d4';
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          });
+        });
+
+        // Draw Nodes
+        nodes.forEach(n => {
+          if (!n.visible) return;
+
+          const col = CATEGORY_COLORS[n.cat] || CATEGORY_COLORS.country;
+          const isHovered = hoveredNode === n;
+
+          // Radial Glow Halo
+          const glowRad = n.radius * (isHovered ? 2.5 : 1.8);
+          const grad = ctx.createRadialGradient(n.x, n.y, n.radius * 0.4, n.x, n.y, glowRad);
+          grad.addColorStop(0, col.glow);
+          grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, glowRad, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+
+          // Core Node Body
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+          ctx.fillStyle = isHovered ? '#ffffff' : col.fill;
+          ctx.shadowColor = col.fill;
+          ctx.shadowBlur = isHovered ? 25 : 12;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          // Border Ring
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.radius + 1.5, 0, Math.PI * 2);
+          ctx.strokeStyle = col.stroke;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Typography Label
+          ctx.font = `${isHovered ? '700 13px' : '600 11px'} 'Plus Jakarta Sans', sans-serif`;
+          ctx.fillStyle = isHovered ? '#00f5d4' : '#f8fafc';
+          ctx.textAlign = 'center';
+          ctx.shadowColor = '#020617';
+          ctx.shadowBlur = 4;
+          ctx.fillText(n.label, n.x, n.y + n.radius + 16);
+          ctx.shadowBlur = 0;
+        });
+
+        ctx.restore();
       }
-    } else if (hoveredNode) {
-      updateTooltipPos(e.clientX, e.clientY);
-    }
-  });
 
-  window.addEventListener('mouseup', () => {
-    isDragging = false;
-    dragNode = null;
-  });
+      function setupEvents() {
+        window.addEventListener('resize', () => {
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = width;
+          canvas.height = height;
+        });
 
-  canvas.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
-    const newK = Math.max(0.4, Math.min(3, transform.k * zoomFactor));
+        function getCanvasCoord(clientX, clientY) {
+          const rect = canvas.getBoundingClientRect();
+          const screenX = clientX - rect.left;
+          const screenY = clientY - rect.top;
+          return {
+            x: (screenX - transform.x) / transform.k,
+            y: (screenY - transform.y) / transform.k
+          };
+        }
 
-    // Zoom towards cursor
-    transform.x = e.clientX - (e.clientX - transform.x) * (newK / transform.k);
-    transform.y = e.clientY - (e.clientY - transform.y) * (newK / transform.k);
-    transform.k = newK;
-  });
+        canvas.addEventListener('mousedown', (e) => {
+          const pt = getCanvasCoord(e.clientX, e.clientY);
+          const hit = nodes.find(n => {
+            if (!n.visible) return false;
+            const dx = n.x - pt.x;
+            const dy = n.y - pt.y;
+            return Math.sqrt(dx * dx + dy * dy) <= n.radius + 8;
+          });
 
-  // TOOLTIP FUNCTIONS
-  function showTooltip(n, sx, sy) {
-    document.getElementById('tt-type').textContent = n.cat.toUpperCase();
-    document.getElementById('tt-name').textContent = n.label;
-    document.getElementById('tt-detail').textContent = n.detail;
-    document.getElementById('tt-stat-val').textContent = n.stat;
-    updateTooltipPos(sx, sy);
-    tooltip.classList.add('visible');
-  }
+          if (hit) {
+            dragNode = hit;
+            openDrawer(hit);
+          } else {
+            isDragging = true;
+            prevMouse = { x: e.clientX, y: e.clientY };
+          }
+        });
 
-  function updateTooltipPos(sx, sy) {
-    let px = sx + 18;
-    let py = sy - 18;
-    if (px + 240 > width) px = sx - 260;
-    if (py + 120 > height) py = sy - 120;
-    tooltip.style.left = px + 'px';
-    tooltip.style.top = py + 'px';
-  }
+        window.addEventListener('mousemove', (e) => {
+          if (dragNode) {
+            const pt = getCanvasCoord(e.clientX, e.clientY);
+            dragNode.x = pt.x;
+            dragNode.y = pt.y;
+            dragNode.vx = 0;
+            dragNode.vy = 0;
+          } else if (isDragging) {
+            targetTransform.x += e.clientX - prevMouse.x;
+            targetTransform.y += e.clientY - prevMouse.y;
+            prevMouse = { x: e.clientX, y: e.clientY };
+          } else {
+            const pt = getCanvasCoord(e.clientX, e.clientY);
+            hoveredNode = nodes.find(n => {
+              if (!n.visible) return false;
+              const dx = n.x - pt.x;
+              const dy = n.y - pt.y;
+              return Math.sqrt(dx * dx + dy * dy) <= n.radius + 8;
+            }) || null;
+          }
+        });
 
-  // SEARCH & FILTER FUNCTIONS
-  window.onSearch = function(query) {
-    searchQuery = query.toLowerCase().trim();
-    applyFilters();
-  };
+        window.addEventListener('mouseup', () => {
+          isDragging = false;
+          dragNode = null;
+        });
 
-  window.filterCategory = function(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = cat;
-    applyFilters();
-  };
+        canvas.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          const zoomFactor = e.deltaY < 0 ? 1.12 : 0.88;
+          const newK = Math.max(0.4, Math.min(2.5, targetTransform.k * zoomFactor));
 
-  function applyFilters() {
-    nodes.forEach(n => {
-      const matchCat = activeFilter === 'all' || n.cat === activeFilter;
-      const matchQuery = !searchQuery || n.label.toLowerCase().includes(searchQuery) || n.detail.toLowerCase().includes(searchQuery);
-      n.visible = matchCat && matchQuery;
-    });
-  }
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
 
-  // RESIZE HANDLER
-  window.addEventListener('resize', () => {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-  });
+          targetTransform.x = mouseX - (mouseX - targetTransform.x) * (newK / targetTransform.k);
+          targetTransform.y = mouseY - (mouseY - targetTransform.y) * (newK / targetTransform.k);
+          targetTransform.k = newK;
+        });
+      }
 
-  loop();
-})();
-</script>
+      function openDrawer(node) {
+        document.getElementById('d-name').textContent = node.label;
+        document.getElementById('d-desc').textContent = node.desc;
+        document.getElementById('d-stat').textContent = node.stat;
 
+        const typeElem = document.getElementById('d-type');
+        const catMap = {
+          hub: { name: 'CORE ENGINE', col: '#00f5d4', bg: 'rgba(0,245,212,0.15)' },
+          country: { name: 'PAÍS LATAM', col: '#818cf8', bg: 'rgba(129,140,248,0.15)' },
+          rail: { name: 'RIEL A2A INSTANTÁNEO', col: '#10b981', bg: 'rgba(16,185,129,0.15)' },
+          reg: { name: 'BANCO CENTRAL / REGULADOR', col: '#f43f5e', bg: 'rgba(244,63,94,0.15)' },
+          assoc: { name: 'CÁMARA FINTECH', col: '#f59e0b', bg: 'rgba(245,158,11,0.15)' }
+        };
+        const c = catMap[node.cat] || catMap.country;
+        typeElem.textContent = c.name;
+        typeElem.style.color = c.col;
+        typeElem.style.background = c.bg;
+
+        drawer.classList.add('visible');
+      }
+
+      window.closeDrawer = function() {
+        drawer.classList.remove('visible');
+      };
+
+      window.filterCategory = function(cat, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        nodes.forEach(n => {
+          if (cat === 'all' || n.cat === 'hub' || n.cat === cat) {
+            n.visible = true;
+          } else {
+            n.visible = false;
+          }
+        });
+      };
+
+      window.onSearch = function(query) {
+        const q = query.trim().toLowerCase();
+        if (!q) {
+          nodes.forEach(n => n.visible = true);
+          return;
+        }
+
+        let found = null;
+        nodes.forEach(n => {
+          const matches = n.label.toLowerCase().includes(q) || n.desc.toLowerCase().includes(q);
+          n.visible = matches || n.cat === 'hub';
+          if (matches && !found) found = n;
+        });
+
+        // Auto-center camera onto matched node
+        if (found) {
+          targetTransform.x = width / 2 - found.x * targetTransform.k;
+          targetTransform.y = height / 2 - found.y * targetTransform.k;
+          openDrawer(found);
+        }
+      };
+
+      function loop() {
+        updatePhysics();
+        render();
+        requestAnimationFrame(loop);
+      }
+
+      setupEvents();
+      loop();
+    })();
+  </script>
 </body>
 </html>
