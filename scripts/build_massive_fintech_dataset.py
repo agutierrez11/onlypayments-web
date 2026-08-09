@@ -5,19 +5,21 @@ import os
 def clean_text(text):
     if text is None:
         return ""
-    text = str(text)
+    text = str(text).strip()
     if text.lower() == 'nan':
         return ""
-    # Fix common UTF-8 encoding corruption artifacts
+    
+    # Remove any stray replacement chars
+    text = text.replace('\ufffd', '')
+    
+    # Safe word-level replacements
     fixes = {
-        '': 'á',
         'Mxico': 'México',
-        'M\ufffdxico': 'México',
         'M?xico': 'México',
-        'Per': 'Perú',
-        'Panam': 'Panamá',
-        'Bogot': 'Bogotá',
-        'Medelln': 'Medellín',
+        'Per?': 'Perú',
+        'Panam?': 'Panamá',
+        'Bogot?': 'Bogotá',
+        'Medell?n': 'Medellín',
         'So Paulo': 'São Paulo',
         'Braslia': 'Brasília',
         'Latinoamrica': 'Latinoamérica',
@@ -38,7 +40,8 @@ def clean_text(text):
         'posicin': 'posición'
     }
     for k, v in fixes.items():
-        text = text.replace(k, v)
+        if k:
+            text = text.replace(k, v)
     return text.strip()
 
 def normalize_country(country_raw, desc=""):
