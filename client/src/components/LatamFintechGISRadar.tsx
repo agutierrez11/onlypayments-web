@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
@@ -15,8 +15,12 @@ import {
   Globe2, 
   Send, 
   CheckCircle2, 
-  ArrowUpRight 
+  ArrowUpRight,
+  Radio,
+  ChevronDown
 } from 'lucide-react';
+import { Card } from './ui/card';
+import { Badge } from './ui/badge';
 import { toast } from 'sonner';
 import masterFintechsData from '../data/fintechs_latam_master.json';
 import MEXICO_STATES_SVG from '../data/mexico_states_svg.json';
@@ -61,6 +65,7 @@ export default function LatamFintechGISRadar() {
   const [pan, setPan] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   const statesList = MEXICO_STATES_SVG as StateGeo[];
   const latamList = LATAM_COUNTRIES_SVG as LatamCountryGeo[];
@@ -70,6 +75,24 @@ export default function LatamFintechGISRadar() {
     setZoom(1);
     setPan({ x: 0, y: 0 });
   }, [geoScope]);
+
+  // Non-passive wheel event listener to strictly prevent entire page scroll on map zoom
+  useEffect(() => {
+    const el = mapContainerRef.current;
+    if (!el) return;
+
+    const onWheelNative = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const zoomFactor = e.deltaY < 0 ? 1.15 : 0.87;
+      setZoom(prev => Math.min(4.5, Math.max(0.8, prev * zoomFactor)));
+    };
+
+    el.addEventListener('wheel', onWheelNative, { passive: false });
+    return () => {
+      el.removeEventListener('wheel', onWheelNative);
+    };
+  }, []);
 
   const handleZoomIn = () => setZoom(prev => Math.min(4.5, prev * 1.3));
   const handleZoomOut = () => setZoom(prev => Math.max(0.8, prev / 1.3));
@@ -95,12 +118,6 @@ export default function LatamFintechGISRadar() {
       setZoom(1.8);
       setPan({ x: -140, y: -360 });
     }
-  };
-
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    const zoomFactor = e.deltaY < 0 ? 1.15 : 0.87;
-    setZoom(prev => Math.min(4.5, Math.max(0.8, prev * zoomFactor)));
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -298,7 +315,7 @@ export default function LatamFintechGISRadar() {
 
             {/* MAPA SVG VECTORIAL REAL CON ZOOM & PAN INTERACTIVO */}
             <div
-              onWheel={handleWheel}
+              ref={mapContainerRef}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
