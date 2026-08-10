@@ -177,16 +177,41 @@ export function PaymentCopilot() {
         }
       };
       setMessages(prev => [...prev, copilotMsg]);
+    } else if (
+      q.includes("clima") || 
+      q.includes("futbol") || 
+      q.includes("receta") || 
+      q.includes("musica") || 
+      q.length < 3
+    ) {
+      // Caso Fuera de Alcance (Out-of-Scope)
+      const copilotMsg: MessageItem = {
+        id: `bot-${Date.now()}`,
+        sender: "copilot",
+        text: "Mi conocimiento está especializado estrictamente en **Infraestructura de Pagos, Adquirencia, Rieles A2A y Regulación FinTech en LATAM**. No cuento con información verificada sobre temas externos.",
+        generativeCard: {
+          type: "recommendation",
+          data: {
+            title: "¿En qué te puedo asesorar?",
+            rails: [
+              { country: "Pasarelas & MDR", rail: "Comparativa de comisiones", volume: "Stripe, dLocal, Clip, Kushki", cost: "Auditado" },
+              { country: "Rieles A2A", rail: "Pix, SPEI, Bre-B, Yape, Plin", volume: "Integración transaccional", cost: "Tiempo real" },
+              { country: "Directorio", rail: "2,659+ Fintechs en 20 Países", volume: "Filtros por vertical y estado", cost: "Oficial" }
+            ]
+          }
+        }
+      };
+      setMessages(prev => [...prev, copilotMsg]);
     } else {
       // Recomendación estándar de Stack
       const copilotMsg: MessageItem = {
         id: `bot-${Date.now()}`,
         sender: "copilot",
-        text: `Para tu consulta *"**${query}**"*, la arquitectura recomendada en LATAM combina adquirencia local con rieles instantáneos para maximizar la tasa de conversión y reducir contracargos.`,
+        text: `Para tu consulta sobre *"**${query}**"*, la arquitectura estándar en LATAM combina adquirencia local con rieles instantáneos para maximizar la tasa de conversión y reducir contracargos. Si buscas un proveedor específico, puedes revisar el directorio oficial o solicitar un match B2B.`,
         generativeCard: {
           type: "recommendation",
           data: {
-            title: "Stack Híbrido Recomendado",
+            title: "Stack de Pagos Recomendado",
             rails: [
               { country: "Riel Principal", rail: "Adquirencia Local Multibanco", volume: "Tasa de Aprobación > 88%", cost: "2.6% - 3.2%" },
               { country: "Riel Alternativo", rail: "A2A Instantáneo (Pix / SPEI)", volume: "Cero Contracargos", cost: "0.3% - 1.0%" },
