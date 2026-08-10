@@ -215,7 +215,7 @@ export default function Home() {
   }, [expandedCommentsPostId]);
 
   useEffect(() => {
-    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.add("dark");
   }, []);
 
   const selectedCountry = useMemo(() => {
@@ -349,35 +349,35 @@ export default function Home() {
       </div>
       
       {/* HEADER / NAVIGATION */}
-      <nav className="sticky top-0 z-[100] bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+      <nav className="sticky top-0 z-[100] bg-[#000000]/90 backdrop-blur-xl border-b border-[#1c1d24] shadow-md text-white">
         <div className="container flex items-center justify-between h-16">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center shadow-md">
+          <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="w-8 h-8 rounded-[8px] bg-gradient-to-br from-[#0000FF] to-[#1BACFB] flex items-center justify-center shadow-lg shadow-[#0000FF]/30">
               <span className="text-white font-extrabold text-sm font-mono">OP</span>
             </div>
-            <span className="font-extrabold text-lg tracking-tight text-slate-900">OnlyPayments</span>
-            <span className="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold font-mono border border-cyan-300">GLOBAL</span>
+            <span className="font-extrabold text-lg tracking-tight text-white">OnlyPayments</span>
+            <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#141414] text-[#1BACFB] font-bold font-mono border border-[#272938]">GLOBAL</span>
           </div>
 
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-5">
-              <button onClick={() => scrollToSection('explorador')} className="text-sm font-bold text-slate-700 hover:text-cyan-600 transition-colors cursor-pointer">
+              <button onClick={() => scrollToSection('explorador')} className="text-sm font-bold text-slate-300 hover:text-[#1BACFB] transition-colors cursor-pointer">
                 Explorador
               </button>
-              <button onClick={() => scrollToSection('biblioteca')} className="text-sm font-bold text-slate-700 hover:text-cyan-600 transition-colors cursor-pointer">
+              <button onClick={() => scrollToSection('biblioteca')} className="text-sm font-bold text-slate-300 hover:text-[#1BACFB] transition-colors cursor-pointer">
                 Biblioteca de Expertos
               </button>
-              <button onClick={() => scrollToSection('comunidad')} className="text-sm font-bold text-slate-700 hover:text-cyan-600 transition-colors cursor-pointer">
+              <button onClick={() => scrollToSection('comunidad')} className="text-sm font-bold text-slate-300 hover:text-[#1BACFB] transition-colors cursor-pointer">
                 Comunidad
               </button>
-              <button onClick={() => navigate('/remesas')} className="text-sm font-extrabold text-cyan-700 hover:text-cyan-900 transition-colors cursor-pointer">
+              <button onClick={() => navigate('/remesas')} className="text-sm font-extrabold text-[#1BACFB] hover:text-white transition-colors cursor-pointer">
                 Remesas
               </button>
-              <button onClick={() => navigate('/latam-dashboard')} className="text-sm font-extrabold text-indigo-700 hover:text-indigo-900 transition-colors cursor-pointer">
+              <button onClick={() => navigate('/latam-dashboard')} className="text-sm font-extrabold text-[#9BE9FE] hover:text-white transition-colors cursor-pointer">
                 Radar Latam
               </button>
-              <button onClick={() => navigate('/b2b-intros')} className="text-sm font-extrabold text-cyan-800 hover:text-cyan-950 transition-colors bg-cyan-50 px-3 py-1 rounded-lg border border-cyan-300 shadow-xs flex items-center gap-1.5 cursor-pointer">
-                <Zap className="w-3.5 h-3.5 text-cyan-600 fill-cyan-600" />
+              <button onClick={() => navigate('/b2b-intros')} className="text-sm font-extrabold text-white bg-[#0000FF] hover:bg-[#3333FF] px-3.5 py-1.5 rounded-full transition-all shadow-md shadow-[#0000FF]/25 flex items-center gap-1.5 cursor-pointer">
+                <Zap className="w-3.5 h-3.5 text-white fill-white" />
                 Intros B2B
               </button>
             </div>
@@ -491,42 +491,42 @@ export default function Home() {
       <EditorialParallaxShowcase />
 
       {/* BIBLIOTECA DE EXPERTOS */}
-      <section id="biblioteca" className="relative z-10 py-20 border-t border-border bg-background/60 backdrop-blur-[2px]">
+      <section id="biblioteca" className="relative z-10 py-24 border-t border-[#1c1d24] bg-[#000000] text-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Biblioteca de Expertos</h2>
-            <p className="text-muted-foreground font-light">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white font-heading">Biblioteca de Expertos</h2>
+            <p className="text-slate-400 font-light text-sm sm:text-base">
               Explora visualmente los modelos de adquirencia locales y utiliza nuestro diccionario interactivo de terminología de pagos.
             </p>
 
-            {/* Pestañas de Alternancia */}
-            <div className="inline-flex p-1 rounded-xl bg-secondary/30 border border-border mt-4">
+            {/* Pestañas de Alternancia - Pill Style */}
+            <div className="inline-flex p-1.5 rounded-full bg-[#141414] border border-[#272938] mt-4">
               <button
                 onClick={() => { setActiveLibraryTab('ecosistema'); window.location.hash = 'ecosistema'; }}
-                className={`px-5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+                className={`px-5 py-2 rounded-full text-xs font-mono font-bold tracking-wide transition-all cursor-pointer ${
                   activeLibraryTab === 'ecosistema'
-                    ? 'bg-background text-foreground shadow-sm border border-border'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-white text-black shadow-md shadow-white/10'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 Quién es Quién (Flujos)
               </button>
               <button
                 onClick={() => { setActiveLibraryTab('expertos'); window.location.hash = 'expertos'; }}
-                className={`px-5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+                className={`px-5 py-2 rounded-full text-xs font-mono font-bold tracking-wide transition-all cursor-pointer ${
                   activeLibraryTab === 'expertos'
-                    ? 'bg-background text-foreground shadow-sm border border-border'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-white text-black shadow-md shadow-white/10'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 Expertos
               </button>
               <button
                 onClick={() => { setActiveLibraryTab('diccionario'); window.location.hash = 'diccionario'; }}
-                className={`px-5 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+                className={`px-5 py-2 rounded-full text-xs font-mono font-bold tracking-wide transition-all cursor-pointer ${
                   activeLibraryTab === 'diccionario'
-                    ? 'bg-background text-foreground shadow-sm border border-border'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-white text-black shadow-md shadow-white/10'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 Diccionario de Pagos v6.0
@@ -537,22 +537,25 @@ export default function Home() {
           {/* TAB 1: QUIÉN ES QUIÉN & MODELOS DE FLUJO */}
           {activeLibraryTab === 'ecosistema' && (
             <div className="space-y-6 max-w-4xl mx-auto text-center">
-              <Card className="p-12 border-border bg-background/50 backdrop-blur-xl border-accent/20 shadow-[0_0_50px_rgba(var(--accent),0.1)] relative overflow-hidden group cursor-pointer hover:border-accent/50 transition-all" onClick={() => navigate('/latam-dashboard')}>
-                <div className="absolute inset-0 bg-accent/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+              <Card className="p-10 border border-[#262838] bg-[#141414] rounded-[16px] shadow-2xl relative overflow-hidden group cursor-pointer hover:border-[#1BACFB]/50 transition-all text-white" onClick={() => navigate('/latam-dashboard')}>
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#1BACFB] to-transparent" />
                 <div className="relative z-10 space-y-6">
-                  <div className="w-20 h-20 mx-auto bg-accent/20 rounded-2xl flex items-center justify-center border border-accent/30 group-hover:scale-110 transition-transform duration-500">
-                    <Globe className="w-10 h-10 text-accent" />
+                  <div className="w-16 h-16 mx-auto bg-[#0000FF]/15 rounded-[12px] flex items-center justify-center border border-[#0000FF]/30 group-hover:scale-110 transition-transform duration-300">
+                    <Globe className="w-8 h-8 text-[#1BACFB]" />
                   </div>
                   <div>
-                    <Badge variant="outline" className="mb-4 bg-accent/10 text-accent border-accent/20">NUEVO v3.0</Badge>
-                    <h3 className="text-3xl font-extrabold mb-4 text-foreground">Latam Fintech Dashboard</h3>
-                    <p className="text-muted-foreground max-w-xl mx-auto mb-8">
+                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-[#1BACFB]/10 text-[#1BACFB] border border-[#1BACFB]/20 mb-3 inline-block">
+                      NUEVO v3.0
+                    </span>
+                    <h3 className="text-3xl font-extrabold mb-3 text-white">Latam Fintech Dashboard</h3>
+                    <p className="text-slate-400 max-w-xl mx-auto mb-6 text-sm">
                       Explora el modelo interactivo de 4 partes, datos de iGaming, Remesas y Regulación de 20 países en LATAM.
                     </p>
                   </div>
-                  <Button className="bg-accent text-accent-foreground font-bold hover:bg-accent/90" size="lg" onClick={(e) => { e.stopPropagation(); navigate('/latam-dashboard'); }}>
-                    Abrir Dashboard Interactivo <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
+                  <button className="bg-white hover:bg-slate-200 text-black font-bold text-xs font-mono uppercase tracking-wider px-8 py-3.5 rounded-full inline-flex items-center gap-2 cursor-pointer shadow-lg shadow-white/10" onClick={(e) => { e.stopPropagation(); navigate('/latam-dashboard'); }}>
+                    <span>Abrir Dashboard Interactivo</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </div>
               </Card>
             </div>
