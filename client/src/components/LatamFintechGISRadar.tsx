@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
@@ -56,8 +56,67 @@ export default function LatamFintechGISRadar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVertical, setSelectedVertical] = useState('all');
 
+  // Zoom & Pan Interactivity Engine
+  const [zoom, setZoom] = useState<number>(1);
+  const [pan, setPan] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
   const statesList = MEXICO_STATES_SVG as StateGeo[];
   const latamList = LATAM_COUNTRIES_SVG as LatamCountryGeo[];
+
+  // Reset zoom on scope change
+  useEffect(() => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  }, [geoScope]);
+
+  const handleZoomIn = () => setZoom(prev => Math.min(4.5, prev * 1.3));
+  const handleZoomOut = () => setZoom(prev => Math.max(0.8, prev / 1.3));
+  const handleResetZoom = () => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  };
+
+  const handleRegionFocus = (region: 'mexico' | 'central' | 'andean' | 'southern' | 'all') => {
+    if (region === 'all') {
+      setZoom(1);
+      setPan({ x: 0, y: 0 });
+    } else if (region === 'mexico') {
+      setZoom(2.2);
+      setPan({ x: 260, y: 140 });
+    } else if (region === 'central') {
+      setZoom(3.4);
+      setPan({ x: 180, y: -60 });
+    } else if (region === 'andean') {
+      setZoom(2.4);
+      setPan({ x: 30, y: -220 });
+    } else if (region === 'southern') {
+      setZoom(1.8);
+      setPan({ x: -140, y: -360 });
+    }
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const zoomFactor = e.deltaY < 0 ? 1.15 : 0.87;
+    setZoom(prev => Math.min(4.5, Math.max(0.8, prev * zoomFactor)));
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    setPan({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y
+    });
+  };
+
+  const handleMouseUp = () => setIsDragging(false);
 
   // Filtrado reactivo de empresas desde el dataset maestro (2,659 fintechs)
   const filteredFintechs = useMemo(() => {
@@ -189,8 +248,8 @@ export default function LatamFintechGISRadar() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           {/* COLUMNA IZQUIERDA: MAPA VECTORIAL REAL (MÉXICO O LATAM) */}
-          <div className="lg:col-span-7 bg-[#131419] border border-[#222430] rounded-[12px] p-5 shadow-2xl relative overflow-hidden flex flex-col min-h-[640px]">
-            <div className="flex items-center justify-between mb-4">
+          <div className="lg:col-span-7 bg-[#131419] border border-[#222430] rounded-[12px] p-5 shadow-2xl relative overflow-hidden flex flex-col min-h-[660px]">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold text-slate-200">
                   {geoScope === 'mexico' ? '🇲🇽 Mapa Geográfico de los 32 Estados de México' : '🌎 Mapa Vectorial de América Latina'}
@@ -199,16 +258,89 @@ export default function LatamFintechGISRadar() {
                   {geoScope === 'mexico' ? 'Contorno Oficial INEGI' : '18 Países Conectados'}
                 </span>
               </div>
-              <div className="text-[11px] font-mono text-slate-400">
-                Pasa el cursor o haz clic en un territorio
-              </div>
+
+              {/* REGION QUICK-TELEPORT BUTTONS (LATAM) */}
+              {geoScope === 'latam' && (
+                <div className="flex items-center gap-1 bg-[#0A0B10] p-1 rounded-full border border-[#1e202b] text-[10px] font-mono">
+                  <button
+                    onClick={() => handleRegionFocus('all')}
+                    className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${zoom === 1 ? 'bg-white text-black font-bold' : 'text-slate-400 hover:text-white'}`}
+                  >
+                    Todo
+                  </button>
+                  <button
+                    onClick={() => handleRegionFocus('mexico')}
+                    className="px-2 py-0.5 rounded-full text-slate-400 hover:text-white cursor-pointer"
+                  >
+                    🇲🇽 MX
+                  </button>
+                  <button
+                    onClick={() => handleRegionFocus('central')}
+                    className="px-2 py-0.5 rounded-full text-slate-400 hover:text-white cursor-pointer"
+                  >
+                    🌴 Centroamérica
+                  </button>
+                  <button
+                    onClick={() => handleRegionFocus('andean')}
+                    className="px-2 py-0.5 rounded-full text-slate-400 hover:text-white cursor-pointer"
+                  >
+                    🏔️ Andina
+                  </button>
+                  <button
+                    onClick={() => handleRegionFocus('southern')}
+                    className="px-2 py-0.5 rounded-full text-slate-400 hover:text-white cursor-pointer"
+                  >
+                    🇧🇷 Cono Sur
+                  </button>
+                </div>
+              )}
             </div>
 
-            {/* MAPA SVG VECTORIAL REAL */}
-            <div className="relative w-full flex-1 flex items-center justify-center bg-[#07090E] rounded-[8px] p-2 border border-[#1e202b] overflow-hidden">
+            {/* MAPA SVG VECTORIAL REAL CON ZOOM & PAN INTERACTIVO */}
+            <div
+              onWheel={handleWheel}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              className={`relative w-full flex-1 flex items-center justify-center bg-[#07090E] rounded-[8px] border border-[#1e202b] overflow-hidden select-none ${
+                isDragging ? 'cursor-grabbing' : 'cursor-grab'
+              }`}
+              style={{ minHeight: '520px' }}
+            >
+              {/* FLOATING ZOOM CONTROLS (HIGH TECH HUD) */}
+              <div className="absolute top-3 right-3 z-30 flex flex-col gap-1.5 bg-[#0A0B10]/90 backdrop-blur-md p-1.5 rounded-xl border border-[#1e202b] shadow-xl">
+                <button
+                  onClick={handleZoomIn}
+                  title="Acercar mapa (+)"
+                  className="w-7 h-7 rounded-lg bg-[#141622] hover:bg-[#1BACFB] hover:text-black text-white font-mono font-bold text-xs flex items-center justify-center transition-all cursor-pointer"
+                >
+                  +
+                </button>
+                <button
+                  onClick={handleZoomOut}
+                  title="Alejar mapa (-)"
+                  className="w-7 h-7 rounded-lg bg-[#141622] hover:bg-[#1BACFB] hover:text-black text-white font-mono font-bold text-xs flex items-center justify-center transition-all cursor-pointer"
+                >
+                  -
+                </button>
+                <button
+                  onClick={handleResetZoom}
+                  title="Restablecer vista inicial"
+                  className="w-7 h-7 rounded-lg bg-[#141622] hover:bg-white hover:text-black text-slate-400 font-mono text-[10px] flex items-center justify-center transition-all cursor-pointer"
+                >
+                  ⟲
+                </button>
+              </div>
+
+              {/* HINT OVERLAY */}
+              <div className="absolute bottom-3 right-3 z-20 pointer-events-none text-[10px] font-mono text-slate-500 bg-[#0A0B10]/80 px-2.5 py-1 rounded-md border border-[#1a1c26]">
+                Scroll: Zoom ({Math.round(zoom * 100)}%) ● Arrastra para Mover
+              </div>
+
               {geoScope === 'mexico' ? (
                 // VISTA VECTORIAL MÉXICO (32 ESTADOS)
-                <svg viewBox="0 0 1000 650" className="w-full h-full max-h-[520px] drop-shadow-[0_0_30px_rgba(0,0,255,0.15)]">
+                <svg viewBox="0 0 1000 650" className="w-full h-full max-h-[540px] drop-shadow-[0_0_30px_rgba(0,0,255,0.15)]">
                   <defs>
                     <pattern id="grid-mx" width="40" height="40" patternUnits="userSpaceOnUse">
                       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(27, 172, 251, 0.04)" strokeWidth="1" />
@@ -216,64 +348,66 @@ export default function LatamFintechGISRadar() {
                   </defs>
                   <rect width="1000" height="650" fill="url(#grid-mx)" />
 
-                  {statesList.map(state => {
-                    const isSelected = selectedState === state.id;
-                    const isHovered = hoveredState?.id === state.id;
-                    
-                    let fill = '#0a101d';
-                    let stroke = '#1e2433';
-                    if (state.count > 300) fill = 'rgba(0, 0, 255, 0.65)';
-                    else if (state.count > 100) fill = 'rgba(27, 172, 251, 0.50)';
-                    else if (state.count > 25) fill = 'rgba(155, 233, 254, 0.35)';
-                    else fill = 'rgba(20, 25, 38, 0.5)';
+                  <g transform={`translate(${pan.x}, ${pan.y}) scale(${zoom})`} className="transition-transform duration-75">
+                    {statesList.map(state => {
+                      const isSelected = selectedState === state.id;
+                      const isHovered = hoveredState?.id === state.id;
+                      
+                      let fill = '#0a101d';
+                      let stroke = '#1e2433';
+                      if (state.count > 300) fill = 'rgba(0, 0, 255, 0.65)';
+                      else if (state.count > 100) fill = 'rgba(27, 172, 251, 0.50)';
+                      else if (state.count > 25) fill = 'rgba(155, 233, 254, 0.35)';
+                      else fill = 'rgba(20, 25, 38, 0.5)';
 
-                    if (isHovered || isSelected) {
-                      fill = '#1BACFB';
-                      stroke = '#ffffff';
-                    }
+                      if (isHovered || isSelected) {
+                        fill = '#1BACFB';
+                        stroke = '#ffffff';
+                      }
 
-                    return (
-                      <g key={state.id} className="cursor-pointer transition-all duration-200">
-                        <path
-                          d={state.svgPath}
-                          fill={fill}
-                          stroke={stroke}
-                          strokeWidth={isSelected || isHovered ? 2.2 : 0.9}
-                          className="transition-all duration-200 hover:brightness-125"
-                          onMouseEnter={() => setHoveredState(state)}
-                          onMouseLeave={() => setHoveredState(null)}
-                          onClick={() => setSelectedState(state.id)}
-                        />
-                        {state.labelX > 0 && (
-                          <>
-                            <circle
-                              cx={state.labelX}
-                              cy={state.labelY}
-                              r={state.count > 100 ? 4 : 2.5}
-                              fill={isSelected ? '#000000' : '#ffffff'}
-                              className="pointer-events-none"
-                            />
-                            <text
-                              x={state.labelX}
-                              y={state.labelY - 6}
-                              fill={isSelected || isHovered ? '#1BACFB' : '#cbd5e1'}
-                              fontSize={state.count > 100 ? 10 : 8}
-                              fontWeight={isSelected ? 'bold' : 'normal'}
-                              textAnchor="middle"
-                              fontFamily="monospace"
-                              className="pointer-events-none select-none"
-                            >
-                              {state.code}
-                            </text>
-                          </>
-                        )}
-                      </g>
-                    );
-                  })}
+                      return (
+                        <g key={state.id} className="cursor-pointer transition-all duration-200">
+                          <path
+                            d={state.svgPath}
+                            fill={fill}
+                            stroke={stroke}
+                            strokeWidth={isSelected || isHovered ? 2.2 / zoom : 0.9 / zoom}
+                            className="transition-all duration-200 hover:brightness-125"
+                            onMouseEnter={() => setHoveredState(state)}
+                            onMouseLeave={() => setHoveredState(null)}
+                            onClick={() => setSelectedState(state.id)}
+                          />
+                          {state.labelX > 0 && (
+                            <>
+                              <circle
+                                cx={state.labelX}
+                                cy={state.labelY}
+                                r={(state.count > 100 ? 4 : 2.5) / Math.sqrt(zoom)}
+                                fill={isSelected ? '#000000' : '#ffffff'}
+                                className="pointer-events-none"
+                              />
+                              <text
+                                x={state.labelX}
+                                y={state.labelY - 6 / zoom}
+                                fill={isSelected || isHovered ? '#1BACFB' : '#cbd5e1'}
+                                fontSize={Math.max(6, (state.count > 100 ? 10 : 8) / Math.sqrt(zoom))}
+                                fontWeight={isSelected ? 'bold' : 'normal'}
+                                textAnchor="middle"
+                                fontFamily="monospace"
+                                className="pointer-events-none select-none"
+                              >
+                                {state.code}
+                              </text>
+                            </>
+                          )}
+                        </g>
+                      );
+                    })}
+                  </g>
                 </svg>
               ) : (
                 // VISTA VECTORIAL LATAM CONTINENTAL (18 PAÍSES SUDAMÉRICA + CENTROAMÉRICA + MÉXICO)
-                <svg viewBox="0 0 1000 850" className="w-full h-full max-h-[540px] drop-shadow-[0_0_30px_rgba(0,0,255,0.15)]">
+                <svg viewBox="0 0 1000 850" className="w-full h-full max-h-[560px] drop-shadow-[0_0_30px_rgba(0,0,255,0.15)]">
                   <defs>
                     <pattern id="grid-latam" width="50" height="50" patternUnits="userSpaceOnUse">
                       <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(27, 172, 251, 0.04)" strokeWidth="1" />
@@ -281,60 +415,64 @@ export default function LatamFintechGISRadar() {
                   </defs>
                   <rect width="1000" height="850" fill="url(#grid-latam)" />
 
-                  {latamList.map(country => {
-                    const isSelected = selectedCountry === country.code;
-                    const isHovered = hoveredCountry?.code === country.code;
+                  <g transform={`translate(${pan.x}, ${pan.y}) scale(${zoom})`} className="transition-transform duration-75">
+                    {latamList.map(country => {
+                      const isSelected = selectedCountry === country.code;
+                      const isHovered = hoveredCountry?.code === country.code;
 
-                    let fill = '#0a101d';
-                    let stroke = '#1e2433';
-                    if (country.count > 500) fill = 'rgba(0, 0, 255, 0.65)';
-                    else if (country.count > 100) fill = 'rgba(27, 172, 251, 0.50)';
-                    else if (country.count > 20) fill = 'rgba(155, 233, 254, 0.35)';
-                    else fill = 'rgba(20, 25, 38, 0.5)';
+                      let fill = '#0a101d';
+                      let stroke = '#1e2433';
+                      if (country.count > 500) fill = 'rgba(0, 0, 255, 0.75)';
+                      else if (country.count > 100) fill = 'rgba(27, 172, 251, 0.55)';
+                      else if (country.count > 20) fill = 'rgba(155, 233, 254, 0.35)';
+                      else fill = 'rgba(20, 25, 38, 0.55)';
 
-                    if (isHovered || isSelected) {
-                      fill = '#1BACFB';
-                      stroke = '#ffffff';
-                    }
+                      if (isHovered || isSelected) {
+                        fill = '#1BACFB';
+                        stroke = '#ffffff';
+                      }
 
-                    return (
-                      <g key={country.code} className="cursor-pointer transition-all duration-200">
-                        <path
-                          d={country.svgPath}
-                          fill={fill}
-                          stroke={stroke}
-                          strokeWidth={isSelected || isHovered ? 2.2 : 0.9}
-                          className="transition-all duration-200 hover:brightness-125"
-                          onMouseEnter={() => setHoveredCountry(country)}
-                          onMouseLeave={() => setHoveredCountry(null)}
-                          onClick={() => setSelectedCountry(country.code)}
-                        />
-                        {country.labelX > 0 && (
-                          <>
-                            <circle
-                              cx={country.labelX}
-                              cy={country.labelY}
-                              r={country.count > 100 ? 5 : 3.5}
-                              fill={isSelected ? '#000000' : '#ffffff'}
-                              className="pointer-events-none"
-                            />
-                            <text
-                              x={country.labelX}
-                              y={country.labelY - 8}
-                              fill={isSelected || isHovered ? '#1BACFB' : '#ffffff'}
-                              fontSize={country.count > 100 ? 12 : 9}
-                              fontWeight="bold"
-                              textAnchor="middle"
-                              fontFamily="monospace"
-                              className="pointer-events-none select-none"
-                            >
-                              {country.name} ({country.count})
-                            </text>
-                          </>
-                        )}
-                      </g>
-                    );
-                  })}
+                      // Label formatting: clean badge
+                      const isSmallCountry = ['GT', 'SV', 'HN', 'NI', 'CR', 'PA', 'EC', 'UY', 'PY', 'BO', 'VE'].includes(country.code);
+                      const displayLabel = (zoom < 1.4 && isSmallCountry) ? country.code : `${country.name} (${country.count})`;
+
+                      return (
+                        <g key={country.code} className="cursor-pointer transition-all duration-200">
+                          <path
+                            d={country.svgPath}
+                            fill={fill}
+                            stroke={stroke}
+                            strokeWidth={isSelected || isHovered ? 2.2 / zoom : 1.0 / zoom}
+                            className="transition-all duration-200 hover:brightness-125"
+                            onMouseEnter={() => setHoveredCountry(country)}
+                            onMouseLeave={() => setHoveredCountry(null)}
+                            onClick={() => setSelectedCountry(country.code)}
+                          />
+                          {country.labelX > 0 && (
+                            <g className="pointer-events-none select-none">
+                              <circle
+                                cx={country.labelX}
+                                cy={country.labelY}
+                                r={(country.count > 100 ? 4.5 : 3.0) / Math.sqrt(zoom)}
+                                fill={isSelected ? '#000000' : '#ffffff'}
+                              />
+                              <text
+                                x={country.labelX}
+                                y={country.labelY - (isSmallCountry ? 4 : 7) / zoom}
+                                fill={isSelected || isHovered ? '#1BACFB' : '#ffffff'}
+                                fontSize={Math.max(6, (country.count > 100 ? 11 : 8.5) / Math.sqrt(zoom))}
+                                fontWeight="bold"
+                                textAnchor="middle"
+                                fontFamily="monospace"
+                              >
+                                {displayLabel}
+                              </text>
+                            </g>
+                          )}
+                        </g>
+                      );
+                    })}
+                  </g>
                 </svg>
               )}
 
