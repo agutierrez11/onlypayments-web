@@ -19,6 +19,8 @@ import {
   RefreshCw
 } from 'lucide-react';
 
+import globeLandPoints from '../data/globe_land_points.json';
+
 // =============================================================================
 // DATOS DEL ECOSISTEMA LATAM FINTECH (CERO ASUNCIONES - DATOS REALES 2025/2026)
 // =============================================================================
@@ -50,7 +52,7 @@ const NODES_DATA: NodeData[] = [
     radius: 28,
     color: '#00f5d4',
     glowColor: 'rgba(0, 245, 212, 0.6)',
-    metrics: '1,047 Entidades Mapeadas',
+    metrics: '2,659+ Entidades Mapeadas',
     dominantRail: 'Multi-Rail A2A Hub',
     regulator: 'Inteligencia B2B Regional',
     activeGateways: 'Stripe, dLocal, Clip, Mercado Pago, Kushki',
@@ -796,8 +798,45 @@ export default function FintechGlobe() {
 
     // 2. Sci-Fi Wireframe
     const wireGeo = new THREE.IcosahedronGeometry(R, 3);
-    const wireMat = new THREE.MeshBasicMaterial({ color: 0x0e7490, wireframe: true, transparent: true, opacity: 0.32 });
+    const wireMat = new THREE.MeshBasicMaterial({ color: 0x0e7490, wireframe: true, transparent: true, opacity: 0.25 });
     globeGroup.add(new THREE.Mesh(wireGeo, wireMat));
+
+    // 2B. Holographic Continental Landmass Point Cloud (1,200+ LATAM & Americas Points)
+    const landCoords = globeLandPoints as [number, number][];
+    const landPos = new Float32Array(landCoords.length * 3);
+    const landColors = new Float32Array(landCoords.length * 3);
+    const cCyan = new THREE.Color(0x00f5d4);
+    const cBlue = new THREE.Color(0x1bacfb);
+
+    landCoords.forEach(([lat, lon], idx) => {
+      const phi = (90 - lat) * (Math.PI / 180);
+      const theta = (lon + 180) * (Math.PI / 180);
+      const pRadius = R + 0.4;
+      const x = -(pRadius * Math.sin(phi) * Math.cos(theta));
+      const y = pRadius * Math.cos(phi);
+      const z = pRadius * Math.sin(phi) * Math.sin(theta);
+
+      landPos[idx * 3] = x;
+      landPos[idx * 3 + 1] = y;
+      landPos[idx * 3 + 2] = z;
+
+      const col = (idx % 3 === 0) ? cCyan : cBlue;
+      landColors[idx * 3] = col.r;
+      landColors[idx * 3 + 1] = col.g;
+      landColors[idx * 3 + 2] = col.b;
+    });
+
+    const landGeo = new THREE.BufferGeometry();
+    landGeo.setAttribute('position', new THREE.BufferAttribute(landPos, 3));
+    landGeo.setAttribute('color', new THREE.BufferAttribute(landColors, 3));
+    const landMat = new THREE.PointsMaterial({
+      size: 2.2,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending
+    });
+    globeGroup.add(new THREE.Points(landGeo, landMat));
 
     // 3. Glowing Atmosphere Fresnel Shader
     const glowGeo = new THREE.SphereGeometry(R * 1.18, 32, 32);
@@ -1023,7 +1062,7 @@ export default function FintechGlobe() {
               OnlyPayments Telemetry 2026
             </div>
             <div className="text-[10px] text-slate-400 font-mono">
-              1,047 Entidades · Rieles A2A & Reguladores
+              2,659+ Entidades Indexadas · 20 Países · 32 Estados
             </div>
           </div>
         </div>

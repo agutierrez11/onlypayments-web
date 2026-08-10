@@ -17,6 +17,7 @@ import { useLocation } from "wouter";
 import fintechHubData from "../data/fintechHubData.json";
 import { EcosystemFlows } from "../components/EcosystemFlows";
 import { FintechDirectory } from "../components/FintechDirectory";
+import { FintechEcosystemHub } from "../components/FintechEcosystemHub";
 import { LatamPaymentRailsMap } from "../components/LatamPaymentRailsMap";
 import LatamFintechGISRadar from "../components/LatamFintechGISRadar";
 import { Card } from "../components/ui/card";
@@ -148,30 +149,68 @@ export default function LatamFintechDashboard() {
           )}
 
           {activeTab === "igaming" && (
-            <motion.div key="igaming" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="p-6 md:p-8 max-w-[1200px] mx-auto text-slate-900">
+            <motion.div key="igaming" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="p-6 md:p-8 max-w-[1300px] mx-auto text-slate-900">
               <div className="mb-8">
-                <Badge variant="outline" className="mb-3 border-purple-300 text-purple-800 bg-purple-100 font-bold"><Gamepad2 className="w-3.5 h-3.5 mr-2 text-purple-700"/> iGaming y Apuestas</Badge>
+                <Badge variant="outline" className="mb-3 border-purple-300 text-purple-800 bg-purple-100 font-bold"><Gamepad2 className="w-3.5 h-3.5 mr-2 text-purple-700"/> iGaming & High-Risk Payments</Badge>
                 <h2 className="text-3xl md:text-4xl font-black mb-2 text-slate-900">Mercado iGaming LATAM 2026</h2>
-                <p className="text-lg text-slate-600 font-medium">Volumen GGR proyectado: <span className="font-mono text-purple-700 font-black">{fintechHubData.gaming_igaming.mercado_total_latam_2026}</span></p>
+                <p className="text-base sm:text-lg text-slate-600 font-medium">Volumen GGR Proyectado: <span className="font-mono text-purple-700 font-black">{fintechHubData.gaming_igaming.mercado_total_latam_2026}</span></p>
+                <p className="text-xs text-slate-500 font-mono mt-1">Marco Regulatorio Oficial, Impuestos de Ley y Proveedores B2B de Infraestructura de Pago Autorizados.</p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {Object.entries(fintechHubData.gaming_igaming.por_pais).map(([pais, data]: [string, any]) => (
-                  <Card key={pais} className="bg-white border border-slate-200 p-4 hover:border-purple-500 transition-all shadow-sm flex flex-col justify-between rounded-xl">
+                  <Card key={pais} className="bg-white border border-slate-200 p-5 hover:border-purple-500 hover:shadow-md transition-all shadow-xs flex flex-col justify-between rounded-2xl">
                     <div>
-                      <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-100">
-                        <h3 className="text-lg font-black capitalize text-slate-900">{pais}</h3>
-                        {data.estado.includes('✅') && <Badge className="bg-emerald-100 text-emerald-900 border-emerald-300 font-bold text-[10px]">Regulado</Badge>}
-                        {data.estado.includes('⚠️') && <Badge className="bg-amber-100 text-amber-900 border-amber-300 font-bold text-[10px]">Gris / Transición</Badge>}
-                        {data.estado.includes('❌') && <Badge className="bg-red-100 text-red-900 border-red-300 font-bold text-[10px]">Prohibido</Badge>}
-                        {data.estado.includes('🔄') && <Badge className="bg-blue-100 text-blue-900 border-blue-300 font-bold text-[10px]">Desarrollo</Badge>}
+                      <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100">
+                        <h3 className="text-lg font-black capitalize text-slate-900 flex items-center gap-1.5">
+                          {pais === 'costa_rica' ? 'Costa Rica' : pais}
+                        </h3>
+                        {data.estado.includes('✅') && <Badge className="bg-emerald-100 text-emerald-900 border-emerald-300 font-bold text-[10px]">Regulado Federal</Badge>}
+                        {data.estado.includes('⚠️') && <Badge className="bg-amber-100 text-amber-900 border-amber-300 font-bold text-[10px]">Permisionario / Gris</Badge>}
+                        {data.estado.includes('❌') && <Badge className="bg-red-100 text-red-900 border-red-300 font-bold text-[10px]">Prohibido / Sin Marco</Badge>}
+                        {data.estado.includes('🔄') && <Badge className="bg-blue-100 text-blue-900 border-blue-300 font-bold text-[10px]">En Trámite / B2B</Badge>}
                       </div>
-                      <div className="space-y-2 text-xs">
-                        <div className="flex justify-between items-center"><span className="text-slate-500 font-bold">Regulador:</span><span className="font-extrabold text-slate-900">{data.regulador || "N/A"}</span></div>
-                        {data.ley && <div className="flex justify-between items-start gap-2"><span className="text-slate-500 font-bold flex-shrink-0">Ley:</span><span className="font-mono text-[11px] text-slate-700 text-right font-medium">{data.ley}</span></div>}
-                        {data.ggr_2026 && <div className="flex justify-between items-center"><span className="text-slate-500 font-bold">GGR 2026:</span><span className="font-mono font-black text-purple-700 text-sm">{data.ggr_2026}</span></div>}
-                        {data.tax && <div className="flex justify-between items-start gap-2"><span className="text-slate-500 font-bold flex-shrink-0">Impuesto:</span><span className="font-semibold text-slate-800 text-right text-[11px]">{data.tax}</span></div>}
+
+                      <div className="space-y-2.5 text-xs">
+                        <div className="flex justify-between items-start gap-2">
+                          <span className="text-slate-500 font-bold flex-shrink-0">Regulador:</span>
+                          <span className="font-extrabold text-slate-900 text-right">{data.regulador || "N/A"}</span>
+                        </div>
+                        {data.ley && (
+                          <div className="flex justify-between items-start gap-2">
+                            <span className="text-slate-500 font-bold flex-shrink-0">Marco Legal:</span>
+                            <span className="font-mono text-[11px] text-slate-700 text-right font-semibold">{data.ley}</span>
+                          </div>
+                        )}
+                        {data.tax && (
+                          <div className="flex justify-between items-start gap-2">
+                            <span className="text-slate-500 font-bold flex-shrink-0">Impuesto de Ley:</span>
+                            <span className="font-semibold text-purple-800 text-right text-[11px] bg-purple-50 px-2 py-0.5 rounded-md">{data.tax}</span>
+                          </div>
+                        )}
+                        {data.rieles_autorizados && (
+                          <div className="pt-2 border-t border-slate-100">
+                            <span className="text-slate-500 font-bold block mb-1">Rieles de Pago Aceptados:</span>
+                            <span className="font-mono text-[11px] text-slate-800 font-medium block leading-snug">{data.rieles_autorizados}</span>
+                          </div>
+                        )}
+                        {data.proveedores_b2b && (
+                          <div className="pt-2 border-t border-slate-100">
+                            <span className="text-slate-500 font-bold block mb-1">Proveedores B2B / Gateways:</span>
+                            <span className="text-[11px] font-extrabold text-[#0000EE] bg-[#eef0ff] px-2 py-1 rounded-lg block">{data.proveedores_b2b}</span>
+                          </div>
+                        )}
                       </div>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-[10px] text-slate-400 font-mono">Trazabilidad Legal 2026</span>
+                      <a
+                        href={`/matcher?vertical=iGaming&country=${encodeURIComponent(pais)}`}
+                        className="text-[11px] font-bold text-[#0000EE] hover:underline"
+                      >
+                        Ver Pasarelas ↗
+                      </a>
                     </div>
                   </Card>
                 ))}
@@ -258,7 +297,7 @@ export default function LatamFintechDashboard() {
 
           {activeTab === "directorio" && (
             <motion.div key="directorio" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }} className="w-full">
-              <FintechDirectory />
+              <FintechEcosystemHub />
             </motion.div>
           )}
 

@@ -497,117 +497,119 @@
     }
   },
   "gaming_igaming": {
-    "mercado_total_latam_2026": "$9.3B GGR (+38% YoY, crecimiento más alto del mundo)",
-    "mercado_global_2026": "$115B GGR",
-    "regulado_vs_gris_latam": "52% regulado ($4.8B) / 48% gris ($4.5B)",
+    "mercado_total_latam_2026": ".3B GGR (+38% YoY, proyección H2H Gaming / Vixio)",
+    "mercado_global_2026": " GGR",
+    "regulado_vs_gris_latam": "52% regulado (.8B) / 48% en transición/gris (.5B)",
     "por_pais": {
       "brasil": {
         "estado": "✅ Regulado Federal",
-        "ley": "Ley 14.790/2023 (ANGB)",
-        "regulador": "SPA",
-        "licencia": "Obligatoria federal",
-        "ggr_2026": "$4.5B (año 1, récord mundial)",
-        "operadores_licenciados": "165+",
-        "tax": "12% GGR + 2% premios + fondo deportes",
-        "mobile": "87% de cuentas móviles",
-        "futbol": "60% del handle de sportsbook"
+        "ley": "Ley Federal 14.790/2023 + Portaría SPA/MF Nº 827/2024",
+        "regulador": "Secretaría de Premios y Apuestas (SPA / Ministerio de Hacienda)",
+        "licencia": "Obligatoria R$ 30M (concesión 5 años)",
+        "tax": "12% sobre GGR + 2% fondo deporte/turismo + 15% IRPF premios",
+        "rieles_autorizados": "Pix exclusivo e Instituciones de Pago autorizadas por el BCB (Prohibidas tarjetas de crédito)",
+        "proveedores_b2b": "Pay4Fun (IP BCB), PayBrokers, dLocal, Stone, PagBank",
+        "operadores_referencia": "Betano, Superbet, Sportingbet, KTO"
       },
       "mexico": {
-        "estado": "⚠️ Marco antiguo (1947) + AML estricto",
-        "regulador": "SHCP",
-        "ggr_2028": "€1.5B proyectado",
-        "aml": "Muy estricto. 13 casinos suspendidos 2025",
-        "clasificacion_riesgo": "Juego = actividad de alto riesgo",
-        "reforma": "En proceso legislativo"
+        "estado": "⚠️ Permisionarios SEGOB",
+        "ley": "Ley Federal de Juegos y Sorteos (1947) + Reglamento LFJS (Reforma DOF Nov 2023)",
+        "regulador": "SEGOB (Dir. Gral. de Juegos y Sorteos) + SAT / SHCP",
+        "licencia": "Permiso federal vía permisionario autorizado",
+        "tax": "30% IEPS (Art. 2 fracc. II inc. B) + Retención 1% a 7% ISR",
+        "rieles_autorizados": "SPEI 24/7, OXXO Pay / Paynet, Tarjetas Débito/Crédito con 3DS2",
+        "proveedores_b2b": "Kushki, Unlimit, StarPago, dLocal, Conekta, Openpay",
+        "operadores_referencia": "Caliente.mx, Bet365, Codere México, Strendus"
       },
       "colombia": {
-        "estado": "✅ Mercado maduro (2017)",
-        "regulador": "Coljuegos",
-        "ggr_2026": "$0.9B",
-        "modelo": "Concesiones abiertas",
-        "tax": "IVA sobre GGR",
-        "juego_responsable": "Resolución 20244000021144"
+        "estado": "✅ Regulado (Concesiones)",
+        "ley": "Ley 643/2001 modificada por Ley 1753/2015 (Art. 93) + Acuerdos Coljuegos",
+        "regulador": "Coljuegos (Empresa Industrial y Comercial del Estado)",
+        "licencia": "Contrato de Concesión de Operación de Juegos Novedosos por Internet",
+        "tax": "12% a 15% sobre GGR (derechos de explotación) + IVA comisiones",
+        "rieles_autorizados": "Botón PSE, Bre-B (2025/2026), Transfiya, Efecty, Baloto, Tarjetas",
+        "proveedores_b2b": "Payvalida, Kushki, PayU Latam, Wompi (Bancolombia), dLocal",
+        "operadores_referencia": "BetPlay (Corredor Empresarial), Rushbet, Wplay, YaJuego"
       },
       "peru": {
-        "estado": "✅ Marco moderno avanzado",
-        "regulador": "MINCETUR",
-        "ley": "Ley 31557 / 31806 + DS 005-2023-MINCETUR",
-        "licencias_emitidas": "63+",
-        "tax": "3% licencia + 12% NGR + 1% consumo",
-        "crypto": "🚫 Prohibido para transacciones de juego",
-        "kyc": "Estricto, datos 5+ años"
+        "estado": "✅ Regulado Moderno",
+        "ley": "Ley 31557 / 31806 + Decreto Supremo 005-2023-MINCETUR",
+        "regulador": "MINCETUR (Dir. Gral. de Juegos de Casino y Máquinas Tragamonedas)",
+        "licencia": "Autorización expresa MINCETUR con garantía bancaria obligatoria",
+        "tax": "12% sobre NGR (Ingreso Neto) + 1% ISC (Ley Impuesto Selectivo al Consumo 2024)",
+        "rieles_autorizados": "Yape / Plin (Interoperabilidad BCRP), PagoEfectivo, Tarjetas locales",
+        "proveedores_b2b": "Niubiz, Izipay, Culqi, Kushki, dLocal, Astropay",
+        "operadores_referencia": "Betsson Perú, Inkabet, Apuesta Total, Doradobet"
       },
       "argentina": {
-        "estado": "⚠️ Regulación provincial fragmentada",
-        "regulador": "Provincial (23 provincias + CABA)",
-        "ley_caba": "Ley 6.330",
-        "tax": "Altos impuestos, estructura fragmentada"
+        "estado": "⚠️ Regulación Provincial",
+        "ley": "CABA: Ley 6.330 (Res. LOTBA 321/2019) | PBA: Ley 15.079 (IPLyC)",
+        "regulador": "Provincial (LOTBA en CABA, IPLyC en Buenos Aires, 23 provincias)",
+        "licencia": "Licencias provinciales independientes con servidores locales",
+        "tax": "10% a 15% IIBB provincial + 21% IVA + 2.5% a 5% Tasa Federal de Apuestas",
+        "rieles_autorizados": "Transferencias 3.0 (BCRA), QR Interoperable, DEBIN, Tarjetas",
+        "proveedores_b2b": "Mercado Pago, Payway (Prisma), dLocal, Monnet Payments",
+        "operadores_referencia": "Betsson Argentina, Codere Argentina, bplay, BetWarrior"
       },
       "chile": {
-        "estado": "🔄 En transición",
-        "regulador": "Senado (Boletín 14.838-03)",
-        "actual": "Monopolio estatal de loterías; apuestas online bloqueadas por ISPs",
-        "tax_propuesto": "20%"
+        "estado": "🔄 En Trámite Legislativo",
+        "ley": "Proyecto de Ley Boletín Nº 14.838-03 (Senado de Chile)",
+        "regulador": "SCJ (Superintendencia de Casinos de Juego) / CMF",
+        "licencia": "En debate legislativo (Propuesta: Licencias de 5 años por la SCJ)",
+        "tax": "Propuesta: 20% sobre GGR + 2% federaciones deportivas + IVA digital",
+        "rieles_autorizados": "Webpay Plus (Transbank), Khipu, Mach, Fintoc (A2A)",
+        "proveedores_b2b": "dLocal, Kushki, Flow, Fintoc, Unlimit",
+        "operadores_referencia": "Betano Chile, Jugabet, Coolbet (Operando internacionalmente)"
+      },
+      "panama": {
+        "estado": "✅ Regulado",
+        "ley": "Resolución Nº 10-2020 (Reglamento de Juegos de Suerte y Azar por Internet)",
+        "regulador": "Junta de Control de Juegos (JCJ / Ministerio de Economía y Finanzas)",
+        "licencia": "Licencia Administrador/Operador de Juegos por Internet",
+        "tax": "10% sobre Ingresos Brutos de Juego + Tasas de supervisión JCJ",
+        "rieles_autorizados": "Yappy (Banco General), ACH Xpress, Tarjetas de Crédito/Débito",
+        "proveedores_b2b": "PagueloFacil, dLocal, Tilopay, Unlimit",
+        "operadores_referencia": "Betcris Panamá, Sportium, Casino Fantastic Online"
+      },
+      "uruguay": {
+        "estado": "⚠️ Monopolio Estatal / Concesión",
+        "ley": "Ley 19.996 (Presupuesto Nacional 2021) + Ley 20.345",
+        "regulador": "Dirección General de Casinos (DGC / Ministerio de Economía y Finanzas)",
+        "licencia": "Restringido a concesionarios de casinos físicos autorizados por DGC",
+        "tax": "Canon de explotación fijado por contrato con el Estado uruguayo",
+        "rieles_autorizados": "Redpagos, Abitab, SPI Directo (BCU), Tarjetas locales",
+        "proveedores_b2b": "dLocal (HQ Montevideo), Handy, Geopagos",
+        "operadores_referencia": "Supermatch (Banca de Quinielas / Monopolio estatal deportivo)"
+      },
+      "costa_rica": {
+        "estado": "🔄 Gris / Hub Operativo B2B",
+        "ley": "Código de Comercio (Licencia de procesamiento de datos e IT offshore)",
+        "regulador": "Ministerio de Economía, Industria y Comercio (MEIC / Municipalidades)",
+        "licencia": "Sin licencia específica para jugadores locales; permitida exportación B2B",
+        "tax": "Régimen general del impuesto sobre la renta corporativa (30%)",
+        "rieles_autorizados": "SINPE Móvil, Criptoactivos (USDT), Tarjetas internacionales USD",
+        "proveedores_b2b": "Tilopay, Greenpay, Unlimit, Pasarelas Cross-Border",
+        "operadores_referencia": "Hub regional de soporte y tecnología para operadores globales"
       },
       "ecuador": {
         "estado": "❌ Prohibido",
-        "regulador": "No aplica",
-        "observacion": "Juego de azar prohibido en Ecuador"
-      },
-      "uruguay": {
-        "estado": "✅ Regulado",
-        "regulador": "Dirección General de Casinos",
-        "observacion": "Mercado regulado, casinos online permitidos"
-      },
-      "panama": {
-        "estado": "🔄 En desarrollo",
-        "regulador": "Junta de Control de Juegos",
-        "observacion": "Zona libre de juegos, regulación en evolución"
-      },
-      "costa_rica": {
-        "estado": "🔄 Gris",
-        "regulador": "No regulado específicamente",
-        "observacion": "Muchos operadores internacionales basados en CR sin licencia local"
+        "ley": "Consulta Popular 2011 (Pregunta 7) + Código Orgánico Integral Penal (Art. 236)",
+        "regulador": "Prohibición constitucional de casinos y juegos de azar presenciales",
+        "licencia": "No aplica (Mercado informal / Sitios internacionales offshore)",
+        "tax": "No aplica gravamen local formal",
+        "rieles_autorizados": "Transferencias bancarias SPI (BCE), Tarjetas internacionales, Cripto",
+        "proveedores_b2b": "Pasarelas de adquirencia cross-border internacional",
+        "operadores_referencia": "Operadores internacionales con acceso web"
       },
       "guatemala": {
-        "estado": "❌ No regulado online",
-        "regulador": "No aplica",
-        "observacion": "Solo loterías estatales permitidas"
-      },
-      "honduras": {
-        "estado": "❌ No regulado online",
-        "regulador": "No aplica",
-        "observacion": "Sin marco para iGaming"
-      },
-      "nicaragua": {
-        "estado": "❌ No regulado online",
-        "regulador": "No aplica",
-        "observacion": "Sin marco para iGaming"
-      },
-      "el_salvador": {
-        "estado": "❌ No regulado online",
-        "regulador": "No aplica",
-        "observacion": "Sin marco para iGaming"
-      },
-      "republica_dominicana": {
-        "estado": "🔄 En desarrollo",
-        "regulador": "Ministerio de Hacienda",
-        "observacion": "Casinos físicos regulados; online en gris"
-      },
-      "venezuela": {
-        "estado": "❌ No regulado",
-        "regulador": "No aplica",
-        "observacion": "Crisis económica impide regulación efectiva"
-      },
-      "paraguay": {
-        "estado": "🔄 En desarrollo",
-        "regulador": "CONAJZAR",
-        "observacion": "Regulación de juegos en evolución"
-      },
-      "bolivia": {
-        "estado": "❌ Prohibido",
-        "regulador": "No aplica",
-        "observacion": "Juego de azar restringido"
+        "estado": "❌ Sin Marco Específico Online",
+        "ley": "Decreto 425 del Congreso de la República (Ley de Loterías y Rifas)",
+        "regulador": "Ministerio de Gobernación (Dirección de Espectáculos Públicos)",
+        "licencia": "Solo loterías físicas y bingos benéficos; vacío legal en apuestas web",
+        "tax": "Impuesto a la distribución de timbres fiscales y papel sellado",
+        "rieles_autorizados": "ACH Pronto, Fri (Billetera móvil), Tarjetas locales",
+        "proveedores_b2b": "dLocal, Pasarelas de Centroamérica, Fri",
+        "operadores_referencia": "Lotería Santa Lucía (Física) / Sitios web internacionales"
       }
     }
   },
