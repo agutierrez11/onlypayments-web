@@ -43,6 +43,7 @@ import { EcosystemFlows } from "@/components/EcosystemFlows";
 import { AssessmentQuiz } from "@/components/AssessmentQuiz";
 import FintechGlobe from "@/components/FintechGlobe";
 import LatamFintechGISRadar from "@/components/LatamFintechGISRadar";
+import EditorialParallaxShowcase from "@/components/EditorialParallaxShowcase";
 import { SEO } from "@/components/SEO";
 
 export default function Home() {
@@ -485,6 +486,9 @@ export default function Home() {
       
       {/* RADAR GIS VECTORIAL ESTATAL (32 ESTADOS MÉXICO + 20 PAÍSES LATAM) */}
       <LatamFintechGISRadar />
+
+      {/* SHOWCASE EDITORIAL PARALLAX (DOGSTUDIO / HIGH-VOLTAGE VIBE) */}
+      <EditorialParallaxShowcase />
 
       {/* BIBLIOTECA DE EXPERTOS */}
       <section id="biblioteca" className="relative z-10 py-20 border-t border-border bg-background/60 backdrop-blur-[2px]">
