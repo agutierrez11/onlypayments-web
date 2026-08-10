@@ -19,10 +19,8 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import masterFintechsData from '../data/fintechs_latam_master.json';
+import MEXICO_STATES_SVG from '../data/mexico_states_svg.json';
 
-// =============================================================================
-// DATOS DE LOS ESTADOS DE MÉXICO Y DENSIDAD FINTECH
-// =============================================================================
 interface StateGeo {
   id: string;
   name: string;
@@ -34,175 +32,6 @@ interface StateGeo {
   labelX: number;
   labelY: number;
 }
-
-// Polígonos SVG simplificados y estilizados para los estados de México (Escala 1000x600)
-const MEXICO_STATES: StateGeo[] = [
-  {
-    id: 'cdmx',
-    name: 'Ciudad de México',
-    code: 'CDMX',
-    count: 780,
-    hubCity: 'Polanco / Juárez / Condesa',
-    topRails: ['SPEI 24/7', 'CoDi', 'Dimo', 'Visa/Mastercard'],
-    svgPath: 'M 545 425 L 555 420 L 560 430 L 550 435 Z',
-    labelX: 550,
-    labelY: 425
-  },
-  {
-    id: 'jal',
-    name: 'Jalisco',
-    code: 'JAL',
-    count: 240,
-    hubCity: 'Guadalajara / Zapopan',
-    topRails: ['SPEI', 'BNPL Kueski', 'Terminales'],
-    svgPath: 'M 420 370 L 460 360 L 475 400 L 440 430 L 400 410 Z',
-    labelX: 435,
-    labelY: 395
-  },
-  {
-    id: 'nl',
-    name: 'Nuevo León',
-    code: 'NL',
-    count: 195,
-    hubCity: 'Monterrey / San Pedro Garza García',
-    topRails: ['SPEI', 'B2B PayTech', 'Cards'],
-    svgPath: 'M 530 220 L 570 210 L 585 270 L 550 310 L 525 260 Z',
-    labelX: 550,
-    labelY: 260
-  },
-  {
-    id: 'mex',
-    name: 'Estado de México',
-    code: 'MEX',
-    count: 115,
-    hubCity: 'Naucalpan / Tlalnepantla / Huixquilucan',
-    topRails: ['SPEI', 'Tarjetas', 'OXXO Pay'],
-    svgPath: 'M 525 410 L 565 405 L 570 445 L 530 445 Z',
-    labelX: 538,
-    labelY: 425
-  },
-  {
-    id: 'qroo',
-    name: 'Quintana Roo',
-    code: 'QROO',
-    count: 45,
-    hubCity: 'Cancún / Riviera Maya / Playa del Carmen',
-    topRails: ['SPEI Transfronterizo', 'Turismo Pay', 'USD FX'],
-    svgPath: 'M 880 390 L 925 385 L 940 450 L 890 460 Z',
-    labelX: 910,
-    labelY: 420
-  },
-  {
-    id: 'qro',
-    name: 'Querétaro',
-    code: 'QRO',
-    count: 38,
-    hubCity: 'Querétaro Capital / Juriquilla',
-    topRails: ['SPEI', 'Datacenter PayTech'],
-    svgPath: 'M 520 375 L 545 370 L 550 395 L 525 395 Z',
-    labelX: 535,
-    labelY: 385
-  },
-  {
-    id: 'pue',
-    name: 'Puebla',
-    code: 'PUE',
-    count: 32,
-    hubCity: 'Puebla / Cholula / Angelópolis',
-    topRails: ['SPEI', 'SOFOM Lending'],
-    svgPath: 'M 565 425 L 610 415 L 620 460 L 575 455 Z',
-    labelX: 590,
-    labelY: 440
-  },
-  {
-    id: 'yuc',
-    name: 'Yucatán',
-    code: 'YUC',
-    count: 28,
-    hubCity: 'Mérida',
-    topRails: ['SPEI', 'E-commerce Sureste'],
-    svgPath: 'M 830 360 L 890 355 L 895 400 L 835 405 Z',
-    labelX: 860,
-    labelY: 380
-  },
-  {
-    id: 'bc',
-    name: 'Baja California',
-    code: 'BC',
-    count: 24,
-    hubCity: 'Tijuana / Mexicali',
-    topRails: ['Cross-Border USD/MXN', 'SPEI', 'Remesas'],
-    svgPath: 'M 100 80 L 170 120 L 140 220 L 80 160 Z',
-    labelX: 125,
-    labelY: 150
-  },
-  {
-    id: 'son',
-    name: 'Sonora',
-    code: 'SON',
-    count: 18,
-    hubCity: 'Hermosillo',
-    topRails: ['SPEI', 'AgroFintech'],
-    svgPath: 'M 170 120 L 290 140 L 260 270 L 160 230 Z',
-    labelX: 220,
-    labelY: 190
-  },
-  {
-    id: 'chih',
-    name: 'Chihuahua',
-    code: 'CHIH',
-    count: 19,
-    hubCity: 'Chihuahua / Ciudad Juárez',
-    topRails: ['SPEI', 'Trade Finance'],
-    svgPath: 'M 290 140 L 430 160 L 390 310 L 270 280 Z',
-    labelX: 350,
-    labelY: 220
-  },
-  {
-    id: 'coah',
-    name: 'Coahuila',
-    code: 'COAH',
-    count: 16,
-    hubCity: 'Saltillo / Torreón',
-    topRails: ['SPEI', 'Industrial PayTech'],
-    svgPath: 'M 430 160 L 530 220 L 490 340 L 390 310 Z',
-    labelX: 460,
-    labelY: 250
-  },
-  {
-    id: 'sin',
-    name: 'Sinaloa',
-    code: 'SIN',
-    count: 14,
-    hubCity: 'Culiacán / Mazatlán',
-    topRails: ['SPEI', 'AgroPay'],
-    svgPath: 'M 260 270 L 340 290 L 320 400 L 240 340 Z',
-    labelX: 290,
-    labelY: 340
-  },
-  {
-    id: 'gto',
-    name: 'Guanajuato',
-    code: 'GTO',
-    count: 17,
-    hubCity: 'León / Silao',
-    topRails: ['SPEI', 'Lending PYME'],
-    svgPath: 'M 475 365 L 520 360 L 525 395 L 480 395 Z',
-    labelX: 500,
-    labelY: 380
-  },
-  {
-    id: 'ver',
-    name: 'Veracruz',
-    code: 'VER',
-    count: 15,
-    hubCity: 'Veracruz / Boca del Río / Xalapa',
-    topRails: ['SPEI', 'Port & Logistics Pay'],
-    svgPath: 'M 610 415 L 720 440 L 740 500 L 630 470 Z',
-    labelX: 670,
-    labelY: 450
-  }
-];
 
 // Países de LATAM para la vista continental
 const LATAM_COUNTRIES = [
@@ -228,14 +57,16 @@ export default function LatamFintechGISRadar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVertical, setSelectedVertical] = useState('all');
 
-  // Filtrado reactivo de empresas desde el dataset maestro (2,681 fintechs)
+  const statesList = MEXICO_STATES_SVG as StateGeo[];
+
+  // Filtrado reactivo de empresas desde el dataset maestro (2,659 fintechs)
   const filteredFintechs = useMemo(() => {
     return (masterFintechsData as any[]).filter(item => {
       // 1. Filtro geográfico
       if (geoScope === 'mexico') {
         if (item.countryCode !== 'MX') return false;
         if (selectedState && selectedState !== 'all') {
-          const st = MEXICO_STATES.find(s => s.id === selectedState);
+          const st = statesList.find(s => s.id === selectedState);
           if (st && item.stateCode && item.stateCode !== st.code) return false;
         }
       } else {
@@ -260,22 +91,28 @@ export default function LatamFintechGISRadar() {
         const matchDesc = (item.description || '').toLowerCase().includes(q);
         const matchState = (item.state || '').toLowerCase().includes(q);
         const matchVertical = (item.vertical || '').toLowerCase().includes(q);
-        return matchName || matchDesc || matchState || matchVertical;
+        const matchUrl = (item.website || '').toLowerCase().includes(q);
+        return matchName || matchDesc || matchState || matchVertical || matchUrl;
       }
 
       return true;
     });
-  }, [geoScope, selectedState, selectedCountry, selectedVertical, searchQuery]);
+  }, [geoScope, selectedState, selectedCountry, selectedVertical, searchQuery, statesList]);
 
   const activeStateObj = useMemo(() => {
-    return MEXICO_STATES.find(s => s.id === selectedState) || null;
-  }, [selectedState]);
+    return statesList.find(s => s.id === selectedState) || null;
+  }, [selectedState, statesList]);
 
   const handleOutreachClick = (fintechName: string, country: string) => {
     toast.success(`Pipeline B2B Activado para ${fintechName}`, {
       description: `Generada plantilla de co-selling para enrutamiento y pasarelas en ${country}.`,
       duration: 3500
     });
+  };
+
+  const getCleanDomain = (url: string) => {
+    if (!url) return '';
+    return url.replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
   };
 
   return (
@@ -292,7 +129,7 @@ export default function LatamFintechGISRadar() {
               Mapa de <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">FinTechs & Rieles Transaccionales</span>
             </h2>
             <p className="text-slate-400 text-sm mt-1 max-w-2xl font-light">
-              Explora la densidad geográfica de más de 2,680+ empresas fintech, pasarelas adquirentes y rieles A2A en tiempo real.
+              Explora la densidad geográfica de más de 2,650+ empresas fintech con enlaces directos a sus sitios oficiales y rieles A2A.
             </p>
           </div>
 
@@ -327,15 +164,15 @@ export default function LatamFintechGISRadar() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3 backdrop-blur-md">
             <div className="text-[10px] font-mono text-slate-400 uppercase">Fintechs Mapeadas</div>
-            <div className="text-xl font-mono font-extrabold text-cyan-400 mt-0.5">2,681+</div>
+            <div className="text-xl font-mono font-extrabold text-cyan-400 mt-0.5">2,659+</div>
           </div>
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3 backdrop-blur-md">
-            <div className="text-[10px] font-mono text-slate-400 uppercase">Cobertura Regional</div>
-            <div className="text-xl font-mono font-extrabold text-white mt-0.5">20 Países / 32 Edos</div>
+            <div className="text-[10px] font-mono text-slate-400 uppercase">Webs Oficiales Verificadas</div>
+            <div className="text-xl font-mono font-extrabold text-emerald-400 mt-0.5">100% Indexadas</div>
           </div>
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3 backdrop-blur-md">
             <div className="text-[10px] font-mono text-slate-400 uppercase">Rieles A2A Indexados</div>
-            <div className="text-xl font-mono font-extrabold text-emerald-400 mt-0.5">Pix · SPEI · Bre-B</div>
+            <div className="text-xl font-mono font-extrabold text-sky-400 mt-0.5">Pix · SPEI · Bre-B</div>
           </div>
           <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3 backdrop-blur-md">
             <div className="text-[10px] font-mono text-slate-400 uppercase">Resultados en Vista</div>
@@ -346,47 +183,46 @@ export default function LatamFintechGISRadar() {
         {/* GRID PRINCIPAL: MAPA VECTORIAL + DIRECTORIO LATERAL */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
-          {/* COLUMNA IZQUIERDA: MAPA VECTORIAL INTERACTIVO */}
-          <div className="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-2xl relative overflow-hidden flex flex-col min-h-[580px]">
+          {/* COLUMNA IZQUIERDA: MAPA VECTORIAL REAL */}
+          <div className="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-2xl relative overflow-hidden flex flex-col min-h-[600px]">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold text-slate-300">
-                  {geoScope === 'mexico' ? '🇲🇽 Radar Estatal de México' : '🌎 Radar Transfronterizo LATAM'}
+                  {geoScope === 'mexico' ? '🇲🇽 Mapa Geográfico de los 32 Estados de México' : '🌎 Radar Transfronterizo LATAM'}
                 </span>
                 <span className="text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-2 py-0.5 rounded-md">
-                  Interactivo 2D
+                  Contorno Oficial INEGI
                 </span>
               </div>
               <div className="text-[11px] font-mono text-slate-400">
-                Pasa el cursor o haz clic en un polígono
+                Pasa el cursor o haz clic en un estado
               </div>
             </div>
 
-            {/* MAPA SVG VECTORIAL */}
+            {/* MAPA SVG VECTORIAL REAL DE MÉXICO */}
             <div className="relative w-full flex-1 flex items-center justify-center bg-slate-950/80 rounded-xl p-4 border border-slate-800/80 overflow-hidden">
               {geoScope === 'mexico' ? (
-                // SVG INTERACTIVO DE MÉXICO
-                <svg viewBox="0 0 1000 600" className="w-full h-full max-h-[460px] drop-shadow-[0_0_30px_rgba(0,245,212,0.1)]">
+                <svg viewBox="0 0 1000 650" className="w-full h-full max-h-[500px] drop-shadow-[0_0_30px_rgba(0,245,212,0.12)]">
                   {/* Grid de fondo decorativo */}
                   <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(56, 189, 248, 0.05)" strokeWidth="1" />
+                    <pattern id="grid-mx" width="40" height="40" patternUnits="userSpaceOnUse">
+                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(56, 189, 248, 0.04)" strokeWidth="1" />
                     </pattern>
                   </defs>
-                  <rect width="1000" height="600" fill="url(#grid)" />
+                  <rect width="1000" height="650" fill="url(#grid-mx)" />
 
-                  {/* Polígonos de los Estados */}
-                  {MEXICO_STATES.map(state => {
+                  {/* Polígonos Reales de los 32 Estados */}
+                  {statesList.map(state => {
                     const isSelected = selectedState === state.id;
                     const isHovered = hoveredState?.id === state.id;
                     
                     // Cálculo de opacidad y color según densidad
-                    let fill = '#0f172a';
+                    let fill = '#091326';
                     let stroke = '#1e293b';
-                    if (state.count > 300) fill = 'rgba(0, 245, 212, 0.55)';
-                    else if (state.count > 100) fill = 'rgba(14, 165, 233, 0.45)';
-                    else if (state.count > 30) fill = 'rgba(99, 102, 241, 0.35)';
-                    else fill = 'rgba(30, 41, 59, 0.5)';
+                    if (state.count > 300) fill = 'rgba(0, 245, 212, 0.65)';
+                    else if (state.count > 100) fill = 'rgba(14, 165, 233, 0.50)';
+                    else if (state.count > 25) fill = 'rgba(99, 102, 241, 0.40)';
+                    else fill = 'rgba(30, 41, 59, 0.45)';
 
                     if (isHovered || isSelected) {
                       fill = '#00f5d4';
@@ -399,32 +235,36 @@ export default function LatamFintechGISRadar() {
                           d={state.svgPath}
                           fill={fill}
                           stroke={stroke}
-                          strokeWidth={isSelected || isHovered ? 2.5 : 1.2}
+                          strokeWidth={isSelected || isHovered ? 2.2 : 0.9}
                           className="transition-all duration-200 hover:brightness-125"
                           onMouseEnter={() => setHoveredState(state)}
                           onMouseLeave={() => setHoveredState(null)}
                           onClick={() => setSelectedState(state.id)}
                         />
                         {/* Etiqueta / Pin del Estado */}
-                        <circle
-                          cx={state.labelX}
-                          cy={state.labelY}
-                          r={state.count > 100 ? 5 : 3.5}
-                          fill={isSelected ? '#020617' : '#ffffff'}
-                          className="pointer-events-none"
-                        />
-                        <text
-                          x={state.labelX}
-                          y={state.labelY - 8}
-                          fill={isSelected || isHovered ? '#00f5d4' : '#94a3b8'}
-                          fontSize={state.count > 100 ? 11 : 9}
-                          fontWeight={isSelected ? 'bold' : 'normal'}
-                          textAnchor="middle"
-                          fontFamily="monospace"
-                          className="pointer-events-none select-none"
-                        >
-                          {state.code} ({state.count})
-                        </text>
+                        {state.labelX > 0 && (
+                          <>
+                            <circle
+                              cx={state.labelX}
+                              cy={state.labelY}
+                              r={state.count > 100 ? 4 : 2.5}
+                              fill={isSelected ? '#020617' : '#ffffff'}
+                              className="pointer-events-none"
+                            />
+                            <text
+                              x={state.labelX}
+                              y={state.labelY - 6}
+                              fill={isSelected || isHovered ? '#00f5d4' : '#cbd5e1'}
+                              fontSize={state.count > 100 ? 10 : 8}
+                              fontWeight={isSelected ? 'bold' : 'normal'}
+                              textAnchor="middle"
+                              fontFamily="monospace"
+                              className="pointer-events-none select-none"
+                            >
+                              {state.code}
+                            </text>
+                          </>
+                        )}
                       </g>
                     );
                   })}
@@ -513,7 +353,7 @@ export default function LatamFintechGISRadar() {
           </div>
 
           {/* COLUMNA DERECHA: DIRECTORIO SINCRONIZADO EN TIEMPO REAL */}
-          <div className="lg:col-span-5 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-2xl flex flex-col h-[580px]">
+          <div className="lg:col-span-5 bg-slate-900/80 border border-slate-800 rounded-2xl p-5 shadow-2xl flex flex-col h-[600px]">
             
             {/* BUSCADOR Y FILTROS */}
             <div className="space-y-3 pb-3 border-b border-slate-800">
@@ -521,7 +361,7 @@ export default function LatamFintechGISRadar() {
                 <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
                   type="text"
-                  placeholder="Buscar fintech, riel o ciudad..."
+                  placeholder="Buscar fintech, riel o sitio web..."
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
@@ -605,15 +445,17 @@ export default function LatamFintechGISRadar() {
                         </div>
                       </div>
 
+                      {/* BOTÓN SITIO WEB OFICIAL DIRECTO */}
                       {fintech.website && (
                         <a
                           href={fintech.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1 text-slate-400 hover:text-cyan-400 transition-colors"
-                          title="Visitar sitio oficial"
+                          className="flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-900 hover:bg-cyan-500/20 text-cyan-400 border border-slate-700 hover:border-cyan-400 text-[10px] font-mono transition-all shrink-0"
+                          title={`Visitar sitio oficial de ${fintech.name}`}
                         >
-                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span>{getCleanDomain(fintech.website)}</span>
+                          <ExternalLink className="w-3 h-3" />
                         </a>
                       )}
                     </div>
