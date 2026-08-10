@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
+import fintechHubData from '../data/fintechHubData.json';
 
 // =============================================================================
 // 11 VERTICALES UNIVERSALES FINTECH (TAXONOMÍA ESTÁNDAR LATAM)
@@ -693,6 +694,90 @@ export function FintechEcosystemHub() {
             </button>
           </div>
         )}
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 5. ASOCIACIONES Y CÁMARAS FINTECH OFICIALES POR PAÍS */}
+      {/* ========================================================================= */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto border-t border-[#241bc01c] bg-[#f8f8f8]/60">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eef0ff] border border-[#614ada]/20 text-[#614ada] text-xs font-bold uppercase tracking-wider mb-2">
+              <Building2 className="w-3.5 h-3.5" />
+              Red Gremial & Alianzas Institucionales
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#060606] tracking-tight">
+              Asociaciones y Cámaras FinTech por País
+            </h2>
+            <p className="text-xs sm:text-sm text-[#7d797a] font-medium mt-1 max-w-2xl">
+              Accede a los directorios de miembros, comités regulatorios y ecosistemas oficiales de cada país en América Latina.
+            </p>
+          </div>
+
+          <div className="flex-shrink-0">
+            <a
+              href="https://alianzafintech.org/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0000EE] text-white text-xs font-bold hover:bg-[#0000CC] transition-all shadow-xs"
+            >
+              <Globe2 className="w-3.5 h-3.5" />
+              Alianza Fintech Iberoamérica (18 Países) ↗
+            </a>
+          </div>
+        </div>
+
+        {/* Grid de Cámaras por País */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {fintechHubData.camaras_asociaciones.por_pais.map((camara: any, idx: number) => (
+            <div
+              key={idx}
+              className="p-4 rounded-2xl bg-white border border-[#241bc01c] hover:border-[#0000EE]/40 hover:shadow-md transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-[#241bc01c]">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">{camara.bandera}</span>
+                    <h3 className="font-extrabold text-sm text-[#060606]">{camara.pais}</h3>
+                  </div>
+                  <span className="text-[10px] font-mono font-bold text-[#7d797a] bg-[#f8f8f8] px-2 py-0.5 rounded-md">
+                    {camara.codigo}
+                  </span>
+                </div>
+
+                <h4 className="font-bold text-xs text-[#060606] leading-snug mb-1.5">
+                  {camara.asociacion}
+                </h4>
+
+                <p className="text-[11px] text-[#7d797a] font-medium leading-relaxed mb-3">
+                  {camara.enfoque}
+                </p>
+              </div>
+
+              <div className="pt-2.5 border-t border-[#241bc01c] flex items-center justify-between gap-2 text-xs">
+                <a
+                  href={camara.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 font-bold text-[#0000EE] hover:underline"
+                >
+                  Sitio Oficial <ExternalLink className="w-3 h-3" />
+                </a>
+
+                {camara.miembros_url && (
+                  <a
+                    href={camara.miembros_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[11px] font-bold text-[#7d797a] hover:text-[#060606] hover:underline"
+                  >
+                    Miembros ↗
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );

@@ -304,35 +304,158 @@
     }
   },
   "camaras_asociaciones": {
-    "alianza_fintech_iberoamerica": {
-      "miembros": [
-        "Argentina",
-        "Brasil",
-        "Chile",
-        "Colombia",
-        "México",
-        "Perú",
-        "Ecuador",
-        "Uruguay",
-        "Paraguay",
-        "Bolivia",
-        "Costa Rica",
-        "Panamá",
-        "Rep. Dominicana",
-        "El Salvador",
-        "Guatemala",
-        "Honduras",
-        "Nicaragua",
-        "España"
-      ],
-      "presidencia_rotativa": {
-        "2015": "Argentina",
-        "2017": "Chile",
-        "2021": "El Salvador",
-        "2023": "Perú",
-        "2024": "El Salvador"
+    "alianza_regional": {
+      "nombre": "Alianza Fintech Iberoamérica",
+      "url": "https://alianzafintech.org/",
+      "miembros_paises": 18,
+      "descripcion": "Red multilateral que agrupa a las principales asociaciones fintech de Latinoamérica, el Caribe y España."
+    },
+    "por_pais": [
+      {
+        "pais": "Brasil",
+        "codigo": "BR",
+        "bandera": "🇧🇷",
+        "asociacion": "ABFintechs (Associação Brasileira de Fintechs)",
+        "url": "https://abfintechs.com.br/en/home-2/",
+        "miembros_url": "https://abfintechs.com.br/",
+        "enfoque": "Líder regional, Pix, Open Finance y Sandbox BCB"
+      },
+      {
+        "pais": "México",
+        "codigo": "MX",
+        "bandera": "🇲🇽",
+        "asociacion": "FinTech México",
+        "url": "https://fintechmexico.org/",
+        "miembros_url": "https://panoramadenegocios.press/panorama-fintech-mexico-octubre-2025/",
+        "enfoque": "Ley Fintech, SPEI 24/7, CNBV, IFPEs e IFICs"
+      },
+      {
+        "pais": "Colombia",
+        "codigo": "CO",
+        "bandera": "🇨🇴",
+        "asociacion": "Colombia Fintech",
+        "url": "https://colombiafintech.co/",
+        "miembros_url": "https://colombiafintech.co/miembros",
+        "enfoque": "Bre-B, Decreto 0368 Open Finance y Pagos Digitales"
+      },
+      {
+        "pais": "Chile",
+        "codigo": "CL",
+        "bandera": "🇨🇱",
+        "asociacion": "FinteChile",
+        "url": "https://www.fintechile.org/",
+        "miembros_url": "https://www.fintechile.org/miembros",
+        "enfoque": "Ley Fintech 21.521, Sistema de Finanzas Abiertas CMF"
+      },
+      {
+        "pais": "Argentina",
+        "codigo": "AR",
+        "bandera": "🇦🇷",
+        "asociacion": "Cámara Argentina Fintech",
+        "url": "https://camarafintech.org/",
+        "miembros_url": "https://camarafintech.org/socios/",
+        "enfoque": "Transferencias 3.0, QR Interoperable, Billeteras y Cripto"
+      },
+      {
+        "pais": "Perú",
+        "codigo": "PE",
+        "bandera": "🇵🇪",
+        "asociacion": "Fintech Perú (Asociación Fintech del Perú)",
+        "url": "https://fintechperu.com/",
+        "miembros_url": "https://fintechperu.com/membresia/",
+        "enfoque": "Interoperabilidad Yape/Plin, BCRP y Ley de IA 31814"
+      },
+      {
+        "pais": "Ecuador",
+        "codigo": "EC",
+        "bandera": "🇪🇨",
+        "asociacion": "AsoFintech Ecuador",
+        "url": "https://asofintech.ec/",
+        "miembros_url": "https://asofintech.ec/socios/",
+        "enfoque": "Ley Orgánica Fintech 2022 y Sistema Integrador de Pagos (SIP)"
+      },
+      {
+        "pais": "Uruguay",
+        "codigo": "UY",
+        "bandera": "🇺🇾",
+        "asociacion": "Cámara Fintech del Uruguay",
+        "url": "https://fintech.org.uy/",
+        "miembros_url": "https://fintech.org.uy/#miembros",
+        "enfoque": "Ley 20.345 VASPs, dLocal Hub y Cross-Border"
+      },
+      {
+        "pais": "Paraguay",
+        "codigo": "PY",
+        "bandera": "🇵🇾",
+        "asociacion": "Cámara Paraguaya de Fintech",
+        "url": "https://fintech.org.py/",
+        "miembros_url": "https://fintech.org.py/#nosotros",
+        "enfoque": "Ley 7.503 Sistema Nacional de Pagos BCP y QR"
+      },
+      {
+        "pais": "Bolivia",
+        "codigo": "BO",
+        "bandera": "🇧🇴",
+        "asociacion": "Cámara Boliviana de Fintech (CBF)",
+        "url": "https://www.cbf.bo/",
+        "miembros_url": "https://www.cbf.bo/#afiliadas",
+        "enfoque": "Decreto Supremo 5384, ASFI y Pagos QR Simple"
+      },
+      {
+        "pais": "Guatemala",
+        "codigo": "GT",
+        "bandera": "🇬🇹",
+        "asociacion": "Asociación Fintech de Guatemala",
+        "url": "https://www.guatemalafintech.com/",
+        "miembros_url": "https://www.guatemalafintech.com/",
+        "enfoque": "ACH Pronto, Inclusión Financiera y Remesas Familiares"
+      },
+      {
+        "pais": "El Salvador",
+        "codigo": "SV",
+        "bandera": "🇸🇻",
+        "asociacion": "ASAFINTECH (Asociación Salvadoreña de Fintech)",
+        "url": "https://www.asafintech.org/",
+        "miembros_url": "https://www.asafintech.org/",
+        "enfoque": "Transfer365, Ley de Activos Digitales y Presidencia Alianza"
+      },
+      {
+        "pais": "Honduras",
+        "codigo": "HN",
+        "bandera": "🇭🇳",
+        "asociacion": "Asociación Fintech de Honduras",
+        "url": "https://hondurasfintech.com/",
+        "miembros_url": "https://hondurasfintech.com/#miembros",
+        "enfoque": "BCH ACH Pronto y Digitalización de Remesas"
+      },
+      {
+        "pais": "Costa Rica",
+        "codigo": "CR",
+        "bandera": "🇨🇷",
+        "asociacion": "AsoFintech Costa Rica",
+        "url": "https://asofintechcr.com/",
+        "miembros_url": "https://asofintechcr.com/",
+        "enfoque": "SINPE Móvil (BCCR) y Hub de Exportación IT"
+      },
+      {
+        "pais": "Panamá",
+        "codigo": "PA",
+        "bandera": "🇵🇦",
+        "asociacion": "Fintech Panamá",
+        "url": "https://fintechpanama.org/",
+        "miembros_url": "https://fintechpanama.org/miembros/",
+        "enfoque": "Hub Bancario Internacional, Yappy y Licencias JCJ"
+      },
+      {
+        "pais": "Rep. Dominicana",
+        "codigo": "DO",
+        "bandera": "🇩🇴",
+        "asociacion": "ADOFINTECH",
+        "url": "https://www.adofintech.org/",
+        "miembros_url": "https://www.adofintech.org/",
+        "enfoque": "SIPARD Banco Central, Remesas y Hub Caribeño"
       }
-    }
+    ]
   },
   "regulacion_fintech": {
     "mexico": {
