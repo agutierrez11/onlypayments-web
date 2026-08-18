@@ -211,17 +211,24 @@ export default function EditorialParallaxShowcase() {
             <p className="text-xs text-[#949494] font-sans">Accede al radar satelital, comparador de pasarelas y matching B2B en un solo clic.</p>
           </div>
 
-          <div className="flex items-center gap-3 z-10 shrink-0">
+          <div className="flex flex-wrap items-center gap-3 z-10 shrink-0">
+            <button
+              onClick={() => navigate('/hardware-pos')}
+              className="px-5 py-3 rounded-[6px] bg-[#00E5FF] hover:bg-[#33E9FF] text-black text-xs font-mono font-extrabold tracking-wider uppercase transition-all duration-200 shadow-lg shadow-[#00E5FF]/20 cursor-pointer flex items-center gap-2"
+            >
+              <span>SmartPOS Radar</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
             <button
               onClick={() => navigate('/latam-dashboard')}
-              className="px-6 py-3 rounded-[6px] bg-[#0000ee] hover:bg-[#3333f1] text-white text-xs font-mono font-bold tracking-wider uppercase transition-all duration-200 shadow-lg shadow-[#0000ee]/30 cursor-pointer flex items-center gap-2"
+              className="px-5 py-3 rounded-[6px] bg-[#0000ee] hover:bg-[#3333f1] text-white text-xs font-mono font-bold tracking-wider uppercase transition-all duration-200 shadow-lg shadow-[#0000ee]/30 cursor-pointer flex items-center gap-2"
             >
               <span>Explorar Radar</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => navigate('/b2b-intros')}
-              className="px-6 py-3 rounded-[6px] bg-[#1a1b22] hover:bg-[#22232d] text-[#A0A8DC] hover:text-white border border-[#2f303e] text-xs font-mono font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer"
+              className="px-5 py-3 rounded-[6px] bg-[#1a1b22] hover:bg-[#22232d] text-[#A0A8DC] hover:text-white border border-[#2f303e] text-xs font-mono font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer"
             >
               Intros B2B
             </button>

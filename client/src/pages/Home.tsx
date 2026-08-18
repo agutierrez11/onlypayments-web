@@ -373,6 +373,10 @@ export default function Home() {
               <button onClick={() => navigate('/remesas')} className="text-sm font-extrabold text-[#1BACFB] hover:text-white transition-colors cursor-pointer">
                 Remesas
               </button>
+              <button onClick={() => navigate('/hardware-pos')} className="text-sm font-extrabold text-[#00E5FF] hover:text-white transition-colors cursor-pointer flex items-center gap-1.5">
+                <span>SmartPOS & Hardware</span>
+                <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-[#00E5FF]/20 text-[#00E5FF] border border-[#00E5FF]/40">NUEVO</span>
+              </button>
               <button onClick={() => navigate('/latam-dashboard')} className="text-sm font-extrabold text-[#9BE9FE] hover:text-white transition-colors cursor-pointer">
                 Radar Latam
               </button>
@@ -434,6 +438,16 @@ export default function Home() {
               className="w-full text-left px-3 py-2 text-sm font-bold text-cyan-400 hover:bg-slate-900 rounded-lg flex items-center justify-between"
             >
               <span>Remesas</span>
+              <span className="text-xs text-cyan-400 font-mono">→</span>
+            </button>
+            <button 
+              onClick={() => { setMobileMenuOpen(false); navigate('/hardware-pos'); }} 
+              className="w-full text-left px-3 py-2 text-sm font-bold text-[#00E5FF] hover:bg-slate-900 rounded-lg flex items-center justify-between"
+            >
+              <span className="flex items-center gap-2">
+                <span>SmartPOS & Hardware</span>
+                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-[#00E5FF]/20 text-[#00E5FF]">NUEVO</span>
+              </span>
               <span className="text-xs text-cyan-400 font-mono">→</span>
             </button>
             <button 

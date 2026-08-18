@@ -16,6 +16,7 @@ import Diccionario from "./pages/Diccionario";
 import LatamFintechDashboard from "./pages/LatamFintechDashboard";
 import IntroduccionesB2B from "./pages/IntroduccionesB2B";
 import Matcher from "./pages/Matcher";
+import HardwarePOSRadar from "./pages/HardwarePOSRadar";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -30,6 +31,9 @@ function Router() {
       <Route path={"/news"} component={NewsFeed} />
       <Route path={"/news/:id"} component={NewsDetail} />
       <Route path={"/stacks"} component={PaymentStacks} />
+      <Route path={"/hardware-pos"} component={HardwarePOSRadar} />
+      <Route path={"/smartpos"} component={HardwarePOSRadar} />
+      <Route path={"/terminales"} component={HardwarePOSRadar} />
       <Route path={"/remesas"} component={Remesas} />
       <Route path={"/guides"} component={HowToGuides} />
       <Route path={"/diccionario"}>

@@ -40,11 +40,19 @@ export default function PaymentStacks() {
 
       {/* Header */}
       <div className="border-b border-slate-200 py-8 bg-white">
-        <div className="container max-w-6xl">
-          <h1 className="text-4xl font-black mb-2 text-slate-900">Stacks de Pago</h1>
-          <p className="text-lg text-slate-600 font-medium">
-            Recetas de pago organizadas por país y modelo de negocio
-          </p>
+        <div className="container max-w-6xl flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 className="text-4xl font-black mb-2 text-slate-900">Stacks de Pago</h1>
+            <p className="text-lg text-slate-600 font-medium">
+              Recetas de pago organizadas por país y modelo de negocio
+            </p>
+          </div>
+          <Link href="/hardware-pos">
+            <Button className="bg-[#000000] hover:bg-slate-800 text-[#00E5FF] font-bold text-xs font-mono uppercase tracking-wider gap-2 shadow-md cursor-pointer">
+              <span>SmartPOS & Hardware Radar</span>
+              <span className="text-[10px] bg-[#00E5FF]/20 text-[#00E5FF] px-1.5 py-0.5 rounded">NUEVO</span>
+            </Button>
+          </Link>
         </div>
       </div>
 
