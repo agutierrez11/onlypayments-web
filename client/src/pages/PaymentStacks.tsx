@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Filter, ArrowLeft } from "lucide-react";
+import { Filter, ArrowLeft, Cpu } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
 
@@ -24,64 +24,71 @@ export default function PaymentStacks() {
   }) || [];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
+    <div className="min-h-screen bg-[#F3F3F4] text-[#000000] font-sans">
       {/* Top Navigation Bar */}
-      <div className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-xs">
-        <div className="container py-3 flex items-center justify-between">
+      <div className="border-b border-[#E5E6EA] bg-[#FFFFFF] sticky top-0 z-50 shadow-xs">
+        <div className="max-w-[1296px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2 text-slate-700 hover:text-slate-900 font-bold border border-slate-300 cursor-pointer">
-              <ArrowLeft className="w-4 h-4 text-cyan-600" />
+            <Button variant="ghost" size="sm" className="gap-2 text-[#000000] hover:text-[#0000EE] font-bold border border-[#E5E6EA] rounded-[12px] cursor-pointer">
+              <ArrowLeft className="w-4 h-4 text-[#0000EE]" />
               Volver al inicio
             </Button>
           </Link>
-          <span className="font-extrabold text-slate-900 text-lg tracking-tight">OnlyPayments Stacks</span>
+          <span className="font-black text-[#000000] text-lg tracking-tight">OnlyPayments Stacks</span>
         </div>
       </div>
 
       {/* Header */}
-      <div className="border-b border-slate-200 py-8 bg-white">
-        <div className="container max-w-6xl flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="border-b border-[#E5E6EA] py-10 bg-[#FFFFFF]">
+        <div className="max-w-[1296px] mx-auto px-4 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h1 className="text-4xl font-black mb-2 text-slate-900">Stacks de Pago</h1>
-            <p className="text-lg text-slate-600 font-medium">
+            <h1 className="text-4xl font-black mb-2 text-[#000000] tracking-tight">Stacks de Pago</h1>
+            <p className="text-base text-[#8B8F9A] font-normal leading-[1.15]">
               Recetas de pago organizadas por país y modelo de negocio
             </p>
           </div>
           <Link href="/hardware-pos">
-            <Button className="bg-[#000000] hover:bg-slate-800 text-[#00E5FF] font-bold text-xs font-mono uppercase tracking-wider gap-2 shadow-md cursor-pointer">
+            <Button className="bg-[#0000EE] hover:bg-[#0000BE] text-white font-bold text-xs uppercase tracking-wider gap-2 rounded-[12px] px-5 py-2.5 cursor-pointer transition-colors duration-[0.12s]">
+              <Cpu className="w-4 h-4" />
               <span>SmartPOS & Hardware Radar</span>
-              <span className="text-[10px] bg-[#00E5FF]/20 text-[#00E5FF] px-1.5 py-0.5 rounded">NUEVO</span>
+              <span className="text-[10px] bg-white/20 text-white px-1.5 py-0.2 rounded-[2px]">NUEVO</span>
             </Button>
           </Link>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="border-b border-border py-6 bg-card/50">
-        <div className="container space-y-6">
+      <div className="border-b border-[#E5E6EA] py-6 bg-[#FFFFFF]">
+        <div className="max-w-[1296px] mx-auto px-4 sm:px-6 space-y-6">
           {/* Country Filters */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Filter className="w-4 h-4" />
-              <span className="font-semibold text-sm">Países</span>
+              <Filter className="w-4 h-4 text-[#0000EE]" />
+              <span className="font-bold text-sm text-[#000000]">Países</span>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Button
-                variant={selectedCountry === null ? "default" : "outline"}
-                size="sm"
+              <button
                 onClick={() => setSelectedCountry(null)}
+                className={`px-3.5 py-1.5 text-xs font-bold rounded-[12px] transition-all duration-[0.12s] cursor-pointer ${
+                  selectedCountry === null
+                    ? "bg-[#0000EE] text-white"
+                    : "bg-[#FFFFFF] border border-[#E5E6EA] text-[#000000] hover:border-[#0000EE]"
+                }`}
               >
                 Todos
-              </Button>
+              </button>
               {countries.map((country) => (
-                <Button
+                <button
                   key={country}
-                  variant={selectedCountry === country ? "default" : "outline"}
-                  size="sm"
                   onClick={() => setSelectedCountry(country)}
+                  className={`px-3.5 py-1.5 text-xs font-bold rounded-[12px] transition-all duration-[0.12s] cursor-pointer ${
+                    selectedCountry === country
+                      ? "bg-[#0000EE] text-white"
+                      : "bg-[#FFFFFF] border border-[#E5E6EA] text-[#000000] hover:border-[#0000EE]"
+                  }`}
                 >
                   {country}
-                </Button>
+                </button>
               ))}
             </div>
           </div>
@@ -89,28 +96,34 @@ export default function PaymentStacks() {
           {/* Business Model Filters */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="font-semibold text-sm">Modelo de Negocio</span>
+              <span className="font-bold text-sm text-[#000000]">Modelo de Negocio</span>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Button
-                variant={selectedModel === null ? "default" : "outline"}
-                size="sm"
+              <button
                 onClick={() => setSelectedModel(null)}
+                className={`px-3.5 py-1.5 text-xs font-bold rounded-[12px] transition-all duration-[0.12s] cursor-pointer ${
+                  selectedModel === null
+                    ? "bg-[#0000EE] text-white"
+                    : "bg-[#FFFFFF] border border-[#E5E6EA] text-[#000000] hover:border-[#0000EE]"
+                }`}
               >
                 Todos
-              </Button>
+              </button>
               {businessModels.map((model) => (
-                <Button
+                <button
                   key={model}
-                  variant={selectedModel === model ? "default" : "outline"}
-                  size="sm"
                   onClick={() => setSelectedModel(model)}
+                  className={`px-3.5 py-1.5 text-xs font-bold rounded-[12px] transition-all duration-[0.12s] cursor-pointer ${
+                    selectedModel === model
+                      ? "bg-[#0000EE] text-white"
+                      : "bg-[#FFFFFF] border border-[#E5E6EA] text-[#000000] hover:border-[#0000EE]"
+                  }`}
                 >
                   {model === "e-commerce" && "E-commerce"}
                   {model === "SaaS" && "SaaS"}
                   {model === "remesas" && "Remesas"}
                   {model === "iGaming" && "iGaming"}
-                </Button>
+                </button>
               ))}
             </div>
           </div>
@@ -119,50 +132,50 @@ export default function PaymentStacks() {
 
       {/* Stacks Grid */}
       <div className="py-12">
-        <div className="container max-w-6xl">
+        <div className="max-w-[1296px] mx-auto px-4 sm:px-6">
           {isLoading ? (
             <div className="text-center py-12">
-              <p className="text-slate-500 font-medium">Cargando stacks...</p>
+              <p className="text-[#8B8F9A] font-medium">Cargando stacks...</p>
             </div>
           ) : filteredStacks.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-2xl border border-slate-200 p-8 shadow-xs">
-              <p className="text-slate-600 font-medium">No se encontraron stacks con los filtros seleccionados.</p>
+            <div className="text-center py-12 bg-[#FFFFFF] rounded-[12px] border border-[#E5E6EA] p-8 shadow-xs">
+              <p className="text-[#8B8F9A] font-medium">No se encontraron stacks con los filtros seleccionados.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredStacks.map((stack) => (
                 <Card
                   key={stack.id}
-                  className="p-6 bg-white border-slate-200 hover:border-cyan-500 hover:shadow-md transition-all cursor-pointer rounded-2xl flex flex-col justify-between"
+                  className="p-6 bg-[#FFFFFF] border border-[#E5E6EA] hover:border-[#0000EE] transition-all duration-[0.12s] cursor-pointer rounded-[12px] flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div>
-                        <h3 className="text-xl font-black text-slate-900 mb-2">{stack.name}</h3>
+                        <h3 className="text-xl font-black text-[#000000] mb-2 tracking-tight">{stack.name}</h3>
                         <div className="flex items-center gap-2">
-                          <Badge className="bg-slate-100 text-slate-800 border-slate-300 font-bold">{stack.country}</Badge>
-                          <Badge className="bg-cyan-100 text-cyan-800 border-cyan-300 font-bold">
+                          <span className="bg-[#E5E6EA] text-[#000000] font-bold text-xs px-2.5 py-0.5 rounded-[2px]">{stack.country}</span>
+                          <span className="bg-[#E5E6EA] text-[#0000EE] font-bold text-xs px-2.5 py-0.5 rounded-[2px]">
                             {stack.businessModel === "e-commerce" && "E-commerce"}
                             {stack.businessModel === "SaaS" && "SaaS"}
                             {stack.businessModel === "remesas" && "Remesas"}
                             {stack.businessModel === "iGaming" && "iGaming"}
-                          </Badge>
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     {stack.description && (
-                      <p className="text-slate-600 text-sm font-medium mb-4 line-clamp-3 leading-relaxed">
+                      <p className="text-[#8B8F9A] text-sm font-normal mb-4 line-clamp-3 leading-[1.15]">
                         {stack.description}
                       </p>
                     )}
 
                     {stack.components && (
                       <div className="mb-4">
-                        <h4 className="font-bold text-xs uppercase tracking-wider text-slate-400 mb-2">Componentes</h4>
+                        <h4 className="font-bold text-xs uppercase tracking-wider text-[#8B8F9A] mb-2 font-mono">Componentes</h4>
                         <div className="space-y-1 text-xs">
                           {stack.components.split("\n").slice(0, 3).map((comp: string, idx: number) => (
-                            <p key={idx} className="text-slate-700 font-semibold">
+                            <p key={idx} className="text-[#000000] font-semibold">
                               • {comp.trim()}
                             </p>
                           ))}
@@ -171,9 +184,9 @@ export default function PaymentStacks() {
                     )}
                   </div>
 
-                  <Button variant="outline" className="w-full mt-2 font-bold border-slate-300 hover:border-cyan-600 hover:text-cyan-700" size="sm">
+                  <button className="w-full mt-2 font-bold border border-[#E5E6EA] bg-[#FFFFFF] hover:bg-[#F3F3F4] text-[#000000] hover:text-[#0000EE] rounded-[12px] py-2 text-xs transition-colors duration-[0.12s] cursor-pointer">
                     Ver detalles
-                  </Button>
+                  </button>
                 </Card>
               ))}
             </div>
@@ -182,15 +195,17 @@ export default function PaymentStacks() {
       </div>
 
       {/* CTA Section */}
-      <section className="py-12 bg-cyan-50 border-t border-slate-200">
-        <div className="container max-w-2xl text-center">
-          <h2 className="text-2xl font-black text-slate-900 mb-3">
+      <section className="py-12 bg-[#FFFFFF] border-t border-[#E5E6EA]">
+        <div className="max-w-[1296px] mx-auto px-4 sm:px-6 text-center max-w-2xl">
+          <h2 className="text-2xl font-black text-[#000000] mb-2 tracking-tight">
             ¿No encuentras el stack que necesitas?
           </h2>
-          <p className="text-slate-600 font-medium mb-6">
+          <p className="text-[#8B8F9A] font-normal mb-6 leading-[1.15]">
             Contáctanos para que creemos un stack personalizado para tu caso de uso específico.
           </p>
-          <Button size="lg" className="bg-cyan-600 hover:bg-cyan-700 text-white font-extrabold cursor-pointer">Solicitar Stack Personalizado</Button>
+          <Button size="lg" className="bg-[#0000EE] hover:bg-[#0000BE] text-white font-bold rounded-[12px] px-8 cursor-pointer transition-colors duration-[0.12s]">
+            Solicitar Stack Personalizado
+          </Button>
         </div>
       </section>
     </div>

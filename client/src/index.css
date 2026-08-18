@@ -43,40 +43,40 @@
 }
 
 :root {
-  /* OnlyPayments Premium Color Palette - Light Theme */
-  --primary: oklch(0.55 0.2 260); /* Deep Indigo */
-  --primary-foreground: oklch(0.98 0.001 0);
-  --sidebar-primary: oklch(0.52 0.18 260);
-  --sidebar-primary-foreground: oklch(0.98 0.001 0);
-  --chart-1: oklch(0.65 0.15 260);
-  --chart-2: oklch(0.60 0.18 260);
-  --chart-3: oklch(0.55 0.20 260);
-  --chart-4: oklch(0.50 0.22 260);
-  --chart-5: oklch(0.45 0.20 260);
-  --radius: 0.75rem;
-  --background: oklch(0.985 0.004 265);
-  --foreground: oklch(0.15 0.02 260);
-  --card: oklch(0.975 0.006 265);
-  --card-foreground: oklch(0.15 0.02 260);
-  --popover: oklch(0.98 0.001 0);
-  --popover-foreground: oklch(0.15 0.02 260);
-  --secondary: oklch(0.65 0.15 260);
-  --secondary-foreground: oklch(0.98 0.001 0);
-  --muted: oklch(0.92 0.01 260);
-  --muted-foreground: oklch(0.50 0.05 260);
-  --accent: oklch(0.70 0.18 40); /* Warm Gold Accent */
-  --accent-foreground: oklch(0.15 0.02 260);
-  --destructive: oklch(0.60 0.20 25);
-  --destructive-foreground: oklch(0.98 0.001 0);
-  --border: oklch(0.88 0.01 260);
-  --input: oklch(0.95 0.005 260);
-  --ring: oklch(0.55 0.20 260);
-  --sidebar: oklch(0.99 0.001 0);
-  --sidebar-foreground: oklch(0.15 0.02 260);
-  --sidebar-accent: oklch(0.92 0.01 260);
-  --sidebar-accent-foreground: oklch(0.55 0.20 260);
-  --sidebar-border: oklch(0.88 0.01 260);
-  --sidebar-ring: oklch(0.55 0.20 260);
+  /* Vibrant Modern Light Theme Tokens */
+  --primary: #0000EE;
+  --primary-foreground: #FFFFFF;
+  --sidebar-primary: #0000EE;
+  --sidebar-primary-foreground: #FFFFFF;
+  --chart-1: #0000EE;
+  --chart-2: #0000BE;
+  --chart-3: #007AFF;
+  --chart-4: #8B8F9A;
+  --chart-5: #E5E6EA;
+  --radius: 0.75rem; /* 12px */
+  --background: #F3F3F4;
+  --foreground: #000000;
+  --card: #FFFFFF;
+  --card-foreground: #000000;
+  --popover: #FFFFFF;
+  --popover-foreground: #000000;
+  --secondary: #E5E6EA;
+  --secondary-foreground: #000000;
+  --muted: #E5E6EA;
+  --muted-foreground: #8B8F9A;
+  --accent: #0000EE;
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5E6EA;
+  --input: #E5E6EA;
+  --ring: #0000EE;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #000000;
+  --sidebar-accent: #F3F3F4;
+  --sidebar-accent-foreground: #0000EE;
+  --sidebar-border: #E5E6EA;
+  --sidebar-ring: #0000EE;
 }
 
 .dark {
