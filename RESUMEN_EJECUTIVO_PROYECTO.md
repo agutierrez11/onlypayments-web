@@ -34,8 +34,15 @@ Este documento contiene la bitácora completa de arquitectura, enlaces de produc
 
 ---
 
+---
+
+## 🗺️ Roadmap de Producto y Monetización
+Para consultar las iniciativas planificadas en stand-by (APIs de datos abiertos de bancos centrales, Cotizador de RFPs de SmartPOS, Calculadora de ROI de MDR y Playground de APIs), ver [ROADMAP.md](file:///c:/Users/Antonio/.gemini/antigravity-ide/scratch/onlypayments/ROADMAP.md).
+
+---
+
 ## ⚙️ Reglas de Despliegue CI/CD
-1. **GitHub Trigger**: El proyecto despliega automáticamente en Cloudflare Pages al hacer `git push origin main`.
+1. **GitHub Trigger**: El proyecto despliega automáticamente al hacer `git push origin main`.
 2. **Estado de Git**: La rama `main` se encuentra sincronizada y limpia (`working tree clean`).
 
 ---
