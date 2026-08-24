@@ -25,6 +25,7 @@ import { toast } from 'sonner';
 import masterFintechsData from '../data/fintechs_latam_master.json';
 import MEXICO_STATES_SVG from '../data/mexico_states_svg.json';
 import LATAM_COUNTRIES_SVG from '../data/latam_countries_svg.json';
+import { B2BGraphNetwork } from './B2BGraphNetwork';
 
 interface StateGeo {
   id: string;
@@ -52,7 +53,7 @@ interface LatamCountryGeo {
 }
 
 export default function LatamFintechGISRadar() {
-  const [geoScope, setGeoScope] = useState<'mexico' | 'latam'>('mexico');
+  const [geoScope, setGeoScope] = useState<'mexico' | 'latam' | 'graph'>('mexico');
   const [selectedState, setSelectedState] = useState<string | null>('cdmx');
   const [selectedCountry, setSelectedCountry] = useState<string | null>('ALL');
   const [hoveredState, setHoveredState] = useState<StateGeo | null>(null);
@@ -238,6 +239,17 @@ export default function LatamFintechGISRadar() {
               <Globe2 className="w-3.5 h-3.5 text-[#0000FF]" />
               🌎 LATAM Continental (20 Países)
             </button>
+            <button
+              onClick={() => setGeoScope('graph')}
+              className={`flex items-center gap-2 px-5 py-2 rounded-[50px] text-xs font-mono font-bold transition-all cursor-pointer ${
+                geoScope === 'graph'
+                  ? 'bg-[#0000EE] text-white shadow-md shadow-indigo-500/30'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              ⚡ Grafo B2B Alianzas
+            </button>
           </div>
         </div>
 
@@ -261,8 +273,13 @@ export default function LatamFintechGISRadar() {
           </div>
         </div>
 
-        {/* GRID PRINCIPAL: MAPA VECTORIAL + DIRECTORIO LATERAL */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* GRID PRINCIPAL: SI GEOSCOPE ES GRAPH MOSTRAR B2BGRAPHNETWORK, SINO MOSTRAR MAPA GIS */}
+        {geoScope === 'graph' ? (
+          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            <B2BGraphNetwork />
+          </motion.div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           {/* COLUMNA IZQUIERDA: MAPA VECTORIAL REAL (MÉXICO O LATAM) */}
           <div className="lg:col-span-7 bg-[#131419] border border-[#222430] rounded-[12px] p-5 shadow-2xl relative overflow-hidden flex flex-col min-h-[660px]">
@@ -728,6 +745,7 @@ export default function LatamFintechGISRadar() {
             </div>
           </div>
         </div>
+        )}
       </div>
     </section>
   );
