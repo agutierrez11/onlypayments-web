@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-08-24T02:40:00Z",
+  "status": "PASS",
+  "total_fintechs": 2659,
+  "mexico_records": 1178,
+  "latam_records": 1481,
+  "verified_websites": 2659,
+  "verified_verticals": 2659,
+  "coverage_percentage": 100.0,
+  "components_audited": [
+    "HolographicCard3D (threeui-catalog)",
+    "FinancialTelemetryDashboard (livecharts2-data-viz)",
+    "B2BGraphNetwork (mapcn-gis-specialist & osintgraph)",
+    "LatamFintechGISRadar (GIS Map & Graph Switcher)"
+  ]
+}
