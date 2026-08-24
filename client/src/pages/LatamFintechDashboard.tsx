@@ -20,6 +20,7 @@ import { FintechDirectory } from "../components/FintechDirectory";
 import { FintechEcosystemHub } from "../components/FintechEcosystemHub";
 import { LatamPaymentRailsMap } from "../components/LatamPaymentRailsMap";
 import LatamFintechGISRadar from "../components/LatamFintechGISRadar";
+import { FinancialTelemetryDashboard } from "../components/FinancialTelemetryDashboard";
 import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { SEO } from "../components/SEO";
@@ -127,7 +128,8 @@ export default function LatamFintechDashboard() {
           )}
 
           {activeTab === "telemetria" && (
-            <motion.div key="telemetria" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }}>
+            <motion.div key="telemetria" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }} className="space-y-8">
+              <FinancialTelemetryDashboard />
               <LatamPaymentRailsMap />
             </motion.div>
           )}
