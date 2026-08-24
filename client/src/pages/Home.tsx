@@ -363,6 +363,11 @@ export default function Home() {
 
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-5">
+              <button onClick={() => scrollToSection('telemetria-section')} className="text-sm font-extrabold text-[#0000EE] hover:text-[#0000BE] transition-colors duration-[0.12s] cursor-pointer flex items-center gap-1.5 bg-[#E5E6EA]/60 px-3 py-1 rounded-[8px] border border-[#E5E6EA]">
+                <Zap className="w-3.5 h-3.5 text-[#0000EE] fill-[#0000EE]" />
+                <span>Simulador & Telemetría</span>
+                <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-[2px] bg-[#0000EE] text-white">LIVE</span>
+              </button>
               <button onClick={() => scrollToSection('explorador')} className="text-sm font-bold text-[#000000] hover:text-[#0000EE] transition-colors duration-[0.12s] cursor-pointer">
                 Explorador
               </button>
@@ -485,7 +490,7 @@ export default function Home() {
       />
 
       {/* SECCIÓN PROMINENTE 1: TELEMETRÍA Y SIMULADOR MULTIEJE DE COSTOS (Skill: livecharts2-data-viz) */}
-      <section className="relative z-10 py-12 bg-slate-100/80 border-t border-slate-200">
+      <section id="telemetria-section" className="relative z-10 py-16 bg-[#F8FAFC] border-t border-[#E5E6EA] scroll-mt-20">
         <FinancialTelemetryDashboard />
       </section>
 
@@ -506,7 +511,7 @@ export default function Home() {
       </section>
 
       {/* SECCIÓN PROMINENTE 2: GRAFO B2B DE ALIANZAS E INTERCONEXIONES (Skill: osintgraph-neo4j-mining & mapcn-gis-specialist) */}
-      <section className="relative z-10 py-12 bg-slate-950 border-t border-slate-800 text-white">
+      <section id="grafo-b2b-section" className="relative z-10 py-16 bg-[#030712] border-t border-slate-800 text-white scroll-mt-20">
         <B2BGraphNetwork />
       </section>
       
