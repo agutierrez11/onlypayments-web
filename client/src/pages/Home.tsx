@@ -44,6 +44,8 @@ import { AssessmentQuiz } from "@/components/AssessmentQuiz";
 import FintechGlobe from "@/components/FintechGlobe";
 import LatamFintechGISRadar from "@/components/LatamFintechGISRadar";
 import EditorialParallaxShowcase from "@/components/EditorialParallaxShowcase";
+import { FinancialTelemetryDashboard } from "@/components/FinancialTelemetryDashboard";
+import { B2BGraphNetwork } from "@/components/B2BGraphNetwork";
 import { SEO } from "@/components/SEO";
 
 export default function Home() {
@@ -482,6 +484,11 @@ export default function Home() {
         }}
       />
 
+      {/* SECCIÓN PROMINENTE 1: TELEMETRÍA Y SIMULADOR MULTIEJE DE COSTOS (Skill: livecharts2-data-viz) */}
+      <section className="relative z-10 py-12 bg-slate-100/80 border-t border-slate-200">
+        <FinancialTelemetryDashboard />
+      </section>
+
       {/* GLOBO & GRAFO INTERACTIVO FINTECH */}
       <section className="relative z-10 py-12 border-t border-border bg-background/80 backdrop-blur-md">
         <div className="container">
@@ -496,6 +503,11 @@ export default function Home() {
             <FintechGlobe />
           </div>
         </div>
+      </section>
+
+      {/* SECCIÓN PROMINENTE 2: GRAFO B2B DE ALIANZAS E INTERCONEXIONES (Skill: osintgraph-neo4j-mining & mapcn-gis-specialist) */}
+      <section className="relative z-10 py-12 bg-slate-950 border-t border-slate-800 text-white">
+        <B2BGraphNetwork />
       </section>
       
       {/* RADAR GIS VECTORIAL ESTATAL (32 ESTADOS MÉXICO + 20 PAÍSES LATAM) */}
