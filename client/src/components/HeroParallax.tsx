@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { ArrowRight, ShieldCheck, Fingerprint, Database, Network, Zap, Lock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { HolographicCard3D } from "@/components/HolographicCard3D";
 
 export function HeroParallax({
   onExplore,
@@ -105,6 +106,26 @@ export function HeroParallax({
             <span>Ver Radar y APIs</span>
             <Network className="w-4 h-4 text-[#0000EE]" />
           </button>
+        </motion.div>
+
+        {/* 3D WebGL Holographic Interactive Showcase (Skill: threeui-catalog) */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.2, delay: 0.2 }}
+          className="pt-10 flex flex-col items-center justify-center"
+        >
+          <HolographicCard3D 
+            cardTitle="OnlyPayments Multi-Rail"
+            brandName="Orquestador A2A LATAM"
+            network="SPEI • Pix • Stripe • Clip"
+            cardNumber="•••• •••• •••• 2026"
+            badgeText="LIVE 3D ENGINE"
+          />
+          <span className="text-[11px] font-mono text-slate-500 mt-3 flex items-center gap-1.5 font-semibold">
+            <Sparkles className="w-3.5 h-3.5 text-[#0000EE]" />
+            Mueve el cursor sobre la tarjeta para interactuar con la física 3D en tiempo real
+          </span>
         </motion.div>
       </motion.div>
 
