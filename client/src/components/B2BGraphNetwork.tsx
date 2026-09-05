@@ -139,7 +139,7 @@ export function B2BGraphNetwork() {
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0000EE]/20 border border-[#0000EE]/40 text-cyan-400 text-xs font-mono font-bold mb-2">
             <Network className="w-3.5 h-3.5" />
-            GRAFO B2B DE ALIANZAS • SKILL OSINTGRAPH & MAPCN
+            TOPOLOGÍA DE ADQUIRENCIA • RED DE INTERCONEXIÓN B2B
           </div>
           <h3 className="text-2xl font-black font-outfit text-white">
             Red de Interconexión de Rieles & Adquirentes
@@ -295,9 +295,12 @@ export function B2BGraphNetwork() {
 
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
             <span className="text-slate-400 font-mono">Trazabilidad B2B 2026</span>
-            <span className="text-[#0000EE] font-bold flex items-center gap-1 cursor-pointer">
+            <a 
+              href="/b2b-intros"
+              className="text-[#0000EE] hover:text-[#0000BE] font-bold flex items-center gap-1 cursor-pointer transition-colors"
+            >
               Ver Integración <ArrowRight className="w-3.5 h-3.5" />
-            </span>
+            </a>
           </div>
         </Card>
       </div>

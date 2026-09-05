@@ -7,6 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
 import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription 
+} from "@/components/ui/dialog";
+import { 
   ArrowRight, 
   Zap, 
   BookOpen, 
@@ -56,6 +63,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [selectedCountryKey, setSelectedCountryKey] = useState<string>("MX");
+  const [accessModalOpen, setAccessModalOpen] = useState<boolean>(false);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
@@ -399,8 +407,8 @@ export default function Home() {
                   Mi Dashboard
                 </Button>
               ) : (
-                <Button size="sm" onClick={startLogin} className="hidden sm:inline-flex bg-[#0000EE] text-white hover:bg-[#0000BE] font-bold rounded-[12px] px-4">
-                  Ingresar
+                <Button size="sm" onClick={() => setAccessModalOpen(true)} className="hidden sm:inline-flex bg-[#0000EE] text-white hover:bg-[#0000BE] font-bold rounded-[12px] px-4 cursor-pointer">
+                  Solicitar Acceso
                 </Button>
               )}
 
@@ -473,6 +481,13 @@ export default function Home() {
                 Intros B2B
               </span>
               <span className="text-xs text-white font-mono">→</span>
+            </button>
+            <button 
+              onClick={() => { setMobileMenuOpen(false); setAccessModalOpen(true); }} 
+              className="w-full text-left px-3 py-2 text-sm font-bold text-[#0000EE] border border-[#0000EE]/30 rounded-[8px] flex items-center justify-between"
+            >
+              <span>Solicitar Acceso Corporativo</span>
+              <span className="text-xs text-[#0000EE] font-mono">↗</span>
             </button>
           </div>
         )}
@@ -1324,6 +1339,59 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* MODAL DE ACCESO PRIVADO / DEMO B2B */}
+      <Dialog open={accessModalOpen} onOpenChange={setAccessModalOpen}>
+        <DialogContent className="max-w-md bg-white border border-slate-200 rounded-2xl p-6 shadow-2xl z-[100]">
+          <DialogHeader className="space-y-2 text-left">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-[#0000EE] text-xs font-mono font-bold w-fit">
+              ● ACCESO PRIVADO & B2B
+            </div>
+            <DialogTitle className="text-xl font-black text-slate-900 font-outfit">
+              Acceso Anticipado OnlyPayments
+            </DialogTitle>
+            <DialogDescription className="text-sm text-slate-600 leading-relaxed font-normal">
+              OnlyPayments opera como plataforma de inteligencia y compatibilidad de rieles de pago para directores de finanzas, fintechs y líderes de e-commerce en América Latina.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 pt-3">
+            <div className="p-4 bg-slate-50 border border-slate-200/80 rounded-xl space-y-2">
+              <h4 className="text-xs font-bold text-slate-900 uppercase font-mono tracking-wider">
+                ¿Buscas conectar con proveedores o evaluar tu stack?
+              </h4>
+              <p className="text-xs text-slate-600">
+                Obtén diagnósticos de enrutamiento y solicita introducciones comerciales directas con adquirentes y pasarelas verificadas.
+              </p>
+              <Button 
+                onClick={() => { setAccessModalOpen(false); navigate('/b2b-intros'); }}
+                className="w-full bg-[#0000EE] hover:bg-[#0000BE] text-white font-bold rounded-lg text-xs py-2 mt-2 cursor-pointer"
+              >
+                Ir a Introducciones B2B →
+              </Button>
+            </div>
+
+            <div className="p-4 bg-slate-50 border border-slate-200/80 rounded-xl space-y-2">
+              <h4 className="text-xs font-bold text-slate-900 uppercase font-mono tracking-wider">
+                Matching de Soluciones Inmediato
+              </h4>
+              <p className="text-xs text-slate-600">
+                Completa nuestro intake de compatibilidad sin costo para recibir opciones de adquirentes y pasarelas adaptadas a tu volumen:
+              </p>
+              <Button 
+                variant="outline"
+                onClick={() => { 
+                  setAccessModalOpen(false); 
+                  scrollToSection('matcher-section'); 
+                }}
+                className="w-full border-slate-300 hover:bg-slate-100 text-slate-800 font-bold rounded-lg text-xs py-2 transition-colors cursor-pointer"
+              >
+                Completar Intake de Pagos ↓
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
     </div>
   );

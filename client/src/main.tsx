@@ -7,6 +7,10 @@ import superjson from "superjson";
 import App from "./App";
 import { startLogin } from "./const";
 import "./index.css";
+import { trackPageView, trackCrash } from "@/lib/telemetry";
+
+// Disparar telemetría de visita en producción
+trackPageView();
 
 const queryClient = new QueryClient();
 

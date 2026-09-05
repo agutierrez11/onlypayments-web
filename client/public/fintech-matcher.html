@@ -1034,8 +1034,8 @@
       
       <div class="score-card">
         <div class="score-item">
-          <div class="value accent" id="score-savings">$14K</div>
-          <div class="label">Ahorro estimado / año</div>
+          <div class="value accent" id="score-savings">96%</div>
+          <div class="label">Aprobación Técnica Est.</div>
         </div>
         <div class="score-item">
           <div class="value white" id="score-time">3-14 días</div>
@@ -1046,6 +1046,9 @@
           <div class="label">Match de compatibilidad</div>
         </div>
       </div>
+      <p style="font-size: 11px; color: var(--text-dim); text-align: center; margin: -10px 0 20px 0; line-height: 1.4;">
+        * Compatibilidad técnica estimada con base en información pública de terceros. Tarifas finales sujetas a evaluación de riesgo, volumen y MCC de cada procesador.
+      </p>
       
       <div id="recommendations"></div>
       
@@ -1193,11 +1196,11 @@ function calculateRecommendations() {
     gaming: 'High-Risk Merchant'
   };
   
-  // Savings based on volume
-  const savingsMap = {
-    '<$5K': '$2.4K', '$5K-$10K': '$4.8K', '$10K-$50K': '$14K',
-    '$50K-$100K': '$28K', '$100K-$500K': '$72K', '$500K-$1M': '$156K',
-    '$1M-$5M': '$340K', '$5M+': '$800K+'
+  // Tasa de aprobación técnica estimada según volumen y riel
+  const approvalRateMap = {
+    '<$5K': '+91%', '$5K-$10K': '+93%', '$10K-$50K': '+95%',
+    '$50K-$100K': '+96.5%', '$100K-$500K': '+97.8%', '$500K-$1M': '+98.4%',
+    '$1M-$5M': '+99.1%', '$5M+': '+99.5%'
   };
   
   const hasBR = countries.some(c => c.code === 'brasil');
@@ -1310,7 +1313,7 @@ function calculateRecommendations() {
   
   return {
     persona: personas[type] || 'Merchant General',
-    savings: savingsMap[volume] || '$14K',
+    savings: approvalRateMap[volume] || '+95%',
     time: type === 'fintech' ? '45-90 días' : '3-14 días',
     match: Math.floor(85 + Math.random() * 14) + '%',
     cards
@@ -1319,24 +1322,41 @@ function calculateRecommendations() {
 
 // ========== LEAD CAPTURE ==========
 function captureLead() {
-  const email = document.getElementById('lead-email').value;
+  const emailInput = document.getElementById('lead-email');
+  const email = emailInput ? emailInput.value.trim() : '';
   if (!email || !email.includes('@')) {
-    alert('Por favor ingresa un email válido');
+    alert('Por favor ingresa un correo corporativo válido');
     return;
   }
   
-  // Here you would send to your backend/CRM
-  console.log('Lead captured:', {
+  const leadData = {
     email,
     answers,
-    timestamp: new Date().toISOString()
-  });
-  
-  // Show success
+    timestamp: new Date().toISOString(),
+    source: 'fintech-matcher'
+  };
+
+  try {
+    // 1. Guardar en localStorage para respaldo permanente
+    const existingLeads = JSON.parse(localStorage.getItem('onlypayments_leads') || '[]');
+    existingLeads.push(leadData);
+    localStorage.setItem('onlypayments_leads', JSON.stringify(existingLeads));
+
+    // 2. Notificar al marco contenedor si se ejecuta en iframe
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'ONLYPAYMENTS_LEAD_CAPTURED', lead: leadData }, '*');
+    }
+  } catch (err) {
+    console.warn('Error al guardar lead en almacenamiento local:', err);
+  }
+
+  // Feedback inmediato y claro
   document.querySelector('.cta-section').innerHTML = `
-    <h3 style="color: var(--accent);">✓ Solicitud enviada</h3>
-    <p>Te contactaremos en menos de 24h con tu consulta personalizada.</p>
-    <p style="font-size: 12px; color: var(--text-dim); margin-top: 12px;">Mientras tanto, explora el <a href="#" style="color: var(--accent);">mapa del ecosistema</a>.</p>
+    <h3 style="color: var(--accent); font-size: 20px;">✓ Solicitud de Consulta Registrada</h3>
+    <p style="margin-top: 8px; font-size: 14px; line-height: 1.5;">Hemos registrado tus preferencias (<strong>${email}</strong>). Un especialista en pagos de OnlyPayments te contactará en menos de 24h con un dictamen de compatibilidad personalizado.</p>
+    <div style="margin-top: 16px;">
+      <a href="/b2b-intros" target="_top" style="display: inline-block; background: var(--accent); color: white; padding: 8px 18px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 13px;">Explorar Introducciones B2B →</a>
+    </div>
   `;
 }
 
