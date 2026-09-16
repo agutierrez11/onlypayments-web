@@ -34,7 +34,13 @@ export function HolographicCard3D({
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
     camera.position.z = 4.2;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    } catch (e) {
+      console.warn("WebGL unsupported or context creation failed for HolographicCard3D. Using CSS fallback.", e);
+      return;
+    }
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     mount.appendChild(renderer.domElement);
