@@ -1,5 +1,5 @@
 // Telemetria en Tiempo Real
-const BOT_TOKEN = '8618367908:AAH1wQ9dPcCCMHciOHR89iAGd-XQg3NjyAo';
+const BOT_TOKEN = '8618367908:AAFMtW8dgYmK1CYVC8a4sw3DUkLXYGej5hE';
 const CHAT_ID = '1373770013';
 const TELEGRAM_API = 'https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage';
 
